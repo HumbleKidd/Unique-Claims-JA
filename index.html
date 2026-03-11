@@ -280,7 +280,6 @@
                 e.preventDefault();
                 
                 const rawPhone = document.getElementById('whatsapp').value;
-                // Clean the phone number: Remove everything except digits
                 const cleanPhone = rawPhone.replace(/\D/g, '');
 
                 const data = {
@@ -290,20 +289,25 @@
                     phone: cleanPhone
                 };
 
-                // FIXED: Added '1' for the Jamaica country code to ensure the API recognizes the recipient
+                // Target business number (Format: CountryCode + AreaCode + Number)
                 const myNumber = "18765813521";
                 const fullName = `${data.first} ${data.last}`;
                 
-                const text = `💎 *NEW VIP PRE-ORDER* %0A` +
-                             `---------------------------%0A` +
-                             `*Name:* ${fullName}%0A` +
-                             `*Location:* ${data.loc}%0A` +
-                             `*WhatsApp:* ${data.phone}%0A` +
-                             `---------------------------%0A` +
-                             `I'm ready for my Smart Android Projector Bundle! Add me to the list.`;
+                // Construct message
+                const message = `💎 NEW VIP PRE-ORDER\n` +
+                                `---------------------------\n` +
+                                `Name: ${fullName}\n` +
+                                `Location: ${data.loc}\n` +
+                                `WhatsApp: ${data.phone}\n` +
+                                `---------------------------\n` +
+                                `I'm ready for my Smart Android Projector Bundle! Add me to the list.`;
 
-                // Use the standardized API link
-                window.open(`https://api.whatsapp.com/send?phone=${myNumber}&text=${text}`, '_blank');
+                const encodedMessage = encodeURIComponent(message);
+                
+                // Using wa.me is the most reliable way to force the WhatsApp app to open
+                const waUrl = `https://wa.me/${myNumber}?text=${encodedMessage}`;
+                
+                window.location.href = waUrl;
             });
         })();
     </script>
