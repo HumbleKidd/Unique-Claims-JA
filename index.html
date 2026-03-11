@@ -31,7 +31,6 @@
             overflow-x: hidden;
         }
 
-        /* Ambient Accents */
         .accent-sphere {
             position: fixed;
             width: 400px;
@@ -44,7 +43,6 @@
         .sphere-1 { top: -100px; right: -100px; background: var(--accent-cyan); }
         .sphere-2 { bottom: -100px; left: -100px; background: var(--accent-purple); }
 
-        /* Updated Navigation with Sub-text */
         .lux-nav {
             padding: 30px 40px;
             display: flex;
@@ -120,7 +118,6 @@
             max-width: 500px;
         }
 
-        /* Interactive Form Area */
         .form-side {
             background: var(--glass-blue);
             padding: 60px 50px;
@@ -177,7 +174,6 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.03);
         }
 
-        /* FIXED: High-Visibility Button Style */
         .cta-btn {
             width: 100%;
             background: linear-gradient(135deg, var(--accent-purple) 0%, #5000cc 100%);
@@ -283,14 +279,19 @@
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
+                const rawPhone = document.getElementById('whatsapp').value;
+                // Clean the phone number: Remove everything except digits
+                const cleanPhone = rawPhone.replace(/\D/g, '');
+
                 const data = {
                     first: document.getElementById('fname').value,
                     last: document.getElementById('lname').value,
                     loc: document.getElementById('location').value,
-                    phone: document.getElementById('whatsapp').value
+                    phone: cleanPhone
                 };
 
-                const myNumber = "8765813521";
+                // FIXED: Added '1' for the Jamaica country code to ensure the API recognizes the recipient
+                const myNumber = "18765813521";
                 const fullName = `${data.first} ${data.last}`;
                 
                 const text = `💎 *NEW VIP PRE-ORDER* %0A` +
@@ -301,9 +302,10 @@
                              `---------------------------%0A` +
                              `I'm ready for my Smart Android Projector Bundle! Add me to the list.`;
 
-                window.open(`https://wa.me/${myNumber}?text=${text}`, '_blank');
+                // Use the standardized API link
+                window.open(`https://api.whatsapp.com/send?phone=${myNumber}&text=${text}`, '_blank');
             });
         })();
     </script>
 </body>
-</html>--
+</html>
