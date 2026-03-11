@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unique Claims JA | Official Pre-Order</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style id="unique-claims-final-refinement">
+        :root {
+            --accent-cyan: #00F0FF;
+            --accent-purple: #7000FF;
+            --accent-pink: #FF00E5;
+            --bg-lively: #ffffff;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --pure-white: #ffffff;
+            --glass-blue: rgba(0, 240, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-lively);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Ambient Accents */
+        .accent-sphere {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.15;
+            border-radius: 50%;
+        }
+        .sphere-1 { top: -100px; right: -100px; background: var(--accent-cyan); }
+        .sphere-2 { bottom: -100px; left: -100px; background: var(--accent-purple); }
+
+        /* Updated Navigation with Sub-text */
+        .lux-nav {
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background: transparent;
+        }
+
+        .brand-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lux-nav .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        .status-pill-sub {
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-pill-sub::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #25D366;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        main {
+            padding: 20px 40px 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .content-side h1 {
+            font-size: clamp(3.5rem, 9vw, 6rem);
+            line-height: 0.9;
+            font-weight: 800;
+            margin: 0 0 24px 0;
+            letter-spacing: -4px;
+        }
+
+        .content-side h1 span {
+            color: var(--accent-purple);
+            position: relative;
+        }
+
+        .content-side p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            max-width: 500px;
+        }
+
+        /* Interactive Form Area */
+        .form-side {
+            background: var(--glass-blue);
+            padding: 60px 50px;
+            border-radius: 50px;
+            border: 2px solid #f1f5f9;
+            backdrop-filter: blur(10px);
+        }
+
+        .input-wrapper {
+            margin-bottom: 35px;
+        }
+
+        .input-wrapper label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-purple);
+            margin-bottom: 10px;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid #E2E8F0;
+            padding: 15px 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: all 0.4s ease;
+            border-radius: 0;
+        }
+
+        .input-wrapper input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .logistics-box {
+            margin: 30px 0;
+            padding: 25px;
+            background: var(--pure-white);
+            border-radius: 25px;
+            border-left: 6px solid var(--accent-pink);
+            font-size: 0.95rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+        }
+
+        /* FIXED: High-Visibility Button Style */
+        .cta-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #5000cc 100%);
+            color: var(--pure-white);
+            border: none;
+            padding: 26px;
+            border-radius: 24px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 30px rgba(112, 0, 255, 0.25);
+        }
+
+        .cta-btn .icon-circle {
+            background: var(--accent-cyan);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            filter: brightness(1.1);
+            box-shadow: 0 20px 40px rgba(112, 0, 255, 0.4);
+        }
+
+        @media (max-width: 900px) {
+            main { grid-template-columns: 1fr; padding: 20px; gap: 40px; }
+            .content-side h1 { font-size: 3.8rem; }
+            .form-side { padding: 40px 25px; border-radius: 40px; }
+            .row { grid-template-columns: 1fr; gap: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="accent-sphere sphere-1"></div>
+    <div class="accent-sphere sphere-2"></div>
+
+    <nav class="lux-nav">
+        <div class="brand-block">
+            <h1 class="logo">Unique Claims JA</h1>
+            <div class="status-pill-sub">Active Registration</div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="content-side">
+            <h1>SMART<br><span>PROJECTOR</span><br>BUNDLE.</h1>
+            <p>Upgrade your home entertainment with our high-definition Android smart projector. Stream your favorite apps on the big screen. Reserve your unit now.</p>
+        </section>
+
+        <section class="form-side">
+            <form id="preOrderForm">
+                <div class="row">
+                    <div class="input-wrapper">
+                        <label>First Name</label>
+                        <input type="text" id="fname" placeholder="First Name" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label>Last Name</label>
+                        <input type="text" id="lname" placeholder="Last Name" required>
+                    </div>
+                </div>
+
+                <div class="input-wrapper">
+                    <label>Pickup / Delivery Town</label>
+                    <input type="text" id="location" placeholder="e.g. Mandeville" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label>WhatsApp Number</label>
+                    <input type="tel" id="whatsapp" placeholder="876-000-0000" required>
+                </div>
+
+                <div class="logistics-box">
+                    📍 <strong>Local Pickup:</strong> Mandeville<br>
+                    🚚 <strong>Nationwide:</strong> Knutsford Express Delivery
+                </div>
+
+                <button type="submit" class="cta-btn">
+                    <span>ADD ME TO THE LIST</span>
+                    <div class="icon-circle">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <script id="luxury-logic">
+        (function() {
+            const form = document.getElementById('preOrderForm');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const data = {
+                    first: document.getElementById('fname').value,
+                    last: document.getElementById('lname').value,
+                    loc: document.getElementById('location').value,
+                    phone: document.getElementById('whatsapp').value
+                };
+
+                const myNumber = "8765813521";
+                const fullName = `${data.first} ${data.last}`;
+                
+                const text = `💎 *NEW VIP PRE-ORDER* %0A` +
+                             `---------------------------%0A` +
+                             `*Name:* ${fullName}%0A` +
+                             `*Location:* ${data.loc}%0A` +
+                             `*WhatsApp:* ${data.phone}%0A` +
+                             `---------------------------%0A` +
+                             `I'm ready for my Smart Android Projector Bundle! Add me to the list.`;
+
+                window.open(`https://wa.me/${myNumber}?text=${text}`, '_blank');
+            });
+        })();
+    </script>
+</body>
+</html>--
