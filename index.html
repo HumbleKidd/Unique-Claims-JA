@@ -140,7 +140,7 @@
             margin-bottom: 10px;
         }
 
-        .input-wrapper input {
+        .input-wrapper input, .phone-container select {
             width: 100%;
             background: transparent;
             border: none;
@@ -153,7 +153,19 @@
             border-radius: 0;
         }
 
-        .input-wrapper input:focus {
+        .phone-container {
+            display: flex;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .phone-container select {
+            width: 100px;
+            cursor: pointer;
+            border-bottom: 3px solid var(--accent-purple);
+        }
+
+        .input-wrapper input:focus, .phone-container select:focus {
             outline: none;
             border-color: var(--accent-cyan);
         }
@@ -254,7 +266,13 @@
 
                 <div class="input-wrapper">
                     <label>WhatsApp Number</label>
-                    <input type="tel" id="whatsapp" placeholder="876-000-0000" required>
+                    <div class="phone-container">
+                        <select id="areaCode">
+                            <option value="1876">1876</option>
+                            <option value="1658">1658</option>
+                        </select>
+                        <input type="tel" id="whatsapp" placeholder="000-0000" required>
+                    </div>
                 </div>
 
                 <div class="logistics-box">
@@ -279,21 +297,24 @@
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
+                const prefix = document.getElementById('areaCode').value;
                 const rawPhone = document.getElementById('whatsapp').value;
                 const cleanPhone = rawPhone.replace(/\D/g, '');
+                
+                // Final customer number construction
+                const customerFullPhone = prefix + cleanPhone;
 
                 const data = {
                     first: document.getElementById('fname').value,
                     last: document.getElementById('lname').value,
                     loc: document.getElementById('location').value,
-                    phone: cleanPhone
+                    phone: customerFullPhone
                 };
 
-                // Target business number (Format: CountryCode + AreaCode + Number)
+                // Your updated business number
                 const myNumber = "18765813521";
                 const fullName = `${data.first} ${data.last}`;
                 
-                // Construct message
                 const message = `💎 NEW VIP PRE-ORDER\n` +
                                 `---------------------------\n` +
                                 `Name: ${fullName}\n` +
@@ -304,10 +325,10 @@
 
                 const encodedMessage = encodeURIComponent(message);
                 
-                // Using wa.me is the most reliable way to force the WhatsApp app to open
+                // Using wa.me with window.open for better app triggering
                 const waUrl = `https://wa.me/${myNumber}?text=${encodedMessage}`;
                 
-                window.location.href = waUrl;
+                window.open(waUrl, '_blank');
             });
         })();
     </script>
