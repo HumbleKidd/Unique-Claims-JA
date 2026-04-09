@@ -15,6 +15,24 @@
         
         .hero-bg {
             background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
         
         .card-hover {
@@ -59,15 +77,25 @@
                 order: 2;
             }
         }
+        
+        .share-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .share-btn:hover {
+            background-color: #22c55e;
+            color: white;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 overflow-x-hidden">
-    <!-- Top Navigation - Fixed for mobile -->
+    <!-- Top Navigation -->
     <nav class="bg-white border-b border-slate-100 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-5 nav-container flex items-center justify-between">
             <div class="flex items-center gap-x-3">
-                <div class="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-inner logo-container">
-                    <!-- Logo removed -->
+                <div class="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-inner">
+                    UC
                 </div>
                 <div>
                     <h1 class="font-semibold text-2xl tracking-tight">ProjectorFix</h1>
@@ -88,7 +116,6 @@
             </button>
         </div>
         
-        <!-- Mobile nav links -->
         <div class="md:hidden border-t border-slate-100 bg-white px-6 py-4 flex items-center justify-center gap-x-8 text-sm font-medium nav-links">
             <a href="#apps" class="hover:text-blue-600 transition-colors">Apps</a>
             <a href="#guide" class="hover:text-blue-600 transition-colors">Setup Guide</a>
@@ -96,9 +123,11 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with light unique particles -->
     <section class="hero-bg pt-16 pb-20">
-        <div class="max-w-7xl mx-auto px-6">
+        <canvas id="particles" width="1200" height="600"></canvas>
+        
+        <div class="max-w-7xl mx-auto px-6 hero-content">
             <div class="grid md:grid-cols-12 gap-12 items-center">
                 <div class="md:col-span-7">
                     <div class="inline-flex items-center gap-x-2 bg-white px-5 py-2 rounded-3xl text-sm font-medium shadow-sm mb-6">
@@ -121,10 +150,10 @@
                            class="download-btn inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-10 py-6 rounded-3xl text-xl font-semibold shadow-xl">
                             Start Setup Now →
                         </a>
-                        <button onclick="copySiteLink()" 
-                                class="inline-flex items-center justify-center border-2 border-slate-300 hover:border-slate-400 px-8 py-6 rounded-3xl text-xl font-semibold transition-all">
+                        <button onclick="shareViaWhatsApp()" 
+                                class="share-btn inline-flex items-center justify-center border-2 border-emerald-400 text-emerald-600 hover:text-white px-8 py-6 rounded-3xl text-xl font-semibold transition-all">
                             <i class="fa-solid fa-share-nodes mr-3"></i>
-                            Share with family
+                            Share with family &amp; friends
                         </button>
                     </div>
                     
@@ -141,6 +170,12 @@
                             <i class="fa-solid fa-check text-emerald-500"></i>
                             <span>TVJ + US Live Channels</span>
                         </div>
+                    </div>
+                    
+                    <!-- New share experience line -->
+                    <div class="mt-10 text-emerald-700 text-sm font-medium flex items-center gap-x-3">
+                        <i class="fa-solid fa-heart"></i>
+                        <span>Love your new setup? Share your experience on WhatsApp — many friends &amp; family are already getting their projectors fixed too!</span>
                     </div>
                 </div>
                 
@@ -444,19 +479,104 @@
     </footer>
 
     <script>
+        // Light, fast, unique particles (soft floating dots with gentle connection lines - UNIQUE CLAIMS vibe)
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        
+        let particles = [];
+        const particleCount = 45; // light & fast
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3.5 + 1;
+                this.speedX = Math.random() * 0.6 - 0.3;
+                this.speedY = Math.random() * 0.6 - 0.3;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = '#3b82f6';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+        
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 110) {
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${1 - distance / 110})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            
+            connectParticles();
+            requestAnimationFrame(animateParticles);
+        }
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = Math.min(window.innerHeight * 0.65, 620);
+            initParticles();
+        }
+        
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+        });
+        
+        // Initialize particles
+        resizeCanvas();
+        animateParticles();
+        
+        // Share via WhatsApp function
+        function shareViaWhatsApp() {
+            const message = "Hey! I fixed my projector — no more missing TVJ and zero YouTube ads. Check this out: https://uniqueclaimsja.store";
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+        
         function copySiteLink() {
             const link = "uniqueclaimsja.store";
             navigator.clipboard.writeText(link).then(() => {
-                const btn = event.currentTarget;
-                const originalText = btn.innerHTML;
-                btn.innerHTML = `<i class="fa-solid fa-check mr-3"></i> Link copied!`;
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                }, 2000);
+                // Optional: could add toast but keeping minimal
+                console.log('Link copied');
             });
         }
         
-        console.log('%cProjectorFix site ready ✓ Clean, fast, and premium on every screen size.', 'color:#2563eb; font-family:monospace');
+        console.log('%cProjectorFix site ready ✓ Clean, fast, welcoming with gentle UNIQUE particles.', 'color:#2563eb; font-family:monospace');
     </script>
 </body>
 </html>
