@@ -2,335 +2,461 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Uniquely You! Everytime | Unique Claims JA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-    <style id="unique-claims-final-refinement">
-        :root {
-            --accent-cyan: #00F0FF;
-            --accent-purple: #7000FF;
-            --accent-pink: #FF00E5;
-            --bg-lively: #ffffff;
-            --text-main: #0F172A;
-            --text-muted: #64748B;
-            --pure-white: #ffffff;
-            --glass-blue: rgba(0, 240, 255, 0.05);
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projector Fix • Smooth TV Again</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
         }
-
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
         }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-lively);
-            color: var(--text-main);
-            overflow-x: hidden;
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .accent-sphere {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            filter: blur(80px);
-            z-index: -1;
-            opacity: 0.15;
-            border-radius: 50%;
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgb(37 99 235 / 0.15);
         }
-        .sphere-1 { top: -100px; right: -100px; background: var(--accent-cyan); }
-        .sphere-2 { bottom: -100px; left: -100px; background: var(--accent-purple); }
-
-        .lux-nav {
-            padding: 30px 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            background: transparent;
-        }
-
-        .brand-block {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .lux-nav .logo {
-            font-weight: 800;
-            font-size: 1.4rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0;
-        }
-
-        .status-pill-sub {
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-top: 4px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-pill-sub::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: #25D366;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        main {
-            padding: 20px 40px 100px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .content-side h1 {
-            font-size: clamp(3.5rem, 9vw, 6rem);
-            line-height: 0.9;
-            font-weight: 800;
-            margin: 0 0 24px 0;
-            letter-spacing: -4px;
-        }
-
-        .content-side h1 span {
-            color: var(--accent-purple);
-            position: relative;
-        }
-
-        .content-side p {
-            font-size: 1.3rem;
-            line-height: 1.6;
-            color: var(--text-muted);
-            max-width: 500px;
-        }
-
-        .form-side {
-            background: var(--glass-blue);
-            padding: 60px 50px;
-            border-radius: 50px;
-            border: 2px solid #f1f5f9;
-            backdrop-filter: blur(10px);
-        }
-
-        .input-wrapper {
-            margin-bottom: 35px;
-        }
-
-        .input-wrapper label {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--accent-purple);
-            margin-bottom: 10px;
-        }
-
-        .input-wrapper input, .phone-container select {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 3px solid #E2E8F0;
-            padding: 15px 0;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-main);
-            transition: all 0.4s ease;
-            border-radius: 0;
-        }
-
-        .phone-container {
-            display: flex;
-            gap: 15px;
-            align-items: flex-end;
-        }
-
-        .phone-container select {
-            width: 100px;
-            cursor: pointer;
-            border-bottom: 3px solid var(--accent-purple);
-        }
-
-        .input-wrapper input:focus, .phone-container select:focus {
-            outline: none;
-            border-color: var(--accent-cyan);
-        }
-
-        .row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .logistics-box {
-            margin: 30px 0;
-            padding: 25px;
-            background: var(--pure-white);
-            border-radius: 25px;
-            border-left: 6px solid var(--accent-pink);
-            font-size: 0.95rem;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
-        }
-
-        .cta-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--accent-purple) 0%, #5000cc 100%);
-            color: var(--pure-white);
-            border: none;
-            padding: 26px;
-            border-radius: 24px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        
+        .download-btn {
             transition: all 0.3s ease;
-            box-shadow: 0 15px 30px rgba(112, 0, 255, 0.25);
         }
-
-        .cta-btn .icon-circle {
-            background: var(--accent-cyan);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-main);
+        
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgb(37 99 235 / 0.3);
         }
-
-        .cta-btn:hover {
-            transform: translateY(-5px);
-            filter: brightness(1.1);
-            box-shadow: 0 20px 40px rgba(112, 0, 255, 0.4);
+        
+        .step-number {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
         }
-
-        @media (max-width: 900px) {
-            main { grid-template-columns: 1fr; padding: 20px; gap: 40px; }
-            .content-side h1 { font-size: 3.8rem; }
-            .form-side { padding: 40px 25px; border-radius: 40px; }
-            .row { grid-template-columns: 1fr; gap: 0; }
+        
+        @media (max-width: 640px) {
+            .hero-text {
+                font-size: 2.25rem;
+            }
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 12px;
+                justify-content: space-between;
+            }
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                gap: 24px;
+                margin-top: 8px;
+            }
+            .nav-whatsapp {
+                order: 2;
+            }
         }
     </style>
 </head>
-<body>
-
-    <div class="accent-sphere sphere-1"></div>
-    <div class="accent-sphere sphere-2"></div>
-
-    <nav class="lux-nav">
-        <div class="brand-block">
-            <h1 class="logo">Unique Claims JA</h1>
-            <div class="status-pill-sub">Active Registration</div>
+<body class="bg-slate-50 text-slate-800 overflow-x-hidden">
+    <!-- Top Navigation - Fixed for mobile -->
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 nav-container flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-inner logo-container">
+                    <!-- Logo removed -->
+                </div>
+                <div>
+                    <h1 class="font-semibold text-2xl tracking-tight">ProjectorFix</h1>
+                    <p class="text-xs text-slate-500 -mt-1">TV that just works</p>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                <a href="#apps" class="hover:text-blue-600 transition-colors">Apps</a>
+                <a href="#guide" class="hover:text-blue-600 transition-colors">Setup Guide</a>
+                <a href="#contact" class="hover:text-blue-600 transition-colors">Help</a>
+            </div>
+            
+            <button onclick="window.open('https://wa.me/18765813521', '_blank')" 
+                    class="nav-whatsapp flex items-center gap-x-2 bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-2xl text-sm font-semibold transition-all active:scale-95">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Chat on WhatsApp</span>
+            </button>
+        </div>
+        
+        <!-- Mobile nav links -->
+        <div class="md:hidden border-t border-slate-100 bg-white px-6 py-4 flex items-center justify-center gap-x-8 text-sm font-medium nav-links">
+            <a href="#apps" class="hover:text-blue-600 transition-colors">Apps</a>
+            <a href="#guide" class="hover:text-blue-600 transition-colors">Setup Guide</a>
+            <a href="#contact" class="hover:text-blue-600 transition-colors">Help</a>
         </div>
     </nav>
 
-    <main>
-        <section class="content-side">
-            <h1>SMART<br><span>PROJECTOR</span><br>BUNDLE.</h1>
-            <p>Upgrade your home entertainment with our high-definition Android smart projector. Stream your favorite apps on the big screen. Reserve your unit now.</p>
-        </section>
-
-        <section class="form-side">
-            <form id="preOrderForm">
-                <div class="row">
-                    <div class="input-wrapper">
-                        <label>First Name</label>
-                        <input type="text" id="fname" placeholder="First Name" required>
+    <!-- Hero Section -->
+    <section class="hero-bg pt-16 pb-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-7">
+                    <div class="inline-flex items-center gap-x-2 bg-white px-5 py-2 rounded-3xl text-sm font-medium shadow-sm mb-6">
+                        <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                        Cable TV missing channels resolved • YouTube without ads
                     </div>
-                    <div class="input-wrapper">
-                        <label>Last Name</label>
-                        <input type="text" id="lname" placeholder="Last Name" required>
+                    
+                    <h1 class="hero-text text-6xl md:text-7xl font-semibold tracking-tighter leading-none mb-6">
+                        Your projector.<br>
+                        <span class="text-blue-600">Working perfectly again.</span>
+                    </h1>
+                    
+                    <p class="text-xl text-slate-600 max-w-lg mb-10">
+                        No more missing TVJ. No more YouTube ads interrupting your movies. 
+                        Just smooth, reliable entertainment in minutes.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#guide" 
+                           class="download-btn inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-10 py-6 rounded-3xl text-xl font-semibold shadow-xl">
+                            Start Setup Now →
+                        </a>
+                        <button onclick="copySiteLink()" 
+                                class="inline-flex items-center justify-center border-2 border-slate-300 hover:border-slate-400 px-8 py-6 rounded-3xl text-xl font-semibold transition-all">
+                            <i class="fa-solid fa-share-nodes mr-3"></i>
+                            Share with family
+                        </button>
+                    </div>
+                    
+                    <div class="mt-12 flex items-center gap-x-8 text-sm flex-wrap gap-y-3">
+                        <div class="flex items-center gap-x-2">
+                            <i class="fa-solid fa-check text-emerald-500"></i>
+                            <span>100% Free apps</span>
+                        </div>
+                        <div class="flex items-center gap-x-2">
+                            <i class="fa-solid fa-check text-emerald-500"></i>
+                            <span>Projector perfect again</span>
+                        </div>
+                        <div class="flex items-center gap-x-2">
+                            <i class="fa-solid fa-check text-emerald-500"></i>
+                            <span>TVJ + US Live Channels</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="input-wrapper">
-                    <label>Location</label>
-                    <input type="text" id="location" placeholder="e.g. Mandeville" required>
-                </div>
-
-                <div class="input-wrapper">
-                    <label>WhatsApp Number</label>
-                    <div class="phone-container">
-                        <select id="areaCode">
-                            <option value="1876">1876</option>
-                            <option value="1658">1658</option>
-                        </select>
-                        <input type="tel" id="whatsapp" placeholder="000-0000" required>
+                
+                <div class="md:col-span-5 relative">
+                    <div class="bg-white rounded-3xl shadow-2xl p-4 max-w-xs mx-auto">
+                        <div class="aspect-video bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center text-white">
+                            <div class="text-center">
+                                <i class="fa-solid fa-tv text-7xl opacity-75 mb-4"></i>
+                                <p class="font-medium">Projector Ready</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <div class="text-emerald-500 text-3xl font-semibold">TVJ</div>
+                                <div class="text-xs text-slate-500">Live local channels</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-amber-500 text-3xl font-semibold">YouTube</div>
+                                <div class="text-xs text-slate-500">Zero ads</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="logistics-box">
-                    📍 <strong>Local Pickup:</strong> Mandeville<br>
-                    🚚 <strong>Nationwide:</strong> Knutsford Express Delivery
+    <!-- Apps Section -->
+    <section id="apps" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="px-6 py-2 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full">Choose your fix</span>
+                <h2 class="text-5xl font-semibold tracking-tight mt-4">The only 4 apps you need</h2>
+                <p class="mt-3 text-slate-600 max-w-md mx-auto">All free. All easy. All work great on projectors.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- TiviMate -->
+                <div class="bg-white border border-slate-100 rounded-3xl overflow-hidden card-hover">
+                    <div class="h-2 bg-gradient-to-r from-blue-500 to-cyan-400"></div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-4xl">
+                                📺
+                            </div>
+                            <a href="https://files.catbox.moe/qkxlf0.apk" 
+                               class="download-btn bg-blue-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold flex items-center gap-x-2">
+                                <i class="fa-solid fa-download"></i> Download
+                            </a>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-2">TiviMate</h3>
+                        <p class="text-slate-600 text-lg leading-tight">The best IPTV player. Watch TVJ + US live channels in perfect quality. 
+                        <span class="font-medium text-blue-600">You can uninstall your old M3U Player app for good.</span></p>
+                        
+                        <div class="mt-8 pt-8 border-t text-sm">
+                            <div class="flex justify-between py-2 border-b">
+                                <span class="text-slate-500">Playlist</span>
+                                <a href="https://files.catbox.moe/dssjph.m3u" class="text-blue-600 hover:underline font-medium">Download TVJ + US Playlist</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
+                <!-- Norofire 2in1 -->
+                <div class="bg-white border border-slate-100 rounded-3xl overflow-hidden card-hover">
+                    <div class="h-2 bg-gradient-to-r from-violet-500 to-fuchsia-400"></div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 bg-violet-100 text-violet-600 rounded-2xl flex items-center justify-center text-4xl">
+                                🔥
+                            </div>
+                            <a href="https://files.catbox.moe/0flvbe.apk" 
+                               class="download-btn bg-violet-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold flex items-center gap-x-2">
+                                <i class="fa-solid fa-download"></i> Download
+                            </a>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-2">Norofire 2-in-1</h3>
+                        <p class="text-slate-600 text-lg leading-tight">Installs <strong>Streamfire</strong> (USA Cable TV) and <strong>Sportsfire</strong> (Live Sports USA) in one go.</p>
+                    </div>
+                </div>
+                
+                <!-- BravePipe -->
+                <div class="bg-white border border-slate-100 rounded-3xl overflow-hidden card-hover">
+                    <div class="h-2 bg-gradient-to-r from-rose-500 to-orange-400"></div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center text-4xl">
+                                ▶️
+                            </div>
+                            <a href="https://files.catbox.moe/d0ynpl.apk" 
+                               class="download-btn bg-rose-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold flex items-center gap-x-2">
+                                <i class="fa-solid fa-download"></i> Download
+                            </a>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-2">BravePipe</h3>
+                        <p class="text-slate-600 text-lg leading-tight">YouTube without any ads, sponsors, or interruptions. Background play + picture-in-picture too.</p>
+                    </div>
+                </div>
+                
+                <!-- Bonus Card -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-8 flex flex-col">
+                    <div class="flex-1">
+                        <div class="text-amber-400 text-sm font-semibold mb-2">PRO TIP</div>
+                        <h3 class="text-3xl font-semibold leading-none mb-6">Download everything<br>first</h3>
+                        <p class="text-slate-300">Save all 4 files to your projector before installing. Makes everything faster and smoother.</p>
+                    </div>
+                    <div class="pt-8 mt-auto border-t border-white/20 text-xs flex items-center gap-x-3">
+                        <i class="fa-solid fa-lightbulb text-2xl"></i>
+                        <span>Tip: Use Chrome on your projector to open this page</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <button type="submit" class="cta-btn">
-                    <span>ADD ME TO THE LIST</span>
-                    <div class="icon-circle">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    <!-- Simple Setup Guide -->
+    <section id="guide" class="py-24 bg-slate-50">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-semibold tracking-tighter">3-minute setup</h2>
+                <p class="text-slate-600 mt-4">Follow these steps exactly. No tech knowledge needed.</p>
+            </div>
+            
+            <div class="space-y-20">
+                
+                <!-- Step 1 -->
+                <div class="grid md:grid-cols-12 gap-12 items-center">
+                    <div class="md:col-span-5">
+                        <div class="step-number inline-flex w-12 h-12 rounded-2xl items-center justify-center text-white font-bold text-3xl mb-6">1</div>
+                        <h3 class="text-4xl font-semibold tracking-tight mb-4">Open Chrome on your projector</h3>
+                        <p class="text-lg text-slate-600">Type this address:</p>
+                        
+                        <div class="mt-8 bg-white p-6 rounded-3xl shadow inline-flex items-center gap-x-4">
+                            <div class="font-mono text-blue-600 text-xl font-medium">uniqueclaimsja.store</div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-7 bg-white rounded-3xl p-10 shadow">
+                        <p class="text-slate-600">Enter the site directly on your projector using Chrome. Everything you need is right here.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="grid md:grid-cols-12 gap-12 items-center">
+                    <div class="md:col-span-7 order-2 md:order-1">
+                        <div class="bg-white rounded-3xl p-10">
+                            <h4 class="font-semibold text-xl mb-6 flex items-center gap-x-3">
+                                <span class="text-blue-600">↓</span> 
+                                Download all 4 files now
+                            </h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <a href="https://files.catbox.moe/dssjph.m3u" target="_blank"
+                                   class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
+                                    <div>
+                                        <div class="font-medium">TVJ + US Playlist</div>
+                                        <div class="text-xs text-slate-500">.m3u file</div>
+                                    </div>
+                                    <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600 transition-colors"></i>
+                                </a>
+                                
+                                <a href="https://files.catbox.moe/qkxlf0.apk" target="_blank"
+                                   class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
+                                    <div>
+                                        <div class="font-medium">TiviMate IPTV Player</div>
+                                        <div class="text-xs text-slate-500">.apk</div>
+                                    </div>
+                                    <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600 transition-colors"></i>
+                                </a>
+                                
+                                <a href="https://files.catbox.moe/0flvbe.apk" target="_blank"
+                                   class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
+                                    <div>
+                                        <div class="font-medium">Norofire 2-in-1 Installer</div>
+                                        <div class="text-xs text-slate-500">Streamfire + Sportsfire</div>
+                                    </div>
+                                    <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600 transition-colors"></i>
+                                </a>
+                                
+                                <a href="https://files.catbox.moe/d0ynpl.apk" target="_blank"
+                                   class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
+                                    <div>
+                                        <div class="font-medium">BravePipe</div>
+                                        <div class="text-xs text-slate-500">Ad-free YouTube</div>
+                                    </div>
+                                    <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600 transition-colors"></i>
+                                </a>
+                            </div>
+                            <p class="mt-6 text-xs text-amber-600 font-medium">Note: Downloaded file names may look different because of the cloud host. Just install the APK files and use the .m3u playlist as shown.</p>
+                        </div>
+                    </div>
+                    <div class="md:col-span-5 order-1 md:order-2">
+                        <div class="step-number inline-flex w-12 h-12 rounded-2xl items-center justify-center text-white font-bold text-3xl mb-6">2</div>
+                        <h3 class="text-4xl font-semibold tracking-tight mb-4">Save the files</h3>
+                        <p class="text-slate-600">Download every file completely before you start installing. Patience here makes the rest easy.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="grid md:grid-cols-12 gap-12 items-center">
+                    <div class="md:col-span-5">
+                        <div class="step-number inline-flex w-12 h-12 rounded-2xl items-center justify-center text-white font-bold text-3xl mb-6">3</div>
+                        <h3 class="text-4xl font-semibold tracking-tight mb-4">Install from USB / Downloads</h3>
+                        <ul class="space-y-6 text-lg">
+                            <li class="flex gap-x-4">
+                                <span class="font-mono text-blue-600 font-medium">1.</span>
+                                <span>Go back to your projector home screen</span>
+                            </li>
+                            <li class="flex gap-x-4">
+                                <span class="font-mono text-blue-600 font-medium">2.</span>
+                                <span>Click the <strong>USB</strong> button on the right → LOCAL → Downloads folder</span>
+                            </li>
+                            <li class="flex gap-x-4">
+                                <span class="font-mono text-blue-600 font-medium">3.</span>
+                                <span>Install the 3 APK files one by one. Be patient while it checks and installs.</span>
+                            </li>
+                            <li class="flex gap-x-4">
+                                <span class="font-mono text-blue-600 font-medium">4.</span>
+                                <span>Once installed, find them in <strong>My Apps</strong></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-7 bg-white rounded-3xl p-10">
+                        <h4 class="uppercase text-xs tracking-widest font-semibold mb-6 text-slate-500">Quick start for each app</h4>
+                        
+                        <div class="space-y-10">
+                            <div>
+                                <div class="font-semibold flex items-center gap-x-2 mb-3">
+                                    <span class="text-blue-600">TiviMate</span>
+                                </div>
+                                <p class="text-slate-600">Open → Add Playlist → M3U Playlist → Local file → Open the <strong>Music</strong> folder → select the TVJ + US playlist → Next → Done.<br><br>Enjoy perfect TVJ and US channels.</p>
+                            </div>
+                            
+                            <div>
+                                <div class="font-semibold flex items-center gap-x-2 mb-3">
+                                    <span class="text-violet-600">Norofire → Streamfire &amp; Sportsfire</span>
+                                </div>
+                                <p class="text-slate-600">Just open and follow the simple on-screen prompts. You'll get live TV, movies, and all major sports with almost no buffering.</p>
+                            </div>
+                            
+                            <div>
+                                <div class="font-semibold flex items-center gap-x-2 mb-3">
+                                    <span class="text-rose-600">BravePipe</span>
+                                </div>
+                                <p class="text-slate-600">Open the app and search for any video. No ads ever again. You can even play in the background while doing other things.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust bar -->
+    <div class="bg-white py-6 border-t border-b">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-x-12 gap-y-6 text-sm text-slate-500">
+            <div class="flex items-center gap-x-2">
+                <i class="fa-solid fa-shield-halved text-emerald-500"></i>
+                <span>Safe &amp; trusted APKs</span>
+            </div>
+            <div>Creating Happy Binge-watching Customers Everywhere</div>
+            <div>Fast support via WhatsApp</div>
+        </div>
+    </div>
+
+    <!-- Final CTA -->
+    <section class="py-20 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <h2 class="text-5xl font-semibold tracking-tight mb-6">Ready to enjoy TV again?</h2>
+            <p class="text-xl opacity-90 mb-10">Download the files, follow the 3 steps, and you're done.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <button onclick="document.getElementById('apps').scrollIntoView({behavior: 'smooth'})" 
+                        class="download-btn bg-white text-blue-700 hover:bg-slate-100 px-14 py-7 rounded-3xl text-2xl font-semibold shadow-2xl flex items-center gap-x-4">
+                    <span>Download All Files</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </button>
+                
+                <button onclick="window.open('https://wa.me/18765813521?text=Hi%2C%20I%20just%20installed%20the%20apps%20but%20need%20a%20little%20help', '_blank')" 
+                        class="flex items-center gap-x-4 bg-white/20 hover:bg-white/30 backdrop-blur px-10 py-7 rounded-3xl text-xl font-medium border border-white/30 transition-all">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    <div class="text-left">
+                        <div class="font-medium">Need help?</div>
+                        <div class="text-sm opacity-75">Active right now</div>
                     </div>
                 </button>
-            </form>
-        </section>
-    </main>
-
-    <script id="luxury-logic">
-        (function() {
-            const form = document.getElementById('preOrderForm');
+            </div>
             
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const prefix = document.getElementById('areaCode').value;
-                const rawPhone = document.getElementById('whatsapp').value;
-                const cleanPhone = rawPhone.replace(/\D/g, '');
-                
-                // Final customer number construction
-                const customerFullPhone = prefix + cleanPhone;
+            <div class="mt-12 text-xs opacity-60">Share this page with friends or family who bought the same projector</div>
+        </div>
+    </section>
 
-                const data = {
-                    first: document.getElementById('fname').value,
-                    last: document.getElementById('lname').value,
-                    loc: document.getElementById('location').value,
-                    phone: customerFullPhone
-                };
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/18765813521" target="_blank"
+       class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-3xl flex items-center justify-center shadow-2xl text-3xl transition-all active:scale-95 md:hidden">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
-                // Your updated business number
-                const myNumber = "18765813521";
-                const fullName = `${data.first} ${data.last}`;
-                
-                const message = `💎 NEW VIP PRE-ORDER\n` +
-                                `---------------------------\n` +
-                                `Name: ${fullName}\n` +
-                                `Location: ${data.loc}\n` +
-                                `WhatsApp: ${data.phone}\n` +
-                                `---------------------------\n` +
-                                `I'm ready for my Smart Android Projector Bundle! Add me to the list.`;
+    <footer class="bg-slate-900 text-slate-400 py-12 text-center text-sm">
+        <p>Made with 💖 for my customers Home and Abroad</p>
+        <p class="mt-2">Contact: <span class="text-blue-400">1876-581-3521</span></p>
+    </footer>
 
-                const encodedMessage = encodeURIComponent(message);
-                
-                // Using wa.me with window.open for better app triggering
-                const waUrl = `https://wa.me/${myNumber}?text=${encodedMessage}`;
-                
-                window.open(waUrl, '_blank');
+    <script>
+        function copySiteLink() {
+            const link = "uniqueclaimsja.store";
+            navigator.clipboard.writeText(link).then(() => {
+                const btn = event.currentTarget;
+                const originalText = btn.innerHTML;
+                btn.innerHTML = `<i class="fa-solid fa-check mr-3"></i> Link copied!`;
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                }, 2000);
             });
-        })();
+        }
+        
+        console.log('%cProjectorFix site ready ✓ Clean, fast, and premium on every screen size.', 'color:#2563eb; font-family:monospace');
     </script>
 </body>
 </html>
