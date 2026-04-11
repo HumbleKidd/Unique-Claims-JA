@@ -64,7 +64,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75);
             display: none;
             align-items: center;
             justify-content: center;
@@ -73,23 +73,17 @@
       
         .update-card {
             background: white;
-            max-width: 420px;
-            width: 90%;
+            max-width: 440px;
+            width: 92%;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+            box-shadow: 0 30px 60px -15px rgb(0 0 0 / 0.5);
             animation: popupPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
       
         @keyframes popupPop {
-            from {
-                opacity: 0;
-                transform: scale(0.7) translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            from { opacity: 0; transform: scale(0.75) translateY(50px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
       
         @media (max-width: 640px) {
@@ -136,37 +130,42 @@
                 </div>
             </div>
             <div class="p-8">
-                <div class="text-emerald-600 font-medium text-sm mb-2 flex items-center gap-x-2">
-                    <i class="fa-solid fa-clock"></i>
-                    <span>Updated just now • April 10, 2026 • 11:02 PM EST</span>
+                <div class="flex items-center gap-x-2 text-emerald-600 font-medium mb-6">
+                    <i class="fa-solid fa-calendar-clock"></i>
+                    <span>Updated on April 10, 2026 at 11:02 PM EST</span>
                 </div>
                 
                 <h4 class="text-2xl font-semibold tracking-tight mb-6">What's New</h4>
                 
                 <ul class="space-y-4 text-slate-700">
                     <li class="flex gap-x-3">
-                        <span class="text-emerald-500 mt-1">✔</span>
+                        <span class="text-emerald-500 mt-1 text-lg">✔</span>
                         <span>Fixed Norofire 2-in-1 download link (now working correctly)</span>
                     </li>
                     <li class="flex gap-x-3">
-                        <span class="text-emerald-500 mt-1">✔</span>
+                        <span class="text-emerald-500 mt-1 text-lg">✔</span>
                         <span>Updated BravePipe download link to match</span>
                     </li>
                     <li class="flex gap-x-3">
-                        <span class="text-emerald-500 mt-1">✔</span>
+                        <span class="text-emerald-500 mt-1 text-lg">✔</span>
                         <span>All download buttons now point to the latest files</span>
                     </li>
                 </ul>
 
-                <button onclick="closeUpdatePopup()"
-                        class="mt-10 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-2xl text-lg transition-all active:scale-95">
-                    Got it, Thanks!
-                </button>
+                <div class="mt-10 flex flex-col gap-3">
+                    <button onclick="closeUpdatePopup()"
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-2xl text-lg transition-all active:scale-95">
+                        Got it, Thanks!
+                    </button>
+                    
+                    <button onclick="dontShowAgain()"
+                            class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-4 rounded-2xl text-base transition-all">
+                        Don't show this update again
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- Rest of your site (Navigation + Hero + Apps + Guide etc.) remains 100% unchanged except the links we fixed earlier -->
 
     <!-- Top Navigation -->
     <nav class="bg-white border-b border-slate-100 sticky top-0 z-50">
@@ -204,7 +203,7 @@
     <!-- Hero Section -->
     <section class="hero-bg pt-16 pb-20">
         <canvas id="particles" width="1200" height="600"></canvas>
-        <!-- Hero content same as before -->
+      
         <div class="max-w-7xl mx-auto px-6 hero-content">
             <div class="grid md:grid-cols-12 gap-12 items-center">
                 <div class="md:col-span-7">
@@ -280,7 +279,7 @@
         </div>
     </section>
 
-    <!-- Apps Section - Norofire & BravePipe use correct link -->
+    <!-- Apps Section -->
     <section id="apps" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
@@ -290,18 +289,30 @@
             </div>
           
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              
                 <!-- TiviMate -->
                 <div class="bg-white border border-slate-100 rounded-3xl overflow-hidden card-hover">
                     <div class="h-2 bg-gradient-to-r from-blue-500 to-cyan-400"></div>
                     <div class="p-8">
                         <div class="flex justify-between items-start mb-6">
-                            <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-4xl">📺</div>
-                            <a href="https://files.catbox.moe/qkxlf0.apk" class="download-btn bg-blue-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold flex items-center gap-x-2">
+                            <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-4xl">
+                                📺
+                            </div>
+                            <a href="https://files.catbox.moe/qkxlf0.apk"
+                               class="download-btn bg-blue-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold flex items-center gap-x-2">
                                 <i class="fa-solid fa-download"></i> Download
                             </a>
                         </div>
                         <h3 class="text-2xl font-semibold mb-2">TiviMate</h3>
-                        <p class="text-slate-600 text-lg leading-tight">The best IPTV player. Watch TVJ + US live channels in perfect quality.</p>
+                        <p class="text-slate-600 text-lg leading-tight">The best IPTV player. Watch TVJ + US live channels in perfect quality.
+                        <span class="font-medium text-blue-600">You can uninstall your old M3U Player app for good.</span></p>
+                      
+                        <div class="mt-8 pt-8 border-t text-sm">
+                            <div class="flex justify-between py-2 border-b">
+                                <span class="text-slate-500">Playlist</span>
+                                <a href="https://www.transfernow.net/dl/20260409Cpx8wFgY" class="text-blue-600 hover:underline font-medium">Download TVJ + US Playlist</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
               
@@ -310,13 +321,16 @@
                     <div class="h-2 bg-gradient-to-r from-violet-500 to-fuchsia-400"></div>
                     <div class="p-8">
                         <div class="flex justify-between items-start mb-6">
-                            <div class="w-14 h-14 bg-violet-100 text-violet-600 rounded-2xl flex items-center justify-center text-4xl">🔥</div>
-                            <a href="https://www.transfernow.net/dl/20260411KCNU9fZA" class="download-btn bg-violet-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold flex items-center gap-x-2">
+                            <div class="w-14 h-14 bg-violet-100 text-violet-600 rounded-2xl flex items-center justify-center text-4xl">
+                                🔥
+                            </div>
+                            <a href="https://www.transfernow.net/dl/20260411KCNU9fZA"
+                               class="download-btn bg-violet-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold flex items-center gap-x-2">
                                 <i class="fa-solid fa-download"></i> Download
                             </a>
                         </div>
                         <h3 class="text-2xl font-semibold mb-2">Norofire 2-in-1</h3>
-                        <p class="text-slate-600 text-lg leading-tight">Installs <strong>Streamfire</strong> and <strong>Sportsfire</strong> in one go.</p>
+                        <p class="text-slate-600 text-lg leading-tight">Installs <strong>Streamfire</strong> (USA Cable TV) and <strong>Sportsfire</strong> (Live Sports USA) in one go.</p>
                     </div>
                 </div>
               
@@ -325,13 +339,16 @@
                     <div class="h-2 bg-gradient-to-r from-rose-500 to-orange-400"></div>
                     <div class="p-8">
                         <div class="flex justify-between items-start mb-6">
-                            <div class="w-14 h-14 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center text-4xl">▶️</div>
-                            <a href="https://www.transfernow.net/dl/20260411KCNU9fZA" class="download-btn bg-rose-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold flex items-center gap-x-2">
+                            <div class="w-14 h-14 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center text-4xl">
+                                ▶️
+                            </div>
+                            <a href="https://www.transfernow.net/dl/20260411KCNU9fZA"
+                               class="download-btn bg-rose-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold flex items-center gap-x-2">
                                 <i class="fa-solid fa-download"></i> Download
                             </a>
                         </div>
                         <h3 class="text-2xl font-semibold mb-2">BravePipe</h3>
-                        <p class="text-slate-600 text-lg leading-tight">YouTube without any ads, sponsors, or interruptions.</p>
+                        <p class="text-slate-600 text-lg leading-tight">YouTube without any ads, sponsors, or interruptions. Background play + picture-in-picture too.</p>
                     </div>
                 </div>
               
@@ -340,24 +357,44 @@
                     <div class="flex-1">
                         <div class="text-amber-400 text-sm font-semibold mb-2">PRO TIP</div>
                         <h3 class="text-3xl font-semibold leading-none mb-6">Download everything<br>first</h3>
-                        <p class="text-slate-300">Save all 4 files to your projector before installing.</p>
+                        <p class="text-slate-300">Save all 4 files to your projector before installing. Makes everything faster and smoother.</p>
+                    </div>
+                    <div class="pt-8 mt-auto border-t border-white/20 text-xs flex items-center gap-x-3">
+                        <i class="fa-solid fa-lightbulb text-2xl"></i>
+                        <span>Tip: Use Chrome on your projector to open this page</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Setup Guide (with correct links) -->
+    <!-- Simple Setup Guide -->
     <section id="guide" class="py-24 bg-slate-50">
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-5xl font-semibold tracking-tighter">3-minute setup</h2>
-                <p class="text-slate-600 mt-4">Follow these steps exactly.</p>
+                <p class="text-slate-600 mt-4">Follow these steps exactly. No tech knowledge needed.</p>
             </div>
           
             <div class="space-y-20">
-                <!-- Step 1, Step 2 (with updated links), Step 3 - kept exactly as before but with correct Norofire link -->
-                <!-- For brevity I kept Step 2 only updated - full version is identical to previous except links and popup -->
+              
+                <!-- Step 1 -->
+                <div class="grid md:grid-cols-12 gap-12 items-center">
+                    <div class="md:col-span-5">
+                        <div class="step-number inline-flex w-12 h-12 rounded-2xl items-center justify-center text-white font-bold text-3xl mb-6">1</div>
+                        <h3 class="text-4xl font-semibold tracking-tight mb-4">Open Chrome on your projector</h3>
+                        <p class="text-lg text-slate-600">Type this address:</p>
+                      
+                        <div class="mt-8 bg-white p-6 rounded-3xl shadow inline-flex items-center gap-x-4">
+                            <div class="font-mono text-blue-600 text-xl font-medium">uniqueclaimsja.store</div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-7 bg-white rounded-3xl p-10 shadow">
+                        <p class="text-slate-600">Enter the site directly on your projector using Chrome. Everything you need is right here.</p>
+                    </div>
+                </div>
+              
+                <!-- Step 2 -->
                 <div class="grid md:grid-cols-12 gap-12 items-center">
                     <div class="md:col-span-7 order-2 md:order-1">
                         <div class="bg-white rounded-3xl p-10">
@@ -366,54 +403,149 @@
                                 Download all 4 files now
                             </h4>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <a href="https://www.transfernow.net/dl/20260409Cpx8wFgY" target="_blank" class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
-                                    <div><div class="font-medium">TVJ + US Playlist</div></div>
-                                    <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600"></i>
+                                <a href="https://www.transfernow.net/dl/20260409Cpx8wFgY" target="_blank"
+                                   class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
+                                    <div>
+                                        <div class="font-medium">TVJ + US Playlist</div>
+                                        <div class="text-xs text-slate-500">.m3u file</div>
+                                    </div>
+                                    <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600 transition-colors"></i>
                                 </a>
-                                <a href="https://files.catbox.moe/qkxlf0.apk" target="_blank" class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
-                                    <div><div class="font-medium">TiviMate IPTV Player</div></div>
-                                    <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600"></i>
+                              
+                                <a href="https://files.catbox.moe/qkxlf0.apk" target="_blank"
+                                   class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
+                                    <div>
+                                        <div class="font-medium">TiviMate IPTV Player</div>
+                                        <div class="text-xs text-slate-500">.apk</div>
+                                    </div>
+                                    <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600 transition-colors"></i>
                                 </a>
-                                <a href="https://www.transfernow.net/dl/20260411KCNU9fZA" target="_blank" class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
-                                    <div><div class="font-medium">Norofire 2-in-1 Installer</div></div>
-                                    <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600"></i>
+                              
+                                <a href="https://www.transfernow.net/dl/20260411KCNU9fZA" target="_blank"
+                                   class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
+                                    <div>
+                                        <div class="font-medium">Norofire 2-in-1 Installer</div>
+                                        <div class="text-xs text-slate-500">Streamfire + Sportsfire</div>
+                                    </div>
+                                    <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600 transition-colors"></i>
                                 </a>
-                                <a href="https://www.transfernow.net/dl/20260411KCNU9fZA" target="_blank" class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
-                                    <div><div class="font-medium">BravePipe</div></div>
-                                    <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600"></i>
+                              
+                                <a href="https://www.transfernow.net/dl/20260411KCNU9fZA" target="_blank"
+                                   class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
+                                    <div>
+                                        <div class="font-medium">BravePipe</div>
+                                        <div class="text-xs text-slate-500">Ad-free YouTube</div>
+                                    </div>
+                                    <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600 transition-colors"></i>
                                 </a>
+                            </div>
+                            <p class="mt-6 text-xs text-amber-600 font-medium">Note: Downloaded file names may look different because of the cloud host. Just install the APK files and use the .m3u playlist as shown.</p>
+                        </div>
+                    </div>
+                    <div class="md:col-span-5 order-1 md:order-2">
+                        <div class="step-number inline-flex w-12 h-12 rounded-2xl items-center justify-center text-white font-bold text-3xl mb-6">2</div>
+                        <h3 class="text-4xl font-semibold tracking-tight mb-4">Save the files</h3>
+                        <p class="text-slate-600">Download every file completely before you start installing. Patience here makes the rest easy.</p>
+                    </div>
+                </div>
+              
+                <!-- Step 3 -->
+                <div class="grid md:grid-cols-12 gap-12 items-center">
+                    <div class="md:col-span-5">
+                        <div class="step-number inline-flex w-12 h-12 rounded-2xl items-center justify-center text-white font-bold text-3xl mb-6">3</div>
+                        <h3 class="text-4xl font-semibold tracking-tight mb-4">Install from USB / Downloads</h3>
+                        <ul class="space-y-6 text-lg">
+                            <li class="flex gap-x-4">
+                                <span class="font-mono text-blue-600 font-medium">1.</span>
+                                <span>Go back to your projector home screen</span>
+                            </li>
+                            <li class="flex gap-x-4">
+                                <span class="font-mono text-blue-600 font-medium">2.</span>
+                                <span>Click the <strong>USB</strong> button on the right → LOCAL → Downloads folder</span>
+                            </li>
+                            <li class="flex gap-x-4">
+                                <span class="font-mono text-blue-600 font-medium">3.</span>
+                                <span>Install the 3 APK files one by one. Be patient while it checks and installs.</span>
+                            </li>
+                            <li class="flex gap-x-4">
+                                <span class="font-mono text-blue-600 font-medium">4.</span>
+                                <span>Once installed, find them in <strong>My Apps</strong></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-7 bg-white rounded-3xl p-10">
+                        <h4 class="uppercase text-xs tracking-widest font-semibold mb-6 text-slate-500">Quick start for each app</h4>
+                      
+                        <div class="space-y-10">
+                            <div>
+                                <div class="font-semibold flex items-center gap-x-2 mb-3">
+                                    <span class="text-blue-600">TiviMate</span>
+                                </div>
+                                <p class="text-slate-600">Open → Add Playlist → M3U Playlist → Local file → Open the <strong>Music</strong> folder → select the TVJ + US playlist → Next → Done.<br><br>Enjoy perfect TVJ and US channels.</p>
+                            </div>
+                          
+                            <div>
+                                <div class="font-semibold flex items-center gap-x-2 mb-3">
+                                    <span class="text-violet-600">Norofire → Streamfire &amp; Sportsfire</span>
+                                </div>
+                                <p class="text-slate-600">Just open and follow the simple on-screen prompts. You'll get live TV, movies, and all major sports with almost no buffering.</p>
+                            </div>
+                          
+                            <div>
+                                <div class="font-semibold flex items-center gap-x-2 mb-3">
+                                    <span class="text-rose-600">BravePipe</span>
+                                </div>
+                                <p class="text-slate-600">Open the app and search for any video. No ads ever again. You can even play in the background while doing other things.</p>
                             </div>
                         </div>
                     </div>
-                    <!-- Step numbers and other steps remain the same as your original -->
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trust bar, Final CTA, Floating WhatsApp, Footer (unchanged) -->
+    <!-- Trust bar -->
     <div class="bg-white py-6 border-t border-b">
         <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-x-12 gap-y-6 text-sm text-slate-500">
-            <div class="flex items-center gap-x-2"><i class="fa-solid fa-shield-halved text-emerald-500"></i><span>Safe &amp; trusted APKs</span></div>
+            <div class="flex items-center gap-x-2">
+                <i class="fa-solid fa-shield-halved text-emerald-500"></i>
+                <span>Safe &amp; trusted APKs</span>
+            </div>
             <div>Creating Happy Binge-watching Customers Everywhere</div>
             <div>Fast support via WhatsApp</div>
         </div>
     </div>
 
+    <!-- Final CTA -->
     <section class="py-20 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
         <div class="max-w-4xl mx-auto text-center px-6">
             <h2 class="text-5xl font-semibold tracking-tight mb-6">Ready to enjoy TV again?</h2>
             <p class="text-xl opacity-90 mb-10">Download the files, follow the 3 steps, and you're done.</p>
+          
             <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <button onclick="document.getElementById('apps').scrollIntoView({behavior: 'smooth'})" class="download-btn bg-white text-blue-700 hover:bg-slate-100 px-14 py-7 rounded-3xl text-2xl font-semibold shadow-2xl flex items-center gap-x-4">
+                <button onclick="document.getElementById('apps').scrollIntoView({behavior: 'smooth'})"
+                        class="download-btn bg-white text-blue-700 hover:bg-slate-100 px-14 py-7 rounded-3xl text-2xl font-semibold shadow-2xl flex items-center gap-x-4">
                     <span>Download All Files</span>
                     <i class="fa-solid fa-arrow-down"></i>
                 </button>
+              
+                <button onclick="window.open('https://wa.me/18765813521?text=Hi%2C%20I%20just%20installed%20the%20apps%20but%20need%20a%20little%20help', '_blank')"
+                        class="flex items-center gap-x-4 bg-white/20 hover:bg-white/30 backdrop-blur px-10 py-7 rounded-3xl text-xl font-medium border border-white/30 transition-all">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    <div class="text-left">
+                        <div class="font-medium">Need help?</div>
+                        <div class="text-sm opacity-75">Active right now</div>
+                    </div>
+                </button>
             </div>
+          
+            <div class="mt-12 text-xs opacity-60">Share this page with friends or family who bought the same projector</div>
         </div>
     </section>
 
-    <a href="https://wa.me/18765813521" target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-3xl flex items-center justify-center shadow-2xl text-3xl transition-all active:scale-95 md:hidden">
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/18765813521" target="_blank"
+       class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-3xl flex items-center justify-center shadow-2xl text-3xl transition-all active:scale-95 md:hidden">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -424,30 +556,34 @@
 
     <script>
         // ==================== UPDATE POPUP LOGIC ====================
-        const LAST_UPDATE_TIME = "2026-04-10T23:02:00"; // Current update timestamp (YYYY-MM-DDTHH:MM:SS)
+        const UPDATE_DATE = "April 10, 2026 at 11:02 PM EST";
+        const HIDE_KEY = "hideUpdatePopup_v1";
 
         function showUpdatePopup() {
+            if (localStorage.getItem(HIDE_KEY) === "true") return;
+            
             const popup = document.getElementById('updatePopup');
-            const lastSeen = localStorage.getItem('lastUpdateSeen');
-
-            if (!lastSeen || lastSeen < LAST_UPDATE_TIME) {
-                popup.style.display = 'flex';
-                localStorage.setItem('lastUpdateSeen', LAST_UPDATE_TIME);
-            }
+            popup.style.display = 'flex';
         }
 
         function closeUpdatePopup() {
             document.getElementById('updatePopup').style.display = 'none';
         }
 
-        // Show popup after page loads
+        function dontShowAgain() {
+            localStorage.setItem(HIDE_KEY, "true");
+            closeUpdatePopup();
+        }
+
+        // Show popup every time the page loads (unless hidden by user)
         window.onload = function() {
-            setTimeout(showUpdatePopup, 800); // slight delay so it feels natural
+            setTimeout(showUpdatePopup, 800);
         };
 
-        // ==================== Particles (unchanged) ====================
+        // ==================== Particles ====================
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
+      
         let particles = [];
         const particleCount = 45;
 
@@ -462,6 +598,7 @@
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
+              
                 if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
             }
@@ -472,18 +609,21 @@
                 ctx.fill();
             }
         }
-
+      
         function initParticles() {
             particles = [];
-            for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
         }
-
+      
         function connectParticles() {
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
+                  
                     if (distance < 110) {
                         ctx.strokeStyle = `rgba(59, 130, 246, ${1 - distance / 110})`;
                         ctx.lineWidth = 0.8;
@@ -495,30 +635,40 @@
                 }
             }
         }
-
+      
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
+          
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+          
             connectParticles();
             requestAnimationFrame(animateParticles);
         }
-
+      
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = Math.min(window.innerHeight * 0.65, 620);
             initParticles();
         }
-
-        window.addEventListener('resize', resizeCanvas);
+      
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+        });
+      
         resizeCanvas();
         animateParticles();
-
+      
+        // Share function
         function shareViaWhatsApp() {
             const message = "Hey! I fixed my projector — no more missing TVJ and zero YouTube ads. Check this out: https://uniqueclaimsja.store";
-            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
         }
-
-        console.log('%cProjectorFix site ready with Update Popup ✓', 'color:#2563eb; font-family:monospace');
+      
+        console.log('%cProjectorFix site fully updated with persistent update popup ✓', 'color:#2563eb; font-family:monospace');
     </script>
 </body>
 </html>
