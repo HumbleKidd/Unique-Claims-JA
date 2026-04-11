@@ -120,7 +120,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 overflow-x-hidden">
 
-    <!-- Update Notification Popup -->
+    <!-- Update Notification Popup - Updated with new time -->
     <div id="updatePopup" class="update-popup">
         <div class="update-card">
             <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-6 text-white">
@@ -132,7 +132,7 @@
             <div class="p-8">
                 <div class="flex items-center gap-x-2 text-emerald-600 font-medium mb-6">
                     <i class="fa-solid fa-calendar-clock"></i>
-                    <span>Updated on April 10, 2026 at 11:02 PM EST</span>
+                    <span>Updated on April 11, 2026 at 12:17 AM EST</span>
                 </div>
                 
                 <h4 class="text-2xl font-semibold tracking-tight mb-6">What's New</h4>
@@ -140,11 +140,11 @@
                 <ul class="space-y-4 text-slate-700">
                     <li class="flex gap-x-3">
                         <span class="text-emerald-500 mt-1 text-lg">✔</span>
-                        <span>Fixed Norofire 2-in-1 download link (now working correctly)</span>
+                        <span>Updated Norofire 2-in-1 download link to the latest version</span>
                     </li>
                     <li class="flex gap-x-3">
                         <span class="text-emerald-500 mt-1 text-lg">✔</span>
-                        <span>Updated BravePipe download link to match</span>
+                        <span>BravePipe download link updated to match new Norofire file</span>
                     </li>
                     <li class="flex gap-x-3">
                         <span class="text-emerald-500 mt-1 text-lg">✔</span>
@@ -316,7 +316,7 @@
                     </div>
                 </div>
               
-                <!-- Norofire 2-in-1 -->
+                <!-- Norofire 2-in-1 - NEW LINK -->
                 <div class="bg-white border border-slate-100 rounded-3xl overflow-hidden card-hover">
                     <div class="h-2 bg-gradient-to-r from-violet-500 to-fuchsia-400"></div>
                     <div class="p-8">
@@ -324,7 +324,7 @@
                             <div class="w-14 h-14 bg-violet-100 text-violet-600 rounded-2xl flex items-center justify-center text-4xl">
                                 🔥
                             </div>
-                            <a href="https://www.transfernow.net/dl/20260411KCNU9fZA"
+                            <a href="https://www.transfernow.net/dl/20260411fshojw4c"
                                class="download-btn bg-violet-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold flex items-center gap-x-2">
                                 <i class="fa-solid fa-download"></i> Download
                             </a>
@@ -334,7 +334,7 @@
                     </div>
                 </div>
               
-                <!-- BravePipe -->
+                <!-- BravePipe - NEW LINK -->
                 <div class="bg-white border border-slate-100 rounded-3xl overflow-hidden card-hover">
                     <div class="h-2 bg-gradient-to-r from-rose-500 to-orange-400"></div>
                     <div class="p-8">
@@ -342,7 +342,7 @@
                             <div class="w-14 h-14 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center text-4xl">
                                 ▶️
                             </div>
-                            <a href="https://www.transfernow.net/dl/20260411KCNU9fZA"
+                            <a href="https://www.transfernow.net/dl/20260411fshojw4c"
                                class="download-btn bg-rose-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold flex items-center gap-x-2">
                                 <i class="fa-solid fa-download"></i> Download
                             </a>
@@ -421,7 +421,7 @@
                                     <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600 transition-colors"></i>
                                 </a>
                               
-                                <a href="https://www.transfernow.net/dl/20260411KCNU9fZA" target="_blank"
+                                <a href="https://www.transfernow.net/dl/20260411fshojw4c" target="_blank"
                                    class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
                                     <div>
                                         <div class="font-medium">Norofire 2-in-1 Installer</div>
@@ -430,7 +430,7 @@
                                     <i class="fa-solid fa-download text-2xl text-slate-400 group-hover:text-blue-600 transition-colors"></i>
                                 </a>
                               
-                                <a href="https://www.transfernow.net/dl/20260411KCNU9fZA" target="_blank"
+                                <a href="https://www.transfernow.net/dl/20260411fshojw4c" target="_blank"
                                    class="group flex items-center justify-between p-5 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all">
                                     <div>
                                         <div class="font-medium">BravePipe</div>
@@ -556,8 +556,8 @@
 
     <script>
         // ==================== UPDATE POPUP LOGIC ====================
-        const UPDATE_DATE = "April 10, 2026 at 11:02 PM EST";
-        const HIDE_KEY = "hideUpdatePopup_v1";
+        const UPDATE_DATE = "April 11, 2026 at 12:17 AM EST";
+        const HIDE_KEY = "hideUpdatePopup_v2";
 
         function showUpdatePopup() {
             if (localStorage.getItem(HIDE_KEY) === "true") return;
@@ -668,7 +668,7 @@
             window.open(whatsappUrl, '_blank');
         }
       
-        console.log('%cProjectorFix site fully updated with persistent update popup ✓', 'color:#2563eb; font-family:monospace');
+        console.log('%cProjectorFix site fully updated with new Norofire link ✓', 'color:#2563eb; font-family:monospace');
     </script>
 </body>
 </html>
