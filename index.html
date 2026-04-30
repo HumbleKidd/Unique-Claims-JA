@@ -17,6 +17,7 @@
             --text-muted: #64748b;
             --card-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.05);
             --gradient-1: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            --gradient-2: linear-gradient(135deg, #34d399 0%, #10b981 100%);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,35 +30,10 @@
             line-height: 1.6;
         }
 
-        /* --- Device-Specific Logic --- */
-        .desktop-only-action { pointer-events: none; opacity: 0.7; filter: grayscale(0.5); }
-        @media (min-width: 1025px) {
-            .desktop-only-action { pointer-events: auto; opacity: 1; filter: grayscale(0); }
-        }
-
-        /* --- Premium Mobile Popup --- */
-        #mobile-warning {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 400px;
-            background: var(--white);
-            padding: 25px;
-            border-radius: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            z-index: 9999;
-            border: 2px solid var(--primary);
-            text-align: center;
-            animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        @media (min-width: 1025px) { #mobile-warning { display: none; } }
-
         /* --- Hero Section --- */
         .hero {
             background: linear-gradient(135deg, #f0f9ff 0%, #f5f3ff 100%);
-            padding: 100px 20px 140px;
+            padding: 80px 20px 140px;
             text-align: center;
             clip-path: ellipse(150% 100% at 50% 0%);
         }
@@ -82,7 +58,11 @@
             position: relative;
         }
 
-        .app-card:hover { transform: translateY(-15px); border-color: var(--primary); }
+        .app-card:hover, .app-card:focus-within { 
+            transform: translateY(-15px); 
+            border-color: var(--primary); 
+            box-shadow: 0 40px 80px -20px rgba(59, 130, 246, 0.15);
+        }
 
         .card-head { display: flex; align-items: center; gap: 20px; margin-bottom: 25px; }
         .icon-box { width: 70px; height: 70px; background: #eff6ff; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
@@ -105,50 +85,47 @@
             background: var(--gradient-1);
             color: white;
             border: none;
+            cursor: pointer;
         }
 
         .btn:hover { filter: brightness(1.1); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
+        .btn-green { background: var(--gradient-2); }
 
-        /* --- Setup Masterclass --- */
+        /* --- Setup Info Section --- */
         .setup-section {
             margin-top: 80px;
             background: var(--white);
-            padding: 60px;
+            padding: 60px 40px;
             border-radius: 40px;
             box-shadow: var(--card-shadow);
+            border: 1px solid #f1f5f9;
         }
 
-        .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-top: 40px; }
+        .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-top: 40px; }
         .step { text-align: center; }
-        .step-circle { width: 60px; height: 60px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 800; font-size: 1.5rem; box-shadow: 0 10px 15px rgba(59,130,246,0.3); }
+        .step-circle { width: 60px; height: 60px; background: var(--primary); color: white; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 800; font-size: 1.5rem; box-shadow: 0 10px 15px rgba(59,130,246,0.2); }
 
         /* --- Animations --- */
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-        @keyframes slideUp { from { transform: translate(-50%, 100%); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
 
         footer { text-align: center; padding: 60px 0; color: var(--text-muted); font-size: 0.9rem; }
+
+        /* Projector Optimized Focus */
+        .app-card:focus-within .btn { transform: scale(1.05); }
     </style>
 </head>
 <body>
 
-    <!-- Device Awareness Popup -->
-    <div id="mobile-warning">
-        <span style="font-size: 2.5rem;">📽️</span>
-        <h3 style="margin: 10px 0;">Switch to Projector</h3>
-        <p style="font-size: 0.9rem; color: var(--text-muted);">For the best direct-install experience, please open this site on your Projector Browser.</p>
-        <p style="margin-top: 10px; font-weight: 800; color: var(--primary);">uniqueclaimsja.store</p>
-    </div>
-
     <header class="hero">
         <span class="brand-emoji">😜</span>
         <h1>Unique Claims JA</h1>
-        <p class="tagline">The premium Caribbean distribution hub for Smart Projector entertainment. High speed. No ads. Just vibes.</p>
+        <p class="tagline">The premium Caribbean distribution hub for Smart Projector entertainment. Instant access, total performance.</p>
     </header>
 
     <div class="container">
         <div class="grid">
             <!-- Norofire -->
-            <article class="app-card" tabindex="0">
+            <article class="app-card">
                 <div class="card-head">
                     <div class="icon-box">🔥</div>
                     <div>
@@ -156,12 +133,12 @@
                         <h2>Norofire</h2>
                     </div>
                 </div>
-                <p>Universal installer for Streamfire and Sportsfire. Instant access to international cable and live global sporting events.</p>
-                <a href="https://github.com/HumbleKidd/Unique-Claims-JA/raw/refs/heads/main/norofire1.0.0.apk" class="btn desktop-only-action">Install Suite</a>
+                <p>Installer for Streamfire and Sportsfire. Access live global sports and international cable networks instantly.</p>
+                <a href="https://github.com/HumbleKidd/Unique-Claims-JA/raw/refs/heads/main/norofire1.0.0.apk" class="btn">Install Suite</a>
             </article>
 
             <!-- BravePipe -->
-            <article class="app-card" tabindex="0">
+            <article class="app-card">
                 <div class="card-head">
                     <div class="icon-box">📺</div>
                     <div>
@@ -169,12 +146,12 @@
                         <h2>BravePipe</h2>
                     </div>
                 </div>
-                <p>Premium YouTube client with zero commercials. Supports background play and 4K widescreen resolutions for cinema quality.</p>
-                <a href="https://github.com/HumbleKidd/Unique-Claims-JA/raw/refs/heads/main/BravePipe_conscrypt_v0.28.4-2.7.0.apk" class="btn desktop-only-action">Get BravePipe</a>
+                <p>Premium YouTube experience with zero ads. Supports 4K resolution and background audio for true cinema vibes.</p>
+                <a href="https://github.com/HumbleKidd/Unique-Claims-JA/raw/refs/heads/main/BravePipe_conscrypt_v0.28.4-2.7.0.apk" class="btn">Get BravePipe</a>
             </article>
 
             <!-- Tivimate -->
-            <article class="app-card" tabindex="0">
+            <article class="app-card">
                 <div class="card-head">
                     <div class="icon-box">📡</div>
                     <div>
@@ -182,80 +159,83 @@
                         <h2>TiviMate</h2>
                     </div>
                 </div>
-                <p>The elite player for all your streaming needs. High-speed channel switching and a fully customizable TV guide experience.</p>
-                <a href="https://github.com/HumbleKidd/Unique-Claims-JA/raw/refs/heads/main/TiviMate-Premium-5.0.4-MODBIBO.apk" class="btn desktop-only-action">Download Pro</a>
+                <p>The gold standard for IPTV playback. Sleek interface, multi-channel support, and industry-leading stability.</p>
+                <a href="https://github.com/HumbleKidd/Unique-Claims-JA/raw/refs/heads/main/TiviMate-Premium-5.0.4-MODBIBO.apk" class="btn">Download Pro</a>
             </article>
 
             <!-- Playlist -->
-            <article class="app-card" tabindex="0">
+            <article class="app-card">
                 <div class="card-head">
                     <div class="icon-box">🇯🇲</div>
                     <div>
-                        <span class="badge">Local Pack</span>
+                        <span class="badge">Local Content</span>
                         <h2>USA & TVJ</h2>
                     </div>
                 </div>
-                <p>Exclusive Jamaican and USA channel playlist. Never miss the local news, weather, or premium cable networks again.</p>
-                <a href="https://github.com/HumbleKidd/Unique-Claims-JA/raw/refs/heads/main/US%20and%20TVJ%20IPTV.m3u" class="btn desktop-only-action" style="background: var(--secondary);">Download File</a>
+                <p>Curated playlist featuring local Jamaican TVJ and premium USA channels. Optimized for high-speed streaming.</p>
+                <a href="https://github.com/HumbleKidd/Unique-Claims-JA/raw/refs/heads/main/US%20and%20TVJ%20IPTV.m3u" class="btn btn-green">Download Pack</a>
             </article>
         </div>
 
         <!-- Professional Setup Flow -->
         <section class="setup-section">
-            <h2 style="text-align: center; font-size: 2.2rem;">Quick Setup 🛠️</h2>
+            <h2 style="text-align: center; font-size: 2.2rem; font-weight: 800;">Quick Deployment 🛠️</h2>
             <div class="step-grid">
                 <div class="step">
                     <div class="step-circle">1</div>
-                    <p><strong>Download</strong> all files to your local storage.</p>
+                    <p><strong>Download</strong> files directly to your device storage.</p>
                 </div>
                 <div class="step">
                     <div class="step-circle">2</div>
-                    <p><strong>Locate</strong> in Home > USB > Local > Downloads.</p>
+                    <p><strong>Locate</strong> APKs in your local Downloads or File Manager.</p>
                 </div>
                 <div class="step">
                     <div class="step-circle">3</div>
-                    <p><strong>Install</strong> APKs and grant required permissions.</p>
+                    <p><strong>Install</strong> and grant permissions for full functionality.</p>
                 </div>
                 <div class="step">
                     <div class="step-circle">4</div>
-                    <p><strong>Load</strong> the USA & TVJ file into TiviMate.</p>
+                    <p><strong>Import</strong> the USA & TVJ file into your TiviMate player.</p>
                 </div>
             </div>
         </section>
 
         <footer>
-            <p>&copy; 2026 <strong>Unique Claims JA</strong>. The Standard for Entertainment. 😜</p>
+            <p>&copy; 2026 <strong>Unique Claims JA</strong>. Built for Premium Entertainment. 😜</p>
         </footer>
     </div>
 
     <script>
-        // High-End Confetti Celebration
+        // Celebrity Entry Confetti
         function celebrate() {
             const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'];
-            for(let i=0; i<60; i++) {
+            for(let i=0; i<50; i++) {
                 const conf = document.createElement('div');
                 conf.style.position = 'fixed';
-                conf.style.width = '10px';
-                conf.style.height = '10px';
+                conf.style.width = '8px';
+                conf.style.height = '8px';
                 conf.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
                 conf.style.left = Math.random() * 100 + 'vw';
                 conf.style.top = '-10px';
                 conf.style.zIndex = '9999';
-                conf.style.borderRadius = '50%';
+                conf.style.borderRadius = '2px';
                 document.body.appendChild(conf);
 
                 conf.animate([
                     { transform: 'translateY(0) rotate(0)', opacity: 1 },
-                    { transform: `translateY(100vh) rotate(720deg)`, opacity: 0 }
-                ], { duration: Math.random()*3000 + 2000 }).onfinish = () => conf.remove();
+                    { transform: `translateY(100vh) rotate(360deg)`, opacity: 0 }
+                ], { duration: Math.random()*2000 + 3000 }).onfinish = () => conf.remove();
             }
         }
         window.onload = celebrate;
 
-        // Remote Navigation Support
+        // Projector Remote Mapping (Enter to Click)
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && document.activeElement.tagName === 'A') {
-                document.activeElement.click();
+            if (e.key === 'Enter') {
+                const focused = document.activeElement;
+                if (focused.tagName === 'A' || focused.classList.contains('app-card')) {
+                    focused.click();
+                }
             }
         });
     </script>
