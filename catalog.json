@@ -1,0 +1,255 @@
+{
+  "settings": {
+    "name": "Unique Claims",
+    "tagline": "Uniquely, you!",
+    "announcement": "Islandwide delivery from Mandeville · Order on WhatsApp · Uniquely, you!",
+    "whatsapp": "18765813521",
+    "email": "Uniqueclaimsja@gmail.com",
+    "instagram": "https://www.instagram.com/uniqueclaimsja",
+    "tiktok": "https://www.tiktok.com/@uniqueclaimsjam",
+    "facebook": "https://www.facebook.com/uniqueclaimsja",
+    "location": "Mandeville, Manchester, Jamaica",
+    "currency": "JMD",
+    "heroTitle": "Something unique, because you are one of a kind.",
+    "heroText": "Projectors, loaded Android cinema kits, portable Wi-Fi and the extras that make a room feel like a private theater. Unique Claims delivers the wow, plus the quality.",
+    "deliveryNote": "Collect in Mandeville or get islandwide delivery arranged on WhatsApp. Pay by bank transfer or as agreed on chat.",
+    "hours": "WhatsApp replies daily, 9am to 8pm"
+  },
+  "categories": ["Projectors", "Connectivity", "Add-ons", "Bundles"],
+  "products": [
+    {
+      "id": "cinema-ultra",
+      "name": "Android Cinema Projector Ultra Bundle",
+      "price": 19500,
+      "compareAt": 28000,
+      "category": "Projectors",
+      "availability": "preorder",
+      "stock": 6,
+      "badge": "Most loved",
+      "blurb": "Fully loaded Android cinema kit. Netflix ready, ceiling rotation, up to 130 inches.",
+      "description": "Turn any wall or ceiling into a private cinema. This is the Unique Claims Ultra Bundle: a fully loaded Android projector, set up so you are not fighting menus on night one. Netflix comes ready, the system is unlocked for movies, series and anime, and the picture swings from the front wall up to the ceiling so you can watch lying in bed. Dual-band Wi-Fi, Bluetooth 5.0, phone mirroring, auto keystone and auto focus. Collection in Mandeville or islandwide delivery.",
+      "features": [
+        "180° ceiling rotation for bed viewing",
+        "Scales up to 130 inches on any blank wall",
+        "Dual-band Wi-Fi and Bluetooth 5.0",
+        "One-touch phone mirroring from iPhone or Android",
+        "Auto keystone and auto focus",
+        "Loaded for movies, series and anime"
+      ],
+      "specs": [
+        {"k": "Picture", "v": "Up to 130 inches"},
+        {"k": "Rotation", "v": "180° wall to ceiling"},
+        {"k": "Wireless", "v": "Wi-Fi + Bluetooth 5.0"},
+        {"k": "Inputs", "v": "HDMI for PS5, Xbox, Switch"},
+        {"k": "Setup", "v": "Auto keystone and focus"}
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1400&q=70",
+        "https://images.unsplash.com/photo-1595769816263-9b910be24d5f?auto=format&fit=crop&w=1400&q=70",
+        "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1400&q=70"
+      ],
+      "addonIds": ["fold-screen", "tripod-kit", "party-speaker"]
+    },
+    {
+      "id": "hy300-loaded",
+      "name": "HY300 Pro+ Fully Loaded",
+      "price": 19500,
+      "compareAt": 24500,
+      "category": "Projectors",
+      "availability": "instock",
+      "stock": 4,
+      "badge": "Ready to ship",
+      "blurb": "The house projector. Compact, loaded, and paired for big-screen nights.",
+      "description": "The HY300 Pro+ package Unique Claims builds for Jamaican homes. Compact body, bright enough for evening movie nights, and loaded before it leaves Mandeville so the first night is the movie, not the setup. HDMI for console gaming, Bluetooth for a speaker, and phone mirroring for TikToks and photos on the wall.",
+      "features": [
+        "Loaded before delivery",
+        "HDMI for PS5, Xbox and Switch",
+        "Bluetooth speaker pairing",
+        "Phone mirroring",
+        "Compact enough to travel with"
+      ],
+      "specs": [
+        {"k": "Style", "v": "Portable Android projector"},
+        {"k": "Best for", "v": "Bedroom, yard, travel"},
+        {"k": "Audio", "v": "Built-in plus Bluetooth"},
+        {"k": "Gaming", "v": "HDMI consoles"}
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1400&q=70",
+        "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=1400&q=70"
+      ],
+      "addonIds": ["tripod-kit", "fold-screen"]
+    },
+    {
+      "id": "car-hotspot",
+      "name": "Portable 4G Car Hotspot",
+      "price": 9000,
+      "compareAt": 12000,
+      "category": "Connectivity",
+      "availability": "instock",
+      "stock": 10,
+      "badge": "J$9,000",
+      "blurb": "Wi-Fi in the car. Digicel or Flow SIM. 4G speed, pocket size.",
+      "description": "A pocket modem that turns a Digicel or Flow SIM into Wi-Fi for the car, the yard, or a stall. 4G speed anywhere the SIM has signal. Useful for the projector on the road, for passengers, and for work when home Wi-Fi is down.",
+      "features": [
+        "Works with Digicel and Flow SIMs",
+        "4G speeds on the move",
+        "Pocket size for car or bag",
+        "Share with phones, tablets and the projector"
+      ],
+      "specs": [
+        {"k": "Network", "v": "4G SIM modem"},
+        {"k": "SIMs", "v": "Digicel or Flow"},
+        {"k": "Use", "v": "Car, travel, backup Wi-Fi"}
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1400&q=70",
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1400&q=70"
+      ],
+      "addonIds": ["cinema-ultra"]
+    },
+    {
+      "id": "fold-screen",
+      "name": "100-inch Foldable Screen",
+      "price": 4500,
+      "compareAt": 6500,
+      "category": "Add-ons",
+      "availability": "instock",
+      "stock": 7,
+      "badge": "Bundle it",
+      "blurb": "A clean white surface when the wall is busy. Folds into a bag.",
+      "description": "When the wall has texture, windows or a busy paint colour, a foldable screen keeps the picture crisp. Pairs with either projector. Easy to hang for a movie night and pack away after.",
+      "features": [
+        "About 100 inches of clean surface",
+        "Folds flat for storage",
+        "Better contrast than a painted wall",
+        "Made to pair with the Ultra Bundle"
+      ],
+      "specs": [
+        {"k": "Size", "v": "About 100 inches"},
+        {"k": "Pack", "v": "Foldable"}
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1400&q=70",
+        "https://images.unsplash.com/photo-1574267432553-4b4628081c31?auto=format&fit=crop&w=1400&q=70"
+      ],
+      "addonIds": ["cinema-ultra", "tripod-kit"]
+    },
+    {
+      "id": "tripod-kit",
+      "name": "Tripod + Ceiling Angle Kit",
+      "price": 3500,
+      "compareAt": 4800,
+      "category": "Add-ons",
+      "availability": "instock",
+      "stock": 9,
+      "badge": "Setup",
+      "blurb": "Stable stand so the picture stays put, including the bed-view angle.",
+      "description": "A steady tripod kit so the projector is not balanced on a book. Height adjusts for the front wall or the ceiling angle. The small piece that makes the Ultra Bundle feel finished.",
+      "features": [
+        "Adjustable height",
+        "Stable for wall or ceiling angle",
+        "Packs with the projector for travel"
+      ],
+      "specs": [
+        {"k": "Use", "v": "Wall and ceiling angles"},
+        {"k": "Pairs with", "v": "Both projectors"}
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1400&q=70"
+      ],
+      "addonIds": ["cinema-ultra"]
+    },
+    {
+      "id": "party-speaker",
+      "name": "Bluetooth Party Speaker",
+      "price": 6500,
+      "compareAt": 8500,
+      "category": "Add-ons",
+      "availability": "low",
+      "stock": 2,
+      "badge": "Low stock",
+      "blurb": "Bigger sound than the built-in speaker. Pairs in one tap.",
+      "description": "The projector already has sound. This is for when the yard is full. Bluetooth pairs to the Ultra Bundle or a phone. Good for movie night and a cookout after.",
+      "features": [
+        "Bluetooth pairing",
+        "Louder than built-in projector audio",
+        "Works with phone or projector"
+      ],
+      "specs": [
+        {"k": "Link", "v": "Bluetooth"},
+        {"k": "Best for", "v": "Movie night and yard"}
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=1400&q=70",
+        "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1400&q=70"
+      ],
+      "addonIds": ["cinema-ultra"]
+    }
+  ],
+  "bundles": [
+    {
+      "id": "cinema-night",
+      "name": "Cinema Night Set",
+      "blurb": "Ultra projector, 100-inch screen and party speaker. One chat, one delivery.",
+      "productIds": ["cinema-ultra", "fold-screen", "party-speaker"],
+      "discount": 2000,
+      "badge": "Save J$2,000"
+    },
+    {
+      "id": "bed-view",
+      "name": "Bed View Kit",
+      "blurb": "Ultra projector plus the tripod kit for the ceiling angle.",
+      "productIds": ["cinema-ultra", "tripod-kit"],
+      "discount": 500,
+      "badge": "Save J$500"
+    },
+    {
+      "id": "road-ready",
+      "name": "Road Ready",
+      "blurb": "Loaded projector and the car hotspot so the movie travels.",
+      "productIds": ["hy300-loaded", "car-hotspot"],
+      "discount": 1000,
+      "badge": "Save J$1,000"
+    }
+  ],
+  "reviews": [
+    {
+      "name": "Andre, Kingston",
+      "text": "Set it on the dresser, swung it to the ceiling, and the movie was on before the popcorn. Delivery was smooth.",
+      "stars": 5
+    },
+    {
+      "name": "Sherine, Mandeville",
+      "text": "Collected from Unique Claims. They walked me through mirroring from the phone. Picture is big, setup was easy.",
+      "stars": 5
+    },
+    {
+      "name": "Troy, Montego Bay",
+      "text": "Hotspot stays in the car. Projector stays in the bedroom. Both did what the chat said they would.",
+      "stars": 5
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How do I order?",
+      "a": "Add what you want, open the cart, and send the WhatsApp order. We confirm stock, delivery or Mandeville collection, and payment."
+    },
+    {
+      "q": "Can I bundle items?",
+      "a": "Yes. Use a ready-made bundle or open any projector and tick the add-ons. The total updates before you send the chat."
+    },
+    {
+      "q": "Do you deliver?",
+      "a": "Yes. Collection in Mandeville, Manchester, or islandwide delivery arranged on WhatsApp."
+    },
+    {
+      "q": "Is the projector already loaded?",
+      "a": "The cinema bundles leave loaded, with streaming ready, so the first night is the movie."
+    },
+    {
+      "q": "What if something is wrong on arrival?",
+      "a": "Message WhatsApp the same day with a photo. We sort replacement or a fix before you are stuck with it."
+    }
+  ]
+}
