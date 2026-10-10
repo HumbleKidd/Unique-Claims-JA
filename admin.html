@@ -60,7 +60,7 @@ main{padding:16px}
 const KEY="uc_draft";
 let data={}, editing=0;
 const money=n=>"J$"+(Number(n)||0).toLocaleString("en-JM");
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&","<":"<",">":">",'"':""","'":"&#39;"}[c]));
+const esc=s=>String(s??"").replace(/[&<>"\']/g,c=>"&#"+c.charCodeAt(0)+";");
 function pin(){return localStorage.getItem("uc_pin")||"19500"}
 function login(){if(document.getElementById("pin").value!==pin()) return alert("Wrong PIN. Default is 19500 until you change it.");sessionStorage.setItem("uc_ok","1");start()}
 function logout(){sessionStorage.removeItem("uc_ok");location.reload()}

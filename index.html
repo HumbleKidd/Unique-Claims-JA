@@ -240,7 +240,7 @@ const cart=JSON.parse(localStorage.getItem("uc_cart")||"[]");
 const wish=JSON.parse(localStorage.getItem("uc_wish")||"[]");
 const seen=JSON.parse(localStorage.getItem("uc_seen")||"[]");
 const money=n=>"J$"+(Number(n)||0).toLocaleString("en-JM");
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&","<":"<",">":">",'"':""","'":"&#39;"}[c]));
+const esc=s=>String(s??"").replace(/[&<>"\']/g,c=>"&#"+c.charCodeAt(0)+";");
 function img(src){if(!src) return "logo.png"; return src}
 function stockLabel(p){
   if(p.availability==="out"||p.stock<=0) return ["Sold out","out"];
