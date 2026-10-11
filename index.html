@@ -1,1 +1,397 @@
-PLACEHOLDER_INDEX
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unique Claims · Uniquely, you!</title>
+<meta name="description" content="Unique Claims in Mandeville, Jamaica. Loaded Android projectors, cinema bundles, portable 4G hotspots and add-ons. Islandwide delivery. Order on WhatsApp.">
+<meta property="og:title" content="Unique Claims · Uniquely, you!">
+<meta property="og:description" content="Something unique, because you are one of a kind. Projectors, bundles and islandwide delivery from Mandeville.">
+<meta property="og:image" content="https://uniqueclaimsja.store/logo.png">
+<meta property="og:url" content="https://uniqueclaimsja.store/">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<style>
+:root{
+  --cream:#fff6ef; --paper:#ffffff; --ink:#241833; --muted:#6f647e;
+  --pink:#ff4f9a; --yellow:#ffc53d; --cyan:#22d3c5; --blue:#6f8cff; --green:#149a55;
+  --line:#f1e3d8; --shadow:0 18px 50px rgba(70,30,70,.08); --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:
+  radial-gradient(900px 420px at -10% -10%, #ffe1f1 0%, transparent 60%),
+  radial-gradient(800px 420px at 110% 0%, #d9fff8 0%, transparent 55%),
+  radial-gradient(700px 500px at 80% 100%, #fff1c7 0%, transparent 50%),
+  var(--cream);
+  color:var(--ink);font-family:Outfit,system-ui,sans-serif;line-height:1.5}
+img{max-width:100%;display:block}
+button,input,select,textarea{font-family:inherit}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1180px,calc(100% - 32px));margin:0 auto}
+.announce{background:linear-gradient(90deg,#ff4f9a,#ffc53d,#22d3c5);color:#241833;font-weight:700;font-size:13px;overflow:hidden;white-space:nowrap}
+.announce span{display:inline-block;padding:8px 0;animation:marq 22s linear infinite}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+header{position:sticky;top:0;z-index:40;background:rgba(255,246,239,.86);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.7)}
+.nav{display:flex;align-items:center;gap:14px;padding:12px 0}
+.logo{height:62px;width:auto;filter:drop-shadow(0 8px 16px rgba(255,79,154,.2))}
+.search{flex:1;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 14px;box-shadow:0 8px 24px rgba(70,30,70,.04)}
+.search input{border:0;outline:0;width:100%;font-size:15px;background:transparent}
+.iconbtn{border:0;background:#fff;border-radius:14px;height:46px;min-width:46px;padding:0 12px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;box-shadow:0 8px 24px rgba(70,30,70,.06);position:relative;font-weight:700}
+.iconbtn .dot{position:absolute;top:-4px;right:-4px;background:var(--pink);color:#fff;border-radius:99px;font-size:11px;min-width:18px;height:18px;display:grid;place-items:center}
+.links{display:flex;gap:16px;font-weight:650;font-size:14px}
+.links a{opacity:.75}.links a:hover{opacity:1}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;padding:34px 0 10px;align-items:center}
+.kicker{display:inline-flex;gap:8px;align-items:center;background:#fff;border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;box-shadow:var(--shadow)}
+h1{font-family:Fraunces,serif;font-size:clamp(34px,5vw,62px);line-height:.98;margin:14px 0 10px;letter-spacing:-.03em}
+.lede{font-size:18px;color:var(--muted);max-width:560px}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{border:0;border-radius:999px;padding:13px 18px;font-weight:800;cursor:pointer;display:inline-flex;gap:8px;align-items:center;justify-content:center}
+.btn.primary{background:linear-gradient(90deg,#ff4f9a,#ff7a59);color:#fff;box-shadow:0 12px 24px rgba(255,79,154,.28)}
+.btn.wa{background:#18b56a;color:#fff}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn:hover{transform:translateY(-1px)}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0 8px}
+.trust div{background:#fff;border-radius:16px;padding:12px;font-size:13px;font-weight:700;box-shadow:var(--shadow)}
+.trust i{color:var(--pink);margin-right:6px}
+.hero-card{background:#fff;border-radius:28px;padding:14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero-card img.cover{height:280px;width:100%;object-fit:cover;border-radius:20px}
+.float-tag{position:absolute;right:22px;top:22px;background:#fff;border-radius:14px;padding:8px 10px;font-weight:800;box-shadow:var(--shadow)}
+.section{padding:28px 0}
+.section h2{font-family:Fraunces,serif;font-size:clamp(28px,3vw,40px);margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 16px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;cursor:pointer;font-weight:700;font-size:13px}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+select.sort{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px 10px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative;transition:.25s transform}
+.card:hover{transform:translateY(-4px)}
+.card .ph{height:230px;background:#f7efe8;position:relative}
+.card .ph img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;left:12px;top:12px;background:#fff;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800}
+.wish{position:absolute;right:12px;top:12px;width:36px;height:36px;border:0;border-radius:50%;background:#fff;cursor:pointer}
+.card .body{padding:14px 14px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.cat{font-size:11px;letter-spacing:.12em;font-weight:800;color:var(--pink)}
+.price{font-weight:800;font-size:18px}
+.price s{color:#b3a8b8;font-weight:600;font-size:14px;margin-left:6px}
+.stock{font-size:12px;font-weight:800}
+.stock.ok{color:var(--green)}.stock.wait{color:#c47a00}.stock.out{color:#d1264a}
+.row{display:flex;gap:8px;margin-top:auto}
+.row .btn{flex:1;padding:10px 12px}
+.bundles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.bundle{background:#fff;border-radius:22px;padding:16px;box-shadow:var(--shadow);border:2px solid transparent}
+.bundle:hover{border-color:#ffd0e6}
+.save{display:inline-block;background:#fff4cc;color:#8a5a00;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:800}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.step{background:#fff;border-radius:18px;padding:16px;box-shadow:var(--shadow)}
+.step b{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:linear-gradient(180deg,#ff4f9a,#ffc53d);color:#fff;margin-bottom:8px}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.review{background:#fff;border-radius:18px;padding:16px;box-shadow:var(--shadow)}
+.stars{color:#f0b429;letter-spacing:2px}
+.faq details{background:#fff;border-radius:16px;padding:12px 14px;margin-bottom:8px;box-shadow:var(--shadow)}
+.faq summary{cursor:pointer;font-weight:800}
+footer{background:#fff;border-top:1px solid var(--line);padding:28px 0 90px;margin-top:20px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:18px}
+.foot a{display:block;margin:6px 0;color:var(--muted);font-weight:600}
+.dock{position:fixed;left:12px;right:12px;bottom:12px;background:#fff;border-radius:18px;display:none;grid-template-columns:repeat(4,1fr);box-shadow:0 12px 40px rgba(40,20,40,.16);z-index:45;padding:6px}
+.dock button{border:0;background:transparent;font-weight:800;font-size:12px;padding:8px;color:var(--muted);cursor:pointer}
+.drawer,.modal{position:fixed;inset:0;background:rgba(30,16,40,.35);z-index:60;display:none}
+.drawer.on,.modal.on{display:block}
+.sheet{position:absolute;right:0;top:0;height:100%;width:min(440px,100%);background:#fff8f3;padding:18px;overflow:auto}
+.modal .sheet{left:50%;top:50%;right:auto;transform:translate(-50%,-50%);height:min(92vh,860px);width:min(980px,calc(100% - 20px));border-radius:24px}
+.gallery{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+.mainpic{height:360px;object-fit:cover;width:100%;border-radius:18px;background:#f4ebe4}
+.thumbs{display:flex;gap:8px;margin-top:8px;overflow:auto}
+.thumbs img{width:72px;height:72px;object-fit:cover;border-radius:12px;cursor:pointer;border:2px solid transparent}
+.thumbs img.on{border-color:var(--pink)}
+.line{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer}
+.toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 14px;border-radius:999px;display:none;z-index:70;font-weight:700}
+.check{display:flex;gap:8px;align-items:flex-start;background:#fff;border-radius:12px;padding:8px;margin:6px 0}
+@media(max-width:900px){
+  .links,.search-label{display:none}
+  .hero,.gallery,.grid,.bundles,.steps,.reviews,.trust,.foot{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  .trust{grid-template-columns:1fr 1fr}
+  .logo{height:50px}
+  .dock{display:grid}
+  .mainpic{height:240px}
+  select.sort{margin-left:0}
+}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="announce"><span id="ann"></span></div>
+<header>
+  <div class="wrap nav">
+    <a href="#top"><img class="logo" src="logo.png" alt="Unique Claims"></a>
+    <nav class="links">
+      <a href="#shop">Shop</a>
+      <a href="#bundles">Bundles</a>
+      <a href="#how">How to order</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <label class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="q" placeholder="Search projectors, hotspots, screens..."></label>
+    <button class="iconbtn" onclick="openWish()" aria-label="Wishlist"><i class="fa-regular fa-heart"></i><span class="dot" id="wishCount">0</span></button>
+    <button class="iconbtn" onclick="openCart()" aria-label="Cart"><i class="fa-solid fa-bag-shopping"></i><span class="dot" id="cartCount">0</span></button>
+  </div>
+</header>
+<main id="top">
+  <section class="wrap hero">
+    <div>
+      <div class="kicker"><i class="fa-solid fa-location-dot"></i> Mandeville · Islandwide delivery</div>
+      <h1 id="heroTitle">Something unique, because you are one of a kind.</h1>
+      <p class="lede" id="heroText"></p>
+      <div class="cta">
+        <button class="btn primary" onclick="document.getElementById('shop').scrollIntoView()"><i class="fa-solid fa-store"></i> Shop the floor</button>
+        <a class="btn wa" id="heroWa" href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp Unique Claims</a>
+      </div>
+      <div class="trust">
+        <div><i class="fa-solid fa-bolt"></i> Loaded before it leaves</div>
+        <div><i class="fa-solid fa-layer-group"></i> Bundle and save</div>
+        <div><i class="fa-brands fa-whatsapp"></i> WhatsApp checkout</div>
+        <div><i class="fa-solid fa-truck"></i> Islandwide drop</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="float-tag" id="heroTag">Uniquely, you!</div>
+      <img class="cover" id="heroImg" alt="Unique Claims cinema night" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=70">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 6px 4px">
+        <div><b id="heroName">Android Cinema Projector</b><div class="sub" id="heroPrice" style="margin:0"></div></div>
+        <button class="btn ghost" onclick="openFeatured()">View</button>
+      </div>
+    </div>
+  </section>
+  <section class="wrap section" id="shop">
+    <h2>The floor</h2>
+    <p class="sub">Prices in Jamaican dollars. Stock updates when you publish from the shop admin.</p>
+    <div class="bar" id="filters"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+  <section class="wrap section" id="bundles">
+    <h2>Build it your way</h2>
+    <p class="sub">Ready sets with the discount already taken off. Or open a projector and tick the extras.</p>
+    <div class="bundles" id="bundleGrid"></div>
+  </section>
+  <section class="wrap section" id="how">
+    <h2>How ordering works</h2>
+    <p class="sub">No account. No card page. You send the list, we confirm.</p>
+    <div class="steps">
+      <div class="step"><b>1</b><strong>Pick</strong><p class="sub">Choose a projector, hotspot, screen or a ready bundle.</p></div>
+      <div class="step"><b>2</b><strong>Bundle</strong><p class="sub">Tick add-ons. The total updates with the savings before you commit.</p></div>
+      <div class="step"><b>3</b><strong>WhatsApp</strong><p class="sub">Send the order with your parish. We confirm stock and payment.</p></div>
+      <div class="step"><b>4</b><strong>Collect or deliver</strong><p class="sub">Mandeville pickup, or islandwide drop arranged in the same chat.</p></div>
+    </div>
+  </section>
+  <section class="wrap section">
+    <h2>From the floor</h2>
+    <p class="sub">Notes from people who collected or had it delivered.</p>
+    <div class="reviews" id="reviews"></div>
+  </section>
+  <section class="wrap section" id="faq">
+    <h2>Questions</h2>
+    <div class="faq" id="faqs"></div>
+  </section>
+</main>
+<footer>
+  <div class="wrap foot">
+    <div>
+      <img src="logo.png" alt="" style="height:74px">
+      <p class="sub" id="footNote"></p>
+      <div id="hours"></div>
+    </div>
+    <div>
+      <strong>Shop</strong>
+      <a href="#shop">All products</a>
+      <a href="#bundles">Bundles</a>
+      <a href="#faq">FAQ</a>
+      <a href="admin.html">Manage shop</a>
+    </div>
+    <div>
+      <strong>Talk to us</strong>
+      <a id="ig" target="_blank">Instagram</a>
+      <a id="tt" target="_blank">TikTok</a>
+      <a id="fb" target="_blank">Facebook</a>
+      <a id="mail"></a>
+      <a id="phone"></a>
+    </div>
+  </div>
+</footer>
+<nav class="dock">
+  <button onclick="location.href='#top'"><i class="fa-solid fa-house"></i><div>Home</div></button>
+  <button onclick="location.href='#shop'"><i class="fa-solid fa-store"></i><div>Shop</div></button>
+  <button onclick="location.href='#bundles'"><i class="fa-solid fa-layer-group"></i><div>Bundles</div></button>
+  <button onclick="openCart()"><i class="fa-solid fa-bag-shopping"></i><div>Cart</div></button>
+</nav>
+<div class="drawer" id="cartDrawer"><div class="sheet" id="cartSheet"></div></div>
+<div class="drawer" id="wishDrawer"><div class="sheet" id="wishSheet"></div></div>
+<div class="modal" id="productModal"><div class="sheet" id="productSheet"></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const PARISHES=["Kingston","St. Andrew","St. Catherine","Clarendon","Manchester","St. Elizabeth","Westmoreland","Hanover","St. James","Trelawny","St. Ann","St. Mary","Portland","St. Thomas"];
+let data=null, filter="All", sort="featured", active=null, pic=0;
+const cart=JSON.parse(localStorage.getItem("uc_cart")||"[]");
+const wish=JSON.parse(localStorage.getItem("uc_wish")||"[]");
+const seen=JSON.parse(localStorage.getItem("uc_seen")||"[]");
+const money=n=>"J$"+(Number(n)||0).toLocaleString("en-JM");
+const esc=s=>String(s??"").replace(/[&<>"\']/g,c=>"&#"+c.charCodeAt(0)+";");
+function img(src){if(!src) return "logo.png"; return src}
+function stockLabel(p){
+  if(p.availability==="out"||p.stock<=0) return ["Sold out","out"];
+  if(p.availability==="preorder") return ["Pre-order","wait"];
+  if(p.availability==="low"||p.stock<=2) return ["Low stock","wait"];
+  return ["In stock","ok"];
+}
+function toast(t){const el=document.getElementById("toast");el.textContent=t;el.style.display="block";setTimeout(()=>el.style.display="none",1800)}
+function saveCart(){localStorage.setItem("uc_cart",JSON.stringify(cart));document.getElementById("cartCount").textContent=cart.reduce((a,i)=>a+i.qty,0)}
+function saveWish(){localStorage.setItem("uc_wish",JSON.stringify(wish));document.getElementById("wishCount").textContent=wish.length}
+function byId(id){return data.products.find(p=>p.id===id)}
+async function boot(){
+  const r=await fetch("catalog.json?v="+Date.now(),{cache:"no-store"});
+  data=await r.json();
+  const s=data.settings;
+  document.getElementById("ann").textContent=(s.announcement+"  ·  ").repeat(8);
+  document.getElementById("heroTitle").textContent=s.heroTitle;
+  document.getElementById("heroText").textContent=s.heroText;
+  document.getElementById("heroTag").textContent=s.tagline;
+  document.getElementById("footNote").textContent=s.deliveryNote;
+  document.getElementById("hours").textContent=s.hours+" · "+s.location;
+  document.getElementById("heroWa").href="https://wa.me/"+s.whatsapp+"?text="+encodeURIComponent("Yow Unique Claims, I want to ask about something on the shop.");
+  document.getElementById("ig").href=s.instagram; document.getElementById("tt").href=s.tiktok; document.getElementById("fb").href=s.facebook;
+  document.getElementById("mail").href="mailto:"+s.email; document.getElementById("mail").textContent=s.email;
+  document.getElementById("phone").href="tel:+"+s.whatsapp; document.getElementById("phone").textContent=s.whatsapp.replace(/^1/,"+1 ");
+  const feat=data.products[0];
+  if(feat){document.getElementById("heroImg").src=img(feat.images?.[0]);document.getElementById("heroName").textContent=feat.name;document.getElementById("heroPrice").textContent=money(feat.price)}
+  renderFilters(); renderGrid(); renderBundles(); renderReviews(); renderFaqs(); saveCart(); saveWish();
+  document.getElementById("q").oninput=renderGrid;
+}
+function renderFilters(){
+  const cats=["All",...data.categories,"Wishlist"];
+  document.getElementById("filters").innerHTML=cats.map(c=>`<button class="chip ${filter===c?"on":""}" onclick="setFilter('${c}')">${c}</button>`).join("")+
+  `<select class="sort" onchange="sort=this.value;renderGrid()"><option value="featured">Featured</option><option value="low">Price: low</option><option value="high">Price: high</option><option value="stock">In stock first</option></select>`;
+}
+function setFilter(c){filter=c;renderFilters();renderGrid()}
+function products(){
+  const q=document.getElementById("q").value.trim().toLowerCase();
+  let list=data.products.filter(p=>{
+    const hit=!q || (p.name+" "+p.blurb+" "+p.category).toLowerCase().includes(q);
+    if(filter==="Wishlist") return hit && wish.includes(p.id);
+    if(filter!=="All") return hit && p.category===filter;
+    return hit;
+  });
+  if(sort==="low") list.sort((a,b)=>a.price-b.price);
+  if(sort==="high") list.sort((a,b)=>b.price-a.price);
+  if(sort==="stock") list.sort((a,b)=>(b.stock||0)-(a.stock||0));
+  return list;
+}
+function renderGrid(){
+  const list=products();
+  document.getElementById("grid").innerHTML=list.length?list.map(p=>{
+    const [lab,cls]=stockLabel(p);
+    return `<article class="card">
+      <div class="ph"><img loading="lazy" src="${img(p.images?.[0])}" alt="${esc(p.name)}"><span class="badge">${esc(p.badge||lab)}</span>
+      <button class="wish" onclick="toggleWish('${p.id}')" aria-label="Save"><i class="${wish.includes(p.id)?"fa-solid":"fa-regular"} fa-heart"></i></button></div>
+      <div class="body"><div class="cat">${esc(p.category)}</div><strong>${esc(p.name)}</strong>
+      <div class="sub" style="margin:0">${esc(p.blurb)}</div>
+      <div class="price">${money(p.price)} ${p.compareAt?`<s>${money(p.compareAt)}</s>`:""}</div>
+      <div class="stock ${cls}">${lab}${p.stock?` · ${p.stock} ready`:""}</div>
+      <div class="row"><button class="btn ghost" onclick="openProduct('${p.id}')">Details</button><button class="btn primary" onclick="add('${p.id}')">Add</button></div>
+      </div></article>`;
+  }).join(""):`<div class="card"><div class="body"><strong>Nothing in this shelf yet.</strong><p class="sub">Try another filter, or add it from the admin panel.</p></div></div>`;
+}
+function renderBundles(){
+  document.getElementById("bundleGrid").innerHTML=(data.bundles||[]).map(b=>{
+    const items=b.productIds.map(byId).filter(Boolean);
+    const raw=items.reduce((a,p)=>a+p.price,0);
+    const total=Math.max(0,raw-(b.discount||0));
+    return `<article class="bundle"><span class="save">${esc(b.badge||"Save "+money(b.discount))}</span><h3>${esc(b.name)}</h3><p class="sub">${esc(b.blurb)}</p><div>${items.map(p=>`<div>${esc(p.name)}</div>`).join("")}</div><div class="price" style="margin:8px 0">${money(total)} <s>${money(raw)}</s></div><button class="btn primary" onclick="addBundle('${b.id}')">Add this set</button></article>`;
+  }).join("");
+}
+function renderReviews(){document.getElementById("reviews").innerHTML=(data.reviews||[]).map(r=>`<article class="review"><div class="stars">${"★".repeat(r.stars||5)}</div><p>${esc(r.text)}</p><b>${esc(r.name)}</b></article>`).join("")}
+function renderFaqs(){document.getElementById("faqs").innerHTML=(data.faqs||[]).map(f=>`<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("")}
+function add(id,qty=1,silent){
+  const p=byId(id); if(!p) return;
+  if(p.availability==="out"||p.stock<=0) return toast("That one is sold out");
+  const row=cart.find(i=>i.id===id && !i.bundle);
+  if(row) row.qty+=qty; else cart.push({id,qty,bundle:null});
+  saveCart(); if(!silent) toast("Added to bag");
+}
+function addBundle(id){
+  const b=data.bundles.find(x=>x.id===id); if(!b) return;
+  b.productIds.forEach(pid=>add(pid,1,true));
+  cart.push({id:"bundle-note-"+id,qty:1,bundle:id,discount:b.discount||0,name:b.name});
+  saveCart(); toast(b.name+" added"); openCart();
+}
+function toggleWish(id){const i=wish.indexOf(id); if(i>=0) wish.splice(i,1); else wish.push(id); saveWish(); renderGrid(); toast(i>=0?"Removed from saved":"Saved")}
+function openFeatured(){if(data.products[0]) openProduct(data.products[0].id)}
+function openProduct(id){
+  active=byId(id); pic=0;
+  if(!seen.includes(id)){seen.unshift(id); localStorage.setItem("uc_seen",JSON.stringify(seen.slice(0,8)))}
+  drawProduct(); document.getElementById("productModal").classList.add("on");
+}
+function drawProduct(){
+  const p=active; const [lab,cls]=stockLabel(p);
+  const addons=(p.addonIds||[]).map(byId).filter(Boolean);
+  document.getElementById("productSheet").innerHTML=`<div style="display:flex;justify-content:space-between"><b>${esc(p.category)}</b><button class="iconbtn" onclick="closeAll()">✕</button></div>
+  <div class="gallery"><div><img class="mainpic" id="mainpic" src="${img(p.images?.[0])}" alt=""><div class="thumbs">${(p.images||[]).map((s,i)=>`<img src="${img(s)}" class="${i===0?"on":""}" onclick="setPic(${i})">`).join("")}</div></div>
+  <div><h2 style="font-family:Fraunces,serif;margin:0">${esc(p.name)}</h2><p>${esc(p.description||p.blurb)}</p>
+  <div class="price">${money(p.price)} ${p.compareAt?`<s>${money(p.compareAt)}</s>`:""}</div><div class="stock ${cls}">${lab}</div>
+  <ul>${(p.features||[]).map(f=>`<li>${esc(f)}</li>`).join("")}</ul>
+  <div>${(p.specs||[]).map(sp=>`<div class="line"><span>${esc(sp.k)}</span><b>${esc(sp.v)}</b></div>`).join("")}</div>
+  ${addons.length?`<h3>Bundle it</h3>`+addons.map(a=>`<label class="check"><input type="checkbox" value="${a.id}" onchange="sumAddons()"> <span><b>${esc(a.name)}</b> · ${money(a.price)}<br><span class="sub">${esc(a.blurb)}</span></span></label>`).join(""):""}
+  <div class="line"><span>This order</span><b id="addonTotal">${money(p.price)}</b></div>
+  <div class="cta"><button class="btn primary" onclick="addWithAddons()"><i class="fa-solid fa-bag-shopping"></i> Add selection</button>
+  <button class="btn wa" onclick="buyNow()"><i class="fa-brands fa-whatsapp"></i> Order this</button>
+  <button class="btn ghost" onclick="shareProduct()"><i class="fa-solid fa-share-nodes"></i></button></div></div></div>`;
+}
+function setPic(i){pic=i;document.getElementById("mainpic").src=img(active.images[i]);document.querySelectorAll(".thumbs img").forEach((el,n)=>el.classList.toggle("on",n===i))}
+function selectedAddons(){return [...document.querySelectorAll(".check input:checked")].map(el=>el.value)}
+function sumAddons(){const extra=selectedAddons().reduce((a,id)=>a+(byId(id)?.price||0),0);document.getElementById("addonTotal").textContent=money(active.price+extra)}
+function addWithAddons(){add(active.id);selectedAddons().forEach(id=>add(id,1,true));toast("Selection added");closeAll();openCart()}
+function buyNow(){addWithAddons();setTimeout(sendOrder,300)}
+function shareProduct(){const url=location.origin+location.pathname+"#"+active.id; navigator.clipboard?.writeText(url); toast("Link copied")}
+function openCart(){drawCart();document.getElementById("cartDrawer").classList.add("on")}
+function drawCart(){
+  const lines=cart.filter(i=>!i.bundle);
+  const discount=cart.filter(i=>i.bundle).reduce((a,i)=>a+(i.discount||0),0);
+  const sub=lines.reduce((a,i)=>a+(byId(i.id)?.price||0)*i.qty,0);
+  const total=Math.max(0,sub-discount);
+  document.getElementById("cartSheet").innerHTML=`<div style="display:flex;justify-content:space-between"><h2 style="margin:0">Your bag</h2><button class="iconbtn" onclick="closeAll()">✕</button></div>
+  ${lines.length?lines.map((i,idx)=>{const p=byId(i.id); if(!p) return ""; return `<div class="line"><img src="${img(p.images?.[0])}" style="width:64px;height:64px;object-fit:cover;border-radius:10px"><div style="flex:1"><b>${esc(p.name)}</b><div>${money(p.price)}</div></div><div class="qty"><button onclick="chg(${idx},-1)">−</button>${i.qty}<button onclick="chg(${idx},1)">+</button></div></div>`}).join(""):"<p>Bag is empty. The floor is waiting.</p>"}
+  ${discount?`<div class="line"><span>Bundle savings</span><b>− ${money(discount)}</b></div>`:""}
+  <div class="line"><span>Total</span><b>${money(total)}</b></div>
+  <label>Parish for delivery or collection</label>
+  <select id="parish" style="width:100%;padding:10px;border-radius:12px;border:1px solid var(--line)">${PARISHES.map(p=>`<option ${p==="Manchester"?"selected":""}>${p}</option>`).join("")}</select>
+  <label>Note</label><textarea id="note" rows="2" style="width:100%;border-radius:12px;border:1px solid var(--line);padding:8px" placeholder="Pickup in Mandeville, or drop-off area"></textarea>
+  <p class="sub">Pay by bank transfer or as agreed on chat. We confirm before you pay.</p>
+  <button class="btn wa" style="width:100%" onclick="sendOrder()"><i class="fa-brands fa-whatsapp"></i> Send order on WhatsApp</button>`;
+}
+function chg(i,d){cart[i].qty+=d; if(cart[i].qty<=0) cart.splice(i,1); saveCart(); drawCart()}
+function sendOrder(){
+  const lines=cart.filter(i=>!i.bundle);
+  if(!lines.length) return toast("Add something first");
+  const discount=cart.filter(i=>i.bundle).reduce((a,i)=>a+(i.discount||0),0);
+  const sub=lines.reduce((a,i)=>a+(byId(i.id)?.price||0)*i.qty,0);
+  const parish=document.getElementById("parish")?.value||"Manchester";
+  const note=document.getElementById("note")?.value||"";
+  const msg=["Yow Unique Claims, I want to order:",...lines.map(i=>`• ${i.qty} x ${byId(i.id)?.name} (${money(byId(i.id)?.price)})`),discount?`Bundle savings: -${money(discount)}`:"",`Total: ${money(Math.max(0,sub-discount))}`,`Parish: ${parish}`,note?`Note: ${note}`:"","Name:"].filter(Boolean).join("\n");
+  window.open("https://wa.me/"+data.settings.whatsapp+"?text="+encodeURIComponent(msg),"_blank");
+}
+function openWish(){
+  document.getElementById("wishSheet").innerHTML=`<div style="display:flex;justify-content:space-between"><h2 style="margin:0">Saved</h2><button class="iconbtn" onclick="closeAll()">✕</button></div>`+
+  (wish.map(id=>byId(id)).filter(Boolean).map(p=>`<div class="line"><b>${esc(p.name)}</b><button class="btn ghost" onclick="openProduct('${p.id}')">Open</button></div>`).join("")||"<p>Heart the pieces you want to come back to.</p>");
+  document.getElementById("wishDrawer").classList.add("on");
+}
+function closeAll(){document.querySelectorAll(".drawer,.modal").forEach(el=>el.classList.remove("on"))}
+document.addEventListener("click",e=>{if(e.target.classList.contains("drawer")||e.target.classList.contains("modal")) closeAll()});
+window.addEventListener("hashchange",()=>{const id=location.hash.slice(1); if(byId(id)) openProduct(id)});
+boot();
+</script>
+</body>
+</html>
