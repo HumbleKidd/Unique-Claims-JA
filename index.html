@@ -976,7 +976,7 @@
 
         /* LOCALSTORAGE MANAGEMENT */
         function loadProductsFromStorage() {
-            const saved = localStorage.getItem('uniqueclaims_products');
+            const saved = localStorage.getItem('uniqueclaims_products_v2');
             if (saved) {
                 try {
                     products = JSON.parse(saved);
@@ -990,18 +990,18 @@
         }
 
         function saveProductsToStorage() {
-            localStorage.setItem('uniqueclaims_products', JSON.stringify(products));
+            localStorage.setItem('uniqueclaims_products_v2', JSON.stringify(products));
         }
 
         function loadCartFromStorage() {
-            const saved = localStorage.getItem('uniqueclaims_cart');
+            const saved = localStorage.getItem('uniqueclaims_cart_v2');
             if (saved) {
                 try { cart = JSON.parse(saved); } catch(e) { cart = []; }
             }
         }
 
         function saveCartToStorage() {
-            localStorage.setItem('uniqueclaims_cart', JSON.stringify(cart));
+            localStorage.setItem('uniqueclaims_cart_v2', JSON.stringify(cart));
         }
 
         function resetToDefaultCatalog() {
