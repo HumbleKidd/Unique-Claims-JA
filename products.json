@@ -1,0 +1,135 @@
+{
+  "settings": {
+    "name": "Unique Claims",
+    "tagline": "Uniquely, you!",
+    "whatsapp": "18765813521",
+    "email": "Uniqueclaimsja@gmail.com",
+    "location": "Mandeville, Manchester",
+    "currency": "JMD",
+    "currencySymbol": "$",
+    "deliveryNote": "Collect in Mandeville or islandwide delivery via Northward Express. Pay by NCB bank transfer or cash on delivery for in-person.",
+    "hours": "WhatsApp daily 9am–8pm"
+  },
+  "products": [
+    {
+      "id": "android-projector",
+      "name": "Fully Loaded Android Smart Projector",
+      "price": 19500,
+      "category": "Projectors",
+      "blurb": "Plug-and-play Android projector with free streaming. Watch anything right out of the box.",
+      "description": "Fully loaded Android Smart Projector bundle. Comes with streaming apps pre-installed so you can watch movies, series, and more for free. Plug and play – just connect power and Wi-Fi, and you're ready. Compact design perfect for home, bedroom, or travel. Includes all the details shown in the photos.",
+      "features": ["Pre-loaded with streaming", "Plug and play", "Android smart features", "Portable design", "High brightness for evening viewing"],
+      "images": ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825268953_950844711407562_5164107063003195279_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269035_1842693450054383_2803710887866853991_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269045_2527327671071171_9170582407973424468_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269135_1098951375843016_2487635300355767178_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825270350_1579039539864030_5939598115892029473_n.jpg"]
+    },
+    {
+      "id": "snake-5ft",
+      "name": "5ft Snake Drain Cleaner",
+      "price": 2500,
+      "category": "Tools",
+      "blurb": "Flexible 5ft drain snake for clearing clogs in sinks and pipes.",
+      "description": "5-foot flexible snake drain cleaner. Ideal for household sinks, showers, and small pipes. Durable construction as shown in detailed product photos.",
+      "features": ["5 feet length", "Flexible cable", "Easy to use"],
+      "images": ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/789708363_2150562459676950_3961017403451417570_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/789708385_1086754953752171_2275017065013072365_n.jpg"]
+    },
+    {
+      "id": "snake-9ft",
+      "name": "9ft Snake Drain Cleaner",
+      "price": 3500,
+      "category": "Tools",
+      "blurb": "Longer 9ft drain snake for deeper clogs.",
+      "description": "9-foot snake drain cleaner for tougher and deeper blockages. Strong and flexible.",
+      "features": ["9 feet length", "Heavy-duty"],
+      "images": ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790003717_2520610905032057_7151119086195477674_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790059533_2904958866504194_4137135544160988951_n.jpg"]
+    },
+    {
+      "id": "gamepad",
+      "name": "Bluetooth Gamepad Controller",
+      "price": 4500,
+      "category": "Electronics",
+      "blurb": "Wireless Bluetooth controller for phones, tablets, and PCs.",
+      "description": "Comfortable Bluetooth gamepad with responsive buttons and analog sticks. Works with Android, iOS (limited), and PC. Multiple color/style options shown in photos.",
+      "features": ["Bluetooth wireless", "Dual analog sticks", "Compatible with Android"],
+      "images": ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817137921_1834989191190004_929457359546861269_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817179283_1492931986190790_1701374640396694443_n.jpg"]
+    },
+    {
+      "id": "car-seat-cover",
+      "name": "Car Seat Face Cover",
+      "price": 1800,
+      "category": "Auto",
+      "blurb": "Protective face cover for car seats.",
+      "description": "Durable car seat face protector. Easy to install, keeps seats clean. Various designs available.",
+      "features": ["Protective", "Easy fit"],
+      "images": ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291112_973674079103996_5881654850923170503_n.jpg"]
+    },
+    {
+      "id": "tire-pressure",
+      "name": "Digital Tire Pressure Tester",
+      "price": 2200,
+      "category": "Auto",
+      "blurb": "Accurate digital gauge for checking tire pressure.",
+      "description": "Digital tire pressure tester with clear LCD display. Compact and reliable for daily vehicle maintenance.",
+      "features": ["Digital display", "Accurate readings", "Portable"],
+      "images": ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/806310644_4381990502054687_4974509678397873830_n.jpg"]
+    },
+    {
+      "id": "magnetic-pen",
+      "name": "Magnetic Pickup Pen Tool",
+      "price": 1200,
+      "category": "Tools",
+      "blurb": "Telescopic magnetic pen for picking up small metal parts.",
+      "description": "Extendable magnetic pickup tool. Perfect for retrieving screws and small metal items from tight spaces.",
+      "features": ["Magnetic tip", "Telescopic"],
+      "images": ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/761662708_915936818226507_5409632850732524466_n.jpg"]
+    },
+    {
+      "id": "basin-wrench",
+      "name": "Plumber Basin Wrench",
+      "price": 2800,
+      "category": "Tools",
+      "blurb": "Specialized wrench for tight under-sink spaces.",
+      "description": "Basin wrench designed for hard-to-reach plumbing nuts under sinks and basins.",
+      "features": ["Tight space access", "Durable"],
+      "images": []
+    },
+    {
+      "id": "hd-camera",
+      "name": "Quick Install HD Home Camera",
+      "price": 6500,
+      "category": "Security",
+      "blurb": "Easy-setup HD security camera for home.",
+      "description": "HD home camera with quick installation. Wi-Fi capable, clear night vision potential as per product images.",
+      "features": ["HD video", "Quick install", "Home security"],
+      "images": ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/804441532_1646268670190269_3997970850246026112_n.jpg"]
+    },
+    {
+      "id": "tap-die",
+      "name": "Tap Die Set",
+      "price": 3200,
+      "category": "Tools",
+      "blurb": "Complete tap and die set for threading.",
+      "description": "Assorted tap and die set for creating and repairing threads. Useful for automotive and workshop.",
+      "features": ["Multiple sizes", "Threading tools"],
+      "images": ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/814844830_1077103151964377_4971695888230270271_n.jpg"]
+    },
+    {
+      "id": "drill-adapter",
+      "name": "Tight Spot Drill Adapter",
+      "price": 1500,
+      "category": "Tools",
+      "blurb": "Adapter for drilling in confined spaces.",
+      "description": "Tight spot drill adapter allows angled or restricted access drilling.",
+      "features": ["Tight space", "Drill compatible"],
+      "images": []
+    },
+    {
+      "id": "ratchet-driver",
+      "name": "Tight Spot Flat Ratchet Driver",
+      "price": 1600,
+      "category": "Tools",
+      "blurb": "Low-profile ratchet for flat and tight areas.",
+      "description": "Flat ratchet driver designed for tight spots where regular tools won't fit.",
+      "features": ["Low profile", "Ratchet action"],
+      "images": []
+    }
+  ]
+}

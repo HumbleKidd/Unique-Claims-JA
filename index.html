@@ -3,83 +3,198 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unique Claims JA | Temporarily Paused</title>
-<link rel="icon" href="logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>Unique Claims | Products & Bundles</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>😉</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0c4a6e 100%);
-    font-family: 'Outfit', system-ui, sans-serif;
-    color: white;
-    text-align: center;
-    padding: 24px;
-  }
-  .card {
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 24px;
-    padding: 48px 32px;
-    max-width: 520px;
-    width: 100%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-  }
-  .logo {
-    width: 72px;
-    height: 72px;
-    background: linear-gradient(135deg, #0284c7, #7c3aed);
-    border-radius: 18px;
-    margin: 0 auto 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 28px;
-  }
-  h1 {
-    font-size: 28px;
-    font-weight: 800;
-    margin-bottom: 12px;
-    letter-spacing: -0.02em;
-  }
-  p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #cbd5e1;
-    margin-bottom: 8px;
-  }
-  .highlight {
-    color: #fed100;
-    font-weight: 700;
-  }
-  .contact {
-    margin-top: 28px;
-    font-size: 15px;
-  }
-  a {
-    color: #22d3ee;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  a:hover { text-decoration: underline; }
+:root {
+  --bg: #0a0a0f;
+  --card: #16161d;
+  --text: #f5f5f7;
+  --muted: #a1a1aa;
+  --accent: #6366f1;
+  --accent2: #22d3ee;
+  --success: #10b981;
+  --border: rgba(255,255,255,0.08);
+  --shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+header { position: sticky; top: 0; z-index: 100; background: rgba(10,10,15,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 16px 5%; display: flex; align-items: center; justify-content: space-between; }
+.logo { height: 48px; }
+.nav { display: flex; gap: 24px; }
+.nav a { color: var(--text); text-decoration: none; font-weight: 500; }
+.cart-btn { background: var(--accent); color: white; border: none; padding: 10px 18px; border-radius: 12px; font-weight: 600; cursor: pointer; position: relative; }
+.cart-count { position: absolute; top: -8px; right: -8px; background: #ef4444; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+.hero { padding: 80px 5% 60px; text-align: center; background: radial-gradient(circle at top, rgba(99,102,241,0.15), transparent 60%); }
+.hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px; }
+.hero p { font-size: 1.2rem; color: var(--muted); max-width: 600px; margin: 0 auto 32px; }
+.products { padding: 40px 5%; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+.product-card { background: var(--card); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.3s, box-shadow 0.3s; }
+.product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
+.product-card img { width: 100%; height: 220px; object-fit: cover; }
+.product-info { padding: 20px; }
+.product-info h3 { font-size: 1.15rem; margin-bottom: 8px; }
+.price { font-size: 1.4rem; font-weight: 700; color: var(--accent2); margin: 12px 0; }
+.blurb { color: var(--muted); font-size: 0.9rem; margin-bottom: 16px; }
+.btn { display: inline-block; background: var(--accent); color: white; padding: 12px 20px; border-radius: 12px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; width: 100%; text-align: center; }
+.btn-outline { background: transparent; border: 1px solid var(--border); }
+.cart-sidebar { position: fixed; top: 0; right: -400px; width: 380px; height: 100vh; background: var(--card); border-left: 1px solid var(--border); z-index: 200; transition: right 0.4s; padding: 24px; overflow-y: auto; }
+.cart-sidebar.open { right: 0; }
+.cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.total { font-size: 1.5rem; font-weight: 700; margin: 20px 0; }
+.checkout { background: var(--success); }
+footer { background: #0d0d12; padding: 60px 5% 40px; margin-top: 80px; border-top: 1px solid var(--border); }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-bottom: 40px; }
+footer h4 { margin-bottom: 16px; }
+footer a, footer p { color: var(--muted); text-decoration: none; display: block; margin: 8px 0; }
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; display: none; }
+@media (max-width: 768px) {
+  .cart-sidebar { width: 100%; right: -100%; }
+  .nav { display: none; }
+  .hero { padding: 60px 5% 40px; }
+}
 </style>
 </head>
 <body>
-  <div class="card">
-    <div class="logo">UC</div>
-    <h1>Unique Claims JA</h1>
-    <p>Our store is <span class="highlight">temporarily paused</span> while we make some updates.</p>
-    <p>We’ll be back shortly with the full shopping experience.</p>
-    <div class="contact">
-      Need something in the meantime?<br>
-      Message us on WhatsApp:<br>
-      <a href="https://wa.me/18765550199" target="_blank">+1 876 555 0199</a>
+<header>
+  <img src="https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/logo.png" alt="Unique Claims" class="logo">
+  <nav class="nav">
+    <a href="#products">Products</a>
+    <a href="#faq">FAQ</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+  <button class="cart-btn" onclick="toggleCart()">Bundle Cart <span class="cart-count" id="cartCount">0</span></button>
+</header>
+
+<section class="hero">
+  <h1>Bundle Smarter.<br>Pay Less Shipping.</h1>
+  <p>Add multiple products to one order. Live total updates. One WhatsApp checkout. Perfect for out-of-parish deliveries.</p>
+</section>
+
+<section class="products" id="products"></section>
+
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <h2 style="margin-bottom: 20px;">Your Bundle</h2>
+  <div id="cartItems"></div>
+  <div class="total">Total: $<span id="cartTotal">0</span></div>
+  <button class="btn checkout" onclick="checkout()">Checkout via WhatsApp</button>
+  <button class="btn btn-outline" style="margin-top:12px;" onclick="toggleCart()">Continue Shopping</button>
+</aside>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>Unique Claims</h4>
+      <p>Mandeville, Manchester</p>
+      <p>WhatsApp: 876-581-3521</p>
+    </div>
+    <div>
+      <h4>Purchasing</h4>
+      <p>NCB Bank Transfer</p>
+      <p>Cross-bank transfers may take up to 2 business days</p>
+      <p>Cash on Delivery (in-person collection)</p>
+    </div>
+    <div>
+      <h4>Delivery</h4>
+      <p>Collect in Mandeville</p>
+      <p>Out-of-parish / region: Northward Express</p>
+    </div>
+    <div id="faq">
+      <h4>FAQ</h4>
+      <p><strong>Why bundle?</strong> Avoid high shipping fees on small items by combining orders.</p>
+      <p><strong>How to order?</strong> Add items to bundle, click Checkout, send the WhatsApp message.</p>
+      <p><strong>Loaded projector?</strong> Yes — fully loaded with streaming, plug and play.</p>
     </div>
   </div>
+  <p style="text-align:center; color: var(--muted);">&copy; 2026 Unique Claims. All rights reserved.</p>
+</footer>
+
+<script>
+let products = [];
+let cart = JSON.parse(localStorage.getItem('uc_cart') || '[]');
+
+async function loadProducts() {
+  const res = await fetch('products.json');
+  const data = await res.json();
+  products = data.products;
+  renderProducts();
+  updateCart();
+}
+
+function renderProducts() {
+  const container = document.getElementById('products');
+  container.innerHTML = products.map(p => `
+    <div class="product-card">
+      <img src="${p.images[0] || 'https://via.placeholder.com/400x300?text=Product'}" alt="${p.name}" loading="lazy">
+      <div class="product-info">
+        <h3>${p.name}</h3>
+        <p class="blurb">${p.blurb}</p>
+        <div class="price">$${p.price.toLocaleString()}</div>
+        <a href="product.html?id=${p.id}" class="btn btn-outline" style="margin-bottom:8px;">View Details</a>
+        <button class="btn" onclick="addToCart('${p.id}')">Add to Bundle</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function addToCart(id) {
+  const product = products.find(p => p.id === id);
+  const existing = cart.find(item => item.id === id);
+  if (existing) existing.qty++;
+  else cart.push({ ...product, qty: 1 });
+  localStorage.setItem('uc_cart', JSON.stringify(cart));
+  updateCart();
+  toggleCart(true);
+}
+
+function updateCart() {
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+  const itemsEl = document.getElementById('cartItems');
+  itemsEl.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div>
+        <strong>${item.name}</strong><br>
+        <small>$${item.price.toLocaleString()} × ${item.qty}</small>
+      </div>
+      <button onclick="removeFromCart('${item.id}')" style="background:none;border:none;color:#ef4444;cursor:pointer;">✕</button>
+    </div>
+  `).join('') || '<p>Your bundle is empty. Add products to save on shipping.</p>';
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('cartTotal').textContent = total.toLocaleString();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => i.id !== id);
+  localStorage.setItem('uc_cart', JSON.stringify(cart));
+  updateCart();
+}
+
+function toggleCart(forceOpen) {
+  const sidebar = document.getElementById('cartSidebar');
+  const overlay = document.getElementById('overlay');
+  const isOpen = sidebar.classList.contains('open');
+  if (forceOpen || !isOpen) {
+    sidebar.classList.add('open');
+    overlay.style.display = 'block';
+  } else {
+    sidebar.classList.remove('open');
+    overlay.style.display = 'none';
+  }
+}
+
+function checkout() {
+  if (!cart.length) return alert('Add products to your bundle first.');
+  const lines = cart.map(i => `• ${i.name} × ${i.qty} — $${(i.price * i.qty).toLocaleString()}`).join('\n');
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const msg = `*New Order from Unique Claims*\n\n${lines}\n\n*Total: $${total.toLocaleString()}*\n\nPlease confirm stock and delivery/collection.`;
+  const url = `https://wa.me/18765813521?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+
+loadProducts();
+</script>
 </body>
 </html>
