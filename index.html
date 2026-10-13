@@ -33,8 +33,18 @@
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         .sortable-ghost { opacity: 0.4; background: #d1fae5; }
         .sortable-chosen { cursor: grabbing; }
-        .admin-mode .admin-editable { outline: 2px dashed #10b981; outline-offset: 2px; background: rgba(16, 185, 129, 0.05); }
-        .admin-mode .admin-editable:hover { outline: 2px solid #10b981; }
+        .admin-mode .admin-editable { 
+            outline: 2px dashed #10b981 !important; 
+            outline-offset: 2px; 
+            background: rgba(16, 185, 129, 0.05); 
+        }
+        .admin-mode .admin-editable:hover { outline: 2px solid #10b981 !important; }
+        /* Force no outlines outside admin mode */
+        body:not(.admin-mode) .admin-editable,
+        body:not(.admin-mode) [contenteditable] {
+            outline: none !important;
+            background: transparent !important;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
@@ -493,9 +503,21 @@
         async function init() {
             loadFromLocalStorage();
             if (products.length === 0) products = [...defaultProducts];
+            // Ensure every product has an images array
+            products = products.map(p => ({
+                ...p,
+                images: (p.images && p.images.length) ? p.images : (p.image ? [p.image] : [])
+            }));
             applyTextEdits();
             renderProducts();
             updateBundleUI();
+            // Force customer mode on load
+            adminMode = false;
+            document.body.classList.remove('admin-mode');
+            document.querySelectorAll('[data-edit-key]').forEach(el => {
+                el.contentEditable = 'false';
+                el.classList.remove('admin-editable');
+            });
             try {
                 app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
@@ -551,6 +573,11 @@
                 if (!snapshot.empty) {
                     products = [];
                     snapshot.forEach(docSnap => products.push({ id: docSnap.id, ...docSnap.data() }));
+                    // Normalize images array
+                    products = products.map(p => ({
+                        ...p,
+                        images: (p.images && p.images.length) ? p.images : (p.image ? [p.image] : [])
+                    }));
                     renderProducts();
                     showToast("Loaded latest products from Firebase");
                 }
@@ -719,7 +746,12 @@
             const prod = products.find(p => p.id === prodId);
             if (!prod) return;
             const imgs = (prod.images && prod.images.length) ? prod.images : [prod.image || 'https://placehold.co/600x400/10b981/ffffff?text=Product'];
-            const gallery = imgs.map(src => `<img src="${src}" alt="${prod.title}" class="w-full h-72 object-cover rounded-2xl shadow-md mb-3" onerror="this.src='https://placehold.co/600x400/10b981/ffffff?text=Product'">`).join('');
+            const gallery = imgs.map((src, i) => `
+                <div class="relative">
+                    <img src="${src}" alt="${prod.title} ${i+1}" class="w-full h-72 object-cover rounded-2xl shadow-md mb-3" onerror="this.src='https://placehold.co/600x400/10b981/ffffff?text=Product'">
+                    ${imgs.length > 1 ? `<span class="absolute bottom-3 right-3 bg-black/60 text-white text-[10px] px-2 py-1 rounded">${i+1} / ${imgs.length}</span>` : ''}
+                </div>
+            `).join('');
             document.getElementById('modal-content').innerHTML = `
                 <div class="space-y-4">
                     <div class="space-y-3">${gallery}</div>
@@ -746,8 +778,12 @@
             const modeText = document.getElementById('admin-mode-text');
             document.body.classList.toggle('admin-mode', adminMode);
             document.querySelectorAll('[data-edit-key]').forEach(el => {
-                el.contentEditable = adminMode;
-                el.classList.toggle('admin-editable', adminMode);
+                el.contentEditable = adminMode ? 'true' : 'false';
+                if (adminMode) {
+                    el.classList.add('admin-editable');
+                } else {
+                    el.classList.remove('admin-editable');
+                }
             });
             if (adminMode) {
                 toolbar.classList.remove('hidden');
@@ -758,6 +794,9 @@
                 toolbar.classList.add('hidden');
                 modeText.textContent = "Admin Mode";
                 if (sortableInstance) sortableInstance.destroy();
+                showToast("Admin Mode OFF — back to customer view.");
+            }
+        }
                 showToast("Admin Mode OFF");
             }
         }
