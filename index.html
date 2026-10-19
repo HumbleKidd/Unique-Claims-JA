@@ -234,7 +234,7 @@
                 <p class="text-slate-500 text-sm mt-1">Select any item to view photos, choose quantities, add optional notes, or bundle items live!</p>
             </div>
             <div class="flex items-center gap-2 text-xs font-semibold text-slate-600 bg-slate-100 p-1.5 rounded-xl self-start md:self-auto">
-                <span class="px-3 py-1.5 rounded-lg bg-white shadow-sm text-slate-900 font-bold" id="productCountBadge">15 Unique Items</span>
+                <span class="px-3 py-1.5 rounded-lg bg-white shadow-sm text-slate-900 font-bold" id="productCountBadge">12 Unique Items</span>
                 <span class="px-3 py-1.5"><i class="fa-solid fa-truck-fast text-emerald-600"></i> Knutsford & Mandeville Pickup</span>
             </div>
         </div>
@@ -729,189 +729,101 @@
         }
 
         const products = [
-            // To edit product tags/badges: change the "badge" value below (or add a "tags" array).
-            // Example: badge: "HOT DEAL", or tags: ["NEW", "BEST SELLER"]
-            // To control recommendations under a product: add recommendedIds: [1, 3, 5] (product ids)
-            {
+{
                 id: 0,
-                title: "Android Smart Projector Bundle Fully Loaded with Upgraded Keyboard Remote",
-                price: 28500,
-                badge: "#1 BEST SELLER", // ← Edit this text (the little label on the product card)
-                // recommendedIds: [1, 2, 4], // ← Uncomment and set ids to control "You May Also Like"
-                description: "Turn any room into a high-definition cinema! Includes Android TV built-in, Wi-Fi 6, Bluetooth, YouTube, Netflix, and comes bundled with the backlit Mini Wireless Keyboard Remote for effortless scrolling.",
-                images: [
-                    "https://images.unsplash.com/photo-1535016120720-40c646be5580?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=800&q=80"
-                ]
+                title: "5ft Snake Drain Cleaner",
+                price: 2500,
+                badge: "TOOLS",
+                description: "Flexible 5ft drain snake for clearing clogs in sinks and pipes. Ideal for household sinks, showers, and small pipes.",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/789708363_2150562459676950_3961017403451417570_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/789708385_1086754953752171_2275017065013072365_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/790024986_951735187958091_2253425911453194379_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/790059776_4883047658583005_9048847866184438394_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/790114418_1055455680535275_7310149377224095073_n.jpg"]
             },
             {
                 id: 1,
-                title: "Smart Mini RGB LED Wireless Speaker",
-                price: 6500,
-                badge: "NEW ARRIVAL",
-                description: "Compact yet super loud HD sound speaker featuring 360-degree pulsing RGB ambient light modes. Supports Bluetooth 5.3, TF Card, and FM radio.",
-                images: [
-                    "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80"
-                ]
+                title: "9ft Snake Drain Cleaner",
+                price: 3500,
+                badge: "TOOLS",
+                description: "Longer 9ft drain snake for deeper and tougher blockages. Strong and flexible.",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790003717_2520610905032057_7151119086195477674_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790059533_2904958866504194_4137135544160988951_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790059775_1775679503431528_7350739767641216247_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790969922_1044656278325629_154676372423824412_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/791045353_1065550815860581_6985399102464662923_n.jpg"]
             },
             {
                 id: 2,
-                title: "Wireless Magnetic 10,000mAh Power Bank",
-                price: 8500,
-                badge: "HOT DEAL",
-                description: "Snap and charge effortlessly! Compatible with MagSafe iPhones and Android magnetic cases. Features 20W PD fast charging USB-C port.",
-                images: [
-                    "https://images.unsplash.com/photo-1609592424009-5a9634d28362?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1622445268121-da3d81b88940?auto=format&fit=crop&w=800&q=80"
-                ]
+                title: "Android Smart Projector Bundle",
+                price: 19500,
+                badge: "#1 BEST SELLER",
+                description: "Fully loaded Android Smart Projector bundle. Comes with streaming apps pre-installed so you can watch movies, series, and more for free. Plug and play – just connect power and Wi-Fi, and you're ready.",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825268953_950844711407562_5164107063003195279_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269035_1842693450054383_2803710887866853991_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269045_2527327671071171_9170582407973424468_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269135_1098951375843016_2487635300355767178_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825270350_1579039539864030_5939598115892029473_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825270520_1102103145844390_3944394994432166697_n.jpg"]
             },
             {
                 id: 3,
-                title: "Ultra 4K Waterproof Action Camera Kit",
-                price: 18500,
-                badge: "POPULAR",
-                description: "Capture sports, beach trips, and outdoor adventures in crisp 4K! Includes waterproof housing up to 30m, mounting accessories, and remote control.",
-                images: [
-                    "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1512790182412-b19e6d61b39a?auto=format&fit=crop&w=800&q=80"
-                ]
+                title: "Bluetooth Gamepad Controller",
+                price: 4500,
+                badge: "GAMING",
+                description: "Comfortable Bluetooth gamepad with responsive buttons and analog sticks. Works with Android and PC.",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817137921_1834989191190004_929457359546861269_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817179283_1492931986190790_1701374640396694443_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817275216_1089293540622951_5359836854254260227_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817745675_4634871976771831_7220970106583815880_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/819126747_1066175702683960_7553879230658189506_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/820001207_28702103396088520_594468052604712590_n.jpg"]
             },
             {
                 id: 4,
-                title: "Smart Watch Series Ultra Titanium Edition",
-                price: 14500,
-                badge: "TRENDING",
-                description: "Sleek HD touch display smartwatch with Bluetooth calling, heart rate & sleep tracking, fitness sports modes, and customizable watch faces.",
-                images: [
-                    "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80"
-                ]
+                title: "Car Seat Face Cover",
+                price: 1800,
+                badge: "AUTO",
+                description: "Durable car seat face protector. Easy to install, keeps seats clean.",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291112_973674079103996_5881654850923170503_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291134_2350602045763294_4071298666574768337_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291166_1415225213896573_8970585390054832793_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291322_1092405760318372_5506443296540245511_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291443_1840933823726953_7709703499242117086_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291468_4527437867520363_3191963792401912722_n.jpg"]
             },
             {
                 id: 5,
-                title: "Portable Bluetooth Karaoke Speaker + Dual Mics",
-                price: 16500,
-                badge: "PARTY FAV",
-                description: "Bring the vibes anywhere! Dual rechargeable wireless microphones with voice effect controls and booming bass response for gatherings and events.",
-                images: [
-                    "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
-                ]
+                title: "Digital Tire Pressure Tester",
+                price: 2200,
+                badge: "AUTO",
+                description: "Digital tire pressure tester with clear LCD display. Compact and reliable.",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/806310644_4381990502054687_4974509678397873830_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/806310757_2984055608605185_5603980367719056012_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/807851297_1021362497587790_264491580629483221_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/809177776_2661288877625262_4476805697712255333_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/809206206_1050396904535128_7009559183262430374_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/814834196_1558844682152469_7196133628263876967_n.jpg"]
             },
             {
                 id: 6,
-                title: "Dual Wireless Lavalier Microphone Set",
-                price: 9500,
-                badge: "CREATOR ESSENTIAL",
-                description: "Crystal clear noise-canceling audio for TikTok, YouTube, and interviews. Plug-and-play receiver compatible with Type-C and iPhones.",
-                images: [
-                    "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80"
-                ]
+                title: "Magnetic Pickup Pen Tool",
+                price: 1200,
+                badge: "TOOLS",
+                description: "Extendable magnetic pickup tool. Perfect for retrieving screws and small metal items from tight spaces.",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/761662708_915936818226507_5409632850732524466_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/761729763_915936798226509_791492801025035830_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/761819106_915936784893177_1817598971533017809_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/762624330_915936801559842_5053745623046113829_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/762950124_915936814893174_3659173451065673327_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/763694695_915936808226508_2213612772581765475_n.jpg"]
             },
             {
                 id: 7,
-                title: "MagSafe Aluminium Folding Desk Stand",
-                price: 4500,
-                badge: "MUST HAVE",
-                description: "Heavy-duty full metal desktop phone holder with adjustable viewing angles. Perfect for desk setups, watching movies, or hands-free video calls.",
-                images: [
-                    "https://images.unsplash.com/photo-1586105251261-72a756497a11?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1616410011236-7a42121dd981?auto=format&fit=crop&w=800&q=80"
-                ]
+                title: "Plumber Basin Wrench",
+                price: 2800,
+                badge: "TOOLS",
+                description: "Basin wrench designed for hard-to-reach plumbing nuts under sinks and basins.",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/814920983_1066757059664737_464225709305217584_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/814920994_1116099871222951_7564044150627585050_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/814921127_2165526574370406_659359511255209194_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/815155593_1404039168519437_7314705440782533117_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/816206407_1803374284149470_2549249987489145858_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/819134466_2131025291140224_1632456403708233291_n.jpg"]
             },
             {
                 id: 8,
-                title: "Foldable Solar Charger 20,000mAh Power Bank",
-                price: 12500,
-                badge: "OUTDOOR READY",
-                description: "Rugged solar power bank featuring built-in dual LED flashlights and multiple output ports. Charge up on the go under daylight!",
-                images: [
-                    "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1548611635-b6e7827d7d4a?auto=format&fit=crop&w=800&q=80"
-                ]
+                title: "Quick Install HD Home Camera",
+                price: 6500,
+                badge: "SECURITY",
+                description: "HD home camera with quick installation. Wi-Fi capable for home security.",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/804441532_1646268670190269_3997970850246026112_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/806310242_1061326853193516_7923750791390541375_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/806310387_1087356310934679_5870917788045222993_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/809081140_1088508680225734_8920320738362941054_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/810782072_1806482890373384_7222796637870283017_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/814959779_1619270123262433_676428541788038875_n.jpg"]
             },
             {
                 id: 9,
-                title: "Smart Wi-Fi Plug Twin Pack with Power Meter",
-                price: 5500,
-                badge: "SMART HOME",
-                description: "Control your appliances from anywhere via smartphone app! Compatible with Alexa and Google Assistant with automated timer schedules.",
-                images: [
-                    "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=800&q=80"
-                ]
+                title: "Tap Die Set",
+                price: 3200,
+                badge: "TOOLS",
+                description: "Assorted tap and die set for creating and repairing threads. Useful for automotive and workshop.",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/814844830_1077103151964377_4971695888230270271_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/818509618_1441176071443865_6339554377313642197_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/818914282_1084736274280367_6975430436252581023_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/818914290_29109576921968794_6439075062837496558_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/819039138_4413674878777811_10910908641104919_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/819273465_1563124655567844_4392416067484382216_n.jpg"]
             },
             {
                 id: 10,
-                title: "RGB LED Smart Corner Ambient Floor Lamp",
-                price: 15500,
-                badge: "AESTHETIC",
-                description: "Transform your living space or gaming setup with 16 million customizable color modes, music sync feature, and remote app control.",
-                images: [
-                    "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=800&q=80"
-                ]
+                title: "Tight Spot Drill Adapter",
+                price: 1500,
+                badge: "TOOLS",
+                description: "Tight spot drill adapter allows angled or restricted access drilling.",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/806310568_1585419782629925_480852854792977751_n%20%281%29.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/806310568_1585419782629925_480852854792977751_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/808025040_1949674245952905_7042474106631233656_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/808165950_1074407385189029_6712764320289274261_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/821155063_1671687707640440_6437233385352958799_n.jpg"]
             },
             {
                 id: 11,
-                title: "Waterproof ANC Bluetooth Earbuds Case",
-                price: 7800,
-                badge: "DEEP BASS",
-                description: "Active Noise Cancellation earbuds delivering rich acoustic clarity and 30-hour combined battery life with the wireless charging case.",
-                images: [
-                    "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: 12,
-                title: "Mini Portable Thermal Bluetooth Label Printer",
-                price: 8900,
-                badge: "TOP TOOL",
-                description: "Print barcode tags, address labels, and organizer stickers instantly without ink! Connects effortlessly via Bluetooth to any phone.",
-                images: [
-                    "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1585336261026-675768e7a982?auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: 13,
-                title: "Handheld Ultra High-Speed Turbo Jet Fan",
-                price: 11500,
-                badge: "POWERFUL",
-                description: "Pocket-sized super air blower reaching up to 110,000 RPM! Ideal for outdoor cooling, drying cars, and blowing dust off electronics.",
-                images: [
-                    "https://images.unsplash.com/photo-1585336261026-675768e7a982?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: 14,
-                title: "Car Wireless Screen Display Adapter Dongle",
-                price: 6800,
-                badge: "SMART CAR",
-                description: "Mirror your phone movies, GPS maps, and photos directly to your car screen or HDMI display wirelessly in 1080p full HD.",
-                images: [
-                    "https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=800&q=80"
-                ]
+                title: "Tight Spot Flat Ratchet Driver",
+                price: 1600,
+                badge: "TOOLS",
+                description: "Flat ratchet driver designed for tight spots where regular tools won't fit.",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/756518109_1107224121627944_2467687651842736993_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/756547078_1968435260535562_7884208517218102609_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/756963274_922378090879923_5047751336193148978_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/758056770_805550119250448_3252799618856806698_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/758068695_1045762618386796_5179854996411865887_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/758182442_2454313528416082_2428189012383195161_n.jpg"]
             }
         ];
 
