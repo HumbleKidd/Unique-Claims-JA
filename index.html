@@ -434,62 +434,72 @@
 
     <!-- PRODUCT LIGHTBOX MODAL -->
     <div id="productModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-2 sm:p-4 transition-opacity">
-        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto custom-scrollbar shadow-2xl relative border border-slate-100 flex flex-col md:flex-row">
+        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto custom-scrollbar shadow-2xl relative border border-slate-100 flex flex-col">
             <button onclick="closeProductLightbox()" class="absolute top-4 right-4 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-10 w-10 rounded-full flex items-center justify-center font-bold text-lg transition-all shadow-md">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
-            <div class="md:w-1/2 p-4 md:p-6 bg-slate-900/5 flex flex-col justify-between items-center relative min-h-[320px]">
-                <div class="w-full flex-1 flex items-center justify-center overflow-hidden rounded-2xl bg-white/80 p-2 border border-slate-200/80 shadow-inner">
-                    <img id="modalMainImg" src="" alt="Product view" class="max-h-[60vh] md:max-h-[420px] w-auto max-w-full object-contain rounded-xl shadow-md transition-all duration-300 transform">
-                </div>
-                <div class="flex items-center gap-3 mt-4 w-full justify-center overflow-x-auto py-1" id="modalThumbnailsContainer"></div>
-            </div>
-
-            <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-between space-y-6">
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2">
-                        <span id="modalBadge" class="bg-rose-100 text-rose-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Top Claim</span>
-                        <span class="text-xs text-slate-600 font-semibold">In Stock</span>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 p-4 md:p-6 bg-slate-900/5 flex flex-col justify-between items-center relative min-h-[320px]">
+                    <div class="w-full flex-1 flex items-center justify-center overflow-hidden rounded-2xl bg-white/80 p-2 border border-slate-200/80 shadow-inner">
+                        <img id="modalMainImg" src="" alt="Product view" class="max-h-[60vh] md:max-h-[420px] w-auto max-w-full object-contain rounded-xl shadow-md transition-all duration-300 transform cursor-zoom-in" onclick="openImageZoom(this.src, '')">
                     </div>
-
-                    <h3 id="modalTitle" class="text-xl md:text-2xl font-black text-slate-900 leading-tight">Product Title</h3>
-                    
-                    <div class="flex items-baseline gap-3">
-                        <span id="modalPrice" class="text-3xl font-extrabold text-rose-600">$0</span>
-                    </div>
-
-                    <p id="modalDescription" class="text-slate-600 text-xs md:text-sm leading-relaxed border-t border-slate-100 pt-3">
-                        Detailed description of product features and specs.
-                    </p>
-
-                    <div class="pt-2">
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Optional Note for this Item (e.g. color, size, request):</label>
-                        <input type="text" id="modalProductNote" placeholder="e.g. Prefer black color if available" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-xl focus:ring-1 focus:ring-rose-500 outline-none bg-slate-50">
-                    </div>
+                    <div class="flex items-center gap-3 mt-4 w-full justify-center overflow-x-auto py-1" id="modalThumbnailsContainer"></div>
                 </div>
 
-                <div class="space-y-3 border-t border-slate-100 pt-4">
-                    <div class="flex flex-col sm:flex-row items-stretch gap-2.5">
-                        <div class="flex items-center justify-between border border-slate-200 rounded-2xl bg-slate-50 p-1 min-w-[110px]">
-                            <button onclick="adjustModalQty(-1)" class="w-8 h-8 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-700 font-bold hover:bg-slate-200">-</button>
-                            <span id="modalQtyDisplay" class="w-8 text-center font-extrabold text-sm text-slate-800">1</span>
-                            <button onclick="adjustModalQty(1)" class="w-8 h-8 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-700 font-bold hover:bg-slate-200">+</button>
+                <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-between space-y-6">
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span id="modalBadge" class="bg-rose-100 text-rose-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Top Claim</span>
+                            <span class="text-xs text-slate-600 font-semibold">In Stock</span>
                         </div>
 
-                        <button id="modalAddToCartBtn" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-2xl shadow-lg hover:shadow-rose-600/30 transition-all flex items-center justify-center gap-2 text-xs md:text-sm">
-                            <i class="fa-solid fa-cart-plus"></i> Add To Cart
-                        </button>
+                        <h3 id="modalTitle" class="text-xl md:text-2xl font-black text-slate-900 leading-tight">Product Title</h3>
+                        
+                        <div class="flex items-baseline gap-3">
+                            <span id="modalPrice" class="text-3xl font-extrabold text-rose-600">$0</span>
+                        </div>
 
-                        <button onclick="openBundleModalFromProduct()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-2xl shadow-lg hover:shadow-purple-600/30 transition-all flex items-center justify-center gap-1.5 text-xs md:text-sm">
-                            <i class="fa-solid fa-layer-group"></i> Bundle & Save
-                        </button>
+                        <p id="modalDescription" class="text-slate-600 text-xs md:text-sm leading-relaxed border-t border-slate-100 pt-3">
+                            Detailed description of product features and specs.
+                        </p>
+
+                        <div class="pt-2">
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Optional Note for this Item (e.g. color, size, request):</label>
+                            <input type="text" id="modalProductNote" placeholder="e.g. Prefer black color if available" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-xl focus:ring-1 focus:ring-rose-500 outline-none bg-slate-50">
+                        </div>
                     </div>
 
-                    <button id="modalShareBtn" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-colors">
-                        <i class="fa-solid fa-share-nodes text-rose-600 text-sm"></i> Share Product with Image & Link
-                    </button>
+                    <div class="space-y-3 border-t border-slate-100 pt-4">
+                        <div class="flex flex-col sm:flex-row items-stretch gap-2.5">
+                            <div class="flex items-center justify-between border border-slate-200 rounded-2xl bg-slate-50 p-1 min-w-[110px]">
+                                <button onclick="adjustModalQty(-1)" class="w-8 h-8 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-700 font-bold hover:bg-slate-200">-</button>
+                                <span id="modalQtyDisplay" class="w-8 text-center font-extrabold text-sm text-slate-800">1</span>
+                                <button onclick="adjustModalQty(1)" class="w-8 h-8 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-700 font-bold hover:bg-slate-200">+</button>
+                            </div>
+
+                            <button id="modalAddToCartBtn" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-2xl shadow-lg hover:shadow-rose-600/30 transition-all flex items-center justify-center gap-2 text-xs md:text-sm">
+                                <i class="fa-solid fa-cart-plus"></i> Add To Cart
+                            </button>
+
+                            <button onclick="openBundleModalFromProduct()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-2xl shadow-lg hover:shadow-purple-600/30 transition-all flex items-center justify-center gap-1.5 text-xs md:text-sm">
+                                <i class="fa-solid fa-layer-group"></i> Bundle & Save
+                            </button>
+                        </div>
+
+                        <button id="modalShareBtn" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-colors">
+                            <i class="fa-solid fa-share-nodes text-rose-600 text-sm"></i> Share Product with Image & Link
+                        </button>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Recommended Products -->
+            <div id="recommendedSection" class="p-4 md:p-6 border-t border-slate-200 bg-slate-50">
+                <h4 class="font-bold text-sm text-slate-800 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-star text-amber-500"></i> You May Also Like
+                </h4>
+                <div id="recommendedProducts" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"></div>
             </div>
         </div>
     </div>
@@ -721,11 +731,13 @@
         const products = [
             // To edit product tags/badges: change the "badge" value below (or add a "tags" array).
             // Example: badge: "HOT DEAL", or tags: ["NEW", "BEST SELLER"]
+            // To control recommendations under a product: add recommendedIds: [1, 3, 5] (product ids)
             {
                 id: 0,
                 title: "Android Smart Projector Bundle Fully Loaded with Upgraded Keyboard Remote",
                 price: 28500,
                 badge: "#1 BEST SELLER", // ← Edit this text (the little label on the product card)
+                // recommendedIds: [1, 2, 4], // ← Uncomment and set ids to control "You May Also Like"
                 description: "Turn any room into a high-definition cinema! Includes Android TV built-in, Wi-Fi 6, Bluetooth, YouTube, Netflix, and comes bundled with the backlit Mini Wireless Keyboard Remote for effortless scrolling.",
                 images: [
                     "https://images.unsplash.com/photo-1535016120720-40c646be5580?auto=format&fit=crop&w=800&q=80",
@@ -917,7 +929,23 @@
             updateSavedBadgeCount();
         });
 
-        function renderProducts(items) {
+        // Track current main image per card for click-to-zoom behavior
+        const cardCurrentImages = {};
+
+        function swapCardMainImage(productId, newImgSrc) {
+            const imgEl = document.getElementById(`cardMainImg-${productId}`);
+            if (imgEl) {
+                imgEl.src = newImgSrc;
+                cardCurrentImages[productId] = newImgSrc;
+            }
+        }
+
+        function handleCardMainClick(productId, originalMain) {
+            const imgEl = document.getElementById(`cardMainImg-${productId}`);
+            const currentSrc = imgEl ? imgEl.src : originalMain;
+            // Clicking the main image always enlarges the currently displayed image
+            openImageZoom(currentSrc, '');
+        }
             const grid = document.getElementById('productGrid');
             const noRes = document.getElementById('noResults');
             
@@ -940,8 +968,10 @@
                         <!-- Mobile-first image layout: main + side thumbs -->
                         <div class="flex gap-2 mb-3">
                             <!-- Main big image -->
-                            <div class="relative flex-1 overflow-hidden rounded-xl bg-slate-100 aspect-[4/5] cursor-pointer shadow-inner" onclick="openProductLightbox(${p.id})">
-                                <img src="${mainImg}" alt="${p.title}" class="w-full h-full object-cover">
+                            <div class="relative flex-1 overflow-hidden rounded-xl bg-slate-100 aspect-[4/5] cursor-pointer shadow-inner" 
+                                 id="cardMain-${p.id}"
+                                 onclick="handleCardMainClick(${p.id}, '${mainImg}')">
+                                <img id="cardMainImg-${p.id}" src="${mainImg}" alt="${p.title}" class="w-full h-full object-cover">
                                 ${badgeText ? `<span class="absolute top-2 left-2 bg-rose-600 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider shadow-md">${badgeText}</span>` : ''}
                                 <button onclick="event.stopPropagation(); toggleSaveProduct(${p.id});" 
                                         class="absolute top-2 right-2 h-7 w-7 rounded-full ${isSaved ? 'bg-rose-600 text-white' : 'bg-white/80 text-slate-700 hover:bg-white'} shadow-md flex items-center justify-center transition-all">
@@ -953,7 +983,7 @@
                             <div class="flex flex-col gap-1.5 w-20 shrink-0">
                                 ${sideImgs.map((img, idx) => `
                                     <div class="relative flex-1 min-h-0 overflow-hidden rounded-lg bg-slate-100 cursor-pointer border border-slate-200" 
-                                         onclick="event.stopPropagation(); openImageZoom('${img}', '${p.title}')">
+                                         onclick="event.stopPropagation(); swapCardMainImage(${p.id}, '${img}')">
                                         <img src="${img}" alt="${p.title} view ${idx+2}" class="w-full h-full object-cover">
                                     </div>
                                 `).join('')}
@@ -1179,6 +1209,39 @@
             };
 
             document.getElementById('productModal').classList.remove('hidden');
+
+            // Load recommended products (use recommendedIds if set, otherwise random)
+            loadRecommendedProducts(p);
+        }
+
+        function loadRecommendedProducts(currentProduct) {
+            const container = document.getElementById('recommendedProducts');
+            if (!container) return;
+
+            let recs = [];
+            if (currentProduct.recommendedIds && currentProduct.recommendedIds.length) {
+                recs = currentProduct.recommendedIds
+                    .map(id => products.find(p => p.id === id))
+                    .filter(Boolean)
+                    .slice(0, 4);
+            } else {
+                // Random other products
+                const others = products.filter(p => p.id !== currentProduct.id);
+                recs = others.sort(() => 0.5 - Math.random()).slice(0, 4);
+            }
+
+            if (recs.length === 0) {
+                container.innerHTML = '<p class="text-xs text-slate-500 col-span-full">No recommendations available</p>';
+                return;
+            }
+
+            container.innerHTML = recs.map(r => `
+                <div class="bg-white rounded-xl border border-slate-200 p-2 cursor-pointer hover:shadow-md transition-shadow" onclick="openProductLightbox(${r.id})">
+                    <img src="${r.images[0]}" alt="${r.title}" class="w-full aspect-square object-cover rounded-lg mb-1.5">
+                    <h5 class="font-semibold text-[11px] text-slate-800 line-clamp-2 leading-tight">${r.title}</h5>
+                    <p class="font-bold text-xs text-rose-600 mt-1">${formatMoney(r.price)}</p>
+                </div>
+            `).join('');
         }
 
         function setModalMainImage(imgUrl, thumbEl) {
