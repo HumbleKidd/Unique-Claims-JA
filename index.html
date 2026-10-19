@@ -1035,8 +1035,14 @@
             if (show) {
                 updateSavedDrawerUI();
                 drawer.classList.remove('hidden');
+                if (!history.state || history.state.view !== 'saved') {
+                    history.pushState({ view: 'saved' }, '', '#saved');
+                }
             } else {
                 drawer.classList.add('hidden');
+                if (history.state && history.state.view === 'saved') {
+                    history.back();
+                }
             }
         }
 
@@ -1124,6 +1130,11 @@
 
             // Load recommended products (use recommendedIds if set, otherwise random)
             loadRecommendedProducts(p);
+
+            // History: so device back button closes product view instead of leaving site
+            if (!history.state || history.state.view !== 'product' || history.state.id !== id) {
+                history.pushState({ view: 'product', id: id }, '', '?product=' + id);
+            }
         }
 
         function loadRecommendedProducts(currentProduct) {
@@ -1174,6 +1185,10 @@
 
         function closeProductLightbox() {
             document.getElementById('productModal').classList.add('hidden');
+            // If we are currently on a product history state, go back so URL and back/forward stay correct
+            if (history.state && history.state.view === 'product') {
+                history.back();
+            }
         }
 
         function openBundleModalFromProduct() {
@@ -1321,6 +1336,11 @@
                 const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
                 const step2Total = document.getElementById('cartTotalStep2');
                 if (step2Total) step2Total.textContent = formatMoney(subtotal);
+
+                // History for checkout step
+                if (!history.state || history.state.view !== 'cart' || history.state.step !== 2) {
+                    history.pushState({ view: 'cart', step: 2 }, '', '#checkout');
+                }
             }
         }
 
@@ -1382,8 +1402,15 @@
             if (show) {
                 goToCartStep(1); // Always start on review step
                 drawer.classList.remove('hidden');
+                // History
+                if (!history.state || history.state.view !== 'cart') {
+                    history.pushState({ view: 'cart', step: 1 }, '', '#cart');
+                }
             } else {
                 drawer.classList.add('hidden');
+                if (history.state && history.state.view === 'cart') {
+                    history.back();
+                }
             }
         }
 
@@ -1512,6 +1539,45 @@
         function closeImageZoom() {
             document.getElementById('imageZoomModal').classList.add('hidden');
             document.body.style.overflow = '';
+        }
+
+        // Browser back/forward support so device buttons stay inside the site
+        window.addEventListener('popstate', (e) => {
+            const state = e.state || { view: 'home' };
+
+            // Close everything first
+            document.getElementById('productModal').classList.add('hidden');
+            document.getElementById('cartDrawer').classList.add('hidden');
+            document.getElementById('savedDrawer').classList.add('hidden');
+            const bundle = document.getElementById('bundleModal');
+            if (bundle) bundle.classList.add('hidden');
+
+            if (state.view === 'product' && state.id != null) {
+                // Re-open product without pushing again
+                const p = products.find(item => item.id === state.id);
+                if (p) {
+                    activeModalProduct = p;
+                    document.getElementById('modalTitle').textContent = p.title;
+                    document.getElementById('modalPrice').textContent = formatMoney(p.price);
+                    document.getElementById('modalDescription').textContent = p.description;
+                    document.getElementById('modalBadge').textContent = p.badge;
+                    document.getElementById('modalMainImg').src = p.images[0];
+                    document.getElementById('productModal').classList.remove('hidden');
+                    loadRecommendedProducts(p);
+                }
+            } else if (state.view === 'cart') {
+                document.getElementById('cartDrawer').classList.remove('hidden');
+                goToCartStep(state.step || 1);
+            } else if (state.view === 'saved') {
+                document.getElementById('savedDrawer').classList.remove('hidden');
+                updateSavedDrawerUI();
+            }
+            // view === 'home' or null → stay on main catalog (everything already closed)
+        });
+
+        // Set initial history state so the first back stays on the site
+        if (!history.state) {
+            history.replaceState({ view: 'home' }, '', location.pathname);
         }
 
         // Close zoom on Escape
