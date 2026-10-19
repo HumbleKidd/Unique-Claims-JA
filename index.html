@@ -698,7 +698,7 @@
     </div>
 
     <!-- TOAST MESSAGE -->
-    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none border border-slate-700 text-xs md:text-sm font-semibold">
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none border border-slate-700 text-sm font-semibold max-w-xs sm:max-w-sm">
         <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
         <span id="toastMessage">Item added to cart!</span>
     </div>
@@ -971,7 +971,7 @@
                             <h4 class="font-bold text-xs text-slate-900 truncate">${p.title}</h4>
                             <p class="font-bold text-xs text-rose-600">${formatMoney(p.price)}</p>
                         </div>
-                        <button onclick="event.stopPropagation(); addToCart(${p.id}, 1); showToast('Added to cart!');" class="bg-rose-600 hover:bg-rose-700 text-white text-xs px-2.5 py-1.5 rounded-lg font-bold">
+                        <button onclick="event.stopPropagation(); addToCart(${p.id}, 1);" class="bg-rose-600 hover:bg-rose-700 text-white text-xs px-2.5 py-1.5 rounded-lg font-bold">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -998,7 +998,7 @@
                             <h4 class="font-bold text-xs text-slate-900 truncate">${p.title}</h4>
                             <p class="font-bold text-xs text-rose-600">${formatMoney(p.price)}</p>
                         </div>
-                        <button onclick="event.stopPropagation(); addToCart(${p.id}, 1); showToast('Added to cart!');" class="bg-rose-600 text-white text-xs px-2.5 py-1.5 rounded-lg font-bold">
+                        <button onclick="event.stopPropagation(); addToCart(${p.id}, 1);" class="bg-rose-600 text-white text-xs px-2.5 py-1.5 rounded-lg font-bold">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -1013,7 +1013,7 @@
                 showToast("Item removed from saved wishlist");
             } else {
                 savedProductIds.push(id);
-                showToast("Item saved to your wishlist!");
+                showToast("Saved! Tap the heart (Saved) button above to view your favorites.", 'saved');
                 
                 // Non-persistent distinct animation for Saved button
                 const savedBtn = document.getElementById('savedButton');
@@ -1061,7 +1061,7 @@
                             <p class="font-extrabold text-xs text-rose-600 mt-1">${formatMoney(item.price)}</p>
                         </div>
                         <div class="flex items-center gap-2">
-                            <button onclick="addToCart(${item.id}, 1); showToast('Added to cart from wishlist!');" class="bg-rose-600 hover:bg-rose-700 text-white p-2.5 rounded-xl text-xs font-bold shadow-sm" title="Add to Cart">
+                            <button onclick="addToCart(${item.id}, 1);" class="bg-rose-600 hover:bg-rose-700 text-white p-2.5 rounded-xl text-xs font-bold shadow-sm" title="Add to Cart">
                                 <i class="fa-solid fa-cart-plus"></i>
                             </button>
                             <button onclick="toggleSaveProduct(${item.id})" class="text-slate-400 hover:text-rose-600 p-2 text-xs" title="Remove">
@@ -1234,7 +1234,7 @@
             cartBtn.classList.add('animate-cart-action');
             setTimeout(() => cartBtn.classList.remove('animate-cart-action'), 350);
 
-            showToast(`${p.title.substring(0, 22)}... added!`);
+            showToast(`Added to Cart! Tap the Cart button above to checkout.`, 'cart');
         }
 
         function updateCartQuantity(index, delta) {
@@ -1519,15 +1519,36 @@
             if (e.key === 'Escape') closeImageZoom();
         });
 
-        function showToast(message) {
+        function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
             const msgEl = document.getElementById('toastMessage');
+            const iconEl = document.getElementById('toastIcon');
             msgEl.textContent = message;
+
+            // Change icon based on type
+            if (type === 'cart') {
+                iconEl.className = 'fa-solid fa-cart-shopping text-rose-400 text-base';
+                // Stronger highlight on cart button
+                const cartBtn = document.getElementById('cartButton');
+                if (cartBtn) {
+                    cartBtn.classList.add('ring-4', 'ring-rose-400', 'ring-offset-2');
+                    setTimeout(() => cartBtn.classList.remove('ring-4', 'ring-rose-400', 'ring-offset-2'), 2000);
+                }
+            } else if (type === 'saved') {
+                iconEl.className = 'fa-solid fa-heart text-rose-400 text-base';
+                const savedBtn = document.getElementById('savedButton');
+                if (savedBtn) {
+                    savedBtn.classList.add('ring-4', 'ring-rose-400', 'ring-offset-2');
+                    setTimeout(() => savedBtn.classList.remove('ring-4', 'ring-rose-400', 'ring-offset-2'), 2000);
+                }
+            } else {
+                iconEl.className = 'fa-solid fa-circle-check text-emerald-400 text-base';
+            }
 
             toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
             setTimeout(() => {
                 toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-            }, 3000);
+            }, 3500);
         }
     </script>
 </body>
