@@ -61,6 +61,9 @@
         <div class="bg-rose-50 border border-rose-100 rounded-2xl p-6 text-center">
             <h2 class="font-black text-slate-900 text-lg">Ready to make it easy for customers to find and trust you?</h2>
             <p class="text-sm text-slate-600 mt-1">Fill this in and I’ll message you on WhatsApp with a simple, affordable option for your business.</p>
+            <button onclick="shareToBusinessOwner()" class="mt-4 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-5 py-2.5 rounded-full text-sm inline-flex items-center gap-2">
+                <i class="fa-solid fa-share-nodes"></i> Share to a business owner
+            </button>
         </div>
 
         <form id="websiteForm" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4" onsubmit="event.preventDefault(); submitWebsiteForm();">
@@ -87,6 +90,16 @@
             // already set
         } else {
             history.replaceState({ view: 'offer' }, '', location.href);
+        }
+
+        function shareToBusinessOwner() {
+            const url = location.origin + '/website-offer.html';
+            const text = 'Check this out — simple, affordable websites for Jamaican businesses.';
+            if (navigator.share) {
+                navigator.share({ title: 'Get a Website for Your Business', text, url }).catch(() => {});
+            } else {
+                window.open(`https://wa.me/?text=${encodeURIComponent(text + '\n' + url)}`, '_blank');
+            }
         }
 
         function submitWebsiteForm() {

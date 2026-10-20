@@ -554,6 +554,13 @@
                 </div>
 
                 <div class="space-y-2">
+                    <h5 class="font-bold text-white text-sm uppercase tracking-wider">Share</h5>
+                    <button onclick="shareStore()" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-4 py-2 rounded-full text-xs inline-flex items-center gap-2">
+                        <i class="fa-solid fa-share-nodes"></i> Share this store
+                    </button>
+                </div>
+
+                <div class="space-y-2">
                     <h5 class="font-bold text-white text-sm uppercase tracking-wider">Connect With Us</h5>
                     <ul class="space-y-1.5 text-slate-400">
                         <li><a href="https://www.tiktok.com/@uniqueclaimsjam" target="_blank" class="hover:text-rose-500 transition-colors flex items-center gap-2"><i class="fa-brands fa-tiktok text-rose-500"></i> TikTok @uniqueclaimsjam</a></li>
@@ -1786,6 +1793,16 @@
             } else {
                 content.classList.add('hidden');
                 icon.classList.remove('rotate-180');
+            }
+        }
+
+        function shareStore() {
+            const url = location.origin + '/';
+            const text = 'Check out Unique Claims JA — local gadgets and unique finds in Jamaica.';
+            if (navigator.share) {
+                navigator.share({ title: 'Unique Claims JA', text, url }).catch(() => {});
+            } else {
+                window.open(`https://wa.me/?text=${encodeURIComponent(text + '\n' + url)}`, '_blank');
             }
         }
 
