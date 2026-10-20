@@ -105,13 +105,12 @@
 <body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between">
 
     <!-- TOP ANNOUNCEMENT BAR -->
-    <div class="bg-gradient-to-r from-rose-600 via-purple-600 to-indigo-600 text-white text-xs md:text-sm font-semibold py-2 px-4 text-center shadow-md relative z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <span class="hidden sm:inline">⚡ Local Pickups in Mandeville | Knutsford Express Delivery Islandwide 🇯🇲</span>
-            <span class="mx-auto sm:mx-0 font-bold tracking-wide flex items-center gap-2">
-                <i class="fa-solid fa-fire text-amber-300"></i> BEST SELLER: Android Smart Projector Bundle Ready!
-            </span>
-            <a href="https://wa.me/18765813521" target="_blank" onclick="triggerContactAnimation(event)" class="hidden md:flex items-center gap-1 underline hover:text-amber-200 transition-transform">
+    <div class="bg-gradient-to-r from-rose-600 via-purple-600 to-indigo-600 text-white text-xs md:text-sm font-semibold py-2 px-4 text-center shadow-md relative z-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto flex items-center justify-center min-h-[1.5rem]">
+            <div id="announcementSlider" class="flex items-center justify-center gap-2 transition-opacity duration-500">
+            <span id="announcementText" class="transition-opacity duration-300"><i class="fa-solid fa-fire text-amber-300"></i> BEST SELLER: Android Smart Projector Bundle Ready!</span>
+            </div>
+            <a href="https://wa.me/18765813521" target="_blank" onclick="triggerContactAnimation(event)" class="hidden md:flex items-center gap-1 underline hover:text-amber-200 transition-transform absolute right-4">
                 <i class="fa-brands fa-whatsapp"></i> Chat with Us
             </a>
         </div>
@@ -125,7 +124,7 @@
                     <img src="logo-transparent.png" 
                          onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/logo.png';" 
                          alt="Unique Claims JA Logo" 
-                         class="h-12 w-12 md:h-16 md:w-16 object-contain transition-transform group-hover:scale-105 shrink-0">
+                         class="h-16 w-16 md:h-20 md:w-20 object-contain transition-transform group-hover:scale-105 shrink-0">
                     <span class="text-[9px] md:text-[10px] font-semibold text-slate-400 tracking-wider uppercase mt-0.5 opacity-60">Uniquely You! Every time.</span>
                 </div>
             </a>
@@ -167,11 +166,6 @@
             </div>
         </div>
     </header>
-
-    <!-- FLOATING WAVING GUY (bottom left) -->
-    <div class="fixed bottom-6 left-4 z-40 pointer-events-none select-none" aria-hidden="true">
-        <div class="text-4xl animate-bounce" style="animation-duration: 2s;">👋</div>
-    </div>
 
     <!-- FLOATING WHATSAPP BUTTON FOR MOBILE -->
     <a href="https://wa.me/18765813521?text=Hi%20Unique%20Claims%20JA!%20I%20have%20an%20inquiry." 
@@ -829,6 +823,24 @@
             const installBtn = document.getElementById('installAppBtn');
             if (installBtn) installBtn.classList.remove('hidden');
         });
+
+        // Rotating announcement bar for all screen sizes
+        const announcements = [
+            '<i class="fa-solid fa-fire text-amber-300"></i> BEST SELLER: Android Smart Projector Bundle Ready!',
+            '⚡ Local Pickups in Mandeville | Knutsford Express Delivery Islandwide 🇯🇲',
+            '🛒 Order now — Knutsford & Mandeville pickup available!'
+        ];
+        let annIndex = 0;
+        setInterval(() => {
+            const el = document.getElementById('announcementText');
+            if (!el) return;
+            el.style.opacity = '0';
+            setTimeout(() => {
+                annIndex = (annIndex + 1) % announcements.length;
+                el.innerHTML = announcements[annIndex];
+                el.style.opacity = '1';
+            }, 300);
+        }, 4000);
 
         function installPwaApp() {
             if (deferredPrompt) {
