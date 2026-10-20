@@ -966,10 +966,10 @@
                 return tipCard + `
                     <div class="group bg-white rounded-2xl p-3 border border-slate-200/80 shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md">
                         <!-- Mobile-first image layout: main + side thumbs -->
-                        <div class="flex gap-2 mb-3 items-start">
-                            <!-- Main big image - forced 3:4 -->
+                        <div class="flex gap-2 mb-3 items-stretch">
+                            <!-- Main big image - forced 3:4 on all screen sizes -->
                             <div class="relative flex-1 overflow-hidden rounded-xl bg-slate-100 cursor-pointer shadow-inner" 
-                                 style="aspect-ratio: 3 / 4;"
+                                 style="aspect-ratio: 3 / 4; min-height: 0;"
                                  id="cardMain-${p.id}"
                                  onclick="handleCardMainClick(${p.id}, '${mainImg}')">
                                 <img id="cardMainImg-${p.id}" src="${mainImg}" alt="${p.title}" class="w-full h-full object-cover">
@@ -980,15 +980,15 @@
                                 </button>
                             </div>
 
-                            <!-- Side images stacked to match main height -->
-                            <div class="flex flex-col gap-1.5 w-16 sm:w-20 shrink-0 self-stretch">
+                            <!-- Side images stacked to match main height on all screens -->
+                            <div class="flex flex-col gap-1.5 w-14 sm:w-16 md:w-20 shrink-0 self-stretch">
                                 ${sideImgs.map((img, idx) => `
                                     <div class="relative flex-1 min-h-0 overflow-hidden rounded-lg bg-slate-100 cursor-pointer border border-slate-200" 
                                          onclick="event.stopPropagation(); swapCardMainImage(${p.id}, this.querySelector('img').src)">
                                         <img src="${img}" alt="${p.title} view ${idx+2}" class="w-full h-full object-cover">
                                     </div>
                                 `).join('')}
-                                ${sideImgs.length < 3 ? Array(3 - sideImgs.length).fill(0).map(() => `<div class="flex-1 min-h-[40px] rounded-lg bg-slate-100 border border-dashed border-slate-300"></div>`).join('') : ''}
+                                ${sideImgs.length < 3 ? Array(3 - sideImgs.length).fill(0).map(() => `<div class="flex-1 min-h-[36px] rounded-lg bg-slate-100 border border-dashed border-slate-300"></div>`).join('') : ''}
                             </div>
                         </div>
 
