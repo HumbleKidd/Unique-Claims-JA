@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unique Claims JA | Uniquely You! Every time.</title>
+    <script>
+        // Clean homepage URL: /index.html or /index.html# → /
+        if (location.pathname.endsWith('/index.html') || location.pathname === '/index.html') {
+            const clean = location.origin + '/' + (location.search || '') + (location.hash === '#' ? '' : location.hash);
+            history.replaceState(null, '', clean);
+        }
+    </script>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>😜</text></svg>">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -1885,7 +1892,8 @@
 
         // Set initial history state so the first back stays on the site
         if (!history.state) {
-            history.replaceState({ view: 'home' }, '', location.pathname);
+            const cleanPath = location.pathname.endsWith('index.html') ? '/' : location.pathname;
+            history.replaceState({ view: 'home' }, '', cleanPath);
         }
 
         // Close zoom on Escape
