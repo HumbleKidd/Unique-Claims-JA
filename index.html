@@ -401,7 +401,7 @@
             <div class="text-center mb-6 md:mb-10">
                 <span class="text-xs font-bold uppercase tracking-widest text-rose-600">Why Shop Here</span>
                 <h3 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">Why Buy From Unique Claims JA?</h3>
-                <p class="text-slate-500 text-sm mt-2 max-w-xl mx-auto">Simple reasons it makes sense to order from me instead of waiting or guessing.</p>
+
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
                 <div class="bg-slate-50 rounded-2xl p-4 md:p-5 border border-slate-100 text-center">
@@ -433,6 +433,11 @@
                     <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-lg mx-auto mb-2"><i class="fa-solid fa-heart"></i></div>
                     <h4 class="font-bold text-slate-900 text-sm">Small Business That Cares</h4>
                     <p class="text-xs text-slate-500 mt-1">I look out for my customers and keep new products coming.</p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-4 md:p-5 border border-slate-100 text-center">
+                    <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center text-lg mx-auto mb-2"><i class="fa-solid fa-camera"></i></div>
+                    <h4 class="font-bold text-slate-900 text-sm">Real Photos of Real Products</h4>
+                    <p class="text-xs text-slate-500 mt-1">Every image is one I took myself of the actual item in my possession — not stock photos dragged from the internet.</p>
                 </div>
                 <div class="bg-slate-50 rounded-2xl p-4 md:p-5 border border-slate-100 sm:col-span-2 lg:col-span-3 text-center">
                     <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-lg mx-auto mb-2"><i class="fa-solid fa-paper-plane"></i></div>
@@ -498,7 +503,43 @@
         </div>
     </section>
 
-    <!-- AD FORM MODAL -->
+
+    <!-- CONTACT MODAL -->
+    <div id="contactModal" class="fixed inset-0 z-[60] bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-slate-100">
+            <button onclick="closeContactModal()" class="absolute top-4 right-4 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-9 w-9 rounded-full flex items-center justify-center font-bold transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="p-6 md:p-8">
+                <div class="text-center mb-5">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mx-auto mb-3">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900">Contact Me</h3>
+                    <p class="text-sm text-slate-500 mt-1">Fill the form to message me on WhatsApp, or call directly.</p>
+                </div>
+
+                <form id="contactForm" onsubmit="sendContactWhatsApp(event)" class="space-y-3">
+                    <input type="text" id="contactName" required placeholder="Your Name" class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
+                    <input type="tel" id="contactPhone" placeholder="Your Phone (optional)" class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
+                    <textarea id="contactMessage" required rows="4" placeholder="Your message..." class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none resize-none"></textarea>
+                    <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl text-sm flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp
+                    </button>
+                </form>
+
+                <div class="mt-4 pt-4 border-t border-slate-100 text-center">
+                    <p class="text-xs text-slate-500 mb-2">Or call me directly</p>
+                    <a href="tel:+18765813521" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-3 rounded-full text-sm transition-all">
+                        <i class="fa-solid fa-phone"></i> Click to Call
+                    </a>
+                    <p class="text-[11px] text-slate-400 mt-2">+1 876-581-3521</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- AD FORM MODAL -->
     <div id="adFormModal" class="fixed inset-0 z-[55] bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl relative border border-slate-100">
             <button onclick="closeAdForm()" class="absolute top-3 right-3 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-9 w-9 rounded-full flex items-center justify-center font-bold">
@@ -563,6 +604,7 @@
                             <li><a href="#" class="hover:text-rose-500 transition-colors">Browse Catalog</a></li>
                             <li><button onclick="toggleCartDrawer(true)" class="hover:text-rose-500 transition-colors text-left">Shopping Cart</button></li>
                             <li><button onclick="openBundleModal()" class="hover:text-rose-500 transition-colors text-left">Bundle & Save</button></li>
+                            <li><button onclick="openContactModal()" class="hover:text-rose-500 transition-colors text-left">Contact Me</button></li>
                             <li><a href="https://wa.me/18765813521" target="_blank" class="hover:text-rose-500 transition-colors">WhatsApp Support</a></li>
                         </ul>
                     </div>
@@ -1108,6 +1150,8 @@
                 updateSavedDrawerUI();
             } else if (hash === 'tip') {
                 document.getElementById('tipModal').classList.remove('hidden');
+            } else if (hash === 'contact') {
+                document.getElementById('contactModal').classList.remove('hidden');
             }
         }
 
@@ -1117,6 +1161,8 @@
             document.getElementById('cartDrawer').classList.add('hidden');
             document.getElementById('savedDrawer').classList.add('hidden');
             document.getElementById('tipModal').classList.add('hidden');
+            const contact = document.getElementById('contactModal');
+            if (contact) contact.classList.add('hidden');
             const bundle = document.getElementById('bundleModal');
             if (bundle) bundle.classList.add('hidden');
             // Then open based on new hash
@@ -1873,13 +1919,37 @@
             closeTipModal();
         }
 
-        function openTipModal() {
+
+        function openContactModal() {
+            document.getElementById('contactModal').classList.remove('hidden');
+            if (location.hash !== '#contact') history.pushState({ view: 'contact' }, '', '#contact');
+        }
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.add('hidden');
+            if (location.hash === '#contact') history.back();
+        }
+        function sendContactWhatsApp(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value.trim();
+            const phone = document.getElementById('contactPhone').value.trim();
+            const msg = document.getElementById('contactMessage').value.trim();
+            let text = `Hi Unique Claims JA! My name is ${name}.`;
+            if (phone) text += ` Phone: ${phone}.`;
+            text += `\n\n${msg}`;
+            const url = 'https://wa.me/18765813521?text=' + encodeURIComponent(text);
+            window.open(url, '_blank');
+            closeContactModal();
+        }
+
+                function openTipModal() {
             document.getElementById('tipModal').classList.remove('hidden');
             if (location.hash !== '#tip') history.pushState({ view: 'tip' }, '', '#tip');
         }
 
         function closeTipModal() {
             document.getElementById('tipModal').classList.add('hidden');
+            const contact = document.getElementById('contactModal');
+            if (contact) contact.classList.add('hidden');
         }
 
         function openImageZoom(imgSrc, caption) {
