@@ -282,6 +282,50 @@
         </div>
     </main>
 
+    <!-- PRODUCT PAGE (full page view, not modal) -->
+    <section id="productPage" class="hidden flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <button onclick="closeProductPage()" class="mb-4 flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-rose-600">
+            <i class="fa-solid fa-arrow-left"></i> Back to Catalog
+        </button>
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 p-4 md:p-6 bg-slate-50 flex flex-col items-center">
+                    <div class="w-full flex items-center justify-center overflow-hidden rounded-2xl bg-white p-2 border border-slate-200 min-h-[300px]">
+                        <img id="pageMainImg" src="" alt="Product" class="max-h-[60vh] md:max-h-[480px] w-auto max-w-full object-contain rounded-xl">
+                    </div>
+                    <div class="flex items-center gap-2 mt-4 w-full justify-center overflow-x-auto py-1" id="pageThumbnails"></div>
+                </div>
+                <div class="md:w-1/2 p-6 md:p-8 flex flex-col space-y-5">
+                    <div>
+                        <span id="pageBadge" class="bg-rose-100 text-rose-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Badge</span>
+                    </div>
+                    <h1 id="pageTitle" class="text-2xl md:text-3xl font-black text-slate-900 leading-tight">Product Title</h1>
+                    <div class="text-3xl font-extrabold text-rose-600" id="pagePrice">$0</div>
+                    <p id="pageDescription" class="text-slate-600 text-sm leading-relaxed"></p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <div class="flex items-center border border-slate-200 rounded-xl bg-slate-50">
+                            <button onclick="adjustPageQty(-1)" class="px-3 py-2 text-lg font-bold">-</button>
+                            <span id="pageQty" class="px-4 font-bold">1</span>
+                            <button onclick="adjustPageQty(1)" class="px-3 py-2 text-lg font-bold">+</button>
+                        </div>
+                        <button onclick="addPageToCart()" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 rounded-xl text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="chatAboutCurrentProduct()" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl text-sm flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp"></i> Chat About This
+                        </button>
+                        <button onclick="shareCurrentProduct()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-3 rounded-xl text-sm">
+                            <i class="fa-solid fa-share-nodes"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- CLEAN SOCIAL SPOTLIGHT CARDS -->
     <section class="relative text-white py-12 border-t border-slate-800 mt-12 overflow-hidden" style="background: linear-gradient(to bottom right, #0f172a, #4c1d95, #0f172a); background-image: url('https://www.peacedtogether.co.uk/wp-content/uploads/2018/07/business-people-succesful-celebrating-group-successful-39416686.jpg'), linear-gradient(to bottom right, #0f172a, #4c1d95, #0f172a); background-size: cover; background-position: center;">
         <div class="absolute inset-0 bg-slate-950/75"></div>
@@ -404,50 +448,56 @@
 
             </div>
             <div class="relative">
-                <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-1 -mx-1 scrollbar-hide" style="scrollbar-width: none; -ms-overflow-style: none;">
+                <button onclick="scrollWhy(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md border border-slate-200 rounded-full w-9 h-9 flex items-center justify-center text-slate-700 hover:bg-slate-50 -ml-2 md:-ml-4">
+                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                </button>
+                <button onclick="scrollWhy(1)" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md border border-slate-200 rounded-full w-9 h-9 flex items-center justify-center text-slate-700 hover:bg-slate-50 -mr-2 md:-mr-4">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
+                <div id="whyCarousel" class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-1 -mx-1 scrollbar-hide" style="scrollbar-width: none; -ms-overflow-style: none;">
                     <style>
                         .scrollbar-hide::-webkit-scrollbar { display: none; }
                     </style>
-                    <!-- Real Photos - FIRST & more captivating -->
+                    <!-- Real Photos - FIRST, shorter & captivating -->
                     <div class="snap-center shrink-0 w-[85%] sm:w-72 bg-gradient-to-br from-teal-50 to-emerald-50 rounded-2xl p-5 border border-teal-100 text-center shadow-sm">
                         <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl mx-auto mb-3"><i class="fa-solid fa-camera"></i></div>
-                        <h4 class="font-black text-slate-900 text-base">See Exactly What You’re Getting</h4>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Every photo is one I took myself of the real product sitting right here with me. No stock images. No surprises. Just the actual item you’ll receive.</p>
+                        <h4 class="font-black text-slate-900 text-base">Real Photos, Real Products</h4>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">I take every photo myself of the actual item in my hands. No stock images. You see exactly what you’re getting.</p>
                     </div>
                     <div class="snap-center shrink-0 w-[85%] sm:w-72 bg-slate-50 rounded-2xl p-5 border border-slate-100 text-center">
                         <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl mx-auto mb-3"><i class="fa-solid fa-bolt"></i></div>
-                        <h4 class="font-black text-slate-900 text-base">Local & Fast</h4>
+                        <h4 class="font-black text-slate-900 text-base">Already in Jamaica</h4>
                         <p class="text-xs text-slate-600 mt-2 leading-relaxed">Products are already here in Jamaica. No waiting weeks for overseas shipping.</p>
                     </div>
                     <div class="snap-center shrink-0 w-[85%] sm:w-72 bg-slate-50 rounded-2xl p-5 border border-slate-100 text-center">
                         <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mx-auto mb-3"><i class="fa-solid fa-check"></i></div>
-                        <h4 class="font-black text-slate-900 text-base">Exactly What You Ordered</h4>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">You get the real item — no guessing if it’s the right one.</p>
+                        <h4 class="font-black text-slate-900 text-base">What You See Is What You Get</h4>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">You receive the exact product shown in the photos. No wrong items or bait-and-switch.</p>
                     </div>
                     <div class="snap-center shrink-0 w-[85%] sm:w-72 bg-slate-50 rounded-2xl p-5 border border-slate-100 text-center">
                         <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl mx-auto mb-3"><i class="fa-solid fa-user"></i></div>
-                        <h4 class="font-black text-slate-900 text-base">Chat With One Person</h4>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Talk directly to me for details — not a big company or call center.</p>
+                        <h4 class="font-black text-slate-900 text-base">Talk Directly to Me</h4>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Message or call me personally for any details. No call centers or bots.</p>
                     </div>
                     <div class="snap-center shrink-0 w-[85%] sm:w-72 bg-slate-50 rounded-2xl p-5 border border-slate-100 text-center">
                         <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mx-auto mb-3"><i class="fa-solid fa-shield-halved"></i></div>
-                        <h4 class="font-black text-slate-900 text-base">Once Paid, It’s Yours</h4>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Paid items won’t get lost, stolen, delayed, or sold to someone else.</p>
+                        <h4 class="font-black text-slate-900 text-base">Secure Once Paid</h4>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Once you pay, the item is reserved for you. It won’t be sold to anyone else.</p>
                     </div>
                     <div class="snap-center shrink-0 w-[85%] sm:w-72 bg-slate-50 rounded-2xl p-5 border border-slate-100 text-center">
                         <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl mx-auto mb-3"><i class="fa-solid fa-magnifying-glass"></i></div>
-                        <h4 class="font-black text-slate-900 text-base">I Source What You Want</h4>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Don’t guess. Ask about what you need — if it’s possible, I’ll get it.</p>
+                        <h4 class="font-black text-slate-900 text-base">I Can Source It</h4>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Need something specific? Ask me. If it’s possible, I’ll source it for you.</p>
                     </div>
                     <div class="snap-center shrink-0 w-[85%] sm:w-72 bg-slate-50 rounded-2xl p-5 border border-slate-100 text-center">
                         <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl mx-auto mb-3"><i class="fa-solid fa-heart"></i></div>
-                        <h4 class="font-black text-slate-900 text-base">Small Business That Cares</h4>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">I look out for my customers and keep new products coming.</p>
+                        <h4 class="font-black text-slate-900 text-base">Personal Service</h4>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Personal service from a small business that actually cares about customers.</p>
                     </div>
                     <div class="snap-center shrink-0 w-[85%] sm:w-72 bg-slate-50 rounded-2xl p-5 border border-slate-100 text-center">
                         <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl mx-auto mb-3"><i class="fa-solid fa-paper-plane"></i></div>
-                        <h4 class="font-black text-slate-900 text-base">Request Anything</h4>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Have something specific in mind? Message me and I’ll do my best to source it for you.</p>
+                        <h4 class="font-black text-slate-900 text-base">Ask for Anything</h4>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Have a request? Message me and I’ll do my best to get it for you.</p>
                     </div>
                 </div>
                 <p class="text-center text-[11px] text-slate-400 mt-2">Swipe to see more →</p>
@@ -1187,7 +1237,7 @@
             if (hash.startsWith('product-')) {
                 const id = parseInt(hash.split('-')[1], 10);
                 if (!isNaN(id)) {
-                    openProductLightbox(id, true); // true = don't push again
+                    openProductPage(id, true);
                 }
             } else if (hash === 'cart') {
                 document.getElementById('cartDrawer').classList.remove('hidden');
@@ -1209,7 +1259,7 @@
 
         window.addEventListener('hashchange', () => {
             // Close all overlays first
-            document.getElementById('productModal').classList.add('hidden');
+            document.getElementById('productPage').classList.add('hidden'); document.querySelector('main').classList.remove('hidden');
             document.getElementById('cartDrawer').classList.add('hidden');
             document.getElementById('savedDrawer').classList.add('hidden');
             document.getElementById('tipModal').classList.add('hidden');
@@ -1478,45 +1528,33 @@
             sortAndRenderProducts();
         }
 
-        function openProductLightbox(id, skipPush) {
+        let currentPageProduct = null;
+        let pageQty = 1;
+
+        function openProductPage(id, skipPush) {
             const p = products.find(item => item.id === id);
             if (!p) return;
+            currentPageProduct = p;
+            pageQty = 1;
 
-            activeModalProduct = p;
-            activeModalQty = 1;
+            document.getElementById('pageTitle').textContent = p.title;
+            document.getElementById('pagePrice').textContent = formatMoney(p.price);
+            document.getElementById('pageDescription').textContent = p.description;
+            document.getElementById('pageBadge').textContent = p.badge || 'In Stock';
+            document.getElementById('pageQty').textContent = '1';
+            document.getElementById('pageMainImg').src = p.images[0];
 
-            document.getElementById('modalTitle').textContent = p.title;
-            document.getElementById('modalPrice').textContent = formatMoney(p.price);
-            document.getElementById('modalDescription').textContent = p.description;
-            document.getElementById('modalBadge').textContent = p.badge;
-            document.getElementById('modalQtyDisplay').textContent = '1';
-            document.getElementById('modalProductNote').value = '';
-
-            const mainImg = document.getElementById('modalMainImg');
-            mainImg.src = p.images[0];
-
-            const thumbBox = document.getElementById('modalThumbnailsContainer');
-            thumbBox.innerHTML = p.images.map((imgUrl, idx) => `
-                <img src="${imgUrl}" onclick="setModalMainImage('${imgUrl}', this)" 
-                     class="h-16 w-16 object-cover rounded-xl cursor-pointer border-2 ${idx === 0 ? 'border-rose-600 scale-105' : 'border-transparent opacity-70'} hover:opacity-100 transition-all shadow-sm">
+            const thumbs = document.getElementById('pageThumbnails');
+            thumbs.innerHTML = p.images.map((img, i) => `
+                <img src="${img}" onclick="document.getElementById('pageMainImg').src='${img}'" 
+                     class="h-16 w-16 object-cover rounded-lg cursor-pointer border-2 ${i===0?'border-rose-600':'border-transparent'}">
             `).join('');
 
-            document.getElementById('modalAddToCartBtn').onclick = () => {
-                const note = document.getElementById('modalProductNote').value.trim();
-                addToCart(p.id, activeModalQty, note);
-                closeProductLightbox();
-            };
+            // Hide catalog, show product page
+            document.querySelector('main').classList.add('hidden');
+            document.getElementById('productPage').classList.remove('hidden');
+            window.scrollTo(0, 0);
 
-            document.getElementById('modalShareBtn').onclick = () => {
-                shareProduct(p.id);
-            };
-
-            document.getElementById('productModal').classList.remove('hidden');
-
-            // Load recommended products (use recommendedIds if set, otherwise random)
-            loadRecommendedProducts(p);
-
-            // Hash-based URL so reload stays on this product and back works
             if (!skipPush) {
                 const newHash = '#product-' + id;
                 if (location.hash !== newHash) {
@@ -1524,6 +1562,29 @@
                 }
             }
         }
+
+        function closeProductPage() {
+            document.getElementById('productPage').classList.add('hidden');
+            document.querySelector('main').classList.remove('hidden');
+            if (location.hash.startsWith('#product-')) history.back();
+        }
+
+        function adjustPageQty(delta) {
+            pageQty = Math.max(1, pageQty + delta);
+            document.getElementById('pageQty').textContent = pageQty;
+        }
+        function addPageToCart() {
+            if (currentPageProduct) addToCart(currentPageProduct.id, pageQty);
+        }
+        function chatAboutCurrentProduct() {
+            if (currentPageProduct) chatAboutProduct(currentPageProduct.id);
+        }
+        function shareCurrentProduct() {
+            if (currentPageProduct) shareProduct(currentPageProduct.id);
+        }
+
+        // Keep old name working
+        function openProductLightbox(id, skipPush) { openProductPage(id, skipPush); }
 
         function loadRecommendedProducts(currentProduct) {
             const container = document.getElementById('recommendedProducts');
@@ -1572,7 +1633,7 @@
         }
 
         function closeProductLightbox() {
-            document.getElementById('productModal').classList.add('hidden');
+            document.getElementById('productPage').classList.add('hidden'); document.querySelector('main').classList.remove('hidden');
             // If we are currently on a product history state, go back so URL and back/forward stay correct
             if (history.state && history.state.view === 'product') {
                 history.back();
@@ -1980,6 +2041,12 @@
 
         let selectedPreorderProduct = null;
 
+        
+        function scrollWhy(dir) {
+            const el = document.getElementById('whyCarousel');
+            if (el) el.scrollBy({ left: dir * 300, behavior: 'smooth' });
+        }
+
         function openPreorderModal() {
             document.getElementById('preorderModal').classList.remove('hidden');
             renderPreorderList(products);
@@ -2100,7 +2167,7 @@
             const state = e.state || { view: 'home' };
 
             // Close everything first
-            document.getElementById('productModal').classList.add('hidden');
+            document.getElementById('productPage').classList.add('hidden'); document.querySelector('main').classList.remove('hidden');
             document.getElementById('cartDrawer').classList.add('hidden');
             document.getElementById('savedDrawer').classList.add('hidden');
             const bundle = document.getElementById('bundleModal');
