@@ -57,32 +57,10 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
-        .product-images-flex {
-            align-items: flex-start !important;
-            height: auto !important;
-        }
         .product-card-main-img {
             aspect-ratio: 3 / 4 !important;
-            height: auto !important;
-            width: 100% !important;
-            flex: 1 1 0% !important;
-            min-height: 0 !important;
-            max-height: none !important;
-        }
-        @media (min-width: 768px) {
-            .product-card-main-img {
-                /* Enforce strict 3:4 portrait previews on desktop */
-                aspect-ratio: 3 / 4 !important;
-                height: auto !important;
-            }
-            .product-images-flex {
-                align-items: flex-start !important;
-            }
-            /* Side thumbs don't force height */
-            .product-images-flex > div:last-child {
-                height: auto !important;
-                align-self: flex-start;
-            }
+            height: auto;
+            width: 100%;
         }
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
@@ -1154,8 +1132,8 @@
                 return tipCard + `
                     <div class="group bg-white rounded-2xl p-3 border border-slate-200/80 shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md">
                         <!-- Mobile-first image layout: main + side thumbs -->
-                        <div class="flex gap-2 mb-3 product-images-flex">
-                            <!-- Main big image - strict 3:4 on all screens (especially desktop) -->
+                        <div class="flex gap-2 mb-3">
+                            <!-- Main big image - strict 3:4 on all screens -->
                             <div class="relative flex-1 overflow-hidden rounded-xl bg-slate-100 cursor-pointer shadow-inner product-card-main-img" 
                                  id="cardMain-${p.id}"
                                  onclick="handleCardMainClick(${p.id}, '${mainImg}')">
