@@ -758,8 +758,8 @@
     </footer>
 
     <!-- PRODUCT LIGHTBOX MODAL -->
-    <div id="productModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-2 sm:p-4 transition-opacity">
-        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto custom-scrollbar shadow-2xl relative border border-slate-100 flex flex-col">
+    <div id="productModal" onclick="if(event.target===this) closeProductLightbox()" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-2 sm:p-4 transition-opacity">
+        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto custom-scrollbar shadow-2xl relative border border-slate-100 flex flex-col" onclick="event.stopPropagation()">
             <button onclick="closeProductLightbox()" class="absolute top-4 right-4 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-10 w-10 rounded-full flex items-center justify-center font-bold text-lg transition-all shadow-md">
                 <i class="fa-solid fa-xmark"></i>
             </button>
@@ -1256,7 +1256,7 @@
             if (hash.startsWith('product-')) {
                 const id = parseInt(hash.split('-')[1], 10);
                 if (!isNaN(id)) {
-                    openProductPage(id, true);
+                    openProductLightbox(id, true);
                 }
             } else if (hash === 'cart') {
                 document.getElementById('cartDrawer').classList.remove('hidden');
@@ -1278,7 +1278,7 @@
 
         window.addEventListener('hashchange', () => {
             // Close all overlays first
-            document.getElementById('productPage').classList.add('hidden'); document.querySelector('main').classList.remove('hidden');
+            document.getElementById('productModal').classList.add('hidden');
             document.getElementById('cartDrawer').classList.add('hidden');
             document.getElementById('savedDrawer').classList.add('hidden');
             document.getElementById('tipModal').classList.add('hidden');
@@ -1550,46 +1550,41 @@
         let currentPageProduct = null;
         let pageQty = 1;
 
-        function openProductPage(id, skipPush) {
+        function openProductLightbox(id, skipPush) {
             const p = products.find(item => item.id === id);
             if (!p) return;
-            currentPageProduct = p;
-            pageQty = 1;
 
-            document.getElementById('pageTitle').textContent = p.title;
-            document.getElementById('pagePrice').textContent = formatMoney(p.price);
-            document.getElementById('pageDescription').textContent = p.description;
-            document.getElementById('pageBadge').textContent = p.badge || 'In Stock';
-            document.getElementById('pageQty').textContent = '1';
-            document.getElementById('pageProductNote').value = '';
-            document.getElementById('pageMainImg').src = p.images[0];
+            activeModalProduct = p;
+            activeModalQty = 1;
 
-            const thumbs = document.getElementById('pageThumbnails');
-            thumbs.innerHTML = p.images.map((img, i) => `
-                <img src="${img}" onclick="document.getElementById('pageMainImg').src='${img}'; this.parentElement.querySelectorAll('img').forEach(t=>t.classList.remove('border-rose-600')); this.classList.add('border-rose-600');" 
-                     class="h-16 w-16 object-cover rounded-xl cursor-pointer border-2 ${i===0?'border-rose-600':'border-transparent'} hover:opacity-100 transition-all">
+            document.getElementById('modalTitle').textContent = p.title;
+            document.getElementById('modalPrice').textContent = formatMoney(p.price);
+            document.getElementById('modalDescription').textContent = p.description;
+            document.getElementById('modalBadge').textContent = p.badge || '';
+            document.getElementById('modalQtyDisplay').textContent = '1';
+            const noteEl = document.getElementById('modalProductNote');
+            if (noteEl) noteEl.value = '';
+
+            const mainImg = document.getElementById('modalMainImg');
+            mainImg.src = p.images[0];
+
+            const thumbBox = document.getElementById('modalThumbnailsContainer');
+            thumbBox.innerHTML = p.images.map((imgUrl, idx) => `
+                <img src="${imgUrl}" onclick="setModalMainImage('${imgUrl}', this)" 
+                     class="h-16 w-16 object-cover rounded-xl cursor-pointer border-2 ${idx === 0 ? 'border-rose-600 scale-105' : 'border-transparent opacity-70'} hover:opacity-100 transition-all shadow-sm">
             `).join('');
 
-            // Recommended
-            const recContainer = document.getElementById('pageRecommended');
-            let recs = [];
-            if (p.recommendedIds && p.recommendedIds.length) {
-                recs = p.recommendedIds.map(rid => products.find(x => x.id === rid)).filter(Boolean).slice(0, 4);
-            } else {
-                recs = products.filter(x => x.id !== p.id).sort(() => 0.5 - Math.random()).slice(0, 4);
-            }
-            recContainer.innerHTML = recs.map(r => `
-                <div class="bg-white rounded-xl border border-slate-200 p-2 cursor-pointer hover:shadow-md transition-shadow" onclick="openProductPage(${r.id})">
-                    <img src="${r.images[0]}" alt="${r.title}" class="w-full aspect-square object-cover rounded-lg mb-1.5">
-                    <h5 class="font-semibold text-[11px] text-slate-800 line-clamp-2 leading-tight">${r.title}</h5>
-                    <p class="font-bold text-xs text-rose-600 mt-1">${formatMoney(r.price)}</p>
-                </div>
-            `).join('');
+            document.getElementById('modalAddToCartBtn').onclick = () => {
+                const note = (document.getElementById('modalProductNote') || {}).value || '';
+                addToCart(p.id, activeModalQty, note.trim());
+                closeProductLightbox();
+            };
 
-            // Hide catalog, show product page
-            document.querySelector('main').classList.add('hidden');
-            document.getElementById('productPage').classList.remove('hidden');
-            window.scrollTo(0, 0);
+            const shareBtn = document.getElementById('modalShareBtn');
+            if (shareBtn) shareBtn.onclick = () => shareProduct(p.id);
+
+            document.getElementById('productModal').classList.remove('hidden');
+            loadRecommendedProducts(p);
 
             if (!skipPush) {
                 const newHash = '#product-' + id;
@@ -1599,11 +1594,14 @@
             }
         }
 
-        function closeProductPage() {
-            document.getElementById('productPage').classList.add('hidden');
-            document.querySelector('main').classList.remove('hidden');
+        function closeProductLightbox() {
+            document.getElementById('productModal').classList.add('hidden');
             if (location.hash.startsWith('#product-')) history.back();
         }
+
+        // Alias for any old calls
+        function openProductPage(id, skipPush) { openProductLightbox(id, skipPush); }
+        function closeProductPage() { closeProductLightbox(); }
 
         function adjustPageQty(delta) {
             pageQty = Math.max(1, pageQty + delta);
@@ -1672,7 +1670,7 @@
         }
 
         function closeProductLightbox() {
-            document.getElementById('productPage').classList.add('hidden'); document.querySelector('main').classList.remove('hidden');
+            document.getElementById('productModal').classList.add('hidden');
             // If we are currently on a product history state, go back so URL and back/forward stay correct
             if (history.state && history.state.view === 'product') {
                 history.back();
@@ -2206,7 +2204,7 @@
             const state = e.state || { view: 'home' };
 
             // Close everything first
-            document.getElementById('productPage').classList.add('hidden'); document.querySelector('main').classList.remove('hidden');
+            document.getElementById('productModal').classList.add('hidden');
             document.getElementById('cartDrawer').classList.add('hidden');
             document.getElementById('savedDrawer').classList.add('hidden');
             const bundle = document.getElementById('bundleModal');
