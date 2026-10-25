@@ -282,45 +282,64 @@
         </div>
     </main>
 
-    <!-- PRODUCT PAGE (full page view, not modal) -->
-    <section id="productPage" class="hidden flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    <!-- PRODUCT PAGE (full page, same layout as old modal) -->
+    <section id="productPage" class="hidden flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
         <button onclick="closeProductPage()" class="mb-4 flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-rose-600">
             <i class="fa-solid fa-arrow-left"></i> Back to Catalog
         </button>
         <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
             <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2 p-4 md:p-6 bg-slate-50 flex flex-col items-center">
-                    <div class="w-full flex items-center justify-center overflow-hidden rounded-2xl bg-white p-2 border border-slate-200 min-h-[300px]">
-                        <img id="pageMainImg" src="" alt="Product" class="max-h-[60vh] md:max-h-[480px] w-auto max-w-full object-contain rounded-xl">
+                <div class="md:w-1/2 p-4 md:p-6 bg-slate-900/5 flex flex-col justify-between items-center relative min-h-[320px]">
+                    <div class="w-full flex-1 flex items-center justify-center overflow-hidden rounded-2xl bg-white/80 p-2 border border-slate-200/80 shadow-inner">
+                        <img id="pageMainImg" src="" alt="Product view" class="max-h-[60vh] md:max-h-[420px] w-auto max-w-full object-contain rounded-xl shadow-md cursor-zoom-in" onclick="openImageZoom(this.src, '')">
                     </div>
-                    <div class="flex items-center gap-2 mt-4 w-full justify-center overflow-x-auto py-1" id="pageThumbnails"></div>
+                    <div class="flex items-center gap-3 mt-4 w-full justify-center overflow-x-auto py-1" id="pageThumbnails"></div>
                 </div>
-                <div class="md:w-1/2 p-6 md:p-8 flex flex-col space-y-5">
-                    <div>
-                        <span id="pageBadge" class="bg-rose-100 text-rose-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Badge</span>
-                    </div>
-                    <h1 id="pageTitle" class="text-2xl md:text-3xl font-black text-slate-900 leading-tight">Product Title</h1>
-                    <div class="text-3xl font-extrabold text-rose-600" id="pagePrice">$0</div>
-                    <p id="pageDescription" class="text-slate-600 text-sm leading-relaxed"></p>
-                    <div class="flex items-center gap-3 pt-2">
-                        <div class="flex items-center border border-slate-200 rounded-xl bg-slate-50">
-                            <button onclick="adjustPageQty(-1)" class="px-3 py-2 text-lg font-bold">-</button>
-                            <span id="pageQty" class="px-4 font-bold">1</span>
-                            <button onclick="adjustPageQty(1)" class="px-3 py-2 text-lg font-bold">+</button>
+                <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-between space-y-6">
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span id="pageBadge" class="bg-rose-100 text-rose-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Top Claim</span>
+                            <span class="text-xs text-slate-600 font-semibold">In Stock</span>
                         </div>
-                        <button onclick="addPageToCart()" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 rounded-xl text-sm flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-cart-plus"></i> Add to Cart
-                        </button>
+                        <h3 id="pageTitle" class="text-xl md:text-2xl font-black text-slate-900 leading-tight">Product Title</h3>
+                        <div class="flex items-baseline gap-3">
+                            <span id="pagePrice" class="text-3xl font-extrabold text-rose-600">$0</span>
+                        </div>
+                        <p id="pageDescription" class="text-slate-600 text-xs md:text-sm leading-relaxed border-t border-slate-100 pt-3"></p>
+                        <div class="pt-2">
+                            <label class="text-xs font-semibold text-slate-500">Add a note (optional)</label>
+                            <textarea id="pageProductNote" rows="2" placeholder="Any special request?" class="w-full mt-1 text-sm px-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none resize-none"></textarea>
+                        </div>
                     </div>
-                    <div class="flex gap-2">
-                        <button onclick="chatAboutCurrentProduct()" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl text-sm flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp"></i> Chat About This
+                    <div class="space-y-3 border-t border-slate-100 pt-4">
+                        <div class="flex items-center gap-2">
+                            <div class="flex items-center justify-between border border-slate-200 rounded-xl bg-slate-50 p-0.5 shrink-0">
+                                <button onclick="adjustPageQty(-1)" class="w-7 h-7 rounded-lg bg-white shadow-sm flex items-center justify-center text-slate-700 font-bold hover:bg-slate-200 text-sm">-</button>
+                                <span id="pageQty" class="w-7 text-center font-extrabold text-sm text-slate-800">1</span>
+                                <button onclick="adjustPageQty(1)" class="w-7 h-7 rounded-lg bg-white shadow-sm flex items-center justify-center text-slate-700 font-bold hover:bg-slate-200 text-sm">+</button>
+                            </div>
+                            <button onclick="addPageToCart()" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all">
+                                <i class="fa-solid fa-cart-plus"></i> Add To Cart
+                            </button>
+                            <button onclick="openBundleModalFromProduct()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1 transition-all">
+                                <i class="fa-solid fa-layer-group"></i> Bundle
+                            </button>
+                        </div>
+                        <button onclick="chatAboutCurrentProduct()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-colors">
+                            <i class="fa-brands fa-whatsapp"></i> Chat About This Product
                         </button>
-                        <button onclick="shareCurrentProduct()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-3 rounded-xl text-sm">
-                            <i class="fa-solid fa-share-nodes"></i>
+                        <button onclick="shareCurrentProduct()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-colors">
+                            <i class="fa-solid fa-share-nodes text-rose-600 text-sm"></i> Share With Friends
                         </button>
                     </div>
                 </div>
+            </div>
+            <!-- Recommended Products -->
+            <div class="p-4 md:p-6 border-t border-slate-200 bg-slate-50">
+                <h4 class="font-bold text-sm text-slate-800 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-star text-amber-500"></i> You May Also Like
+                </h4>
+                <div id="pageRecommended" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"></div>
             </div>
         </div>
     </section>
@@ -1542,12 +1561,29 @@
             document.getElementById('pageDescription').textContent = p.description;
             document.getElementById('pageBadge').textContent = p.badge || 'In Stock';
             document.getElementById('pageQty').textContent = '1';
+            document.getElementById('pageProductNote').value = '';
             document.getElementById('pageMainImg').src = p.images[0];
 
             const thumbs = document.getElementById('pageThumbnails');
             thumbs.innerHTML = p.images.map((img, i) => `
-                <img src="${img}" onclick="document.getElementById('pageMainImg').src='${img}'" 
-                     class="h-16 w-16 object-cover rounded-lg cursor-pointer border-2 ${i===0?'border-rose-600':'border-transparent'}">
+                <img src="${img}" onclick="document.getElementById('pageMainImg').src='${img}'; this.parentElement.querySelectorAll('img').forEach(t=>t.classList.remove('border-rose-600')); this.classList.add('border-rose-600');" 
+                     class="h-16 w-16 object-cover rounded-xl cursor-pointer border-2 ${i===0?'border-rose-600':'border-transparent'} hover:opacity-100 transition-all">
+            `).join('');
+
+            // Recommended
+            const recContainer = document.getElementById('pageRecommended');
+            let recs = [];
+            if (p.recommendedIds && p.recommendedIds.length) {
+                recs = p.recommendedIds.map(rid => products.find(x => x.id === rid)).filter(Boolean).slice(0, 4);
+            } else {
+                recs = products.filter(x => x.id !== p.id).sort(() => 0.5 - Math.random()).slice(0, 4);
+            }
+            recContainer.innerHTML = recs.map(r => `
+                <div class="bg-white rounded-xl border border-slate-200 p-2 cursor-pointer hover:shadow-md transition-shadow" onclick="openProductPage(${r.id})">
+                    <img src="${r.images[0]}" alt="${r.title}" class="w-full aspect-square object-cover rounded-lg mb-1.5">
+                    <h5 class="font-semibold text-[11px] text-slate-800 line-clamp-2 leading-tight">${r.title}</h5>
+                    <p class="font-bold text-xs text-rose-600 mt-1">${formatMoney(r.price)}</p>
+                </div>
             `).join('');
 
             // Hide catalog, show product page
@@ -1574,7 +1610,10 @@
             document.getElementById('pageQty').textContent = pageQty;
         }
         function addPageToCart() {
-            if (currentPageProduct) addToCart(currentPageProduct.id, pageQty);
+            if (currentPageProduct) {
+                const note = document.getElementById("pageProductNote").value.trim();
+                addToCart(currentPageProduct.id, pageQty, note);
+            }
         }
         function chatAboutCurrentProduct() {
             if (currentPageProduct) chatAboutProduct(currentPageProduct.id);
