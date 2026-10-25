@@ -504,7 +504,49 @@
     </section>
 
 
-    <!-- CONTACT MODAL -->
+
+    <!-- PRE-ORDER MODAL -->
+    <div id="preorderModal" class="fixed inset-0 z-[60] bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] overflow-y-auto shadow-2xl relative border border-slate-100 flex flex-col">
+            <button onclick="closePreorderModal()" class="absolute top-4 right-4 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-9 w-9 rounded-full flex items-center justify-center font-bold transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="p-6 md:p-8">
+                <div class="text-center mb-5">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mx-auto mb-3">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900">Pre-Order a Product</h3>
+                    <p class="text-sm text-slate-500 mt-1">Select an item below to pre-order. I'll confirm availability and next steps on WhatsApp.</p>
+                </div>
+
+                <div class="relative mb-4">
+                    <input type="text" id="preorderSearch" oninput="filterPreorderList()" placeholder="Search products..." class="w-full text-sm pl-10 pr-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                </div>
+
+                <div id="preorderList" class="max-h-72 overflow-y-auto border border-slate-200 rounded-xl divide-y divide-slate-100 custom-scrollbar">
+                    <!-- Filled by JS -->
+                </div>
+
+                <div id="preorderSelected" class="hidden mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl text-sm">
+                    <p class="font-semibold text-slate-800">Selected: <span id="preorderSelectedTitle"></span></p>
+                    <p class="text-rose-600 font-bold" id="preorderSelectedPrice"></p>
+                </div>
+
+                <form id="preorderForm" onsubmit="submitPreorder(event)" class="mt-4 space-y-3 hidden">
+                    <input type="text" id="preorderName" required placeholder="Your Name" class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none">
+                    <input type="tel" id="preorderPhone" required placeholder="Your WhatsApp Number" class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none">
+                    <textarea id="preorderNote" rows="2" placeholder="Any notes? (qty, preferred pickup, etc.)" class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none resize-none"></textarea>
+                    <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 rounded-xl text-sm flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-brands fa-whatsapp"></i> Send Pre-Order Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        <!-- CONTACT MODAL -->
     <div id="contactModal" class="fixed inset-0 z-[60] bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-slate-100">
             <button onclick="closeContactModal()" class="absolute top-4 right-4 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-9 w-9 rounded-full flex items-center justify-center font-bold transition-all">
@@ -604,6 +646,7 @@
                             <li><a href="#" class="hover:text-rose-500 transition-colors">Browse Catalog</a></li>
                             <li><button onclick="toggleCartDrawer(true)" class="hover:text-rose-500 transition-colors text-left">Shopping Cart</button></li>
                             <li><button onclick="openBundleModal()" class="hover:text-rose-500 transition-colors text-left">Bundle & Save</button></li>
+                            <li><button onclick="openPreorderModal()" class="hover:text-rose-500 transition-colors text-left">Pre-Order</button></li>
                             <li><button onclick="openContactModal()" class="hover:text-rose-500 transition-colors text-left">Contact Me</button></li>
                             <li><a href="https://wa.me/18765813521" target="_blank" class="hover:text-rose-500 transition-colors">WhatsApp Support</a></li>
                         </ul>
@@ -1152,6 +1195,8 @@
                 document.getElementById('tipModal').classList.remove('hidden');
             } else if (hash === 'contact') {
                 document.getElementById('contactModal').classList.remove('hidden');
+            } else if (hash === 'preorder') {
+                document.getElementById('preorderModal').classList.remove('hidden'); renderPreorderList(products);
             }
         }
 
@@ -1163,6 +1208,8 @@
             document.getElementById('tipModal').classList.add('hidden');
             const contact = document.getElementById('contactModal');
             if (contact) contact.classList.add('hidden');
+            const preorder = document.getElementById('preorderModal');
+            if (preorder) preorder.classList.add('hidden');
             const bundle = document.getElementById('bundleModal');
             if (bundle) bundle.classList.add('hidden');
             // Then open based on new hash
@@ -1255,6 +1302,9 @@
                             <div class="flex items-center gap-1.5">
                                 <button onclick="addCardToCartWithQty(${p.id})" class="flex-1 bg-slate-900 hover:bg-rose-600 text-white font-bold py-2 px-2 rounded-xl text-xs flex items-center justify-center gap-1 transition-all shadow-sm active:scale-95">
                                     <i class="fa-solid fa-cart-plus text-xs"></i> Add
+                                </button>
+                                <button onclick="chatAboutProduct(${p.id})" title="Chat about this" class="bg-emerald-500 hover:bg-emerald-600 text-white h-8 w-8 rounded-xl flex items-center justify-center transition-colors">
+                                    <i class="fa-brands fa-whatsapp text-xs"></i>
                                 </button>
                                 <button onclick="shareProduct(${p.id})" title="Share" class="bg-slate-100 hover:bg-slate-200 text-slate-700 h-8 w-8 rounded-xl flex items-center justify-center transition-colors">
                                     <i class="fa-solid fa-share-nodes text-xs"></i>
@@ -1920,7 +1970,74 @@
         }
 
 
-        function openContactModal() {
+
+        let selectedPreorderProduct = null;
+
+        function openPreorderModal() {
+            document.getElementById('preorderModal').classList.remove('hidden');
+            renderPreorderList(products);
+            if (location.hash !== '#preorder') history.pushState({ view: 'preorder' }, '', '#preorder'); else history.replaceState({ view: 'preorder' }, '', '#preorder');
+        }
+        function closePreorderModal() {
+            document.getElementById('preorderModal').classList.add('hidden');
+            if (location.hash === '#preorder') history.back();
+        }
+        function renderPreorderList(list) {
+            const container = document.getElementById('preorderList');
+            if (!list.length) {
+                container.innerHTML = '<div class="p-4 text-center text-xs text-slate-500">No products found</div>';
+                return;
+            }
+            container.innerHTML = list.map(p => `
+                <button type="button" onclick="selectPreorderProduct(${p.id})" class="w-full flex items-center gap-3 p-3 hover:bg-slate-50 text-left transition-colors">
+                    <img src="${p.images[0]}" alt="" class="w-12 h-12 object-cover rounded-lg shrink-0 border border-slate-200">
+                    <div class="flex-1 min-w-0">
+                        <div class="font-semibold text-sm text-slate-900 truncate">${p.title}</div>
+                        <div class="text-xs text-rose-600 font-bold">${formatMoney(p.price)}</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
+                </button>
+            `).join('');
+        }
+        function filterPreorderList() {
+            const q = document.getElementById('preorderSearch').value.toLowerCase().trim();
+            const filtered = products.filter(p => p.title.toLowerCase().includes(q));
+            renderPreorderList(filtered);
+        }
+        function selectPreorderProduct(id) {
+            selectedPreorderProduct = products.find(p => p.id === id);
+            if (!selectedPreorderProduct) return;
+            document.getElementById('preorderSelectedTitle').textContent = selectedPreorderProduct.title;
+            document.getElementById('preorderSelectedPrice').textContent = formatMoney(selectedPreorderProduct.price);
+            document.getElementById('preorderSelected').classList.remove('hidden');
+            document.getElementById('preorderForm').classList.remove('hidden');
+            document.getElementById('preorderList').classList.add('hidden');
+            document.getElementById('preorderSearch').classList.add('hidden');
+        }
+        function submitPreorder(e) {
+            e.preventDefault();
+            if (!selectedPreorderProduct) return;
+            const name = document.getElementById('preorderName').value.trim();
+            const phone = document.getElementById('preorderPhone').value.trim();
+            const note = document.getElementById('preorderNote').value.trim();
+            let text = `PRE-ORDER REQUEST\n\nProduct: ${selectedPreorderProduct.title}\nPrice: ${formatMoney(selectedPreorderProduct.price)}\n\nName: ${name}\nWhatsApp: ${phone}`;
+            if (note) text += `\nNotes: ${note}`;
+            text += `\n\nPlease confirm availability and next steps.`;
+            const url = 'https://wa.me/18765813521?text=' + encodeURIComponent(text);
+            window.open(url, '_blank');
+            closePreorderModal();
+            showToast('Pre-order request sent via WhatsApp!', 'success');
+        }
+
+        function chatAboutProduct(id) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+            const text = `Hi Unique Claims JA! I have a question about: ${p.title} (${formatMoney(p.price)})`;
+            const url = 'https://wa.me/18765813521?text=' + encodeURIComponent(text);
+            window.open(url, '_blank');
+        }
+
+                function openContactModal() {
             document.getElementById('contactModal').classList.remove('hidden');
             if (location.hash !== '#contact') history.pushState({ view: 'contact' }, '', '#contact');
         }
@@ -1950,6 +2067,8 @@
             document.getElementById('tipModal').classList.add('hidden');
             const contact = document.getElementById('contactModal');
             if (contact) contact.classList.add('hidden');
+            const preorder = document.getElementById('preorderModal');
+            if (preorder) preorder.classList.add('hidden');
         }
 
         function openImageZoom(imgSrc, caption) {
