@@ -467,10 +467,10 @@
 
             </div>
             <div class="relative">
-                <button onclick="scrollWhy(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md border border-slate-200 rounded-full w-9 h-9 flex items-center justify-center text-slate-700 hover:bg-slate-50 -ml-2 md:-ml-4">
+                <button onclick="scrollWhy(-1)" class="absolute -left-3 md:-left-5 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md border border-slate-200 rounded-full w-9 h-9 flex items-center justify-center text-slate-700 hover:bg-slate-50">
                     <i class="fa-solid fa-chevron-left text-sm"></i>
                 </button>
-                <button onclick="scrollWhy(1)" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md border border-slate-200 rounded-full w-9 h-9 flex items-center justify-center text-slate-700 hover:bg-slate-50 -mr-2 md:-mr-4">
+                <button onclick="scrollWhy(1)" class="absolute -right-3 md:-right-5 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md border border-slate-200 rounded-full w-9 h-9 flex items-center justify-center text-slate-700 hover:bg-slate-50">
                     <i class="fa-solid fa-chevron-right text-sm"></i>
                 </button>
                 <div id="whyCarousel" class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-1 -mx-1 scrollbar-hide" style="scrollbar-width: none; -ms-overflow-style: none;">
@@ -1619,9 +1619,6 @@
         function shareCurrentProduct() {
             if (currentPageProduct) shareProduct(currentPageProduct.id);
         }
-
-        // Keep old name working
-        function openProductLightbox(id, skipPush) { openProductPage(id, skipPush); }
 
         function loadRecommendedProducts(currentProduct) {
             const container = document.getElementById('recommendedProducts');
