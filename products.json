@@ -1,1 +1,34 @@
-PLACEHOLDER_PRODUCTS
+{
+  "settings": {
+    "name": "Unique Claims JA",
+    "tagline": "Uniquely You! Every time.",
+    "whatsapp": "18765813521",
+    "location": "Mandeville, Manchester, Jamaica",
+    "currency": "JMD",
+    "currencySymbol": "J$",
+    "deliveryNote": "Collect in Mandeville or islandwide via Knutsford Express. Pay by NCB bank transfer or cash on pickup.",
+    "hours": "WhatsApp daily 9am\u20138pm"
+  },
+  "products": [
+    {
+      "id": "android-projector",
+      "name": "Fully Loaded Android Smart Projector Bundle",
+      "price": 19500,
+      "originalPrice": 24500,
+      "category": "Projectors",
+      "blurb": "1080p Android projector up to 130\". Transformed from stock into Home Theatre on Steroids \u2014 BEAST MODE.",
+      "description": "Fully Loaded Android Smart Projector Bundle. Native 1080p with support for larger decoding. Projects up to 130 inches on wall or ceiling. Comes pre-loaded with apps, but we've transformed it from the usual stock boring lame features into pure Home Theatre on Steroids \u2014 full BEAST MODE. Dual-band Wi-Fi, Bluetooth, backlit mini keyboard remote included. Plug-and-play cinema experience already in Jamaica.",
+      "features": ["1080p native resolution", "Up to 130\" screen", "Fully Loaded Android (apps pre-installed)", "Transformed to Home Theatre BEAST MODE", "Mini keyboard remote included", "Dual-band Wi-Fi + Bluetooth", "Local stock in Mandeville"],
+      "images": ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825268953_950844711407562_5164107063003195279_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269035_1842693450054383_2803710887866853991_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269045_2527327671071171_9170582407973424468_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269135_1098951375843016_2487635300355767178_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825270350_1579039539864030_5939598115892029473_n.jpg"],
+      "stock": 6,
+      "verifiedBuyers": "50+ locally and overseas",
+      "faqs": [
+        {"q": "What is the resolution and max screen size?", "a": "Native 1080p. Projects up to 130 inches on wall or ceiling."},
+        {"q": "Is it fully loaded?", "a": "Yes. Pre-loaded with apps and transformed from stock features into Home Theatre on Steroids \u2014 full BEAST MODE."},
+        {"q": "Does it come with a remote?", "a": "Yes, includes the backlit mini keyboard remote."},
+        {"q": "Is stock local?", "a": "Yes. Already in Mandeville, Manchester, Jamaica. No overseas wait."}
+      ],
+      "frequentlyBought": ["gamepad"]
+    }
+  ]
+}
