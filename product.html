@@ -1,147 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product | Unique Claims JA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Montserrat', 'sans-serif'] } } } }
-    </script>
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
-        .glass-nav { background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); }
-        .zoom-container { overflow: hidden; }
-        .zoom-image { transition: transform 0.4s ease, transform-origin 0.4s ease; }
-        .zoom-container:hover .zoom-image { transform: scale(1.6); }
-        @keyframes slideInUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .toast-animate { animation: slideInUp 0.3s ease-out forwards; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product | Unique Claims</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>😉</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root { --bg:#0a0a0f; --card:#16161d; --text:#f5f5f7; --muted:#a1a1aa; --accent:#6366f1; --accent2:#22d3ee; --border:rgba(255,255,255,0.08); }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Inter',system-ui,sans-serif; background:var(--bg); color:var(--text); }
+header { padding:16px 5%; background:rgba(10,10,15,0.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); display:flex; align-items:center; }
+.logo { height:40px; margin-right:auto; }
+.container { max-width:1200px; margin:40px auto; padding:0 5%; display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+.gallery img { width:100%; border-radius:16px; margin-bottom:12px; cursor:pointer; }
+.main-img { width:100%; height:480px; object-fit:cover; border-radius:20px; }
+h1 { font-size:2.2rem; margin-bottom:12px; }
+.price { font-size:2rem; font-weight:700; color:var(--accent2); margin:16px 0; }
+.desc { color:var(--muted); margin:20px 0; line-height:1.7; }
+.features { list-style:none; margin:20px 0; }
+.features li { padding:8px 0; border-bottom:1px solid var(--border); }
+.btn { background:var(--accent); color:white; padding:14px 28px; border:none; border-radius:12px; font-weight:600; cursor:pointer; font-size:1rem; }
+@media(max-width:768px) { .container { grid-template-columns:1fr; } .main-img { height:300px; } }
+</style>
 </head>
-<body class="min-h-screen flex flex-col antialiased">
-    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
-    <div class="bg-gradient-to-r from-rose-600 via-purple-600 to-indigo-600 text-white text-xs sm:text-sm font-semibold py-2 px-4 text-center">
-        <div class="max-w-7xl mx-auto">Local Stock in Mandeville • Knutsford Express Islandwide • WhatsApp Orders Welcome</div>
+<body>
+<header>
+  <a href="index.html"><img src="https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/logo.png" class="logo" alt="Logo"></a>
+</header>
+<div class="container" id="content">
+  <p>Loading product...</p>
+</div>
+<script>
+const params = new URLSearchParams(location.search);
+const id = params.get('id');
+async function load() {
+  const res = await fetch('products.json');
+  const data = await res.json();
+  const p = data.products.find(x => x.id === id);
+  if (!p) { document.getElementById('content').innerHTML = '<p>Product not found.</p>'; return; }
+  document.title = p.name + ' | Unique Claims';
+  const thumbs = p.images.map(img => `<img src="${img}" onclick="document.querySelector('.main-img').src=this.src">`).join('');
+  document.getElementById('content').innerHTML = `
+    <div class="gallery">
+      <img class="main-img" src="${p.images[0] || ''}" alt="${p.name}">
+      <div style="display:flex;gap:8px;overflow-x:auto;">${thumbs}</div>
     </div>
-    <header class="sticky top-0 z-30 glass-nav border-b border-slate-200/80 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
-            <a href="index.html" class="flex items-center gap-2">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-rose-500 via-purple-500 to-indigo-600 flex items-center justify-center text-white font-black text-2xl">U</div>
-                <div>
-                    <span class="font-display font-black text-2xl text-slate-900">Unique<span class="text-rose-600">Claims</span> JA</span>
-                    <span class="block text-[10px] font-extrabold tracking-widest text-slate-400 uppercase -mt-1">Uniquely You! Every time.</span>
-                </div>
-            </a>
-            <div class="flex items-center gap-3">
-                <select id="currency-selector" class="bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold rounded-xl px-2.5 py-2">
-                    <option value="JMD" selected>JMD (J$)</option>
-                    <option value="USD">USD ($)</option>
-                </select>
-                <button id="cart-drawer-toggle" class="relative bg-rose-600 hover:bg-rose-700 text-white p-3 rounded-2xl flex items-center gap-2 font-semibold text-sm">
-                    <i class="fa-solid fa-bag-shopping"></i> <span id="cart-count-badge">0</span>
-                </button>
-            </div>
-        </div>
-    </header>
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8" id="main-content">
-        <p class="text-center text-slate-500 py-20">Loading product...</p>
-    </main>
-    <footer class="bg-slate-900 text-slate-300 pt-12 pb-8">
-        <div class="max-w-7xl mx-auto px-4 text-center text-xs">
-            <p>Unique Claims JA • Mandeville, Manchester, Jamaica 🇯🇲</p>
-            <p class="mt-2">Orders & Support via WhatsApp: <a href="https://wa.me/18765813521" class="text-rose-400">+1 876-581-3521</a></p>
-            <p class="mt-4">&copy; 2026 Unique Claims JA</p>
-        </div>
-    </footer>
-    <div id="cart-drawer-overlay" class="fixed inset-0 bg-slate-900/60 z-50 opacity-0 pointer-events-none transition-opacity"></div>
-    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform flex flex-col">
-        <div class="p-5 border-b flex items-center justify-between">
-            <h3 class="font-bold text-lg">Your Cart</h3>
-            <button id="close-cart-drawer" class="text-2xl">&times;</button>
-        </div>
-        <div id="cart-drawer-items" class="flex-1 overflow-y-auto p-5"></div>
-        <div class="p-5 border-t">
-            <button id="checkout-drawer-btn" class="w-full bg-rose-600 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
-                <i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp
-            </button>
-        </div>
-    </aside>
-    <script>
-        const APP = { currency: 'JMD', exchangeRate: 157.5, cart: JSON.parse(localStorage.getItem('uc_cart') || '[]'), products: [], currentProduct: null };
-        function showToast(msg) { const c = document.getElementById('toast-container'); const t = document.createElement('div'); t.className = 'bg-rose-600 text-white text-xs py-3 px-4 rounded-2xl shadow-2xl toast-animate'; t.textContent = msg; c.appendChild(t); setTimeout(() => t.remove(), 3000); }
-        function formatPrice(jmd) { return APP.currency === 'USD' ? (jmd / APP.exchangeRate).toFixed(2) : jmd.toLocaleString(); }
-        function updateCurrencyPrefix() { const prefix = APP.currency === 'USD' ? '$' : 'J$'; document.querySelectorAll('.currency-prefix').forEach(el => el.textContent = prefix); }
-        async function load() {
-            const id = new URLSearchParams(location.search).get('id') || 'android-projector';
-            try {
-                const data = await (await fetch('products.json')).json();
-                APP.products = data.products || [];
-                const p = APP.products.find(x => x.id === id);
-                if (!p) { document.getElementById('main-content').innerHTML = '<p class="text-center py-20">Product not found.</p>'; return; }
-                APP.currentProduct = p;
-                document.title = p.name + ' | Unique Claims JA';
-                renderProduct(p);
-                updateCartBadge();
-            } catch (e) { document.getElementById('main-content').innerHTML = '<p class="text-center py-20 text-rose-600">Could not load. Refresh.</p>'; }
-        }
-        function renderProduct(p) {
-            const imgs = p.images && p.images.length ? p.images : ['https://via.placeholder.com/800x600?text=No+Image'];
-            const thumbs = imgs.map((src, i) => `<button class="thumbnail-btn ${i===0?'border-rose-600':'border-transparent'} border-2 bg-slate-50 rounded-2xl p-2 aspect-square" data-src="${src}"><img src="${src}" class="w-full h-full object-contain"></button>`).join('');
-            const faqs = (p.faqs||[]).map(f => `<div class="border rounded-2xl overflow-hidden"><button class="faq-toggle w-full text-left p-4 font-bold text-sm bg-slate-50 flex justify-between">${f.q} <i class="fa-solid fa-chevron-down"></i></button><div class="faq-content hidden p-4 text-xs text-slate-600">${f.a}</div></div>`).join('');
-            const related = (p.frequentlyBought||[]).map(rid => APP.products.find(x => x.id === rid)).filter(Boolean);
-            const relatedHtml = related.map(r => `<div class="flex items-center gap-4 p-3 bg-white rounded-2xl border"><img src="${(r.images||[])[0]||''}" class="w-14 h-14 object-contain rounded-xl bg-slate-50"><div class="flex-1"><div class="font-bold text-sm">${r.name}</div><div class="text-xs text-rose-600 font-bold"><span class="currency-prefix">J$</span>${formatPrice(r.price)}</div></div><button class="add-related bg-rose-100 text-rose-800 px-3 py-1.5 rounded-xl text-xs font-bold" data-id="${r.id}">Add</button></div>`).join('') || '<p class="text-xs text-slate-500">No add-ons set.</p>';
-            document.getElementById('main-content').innerHTML = `
-                <nav class="text-xs text-slate-500 mb-6"><a href="index.html" class="hover:text-rose-600">Home</a> / ${p.category||''} / <span class="text-slate-900">${p.name}</span></nav>
-                <section class="bg-white rounded-3xl border p-4 sm:p-8 shadow-xl mb-12">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                        <div class="lg:col-span-7">
-                            <div class="relative bg-slate-50 rounded-3xl p-6 min-h-[360px] flex items-center justify-center">
-                                <div class="absolute top-4 left-4 flex flex-col gap-2">
-                                    <span class="bg-amber-500 text-white text-xs font-black px-3 py-1 rounded-full">LOCAL STOCK</span>
-                                    ${p.stock ? `<span class="bg-rose-500 text-white text-xs font-black px-3 py-1 rounded-full">Only ${p.stock} left</span>` : ''}
-                                </div>
-                                <div class="zoom-container w-full max-h-[420px] flex items-center justify-center cursor-zoom-in"><img id="main-product-image" src="${imgs[0]}" class="zoom-image max-h-[380px] object-contain"></div>
-                            </div>
-                            <div class="grid grid-cols-4 sm:grid-cols-5 gap-3 mt-4">${thumbs}</div>
-                        </div>
-                        <div class="lg:col-span-5">
-                            <span class="text-xs font-extrabold tracking-widest text-rose-600 uppercase">Unique Claims JA</span>
-                            <h1 class="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 mt-1 mb-3">${p.name}</h1>
-                            <div class="flex items-center gap-2 mb-4 text-sm"><span class="text-amber-400">★★★★☆</span> <span class="font-bold">4.8</span> <span class="text-slate-400">• ${p.verifiedBuyers || '50+ verified buyers'}</span></div>
-                            <div class="bg-slate-50 rounded-2xl p-4 mb-6"><span class="font-display font-black text-3xl"><span class="currency-prefix">J$</span>${formatPrice(p.price)}</span>${p.originalPrice ? `<span class="text-lg text-slate-400 line-through ml-2"><span class="currency-prefix">J$</span>${formatPrice(p.originalPrice)}</span>` : ''}</div>
-                            <div class="mb-6 text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-2xl p-3"><strong>Stock:</strong> ${p.stock || 'Available'} in Mandeville</div>
-                            <div class="flex gap-3 mb-6"><button id="add-to-cart-btn" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-extrabold py-3.5 rounded-2xl">ADD TO CART</button><a id="buy-now-btn" href="#" class="bg-slate-900 text-white font-extrabold py-3.5 px-6 rounded-2xl flex items-center gap-2"><i class="fa-brands fa-whatsapp text-green-400"></i> Order</a></div>
-                        </div>
-                    </div>
-                </section>
-                <section class="bg-gradient-to-br from-white to-rose-50 rounded-3xl border border-rose-100 p-6 mb-12"><h2 class="font-display font-extrabold text-xl mb-4">Frequently Bought Together</h2><div class="space-y-3">${relatedHtml}</div></section>
-                <section class="bg-white rounded-3xl border p-6 mb-12">
-                    <div class="border-b mb-6 flex gap-6 text-sm font-bold"><button class="tab-btn active text-rose-600 border-b-2 border-rose-600 pb-3" data-tab="tab-specs">Specs</button><button class="tab-btn text-slate-500 pb-3" data-tab="tab-faq">FAQ</button><button class="tab-btn text-slate-500 pb-3" data-tab="tab-shipping">Shipping</button></div>
-                    <div id="tab-specs" class="tab-content"><p class="text-sm text-slate-600 mb-4">${p.description||''}</p><ul class="grid sm:grid-cols-2 gap-2 text-sm">${(p.features||[]).map(f=>`<li class="flex gap-2"><i class="fa-solid fa-check text-rose-600"></i> ${f}</li>`).join('')}</ul></div>
-                    <div id="tab-faq" class="tab-content hidden space-y-3">${faqs||'<p class="text-sm text-slate-500">No FAQs yet.</p>'}</div>
-                    <div id="tab-shipping" class="tab-content hidden text-sm text-slate-600"><p><strong>Location:</strong> Mandeville, Manchester, Jamaica</p><p class="mt-2"><strong>Pickup:</strong> Free in Mandeville. WhatsApp to arrange.</p><p class="mt-2"><strong>Islandwide:</strong> Knutsford Express $700.</p><p class="mt-2"><strong>Payment:</strong> NCB or cash on pickup. WhatsApp only.</p></div>
-                </section>`;
-            document.querySelectorAll('.thumbnail-btn').forEach(btn => btn.addEventListener('click', () => { document.getElementById('main-product-image').src = btn.dataset.src; document.querySelectorAll('.thumbnail-btn').forEach(b => b.classList.remove('border-rose-600')); btn.classList.add('border-rose-600'); }));
-            document.getElementById('add-to-cart-btn').addEventListener('click', () => addToCart(p, 1));
-            document.getElementById('buy-now-btn').addEventListener('click', e => { e.preventDefault(); window.open(`https://wa.me/18765813521?text=${encodeURIComponent('Hi Unique Claims JA! I want to order: ' + p.name)}`, '_blank'); });
-            document.querySelectorAll('.add-related').forEach(btn => btn.addEventListener('click', () => { const rp = APP.products.find(x => x.id === btn.dataset.id); if (rp) addToCart(rp, 1); }));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active','text-rose-600','border-b-2','border-rose-600')); document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden')); btn.classList.add('active','text-rose-600','border-b-2','border-rose-600'); document.getElementById(btn.dataset.tab).classList.remove('hidden'); }));
-            document.querySelectorAll('.faq-toggle').forEach(t => t.addEventListener('click', () => t.nextElementSibling.classList.toggle('hidden')));
-            updateCurrencyPrefix();
-        }
-        function addToCart(p, qty=1) { const existing = APP.cart.find(i => i.id === p.id); if (existing) existing.qty = (existing.qty||1)+qty; else APP.cart.push({id:p.id, name:p.name, price:p.price, image:(p.images||[])[0], qty}); localStorage.setItem('uc_cart', JSON.stringify(APP.cart)); updateCartBadge(); renderCartDrawer(); showToast('Added to cart!'); }
-        function updateCartBadge() { document.getElementById('cart-count-badge').textContent = APP.cart.reduce((s,i)=>s+(i.qty||1),0); }
-        function openCart() { document.getElementById('cart-drawer-overlay').classList.remove('opacity-0','pointer-events-none'); document.getElementById('cart-drawer').classList.remove('translate-x-full'); renderCartDrawer(); }
-        function closeCart() { document.getElementById('cart-drawer-overlay').classList.add('opacity-0','pointer-events-none'); document.getElementById('cart-drawer').classList.add('translate-x-full'); }
-        function renderCartDrawer() { const c = document.getElementById('cart-drawer-items'); if (!APP.cart.length) { c.innerHTML = '<p class="text-slate-400 text-center py-12">Cart empty</p>'; return; } let total=0; c.innerHTML = APP.cart.map((i,idx) => { total += (i.price||0)*(i.qty||1); return `<div class="flex gap-3 py-3 border-b"><img src="${i.image||''}" class="w-12 h-12 object-contain"><div class="flex-1"><div class="text-sm font-bold">${i.name}</div><div class="text-xs text-rose-600"><span class="currency-prefix">J$</span>${formatPrice(i.price)} × ${i.qty||1}</div></div><button class="remove-item text-slate-400" data-idx="${idx}">✕</button></div>`; }).join(''); updateCurrencyPrefix(); c.querySelectorAll('.remove-item').forEach(btn => btn.addEventListener('click', () => { APP.cart.splice(parseInt(btn.dataset.idx),1); localStorage.setItem('uc_cart', JSON.stringify(APP.cart)); updateCartBadge(); renderCartDrawer(); })); }
-        document.getElementById('cart-drawer-toggle').addEventListener('click', openCart);
-        document.getElementById('close-cart-drawer').addEventListener('click', closeCart);
-        document.getElementById('cart-drawer-overlay').addEventListener('click', closeCart);
-        document.getElementById('checkout-drawer-btn').addEventListener('click', () => { if (!APP.cart.length) return showToast('Cart empty'); const text = APP.cart.map(i => `${i.qty||1}x ${i.name}`).join(', '); window.open(`https://wa.me/18765813521?text=${encodeURIComponent('Hi Unique Claims JA! Order: ' + text)}`, '_blank'); });
-        document.getElementById('currency-selector').addEventListener('change', e => { APP.currency = e.target.value; if (APP.currentProduct) renderProduct(APP.currentProduct); renderCartDrawer(); showToast('Currency updated'); });
-        load();
-    </script>
+    <div>
+      <h1>${p.name}</h1>
+      <div class="price">$${p.price.toLocaleString()}</div>
+      <p class="desc">${p.description}</p>
+      <ul class="features">${(p.features||[]).map(f => `<li>✓ ${f}</li>`).join('')}</ul>
+      <button class="btn" onclick="addAndGo()">Add to Bundle</button>
+      <p style="margin-top:16px;color:var(--muted);">Adding this to a bundle helps reduce shipping costs when ordering multiple items.</p>
+    </div>
+  `;
+  window.currentProduct = p;
+}
+function addAndGo() {
+  let cart = JSON.parse(localStorage.getItem('uc_cart') || '[]');
+  const existing = cart.find(i => i.id === window.currentProduct.id);
+  if (existing) existing.qty++; else cart.push({...window.currentProduct, qty:1});
+  localStorage.setItem('uc_cart', JSON.stringify(cart));
+  location.href = 'index.html';
+}
+load();
+</script>
 </body>
 </html>
