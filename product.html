@@ -1,1 +1,266 @@
-<!-- FULL CONTENT WOULD BE HERE -->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product | Unique Claims JA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Montserrat', 'sans-serif'] } } } }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #0f172a; }
+        .glass-nav { background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); }
+        .zoom-container { overflow: hidden; }
+        .zoom-image { transition: transform 0.4s ease; }
+        .zoom-container:hover .zoom-image { transform: scale(1.5); }
+        @keyframes slideInUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .toast-animate { animation: slideInUp 0.3s ease-out forwards; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <div class="bg-gradient-to-r from-emerald-600 via-sky-600 to-indigo-600 text-white text-xs sm:text-sm font-semibold py-2 px-4 text-center">
+        <div class="max-w-7xl mx-auto">Local Stock in Mandeville • Knutsford Express Islandwide • WhatsApp Orders Welcome</div>
+    </div>
+
+    <header class="sticky top-0 z-30 glass-nav border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <a href="index.html" class="flex items-center gap-2">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-500 to-sky-600 flex items-center justify-center text-white font-black text-2xl">U</div>
+                <div>
+                    <span class="font-display font-black text-2xl text-slate-900">Unique<span class="text-emerald-600">Claims</span> JA</span>
+                    <span class="block text-[10px] font-extrabold tracking-widest text-slate-400 uppercase -mt-1">Uniquely You! Every time.</span>
+                </div>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/18765813521" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl font-semibold text-sm flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </a>
+                <button id="cart-drawer-toggle" class="relative bg-slate-900 text-white p-3 rounded-2xl flex items-center gap-2 font-semibold text-sm">
+                    <i class="fa-solid fa-bag-shopping"></i> <span id="cart-count-badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8" id="main-content">
+        <p class="text-center text-slate-500">Loading product...</p>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-300 pt-12 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs">
+            <p class="mb-2">Unique Claims JA • Mandeville, Manchester, Jamaica 🇯🇲</p>
+            <p>Orders & Support via WhatsApp: <a href="https://wa.me/18765813521" class="text-emerald-400">+1 876-581-3521</a></p>
+            <p class="mt-4">&copy; 2026 Unique Claims JA</p>
+        </div>
+    </footer>
+
+    <div id="cart-drawer-overlay" class="fixed inset-0 bg-slate-900/60 z-50 opacity-0 pointer-events-none transition-opacity"></div>
+    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform flex flex-col">
+        <div class="p-5 border-b flex items-center justify-between">
+            <h3 class="font-bold text-lg">Your Cart</h3>
+            <button id="close-cart-drawer" class="text-2xl">&times;</button>
+        </div>
+        <div id="cart-drawer-items" class="flex-1 overflow-y-auto p-5"></div>
+        <div class="p-5 border-t">
+            <button id="checkout-whatsapp" class="w-full bg-emerald-600 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp
+            </button>
+        </div>
+    </aside>
+
+    <script>
+        const APP = { cart: JSON.parse(localStorage.getItem('uc_cart') || '[]'), products: [], settings: {} };
+
+        function showToast(msg, type='info') {
+            const c = document.getElementById('toast-container');
+            const t = document.createElement('div');
+            t.className = `bg-emerald-600 text-white text-xs py-3 px-4 rounded-2xl shadow-2xl toast-animate`;
+            t.textContent = msg;
+            c.appendChild(t);
+            setTimeout(() => t.remove(), 3000);
+        }
+
+        async function load() {
+            const params = new URLSearchParams(location.search);
+            const id = params.get('id') || 'android-projector';
+            const res = await fetch('products.json');
+            const data = await res.json();
+            APP.settings = data.settings;
+            APP.products = data.products;
+            const p = APP.products.find(x => x.id === id);
+            if (!p) { document.getElementById('main-content').innerHTML = '<p class="text-center">Product not found.</p>'; return; }
+            document.title = p.name + ' | Unique Claims JA';
+            renderProduct(p);
+            updateCartBadge();
+        }
+
+        function renderProduct(p) {
+            const imgs = p.images && p.images.length ? p.images : ['https://via.placeholder.com/800x600?text=No+Image'];
+            const mainImg = imgs[0];
+            const thumbs = imgs.map((src, i) => `<button class="thumbnail border-2 ${i===0?'border-emerald-600':'border-transparent'} rounded-2xl p-1 bg-slate-50 aspect-square" data-src="${src}"><img src="${src}" class="w-full h-full object-contain"></button>`).join('');
+            const faqs = (p.faqs || []).map(f => `
+                <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                    <button class="faq-toggle w-full text-left p-4 font-bold text-sm bg-slate-50 hover:bg-slate-100 flex justify-between items-center">
+                        ${f.q} <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="faq-content hidden p-4 text-xs text-slate-600 bg-white">${f.a}</div>
+                </div>`).join('');
+            const related = (p.frequentlyBought || []).map(rid => APP.products.find(x => x.id === rid)).filter(Boolean);
+            const relatedHtml = related.length ? related.map(r => `
+                <div class="flex items-center gap-4 p-3 bg-white rounded-2xl border">
+                    <img src="${(r.images||[])[0]||''}" class="w-14 h-14 object-contain rounded-xl bg-slate-50">
+                    <div class="flex-1">
+                        <div class="font-bold text-sm">${r.name}</div>
+                        <div class="text-xs text-emerald-600 font-bold">J$${r.price.toLocaleString()}</div>
+                    </div>
+                    <button class="add-related bg-emerald-100 hover:bg-emerald-600 hover:text-white text-emerald-800 px-3 py-1.5 rounded-xl text-xs font-bold" data-id="${r.id}">Add</button>
+                </div>`).join('') : '<p class="text-xs text-slate-500">No frequent add-ons set yet.</p>';
+
+            document.getElementById('main-content').innerHTML = `
+                <nav class="text-xs text-slate-500 mb-6"><a href="index.html" class="hover:text-emerald-600">Home</a> / ${p.category} / <span class="text-slate-900">${p.name}</span></nav>
+                <section class="bg-white rounded-3xl border p-4 sm:p-8 shadow-xl mb-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        <div class="lg:col-span-7">
+                            <div class="relative bg-slate-50 rounded-3xl p-6 min-h-[360px] flex items-center justify-center overflow-hidden">
+                                <div class="absolute top-4 left-4 flex flex-col gap-2">
+                                    <span class="bg-amber-500 text-white text-xs font-black px-3 py-1 rounded-full">LOCAL STOCK</span>
+                                    ${p.stock ? `<span class="bg-rose-500 text-white text-xs font-black px-3 py-1 rounded-full">Only ${p.stock} left</span>` : ''}
+                                </div>
+                                <div class="zoom-container w-full max-h-[420px] flex items-center justify-center cursor-zoom-in">
+                                    <img id="main-product-image" src="${mainImg}" alt="${p.name}" class="zoom-image max-h-[380px] object-contain drop-shadow-2xl">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-4 sm:grid-cols-5 gap-3 mt-4" id="thumbs">${thumbs}</div>
+                        </div>
+                        <div class="lg:col-span-5">
+                            <span class="text-xs font-extrabold tracking-widest text-emerald-600 uppercase">Unique Claims JA</span>
+                            <h1 class="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 mt-1 mb-3">${p.name}</h1>
+                            <div class="flex items-center gap-2 mb-4 text-sm">
+                                <span class="text-amber-400"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></span>
+                                <span class="font-bold">4.8</span>
+                                <span class="text-slate-400">• ${p.verifiedBuyers || '50+ verified buyers locally & overseas'}</span>
+                            </div>
+                            <div class="bg-slate-50 rounded-2xl p-4 mb-6">
+                                <div class="flex items-baseline gap-3">
+                                    <span class="font-display font-black text-3xl">J$${p.price.toLocaleString()}</span>
+                                    ${p.originalPrice ? `<span class="text-lg text-slate-400 line-through">J$${p.originalPrice.toLocaleString()}</span>` : ''}
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">${APP.settings.deliveryNote || 'Local pickup or Knutsford Express'}</p>
+                            </div>
+                            <div class="mb-6 text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-2xl p-3">
+                                <strong>Stock:</strong> ${p.stock || 'Available'} in Mandeville
+                            </div>
+                            <div class="flex gap-3 mb-6">
+                                <button id="add-to-cart" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 rounded-2xl flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-cart-plus"></i> ADD TO CART
+                                </button>
+                                <a href="https://wa.me/18765813521?text=${encodeURIComponent('Hi Unique Claims JA! I want to order: ' + p.name)}" target="_blank" class="bg-slate-900 text-white font-extrabold py-3.5 px-6 rounded-2xl flex items-center gap-2">
+                                    <i class="fa-brands fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                            <div class="grid grid-cols-3 gap-2 text-center text-[11px]">
+                                <div class="p-2 bg-slate-50 rounded-xl"><i class="fa-solid fa-store text-emerald-600"></i><br>Mandeville Pickup</div>
+                                <div class="p-2 bg-slate-50 rounded-xl"><i class="fa-solid fa-truck text-sky-600"></i><br>Knutsford $700</div>
+                                <div class="p-2 bg-slate-50 rounded-xl"><i class="fa-brands fa-whatsapp text-green-600"></i><br>WhatsApp Support</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-gradient-to-br from-white to-emerald-50 rounded-3xl border border-emerald-100 p-6 mb-12">
+                    <h2 class="font-display font-extrabold text-xl mb-4">Frequently Bought Together</h2>
+                    <div class="space-y-3">${relatedHtml}</div>
+                </section>
+
+                <section class="bg-white rounded-3xl border p-6 mb-12">
+                    <div class="border-b mb-6 flex gap-6 text-sm font-bold">
+                        <button class="tab-btn active text-emerald-600 border-b-2 border-emerald-600 pb-3" data-tab="specs">Specs & Features</button>
+                        <button class="tab-btn text-slate-500 pb-3" data-tab="faq">FAQ</button>
+                        <button class="tab-btn text-slate-500 pb-3" data-tab="shipping">Shipping & Pickup</button>
+                    </div>
+                    <div id="tab-specs" class="tab-content">
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">${p.description}</p>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                            ${(p.features||[]).map(f => `<li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> ${f}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div id="tab-faq" class="tab-content hidden space-y-3">${faqs || '<p class="text-sm text-slate-500">FAQs coming soon for this product.</p>'}</div>
+                    <div id="tab-shipping" class="tab-content hidden text-sm text-slate-600">
+                        <p><strong>Location:</strong> Mandeville, Manchester, Jamaica</p>
+                        <p class="mt-2"><strong>Pickup:</strong> Free local pickup in Mandeville town center. Message us on WhatsApp to arrange.</p>
+                        <p class="mt-2"><strong>Islandwide:</strong> Knutsford Express — $700 paid to Knutsford on collection. Tracking sent via WhatsApp.</p>
+                        <p class="mt-2"><strong>Payment:</strong> NCB transfer or cash on pickup. All orders confirmed via WhatsApp.</p>
+                    </div>
+                </section>
+            `;
+
+            document.querySelectorAll('.thumbnail').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.getElementById('main-product-image').src = btn.dataset.src;
+                    document.querySelectorAll('.thumbnail').forEach(b => b.classList.remove('border-emerald-600'));
+                    btn.classList.add('border-emerald-600');
+                });
+            });
+            document.getElementById('add-to-cart').addEventListener('click', () => addToCart(p));
+            document.querySelectorAll('.add-related').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const rp = APP.products.find(x => x.id === btn.dataset.id);
+                    if (rp) addToCart(rp);
+                });
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'text-emerald-600', 'border-b-2', 'border-emerald-600'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+                    btn.classList.add('active', 'text-emerald-600', 'border-b-2', 'border-emerald-600');
+                    document.getElementById('tab-' + btn.dataset.tab).classList.remove('hidden');
+                });
+            });
+            document.querySelectorAll('.faq-toggle').forEach(t => {
+                t.addEventListener('click', () => t.nextElementSibling.classList.toggle('hidden'));
+            });
+        }
+
+        function addToCart(p) {
+            const existing = APP.cart.find(i => i.id === p.id);
+            if (existing) existing.qty = (existing.qty || 1) + 1;
+            else APP.cart.push({ id: p.id, name: p.name, price: p.price, image: (p.images||[])[0], qty: 1 });
+            localStorage.setItem('uc_cart', JSON.stringify(APP.cart));
+            updateCartBadge();
+            showToast('Added to cart!');
+        }
+
+        function updateCartBadge() {
+            const count = APP.cart.reduce((s, i) => s + (i.qty || 1), 0);
+            document.getElementById('cart-count-badge').textContent = count;
+        }
+
+        function openCart() {
+            document.getElementById('cart-drawer-overlay').classList.remove('opacity-0', 'pointer-events-none');
+            document.getElementById('cart-drawer').classList.remove('translate-x-full');
+            const items = APP.cart.map(i => `<div class="flex gap-3 mb-3"><img src="${i.image||''}" class="w-12 h-12 object-contain"><div><div class="text-sm font-bold">${i.name}</div><div class="text-xs">J$${i.price.toLocaleString()} × ${i.qty||1}</div></div></div>`).join('');
+            document.getElementById('cart-drawer-items').innerHTML = items || '<p class="text-slate-400">Cart empty</p>';
+        }
+        function closeCart() {
+            document.getElementById('cart-drawer-overlay').classList.add('opacity-0', 'pointer-events-none');
+            document.getElementById('cart-drawer').classList.add('translate-x-full');
+        }
+
+        document.getElementById('cart-drawer-toggle').addEventListener('click', openCart);
+        document.getElementById('close-cart-drawer').addEventListener('click', closeCart);
+        document.getElementById('cart-drawer-overlay').addEventListener('click', closeCart);
+        document.getElementById('checkout-whatsapp').addEventListener('click', () => {
+            if (!APP.cart.length) return showToast('Cart empty');
+            const text = APP.cart.map(i => `${i.qty||1}x ${i.name}`).join(', ');
+            window.open(`https://wa.me/18765813521?text=${encodeURIComponent('Hi Unique Claims JA! Order: ' + text)}`, '_blank');
+        });
+
+        load();
+    </script>
+</body>
+</html>
