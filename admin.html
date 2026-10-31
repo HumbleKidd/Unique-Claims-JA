@@ -1,1 +1,1402 @@
-PLACEHOLDER_WILL_BE_REPLACED
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Claims JA — Admin Control Hub</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            purple: '#8b5cf6',
+                            amber: '#f59e0b',
+                            emerald: '#10b981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .gradient-brand {
+            background: linear-gradient(135deg, #e11d48 0%, #8b5cf6 50%, #f59e0b 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #e11d48 0%, #8b5cf6 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .tab-active {
+            background-color: #ffffff;
+            color: #be123c;
+            box-shadow: 0 4px 12px -2px rgba(225, 29, 72, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+// PASTE YOUR FIREBASE CONFIG HERE
+const firebaseConfig = {
+  apiKey: "AIzaSyDSyjYqOBbX1R5W937C2YdKSBhUDlHaTLE",
+  authDomain: "unique-claims-store.firebaseapp.com",
+  databaseURL: "https://unique-claims-store-default-rtdb.firebaseio.com",
+  projectId: "unique-claims-store",
+  storageBucket: "unique-claims-store.firebasestorage.app",
+  messagingSenderId: "495786790691",
+  appId: "1:495786790691:web:eae60ba24d8834e25ec696",
+  measurementId: "G-QYRW22797Q"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+window.firebaseDB = db;
+window.firebaseRef = ref;
+window.firebaseSet = set;
+window.firebaseGet = get;
+window.firebaseOnValue = onValue;
+</script>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-rose-500 selection:text-white">
+
+    <!-- TOP CONTROL STATUS HEADER -->
+    <header class="sticky top-0 z-40 glass-header border-b border-slate-200/90 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- BRAND TITLE & LOGO -->
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl gradient-brand flex items-center justify-center text-white text-xl font-black shadow-md shadow-rose-500/20">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-black text-lg sm:text-xl text-slate-900 tracking-tight leading-none">Unique Claims JA</h1>
+                        <span class="bg-rose-100 text-rose-700 text-[10px] font-black uppercase px-2 py-0.5 rounded-full border border-rose-200 tracking-wide">Admin Hub</span>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium mt-0.5">Live Store Command Center</p>
+                </div>
+            </div>
+
+            <!-- QUICK HEADER ACTIONS -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="switchTab('export')" class="hidden sm:inline-flex items-center gap-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs px-3.5 py-2.5 rounded-xl shadow-md transition-all active:scale-95">
+                    <i class="fa-solid fa-code"></i>
+                    <span>Export Code Snippet</span>
+                </button>
+                <a href="https://uniqueclaimsja.store" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-3.5 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-1.5 active:scale-95">
+                    <i class="fa-solid fa-store text-amber-400"></i>
+                    <span>View Live Webstore</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN ADMIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full space-y-6">
+
+        <!-- DASHBOARD STATS CARDS -->
+        <section class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <!-- Total Active Products -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Active Products</span>
+                    <h2 class="text-2xl font-black text-slate-900 mt-0.5" id="statTotalProducts">12</h2>
+                    <span class="text-[11px] text-emerald-600 font-bold flex items-center gap-1 mt-1">
+                        <i class="fa-solid fa-check-circle"></i> Ready for Order
+                    </span>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+            </div>
+
+            <!-- Total Inventory Value -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Catalog Price Sum</span>
+                    <h2 class="text-2xl font-black text-rose-600 mt-0.5" id="statCatalogValue">$0</h2>
+                    <span class="text-[11px] text-slate-500 font-medium mt-1 block">Jamaican Dollars (JMD)</span>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-sack-dollar"></i>
+                </div>
+            </div>
+
+            <!-- Active Orders -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Tracked Orders</span>
+                    <h2 class="text-2xl font-black text-slate-900 mt-0.5" id="statTotalOrders">0</h2>
+                    <span class="text-[11px] text-purple-600 font-bold flex items-center gap-1 mt-1" id="statPendingOrders">
+                        <i class="fa-solid fa-clock"></i> 0 Pending
+                    </span>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+            </div>
+
+            <!-- Top Category -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Lead Category</span>
+                    <h2 class="text-lg font-black text-slate-900 mt-0.5 truncate max-w-[120px]" id="statTopCategory">TOOLS</h2>
+                    <span class="text-[11px] text-emerald-600 font-bold mt-1 block" id="statCategoriesCount">4 Unique Badges</span>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-tags"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- NAVIGATION TABS -->
+        <nav class="bg-slate-200/70 p-1.5 rounded-2xl flex items-center gap-1 overflow-x-auto custom-scrollbar text-xs font-bold text-slate-600">
+            <button onclick="switchTab('catalog')" id="tabBtn-catalog" class="tab-active px-4 py-3 rounded-xl transition-all flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-solid fa-cubes text-sm"></i>
+                <span>Product Catalog</span>
+                <span id="tabCountProducts" class="bg-rose-100 text-rose-700 font-black px-2 py-0.5 rounded-full text-[10px]">12</span>
+            </button>
+            <button onclick="switchTab('announcements')" id="tabBtn-announcements" class="px-4 py-3 rounded-xl hover:text-slate-900 transition-all flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-solid fa-bullhorn text-sm text-amber-500"></i>
+                <span>Announcements</span>
+            </button>
+            <button onclick="switchTab('orders')" id="tabBtn-orders" class="px-4 py-3 rounded-xl hover:text-slate-900 transition-all flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-solid fa-receipt text-sm text-purple-500"></i>
+                <span>Orders & Knutsford Tracker</span>
+                <span id="tabCountOrders" class="bg-purple-100 text-purple-700 font-black px-2 py-0.5 rounded-full text-[10px]">0</span>
+            </button>
+            <button onclick="switchTab('payment')" id="tabBtn-payment" class="px-4 py-3 rounded-xl hover:text-slate-900 transition-all flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-solid fa-building-columns text-sm text-emerald-500"></i>
+                <span>Bank & Payment Config</span>
+            </button>
+            <button onclick="switchTab('partners')" id="tabBtn-partners" class="px-4 py-3 rounded-xl hover:text-slate-900 transition-all flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-solid fa-handshake text-sm text-blue-500"></i>
+                <span>Sponsored Ads & Partners</span>
+            </button>
+            <button onclick="switchTab('export')" id="tabBtn-export" class="px-4 py-3 rounded-xl hover:text-slate-900 transition-all flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-solid fa-file-export text-sm text-rose-500"></i>
+                <span>Site Export & Sync Engine</span>
+            </button>
+        </nav>
+
+        <!-- TAB 1: PRODUCT CATALOG MANAGEMENT -->
+        <section id="tab-catalog" class="space-y-4">
+            <!-- Catalog Toolbar -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                <div class="relative flex-1">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="catalogSearchInput" onkeyup="filterCatalog()" placeholder="Search products by title, badge, or keyword..." class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs focus:outline-none focus:ring-2 focus:ring-rose-500 font-medium">
+                </div>
+                <div class="flex items-center gap-2">
+                    <select id="catalogBadgeFilter" onchange="filterCatalog()" class="px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold text-slate-700 outline-none focus:ring-2 focus:ring-rose-500">
+                        <option value="ALL">All Badges</option>
+                        <option value="#1 BEST SELLER">#1 Best Seller</option>
+                        <option value="TOOLS">Tools</option>
+                        <option value="GAMING">Gaming</option>
+                        <option value="AUTO">Auto</option>
+                        <option value="SECURITY">Security</option>
+                    </select>
+                    <button onclick="openProductFormModal()" class="bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2 shrink-0 active:scale-95">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add Product</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Products Grid Table/Cards -->
+            <div id="catalogContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <!-- Rendered dynamically via JavaScript -->
+            </div>
+        </section>
+
+        <!-- TAB 2: ANNOUNCEMENT BAR MANAGER -->
+        <section id="tab-announcements" class="hidden space-y-4">
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                    <div>
+                        <h3 class="font-extrabold text-base text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-bullhorn text-amber-500"></i> Top Banner Marquee Messages
+                        </h3>
+                        <p class="text-xs text-slate-500">Manage the rotating messages shown at the top of your webstore.</p>
+                    </div>
+                    <button onclick="addAnnouncementPrompt()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2 self-start sm:self-auto">
+                        <i class="fa-solid fa-plus"></i> New Announcement
+                    </button>
+                </div>
+
+                <div id="announcementsList" class="space-y-3">
+                    <!-- Rendered dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: LIVE ORDERS & KNUTSFORD DISPATCH TRACKER -->
+        <section id="tab-orders" class="hidden space-y-4">
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                    <div>
+                        <h3 class="font-extrabold text-base text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-truck-fast text-purple-600"></i> Orders & Knutsford Dispatch Pipeline
+                        </h3>
+                        <p class="text-xs text-slate-500">Log customer orders, assign Knutsford tracking codes, and notify customers directly on WhatsApp.</p>
+                    </div>
+                    <button onclick="openNewOrderModal()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2 self-start sm:self-auto">
+                        <i class="fa-solid fa-circle-plus"></i> Log Manual Order
+                    </button>
+                </div>
+
+                <!-- Orders Filter Tabs -->
+                <div class="flex items-center gap-2 border-b border-slate-100 pb-2 text-xs font-bold text-slate-500 overflow-x-auto">
+                    <button onclick="filterOrdersByStatus('ALL')" id="orderFilter-ALL" class="px-3 py-1.5 rounded-lg bg-slate-900 text-white">All Orders</button>
+                    <button onclick="filterOrdersByStatus('Pending')" id="orderFilter-Pending" class="px-3 py-1.5 rounded-lg hover:bg-slate-100">Pending</button>
+                    <button onclick="filterOrdersByStatus('Confirmed')" id="orderFilter-Confirmed" class="px-3 py-1.5 rounded-lg hover:bg-slate-100">Confirmed</button>
+                    <button onclick="filterOrdersByStatus('Knutsford Dispatch')" id="orderFilter-Knutsford Dispatch" class="px-3 py-1.5 rounded-lg hover:bg-slate-100">Knutsford Dispatched</button>
+                    <button onclick="filterOrdersByStatus('Completed')" id="orderFilter-Completed" class="px-3 py-1.5 rounded-lg hover:bg-slate-100">Completed</button>
+                </div>
+
+                <!-- Orders List -->
+                <div id="ordersList" class="space-y-3">
+                    <!-- Rendered dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: BANK ACCOUNT & PAYMENT CONFIGURATOR -->
+        <section id="tab-payment" class="hidden space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- Bank Account Info Form -->
+                <div class="md:col-span-7 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-4">
+                    <div class="border-b border-slate-100 pb-3">
+                        <h3 class="font-extrabold text-base text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-building-columns text-emerald-600"></i> NCB Store Bank Transfer Account
+                        </h3>
+                        <p class="text-xs text-slate-500">Configure bank details shown to customers during checkout.</p>
+                    </div>
+
+                    <form id="bankConfigForm" onsubmit="saveBankConfig(event)" class="space-y-3 text-xs">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Bank Name</label>
+                            <input type="text" id="bankName" required class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none font-medium">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Account Holder Name</label>
+                            <input type="text" id="bankHolder" required class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none font-medium">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Account Number</label>
+                            <input type="text" id="bankAccountNum" required class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none font-mono font-bold text-slate-900">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1">Account Type</label>
+                                <input type="text" id="bankType" required class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none font-medium">
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1">Branch</label>
+                                <input type="text" id="bankBranch" required class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none font-medium">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Special Payment Note / Screenshot Warning</label>
+                            <textarea id="bankNote" rows="2" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none font-medium resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs shadow-md transition-all">
+                            <i class="fa-solid fa-floppy-disk"></i> Save Bank Account Info
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Active Payment Methods Toggles -->
+                <div class="md:col-span-5 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-4">
+                    <div class="border-b border-slate-100 pb-3">
+                        <h3 class="font-extrabold text-base text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-wallet text-rose-600"></i> Supported Checkout Payment Options
+                        </h3>
+                        <p class="text-xs text-slate-500">Toggle options offered in store cart step 2.</p>
+                    </div>
+
+                    <div id="paymentTogglesList" class="space-y-2.5 text-xs">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: SPONSORED ADS & PARTNERS MANAGER -->
+        <section id="tab-partners" class="hidden space-y-4">
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                    <div>
+                        <h3 class="font-extrabold text-base text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-handshake text-blue-600"></i> Sponsored Partners & Advertisements
+                        </h3>
+                        <p class="text-xs text-slate-500">Manage partner cards featured in your website's sponsored section.</p>
+                    </div>
+                    <button onclick="addPartnerPrompt()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2 self-start sm:self-auto">
+                        <i class="fa-solid fa-plus"></i> Add Partner Card
+                    </button>
+                </div>
+
+                <div id="partnersGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Rendered dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: SITE EXPORT & SYNC ENGINE -->
+        <section id="tab-export" class="hidden space-y-4">
+            <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <span class="text-xs font-bold uppercase tracking-wider text-rose-600">Sync & Webstore Integration</span>
+                    <h3 class="text-xl font-black text-slate-900 mt-1">Export Site Script or Backup</h3>
+                    <p class="text-xs text-slate-500 mt-1">Easily export your modified catalog and announcements as executable JS snippet or JSON backup.</p>
+                </div>
+
+                <!-- Export Options -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Script Generator -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
+                        <div class="flex items-center gap-2 text-slate-900 font-extrabold text-sm">
+                            <i class="fa-solid fa-code text-rose-600"></i>
+                            <span>Webstore JS Products Override</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Copy this complete products array snippet to update your <code class="bg-slate-200 px-1 py-0.5 rounded font-mono text-rose-700">const products = [...]</code> variable in your webstore code.
+                        </p>
+                        <button onclick="generateScriptSnippet()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-copy"></i> Copy Javascript Array Snippet
+                        </button>
+                    </div>
+
+                    <!-- JSON Backup/Restore -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
+                        <div class="flex items-center gap-2 text-slate-900 font-extrabold text-sm">
+                            <i class="fa-solid fa-database text-purple-600"></i>
+                            <span>JSON Full Backup & Restore</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Backup all catalog items, orders, announcements, and bank config in one portable JSON file.
+                        </p>
+                        <div class="flex items-center gap-2">
+                            <button onclick="exportFullJSON()" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-download"></i> Download JSON
+                            </button>
+                            <label class="flex-1 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 cursor-pointer text-center">
+                                <i class="fa-solid fa-upload"></i> Restore JSON
+                                <input type="file" id="importJsonInput" accept=".json" onchange="importFullJSON(event)" class="hidden">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Preview Output -->
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between">
+                        <label class="text-xs font-bold text-slate-700">Output Preview Code Snippet:</label>
+                        <button onclick="copySnippetText()" class="text-xs font-bold text-rose-600 hover:underline flex items-center gap-1">
+                            <i class="fa-regular fa-copy"></i> Copy to Clipboard
+                        </button>
+                    </div>
+                    <textarea id="exportSnippetTextarea" readonly rows="10" class="w-full p-4 bg-slate-900 text-emerald-400 font-mono text-xs rounded-2xl border border-slate-800 outline-none custom-scrollbar leading-relaxed"></textarea>
+                </div>
+
+                <!-- Factory Reset Button -->
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <div>
+                        <h4 class="font-bold text-xs text-rose-700">Restore Factory Default Data</h4>
+                        <p class="text-[11px] text-slate-500">Reset catalog and settings back to original 12 Unique Claims products.</p>
+                    </div>
+                    <button onclick="factoryResetStore()" class="bg-rose-100 hover:bg-rose-200 text-rose-700 font-extrabold text-xs px-4 py-2 rounded-xl transition-all border border-rose-200">
+                        <i class="fa-solid fa-rotate-left"></i> Factory Reset
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+                <span class="font-extrabold text-slate-900">Unique Claims JA</span>
+                <span>•</span>
+                <span class="text-rose-600 font-bold">Uniquely You! Every time.</span>
+            </div>
+            <div>
+                Mandeville, Manchester Parish, Jamaica 🇯🇲 — Admin Engine
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL 1: ADD / EDIT PRODUCT -->
+    <div id="productModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl relative border border-slate-100">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-9 w-9 rounded-full flex items-center justify-center font-bold transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="p-6 sm:p-8 space-y-5">
+                <div class="border-b border-slate-100 pb-3">
+                    <h3 id="productModalTitle" class="text-xl font-black text-slate-900">Add New Product</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">Fill details below to update catalog instantly.</p>
+                </div>
+
+                <form id="productForm" onsubmit="saveProduct(event)" class="space-y-4 text-xs">
+                    <input type="hidden" id="prodEditId" value="">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+                        <div class="sm:col-span-8">
+                            <label class="block font-bold text-slate-700 mb-1">Product Title *</label>
+                            <input type="text" id="prodTitle" required placeholder="e.g. Android Smart Projector Bundle" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none font-medium">
+                        </div>
+                        <div class="sm:col-span-4">
+                            <label class="block font-bold text-slate-700 mb-1">Price (JMD $) *</label>
+                            <input type="number" id="prodPrice" required min="0" placeholder="19500" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none font-bold text-rose-600">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Badge / Tag</label>
+                            <input type="text" id="prodBadge" placeholder="e.g. #1 BEST SELLER or TOOLS" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none font-medium">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Search Keywords</label>
+                            <input type="text" id="prodKeywords" placeholder="e.g. projector hd movies hdmi" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none font-medium">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Image URLs (One URL per line) *</label>
+                        <textarea id="prodImages" required rows="4" placeholder="https://raw.githubusercontent.com/.../img1.jpg&#10;https://raw.githubusercontent.com/.../img2.jpg" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none font-mono text-[11px] resize-none custom-scrollbar"></textarea>
+                        <p class="text-[10px] text-slate-400 mt-1">First URL will be used as the primary thumbnail in catalog cards.</p>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Product Description *</label>
+                        <textarea id="prodDescription" required rows="5" placeholder="Detailed product specifications and highlights..." class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none font-medium resize-none custom-scrollbar leading-relaxed"></textarea>
+                    </div>
+
+                    <div class="pt-2 flex items-center justify-end gap-2 border-t border-slate-100">
+                        <button type="button" onclick="closeProductModal()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2.5 rounded-xl">Cancel</button>
+                        <button type="submit" class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-md transition-all">Save Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: LOG NEW MANUAL ORDER -->
+    <div id="newOrderModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl relative border border-slate-100">
+            <button onclick="closeNewOrderModal()" class="absolute top-4 right-4 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-9 w-9 rounded-full flex items-center justify-center font-bold transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="p-6 sm:p-8 space-y-4 text-xs">
+                <div class="border-b border-slate-100 pb-3">
+                    <h3 class="text-xl font-black text-slate-900">Log Customer Order</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">Track pickup, Knutsford shipping, or payment status.</p>
+                </div>
+
+                <form id="newOrderForm" onsubmit="saveNewOrder(event)" class="space-y-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Customer Name *</label>
+                        <input type="text" id="orderCustName" required placeholder="e.g. Shanice Campbell" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none font-medium">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">WhatsApp Phone *</label>
+                        <input type="tel" id="orderCustPhone" required placeholder="e.g. 18765550192" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none font-medium">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Delivery Option</label>
+                            <select id="orderDelivery" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none font-medium bg-white">
+                                <option value="Direct Pick-up in Mandeville">Mandeville Pickup</option>
+                                <option value="Knutsford Express Delivery">Knutsford Express</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Total Due (JMD $)</label>
+                            <input type="number" id="orderTotal" required min="0" placeholder="19500" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none font-bold text-rose-600">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Order Items / Summary *</label>
+                        <textarea id="orderSummary" required rows="3" placeholder="e.g. 1x Android Smart Projector Bundle" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none font-medium resize-none"></textarea>
+                    </div>
+                    <div class="pt-2 flex justify-end gap-2 border-t border-slate-100">
+                        <button type="button" onclick="closeNewOrderModal()" class="bg-slate-100 text-slate-700 font-bold px-4 py-2.5 rounded-xl">Cancel</button>
+                        <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-5 py-2.5 rounded-xl shadow-md">Create Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: QUICK PRODUCT PREVIEW -->
+    <div id="previewModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl relative border border-slate-100 p-6 space-y-4">
+            <button onclick="closePreviewModal()" class="absolute top-4 right-4 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-9 w-9 rounded-full flex items-center justify-center font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="previewContent"></div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none border border-slate-700 text-xs font-semibold max-w-xs sm:max-w-sm">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toastMessage">Action completed successfully!</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC & LOCALSTORAGE ENGINE -->
+    <script>
+        // ORIGINAL 12 PRODUCTS DATA
+        const initialProducts = [
+            {
+                id: 0,
+                title: "5ft Flexible Drain Snake Cleaner",
+                price: 800,
+                badge: "TOOLS",
+                description: `🔥 Clear Stubborn Clogs in Minutes!\n\nThe ultimate 5ft flexible drain snake for kitchen sinks, bathroom basins, showers and tubs.\n\n✅ Strong yet super flexible cable reaches deep into pipes\n✅ Removes hair, grease, food waste and blockages fast\n✅ Eliminates bad odors and slow drains\n✅ Perfect for plumbers, landlords and DIY homeowners\n\nNo more expensive plumber calls for simple clogs. Keep one at home!`,
+                searchKeywords: "drain cleaner snake 5ft plumber sink clog blocker flexible tool jamaica bathroom kitchen",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/789708363_2150562459676950_3961017403451417570_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/789708385_1086754953752171_2275017065013072365_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/790024986_951735187958091_2253425911453194379_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/790059776_4883047658583005_9048847866184438394_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/790114418_1055455680535275_7310149377224095073_n.jpg"]
+            },
+            {
+                id: 1,
+                title: "9ft Extra Long Drain Snake Cleaner",
+                price: 3500,
+                badge: "TOOLS",
+                description: `💪 Reach Deeper Blockages!\n\nLonger 9ft drain snake for tougher, deeper clogs in sinks, drains and pipes.\n\n✅ Extra length for hard-to-reach areas\n✅ Strong flexible design\n✅ Professional grade for serious plumbers\n\nWhen 5ft isn't enough, this gets the job done.`,
+                searchKeywords: "9ft drain snake long cleaner plumber deep clog tool",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790003717_2520610905032057_7151119086195477674_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790059533_2904958866504194_4137135544160988951_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790059775_1775679503431528_7350739767641216247_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790969922_1044656278325629_154676372423824412_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/791045353_1065550815860581_6985399102464662923_n.jpg"]
+            },
+            {
+                id: 2,
+                title: "Android Smart Projector Bundle",
+                price: 19500,
+                badge: "#1 BEST SELLER",
+                description: `🍿 FULLY LOADED SMART PROJECTOR BUNDLE!\n\nTurn any wall into a 130-inch cinema experience.\n\n✨ Pre-loaded with latest movies, TV shows, anime, sports & live channels — all FREE\n✨ Plug & Play: Connect to Wi-Fi and start watching instantly\n✨ Dual-band Wi-Fi + Bluetooth\n✨ Includes upgraded backlit mini keyboard remote\n✨ Lifetime support from Unique Claims JA\n\nWhy struggle with TV damage, cable bills or limited Netflix when you get unlimited entertainment here? Just bring it home and enjoy!`,
+                searchKeywords: "android smart projector bundle hy300 fully loaded free movies tv shows jamaica best seller cinema",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825268953_950844711407562_5164107063003195279_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269035_1842693450054383_2803710887866853991_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269045_2527327671071171_9170582407973424468_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269135_1098951375843016_2487635300355767178_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825270350_1579039539864030_5939598115892029473_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825270520_1102103145844390_3944394994432166697_n.jpg"]
+            },
+            {
+                id: 3,
+                title: "Bluetooth Gamepad Controller",
+                price: 4500,
+                badge: "GAMING",
+                description: `🎮 Level Up Your Gaming!\n\nComfortable Bluetooth gamepad with responsive buttons, dual analog sticks and vibration.\n\n✅ Works with Android phones, tablets, TVs and PC\n✅ Ergonomic design for long sessions\n✅ Perfect companion for your projector setup\n\nGame like a pro on the big screen!`,
+                searchKeywords: "bluetooth gamepad controller android gaming remote joypad",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817137921_1834989191190004_929457359546861269_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817179283_1492931986190790_1701374640396694443_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817275216_1089293540622951_5359836854254260227_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817745675_4634871976771831_7220970106583815880_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/819126747_1066175702683960_7553879230658189506_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/820001207_28702103396088520_594468052604712590_n.jpg"]
+            },
+            {
+                id: 4,
+                title: "Car Seat Face Cover",
+                price: 1800,
+                badge: "AUTO",
+                description: `🚗 Protect Your Car Seats!\n\nDurable face cover / seat protector for cars, SUVs and trucks.\n\n✅ Easy to install\n✅ Keeps seats clean from dirt, spills and wear\n✅ Universal fit\n\nPerfect for daily drivers and families.`,
+                searchKeywords: "car seat cover face protector auto interior",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291112_973674079103996_5881654850923170503_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291134_2350602045763294_4071298666574768337_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291166_1415225213896573_8970585390054832793_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291322_1092405760318372_5506443296540245511_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291443_1840933823726953_7709703499242117086_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291468_4527437867520363_3191963792401912722_n.jpg"]
+            },
+            {
+                id: 5,
+                title: "Digital Tire Pressure Tester",
+                price: 1200,
+                badge: "AUTO",
+                description: `🛞 Check Your PSI Accurately!\n\nDigital tire pressure gauge for cars, bikes, trucks and any vehicle with valves.\n\n✅ Precise digital reading\n✅ Prevents under/over inflation\n✅ Saves fuel and extends tire life\n✅ Check cold pressure for best accuracy\n\nDrive smoother and safer every day!`,
+                searchKeywords: "digital tire pressure tester psi gauge auto car bike",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/806310644_4381990502054687_4974509678397873830_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/806310757_2984055608605185_5603980367719056012_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/807851297_1021362497587790_264491580629483221_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/809177776_2661288877625262_4476805697712255333_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/809206206_1050396904535128_7009559183262430374_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/814834196_1558844682152469_7196133628263876967_n.jpg"]
+            },
+            {
+                id: 6,
+                title: "Magnetic Pickup Pen Tool",
+                price: 500,
+                badge: "TOOLS",
+                description: `🧲 Never Lose Small Parts Again!\n\nTelescopic magnetic pickup pen for screws, nuts, bolts, nails and metal bits.\n\n✅ Extends to reach tight spots\n✅ Strong magnet\n✅ Pocket-sized and handy\n\nEssential for mechanics, electricians and DIY.`,
+                searchKeywords: "magnetic pickup pen tool telescopic magnet screws nuts",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/761662708_915936818226507_5409632850732524466_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/761729763_915936798226509_791492801025035830_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/761819106_915936784893177_1817598971533017809_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/762624330_915936801559842_5053745623046113829_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/762950124_915936814893174_3659173451065673327_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/763694695_915936808226508_2213612772581765475_n.jpg"]
+            },
+            {
+                id: 7,
+                title: "Basin Sink Wrench",
+                price: 900,
+                badge: "TOOLS",
+                description: `🔧 Plumbers NEED THIS!\n\nSpecialized basin/sink wrench for installing kitchen sinks and bathroom basins in tight spaces.\n\n✅ Reaches under fittings easily\n✅ No more sweating in cramped spots\n✅ Makes sink installs fast and frustration-free\n\nA must-have for every plumber and handyman.`,
+                searchKeywords: "basin sink wrench plumber tool kitchen bathroom install",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/814920983_1066757059664737_464225709305217584_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/814920994_1116099871222951_7564044150627585050_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/814921127_2165526574370406_659359511255209194_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/815155593_1404039168519437_7314705440782533117_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/816206407_1803374284149470_2549249987489145858_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/819134466_2131025291140224_1632456403708233291_n.jpg"]
+            },
+            {
+                id: 8,
+                title: "Quick Install HD Portable Camera",
+                price: 7500,
+                badge: "SECURITY",
+                description: `📹 Crystal Clear 2K HD Camera!\n\nBrand new in box, easy setup portable camera with dedicated app.\n\n✅ 2K high definition video\n✅ Quick install — mount or move anywhere\n✅ Perfect for home, office, hotel or shop\n✅ Fast connection and clear night vision\n\nMonitor what matters with peace of mind.`,
+                searchKeywords: "hd portable camera 2k security wifi home surveillance jamaica",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/804441532_1646268670190269_3997970850246026112_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/806310242_1061326853193516_7923750791390541375_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/806310387_1087356310934679_5870917788045222993_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/809081140_1088508680225734_8920320738362941054_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/810782072_1806482890373384_7222796637870283017_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/814959779_1619270123262433_676428541788038875_n.jpg"]
+            },
+            {
+                id: 9,
+                title: "Tap Die Set",
+                price: 3200,
+                badge: "TOOLS",
+                description: `⚙️ Complete Tap & Die Threading Set\n\nProfessional set for creating or repairing threads on bolts, pipes and metal parts.\n\n✅ Multiple sizes included\n✅ Durable high-quality steel\n✅ Essential for mechanics and fabricators\n\nFix stripped threads like a pro.`,
+                searchKeywords: "tap die set threading tool mechanic workshop",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/814844830_1077103151964377_4971695888230270271_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/818509618_1441176071443865_6339554377313642197_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/818914282_1084736274280367_6975430436252581023_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/818914290_29109576921968794_6439075062837496558_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/819039138_4413674878777811_10910908641104919_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/819273465_1563124655567844_4392416067484382216_n.jpg"]
+            },
+            {
+                id: 10,
+                title: "Tight Spot 90° Drill Adapter",
+                price: 500,
+                badge: "TOOLS",
+                description: `🔄 Reach Where Your Drill Can't!\n\n90-degree angle bit driver adapter for tight spots.\n\n✅ Perfect for corners, under sinks, inside cabinets\n✅ Works with any drill or impact driver\n✅ Saves time and frustration\n\nThe tool that makes impossible jobs possible.`,
+                searchKeywords: "tight spot drill adapter 90 degree angle bit driver",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/806310568_1585419782629925_480852854792977751_n%20%281%29.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/806310568_1585419782629925_480852854792977751_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/808025040_1949674245952905_7042474106631233656_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/808165950_1074407385189029_6712764320289274261_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/821155063_1671687707640440_6437233385352958799_n.jpg"]
+            },
+            {
+                id: 11,
+                title: "Tight-Spot Flat Ratchet Screwdriver",
+                price: 1100,
+                badge: "TOOLS",
+                description: `🪛 Flat Ratchet for Impossible Spots!\n\nCompact flat ratchet screwdriver that fits where regular tools can't.\n\n✅ Low profile design for tight clearances\n✅ Ratcheting action for one-handed use\n✅ Great for cars, appliances, electronics and DIY\n\nThis little tool has saved countless jobs!`,
+                searchKeywords: "tight spot flat ratchet screwdriver compact tool",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/756518109_1107224121627944_2467687651842736993_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/756547078_1968435260535562_7884208517218102609_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/756963274_922378090879923_5047751336193148978_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/758056770_805550119250448_3252799618856806698_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/758068695_1045762618386796_5179854996411865887_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/758182442_2454313528416082_2428189012383195161_n.jpg"]
+            }
+        ];
+
+        const initialAnnouncements = [
+            { id: 1, text: '<i class="fa-solid fa-fire text-amber-300"></i> BEST SELLER: Android Smart Projector Bundle Ready!', active: true },
+            { id: 2, text: '⚡ Local Pickups in Mandeville | Knutsford Express Delivery Islandwide 🇯🇲', active: true },
+            { id: 3, text: '🛒 Order now — Knutsford & Mandeville pickup available!', active: true }
+        ];
+
+        const initialBankConfig = {
+            bankName: "National Commercial Bank (NCB)",
+            bankHolder: "Kyle Richards",
+            bankAccountNum: "504913848",
+            bankType: "Savings",
+            bankBranch: "Mandeville Perth Road",
+            bankNote: "Note: After payment, please take a screenshot to show so I know a payment have been made, so I can confirm."
+        };
+
+        const initialPartners = [
+            { id: 1, title: "BWHS.online", icon: "fa-film", color: "from-rose-500 to-purple-600", desc: "Binge Watch Humble Streams — movies, series, 24/7 live channels, trailers.", url: "https://bwhs.online" },
+            { id: 2, title: "BWReels.online", icon: "fa-clapperboard", color: "from-purple-500 to-indigo-600", desc: "TikTok-style vertical reels of movies and shows. Scroll & watch.", url: "https://bwreels.online" }
+        ];
+
+        // LOCAL STORAGE STATE
+        let products = initialProducts;
+        let announcements = initialAnnouncements;
+        let orders = [];
+        let bankConfig = initialBankConfig;
+        let partners = initialPartners;
+
+        let activeTab = 'catalog';
+        let currentOrderFilter = 'ALL';
+
+        function formatMoney(amount) {
+            return '$' + Number(amount).toLocaleString();
+        }
+
+        async function saveAllState() {
+            try {
+                const db = window.firebaseDB;
+                const set = window.firebaseSet;
+                const ref = window.firebaseRef;
+                await set(ref(db, 'uniqueClaims/products'), products);
+                await set(ref(db, 'uniqueClaims/announcements'), announcements);
+                await set(ref(db, 'uniqueClaims/orders'), orders);
+                await set(ref(db, 'uniqueClaims/bankConfig'), bankConfig);
+                await set(ref(db, 'uniqueClaims/partners'), partners);
+                updateDashboardStats();
+                showToast("Saved to Firebase");
+            } catch (e) {
+                console.error(e);
+                showToast("Firebase save failed — check config");
+            }
+        }
+
+        async function loadFromFirebase() {
+            try {
+                const db = window.firebaseDB;
+                const get = window.firebaseGet;
+                const ref = window.firebaseRef;
+                const snap = await get(ref(db, 'uniqueClaims'));
+                if (snap.exists()) {
+                    const data = snap.val();
+                    if (data.products) products = data.products;
+                    if (data.announcements) announcements = data.announcements;
+                    if (data.orders) orders = data.orders;
+                    if (data.bankConfig) bankConfig = data.bankConfig;
+                    if (data.partners) partners = data.partners;
+                } else {
+                    // First time — seed the database
+                    await saveAllState();
+                }
+            } catch (e) {
+                console.error("Firebase load failed", e);
+                showToast("Using local defaults — check Firebase config");
+            }
+            renderCatalog();
+            renderAnnouncements();
+            renderOrders();
+            populateBankForm();
+            renderPaymentToggles();
+            renderPartners();
+            generateScriptSnippet();
+            updateDashboardStats();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFromFirebase();
+        });
+
+        // TAB SWITCHING
+        function switchTab(tabId) {
+            activeTab = tabId;
+            ['catalog', 'announcements', 'orders', 'payment', 'partners', 'export'].forEach(t => {
+                const sec = document.getElementById(`tab-${t}`);
+                const btn = document.getElementById(`tabBtn-${t}`);
+                if (t === tabId) {
+                    sec.classList.remove('hidden');
+                    btn.className = "tab-active px-4 py-3 rounded-xl transition-all flex items-center gap-2 whitespace-nowrap";
+                } else {
+                    sec.classList.add('hidden');
+                    btn.className = "px-4 py-3 rounded-xl hover:text-slate-900 transition-all flex items-center gap-2 whitespace-nowrap text-slate-600";
+                }
+            });
+        }
+
+        // STATS
+        function updateDashboardStats() {
+            document.getElementById('statTotalProducts').textContent = products.length;
+            document.getElementById('tabCountProducts').textContent = products.length;
+
+            const totalVal = products.reduce((acc, p) => acc + (p.price || 0), 0);
+            document.getElementById('statCatalogValue').textContent = formatMoney(totalVal);
+
+            document.getElementById('statTotalOrders').textContent = orders.length;
+            document.getElementById('tabCountOrders').textContent = orders.length;
+
+            const pending = orders.filter(o => o.status === 'Pending').length;
+            document.getElementById('statPendingOrders').innerHTML = `<i class="fa-solid fa-clock"></i> ${pending} Pending`;
+
+            // Top Category calculation
+            const badges = {};
+            products.forEach(p => {
+                const b = p.badge || 'GENERAL';
+                badges[b] = (badges[b] || 0) + 1;
+            });
+            let topB = 'TOOLS';
+            let maxC = 0;
+            Object.keys(badges).forEach(b => {
+                if (badges[b] > maxC) {
+                    maxC = badges[b];
+                    topB = b;
+                }
+            });
+            document.getElementById('statTopCategory').textContent = topB;
+            document.getElementById('statCategoriesCount').textContent = `${Object.keys(badges).length} Unique Badges`;
+        }
+
+        // CATALOG FUNCTIONS
+        function renderCatalog(itemsToRender = products) {
+            const container = document.getElementById('catalogContainer');
+            if (itemsToRender.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full bg-white p-8 rounded-2xl text-center text-slate-400 space-y-2 border border-slate-200">
+                        <i class="fa-solid fa-box-open text-3xl"></i>
+                        <p class="font-bold text-slate-600 text-sm">No matching products found</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = itemsToRender.map(p => `
+                <div class="bg-white rounded-2xl p-3 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+                    <div class="relative rounded-xl overflow-hidden bg-slate-100 aspect-4/3 mb-3 border border-slate-100">
+                        <img src="${p.images[0] || ''}" alt="${p.title}" class="w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-slate-900/90 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">${p.badge || 'ITEM'}</span>
+                        <span class="absolute top-2 right-2 bg-white/90 text-slate-800 font-extrabold text-[10px] px-2 py-0.5 rounded-full shadow-sm">${p.images.length} Photos</span>
+                    </div>
+
+                    <div class="space-y-1">
+                        <h4 class="font-bold text-xs text-slate-900 line-clamp-2 leading-snug">${p.title}</h4>
+                        <div class="flex items-baseline justify-between">
+                            <span class="font-black text-sm text-rose-600">${formatMoney(p.price)}</span>
+                            <span class="text-[10px] text-slate-400 font-mono">ID: #${p.id}</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-100 mt-2 grid grid-cols-3 gap-1 text-[11px] font-bold">
+                        <button onclick="previewProduct(${p.id})" class="bg-slate-100 hover:bg-slate-200 text-slate-700 py-1.5 rounded-lg transition-colors flex items-center justify-center gap-1" title="Quick Preview">
+                            <i class="fa-solid fa-eye"></i> View
+                        </button>
+                        <button onclick="editProduct(${p.id})" class="bg-rose-50 hover:bg-rose-100 text-rose-700 py-1.5 rounded-lg transition-colors flex items-center justify-center gap-1" title="Edit">
+                            <i class="fa-solid fa-pen"></i> Edit
+                        </button>
+                        <button onclick="duplicateProduct(${p.id})" class="bg-purple-50 hover:bg-purple-100 text-purple-700 py-1.5 rounded-lg transition-colors flex items-center justify-center gap-1" title="Duplicate">
+                            <i class="fa-solid fa-copy"></i> Dup
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCatalog() {
+            const query = document.getElementById('catalogSearchInput').value.toLowerCase().trim();
+            const badge = document.getElementById('catalogBadgeFilter').value;
+
+            let filtered = products.filter(p => {
+                const matchesQuery = p.title.toLowerCase().includes(query) || 
+                                     (p.badge && p.badge.toLowerCase().includes(query)) ||
+                                     (p.searchKeywords && p.searchKeywords.toLowerCase().includes(query));
+                const matchesBadge = (badge === 'ALL') || (p.badge === badge);
+                return matchesQuery && matchesBadge;
+            });
+
+            renderCatalog(filtered);
+        }
+
+        function openProductFormModal(editProductObj = null) {
+            const modal = document.getElementById('productModal');
+            const title = document.getElementById('productModalTitle');
+
+            if (editProductObj) {
+                title.textContent = `Edit Product #${editProductObj.id}`;
+                document.getElementById('prodEditId').value = editProductObj.id;
+                document.getElementById('prodTitle').value = editProductObj.title;
+                document.getElementById('prodPrice').value = editProductObj.price;
+                document.getElementById('prodBadge').value = editProductObj.badge || '';
+                document.getElementById('prodKeywords').value = editProductObj.searchKeywords || '';
+                document.getElementById('prodImages').value = (editProductObj.images || []).join('\n');
+                document.getElementById('prodDescription').value = editProductObj.description || '';
+            } else {
+                title.textContent = "Add New Product";
+                document.getElementById('prodEditId').value = "";
+                document.getElementById('productForm').reset();
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('hidden');
+        }
+
+        function saveProduct(e) {
+            e.preventDefault();
+            const editId = document.getElementById('prodEditId').value;
+            const title = document.getElementById('prodTitle').value.trim();
+            const price = Number(document.getElementById('prodPrice').value);
+            const badge = document.getElementById('prodBadge').value.trim() || 'ITEM';
+            const keywords = document.getElementById('prodKeywords').value.trim();
+            const imagesRaw = document.getElementById('prodImages').value.trim();
+            const description = document.getElementById('prodDescription').value.trim();
+
+            const images = imagesRaw.split('\n').map(url => url.trim()).filter(url => url.length > 0);
+
+            if (editId !== "") {
+                // Update
+                const idx = products.findIndex(p => p.id === Number(editId));
+                if (idx > -1) {
+                    products[idx] = { id: Number(editId), title, price, badge, searchKeywords: keywords, images, description };
+                    showToast(`Updated product "${title}"`);
+                }
+            } else {
+                // Add New
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 0;
+                products.push({ id: newId, title, price, badge, searchKeywords: keywords, images, description });
+                showToast(`Created new product "${title}"`);
+            }
+
+            saveAllState();
+            filterCatalog();
+            generateScriptSnippet();
+            closeProductModal();
+        }
+
+        function editProduct(id) {
+            const p = products.find(x => x.id === id);
+            if (p) openProductFormModal(p);
+        }
+
+        function duplicateProduct(id) {
+            const p = products.find(x => x.id === id);
+            if (!p) return;
+            const newId = Math.max(...products.map(x => x.id)) + 1;
+            const dup = { ...p, id: newId, title: `${p.title} (Copy)` };
+            products.push(dup);
+            saveAllState();
+            filterCatalog();
+            generateScriptSnippet();
+            showToast(`Duplicated product #${id}`);
+        }
+
+        function deleteProduct(id) {
+            if (confirm(`Are you sure you want to delete Product #${id}?`)) {
+                products = products.filter(x => x.id !== id);
+                saveAllState();
+                filterCatalog();
+                generateScriptSnippet();
+                showToast(`Deleted Product #${id}`);
+            }
+        }
+
+        function previewProduct(id) {
+            const p = products.find(x => x.id === id);
+            if (!p) return;
+
+            const modal = document.getElementById('previewModal');
+            const content = document.getElementById('previewContent');
+
+            content.innerHTML = `
+                <div class="space-y-4 text-xs">
+                    <div class="flex items-center justify-between border-b pb-2">
+                        <span class="bg-rose-100 text-rose-700 font-extrabold text-[10px] px-2.5 py-0.5 rounded-full">${p.badge || 'PREVIEW'}</span>
+                        <span class="font-bold text-slate-400">ID: #${p.id}</span>
+                    </div>
+                    <img src="${p.images[0]}" class="w-full aspect-4/3 object-cover rounded-2xl border">
+                    <h3 class="text-base font-black text-slate-900">${p.title}</h3>
+                    <div class="text-xl font-extrabold text-rose-600">${formatMoney(p.price)}</div>
+                    <p class="text-slate-600 whitespace-pre-line leading-relaxed border-t pt-2">${p.description}</p>
+                    <div class="pt-2 flex justify-end gap-2">
+                        <button onclick="deleteProduct(${p.id}); closePreviewModal();" class="bg-rose-100 hover:bg-rose-200 text-rose-700 font-bold px-3 py-2 rounded-xl text-xs">Delete Product</button>
+                        <button onclick="closePreviewModal()" class="bg-slate-900 text-white font-bold px-4 py-2 rounded-xl text-xs">Close Preview</button>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+        }
+
+        function closePreviewModal() {
+            document.getElementById('previewModal').classList.add('hidden');
+        }
+
+        // ANNOUNCEMENTS MANAGER
+        function renderAnnouncements() {
+            const container = document.getElementById('announcementsList');
+            container.innerHTML = announcements.map(a => `
+                <div class="flex items-center justify-between gap-3 p-3 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <button onclick="toggleAnnouncement(${a.id})" class="h-6 w-6 rounded-full ${a.active ? 'bg-emerald-500 text-white' : 'bg-slate-300 text-slate-600'} text-xs flex items-center justify-center shrink-0">
+                            <i class="fa-solid ${a.active ? 'fa-check' : 'fa-xmark'}"></i>
+                        </button>
+                        <span class="text-xs font-semibold text-slate-800 truncate">${a.text}</span>
+                    </div>
+                    <div class="flex items-center gap-1 shrink-0">
+                        <button onclick="deleteAnnouncement(${a.id})" class="text-slate-400 hover:text-rose-600 p-1.5 text-xs">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addAnnouncementPrompt() {
+            const txt = prompt("Enter announcement text HTML (e.g. 🔥 SALE NOW ON!):");
+            if (txt) {
+                const newId = announcements.length > 0 ? Math.max(...announcements.map(a => a.id)) + 1 : 1;
+                announcements.push({ id: newId, text: txt, active: true });
+                saveAllState();
+                renderAnnouncements();
+                showToast("Announcement added");
+            }
+        }
+
+        function toggleAnnouncement(id) {
+            const a = announcements.find(x => x.id === id);
+            if (a) {
+                a.active = !a.active;
+                saveAllState();
+                renderAnnouncements();
+            }
+        }
+
+        function deleteAnnouncement(id) {
+            announcements = announcements.filter(x => x.id !== id);
+            saveAllState();
+            renderAnnouncements();
+            showToast("Announcement removed");
+        }
+
+        // ORDERS & KNUTSFORD TRACKER
+        function renderOrders() {
+            const container = document.getElementById('ordersList');
+            let filtered = orders;
+            if (currentOrderFilter !== 'ALL') {
+                filtered = orders.filter(o => o.status === currentOrderFilter);
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-slate-400 space-y-2 border border-slate-100 rounded-2xl">
+                        <i class="fa-solid fa-receipt text-3xl"></i>
+                        <p class="font-bold text-xs text-slate-600">No orders logged in this status view</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(o => `
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200/60 pb-2 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="font-extrabold text-slate-900">Order #${o.id}</span>
+                            <span class="bg-purple-100 text-purple-700 font-bold px-2.5 py-0.5 rounded-full text-[10px]">${o.delivery}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-slate-400">${o.date}</span>
+                            <select onchange="updateOrderStatus(${o.id}, this.value)" class="px-2 py-1 bg-white border border-slate-300 rounded-lg text-xs font-bold text-slate-800">
+                                <option value="Pending" ${o.status==='Pending'?'selected':''}>Pending</option>
+                                <option value="Confirmed" ${o.status==='Confirmed'?'selected':''}>Confirmed</option>
+                                <option value="Knutsford Dispatch" ${o.status==='Knutsford Dispatch'?'selected':''}>Knutsford Dispatched</option>
+                                <option value="Completed" ${o.status==='Completed'?'selected':''}>Completed</option>
+                                <option value="Cancelled" ${o.status==='Cancelled'?'selected':''}>Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div>
+                            <p class="font-bold text-slate-800">${o.custName}</p>
+                            <p class="text-slate-500 font-mono">${o.custPhone}</p>
+                            <p class="text-slate-600 mt-1 font-medium bg-white p-2 rounded-xl border">${o.summary}</p>
+                        </div>
+                        <div class="space-y-1.5 bg-white p-3 rounded-xl border">
+                            <div class="flex justify-between font-bold">
+                                <span>Total Amount:</span>
+                                <span class="text-rose-600 font-extrabold">${formatMoney(o.total)}</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-1 border-t">
+                                <span class="text-[11px] font-bold text-purple-800">Knutsford Tracking:</span>
+                                <span class="font-mono font-bold text-slate-900">${o.trackingCode || 'None'}</span>
+                            </div>
+                            <div class="pt-2 flex items-center gap-1">
+                                <button onclick="assignKnutsfordCode(${o.id})" class="flex-1 bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold py-1.5 rounded-lg text-[11px]">
+                                    <i class="fa-solid fa-barcode"></i> Set Tracking
+                                </button>
+                                <button onclick="sendWhatsAppUpdate(${o.id})" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-1.5 rounded-lg text-[11px] flex items-center justify-center gap-1">
+                                    <i class="fa-brands fa-whatsapp"></i> Notify
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterOrdersByStatus(st) {
+            currentOrderFilter = st;
+            ['ALL', 'Pending', 'Confirmed', 'Knutsford Dispatch', 'Completed'].forEach(s => {
+                const btn = document.getElementById(`orderFilter-${s}`);
+                if (btn) {
+                    if (s === st) btn.className = "px-3 py-1.5 rounded-lg bg-slate-900 text-white font-bold";
+                    else btn.className = "px-3 py-1.5 rounded-lg hover:bg-slate-100 font-bold text-slate-500";
+                }
+            });
+            renderOrders();
+        }
+
+        function openNewOrderModal() {
+            document.getElementById('newOrderModal').classList.remove('hidden');
+        }
+        function closeNewOrderModal() {
+            document.getElementById('newOrderModal').classList.add('hidden');
+        }
+
+        function saveNewOrder(e) {
+            e.preventDefault();
+            const custName = document.getElementById('orderCustName').value.trim();
+            const custPhone = document.getElementById('orderCustPhone').value.trim();
+            const delivery = document.getElementById('orderDelivery').value;
+            const total = Number(document.getElementById('orderTotal').value);
+            const summary = document.getElementById('orderSummary').value.trim();
+
+            const newId = 1000 + orders.length + 1;
+            const newOrder = {
+                id: newId,
+                custName,
+                custPhone,
+                delivery,
+                total,
+                summary,
+                status: 'Pending',
+                trackingCode: delivery.includes('Knutsford') ? 'KE-' + Math.floor(100000 + Math.random() * 900000) : '',
+                date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+            };
+
+            orders.unshift(newOrder);
+            saveAllState();
+            renderOrders();
+            closeNewOrderModal();
+            showToast(`Logged Order #${newId}`);
+        }
+
+        function updateOrderStatus(id, newStatus) {
+            const o = orders.find(x => x.id === id);
+            if (o) {
+                o.status = newStatus;
+                saveAllState();
+                showToast(`Order #${id} marked as ${newStatus}`);
+            }
+        }
+
+        function assignKnutsfordCode(id) {
+            const o = orders.find(x => x.id === id);
+            if (!o) return;
+            const code = prompt("Enter Knutsford Express Tracking Code:", o.trackingCode || "KE-");
+            if (code) {
+                o.trackingCode = code;
+                saveAllState();
+                renderOrders();
+                showToast("Tracking code updated");
+            }
+        }
+
+        function sendWhatsAppUpdate(id) {
+            const o = orders.find(x => x.id === id);
+            if (!o) return;
+
+            let msg = `Hi ${o.custName}! 👋 Update from Unique Claims JA regarding your Order #${o.id}:\n\n`;
+            msg += `• Status: ${o.status}\n`;
+            msg += `• Summary: ${o.summary}\n`;
+            msg += `• Total Due: ${formatMoney(o.total)}\n`;
+            if (o.trackingCode) {
+                msg += `• Knutsford Tracking Code: ${o.trackingCode}\n`;
+                msg += `(Please bring a valid ID when picking up at your Knutsford branch).\n`;
+            }
+            msg += `\nThank you for shopping with Unique Claims JA!`;
+
+            window.open(`https://wa.me/${o.custPhone.replace(/[^0-9]/g,'')}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // BANK CONFIG & PAYMENTS
+        function populateBankForm() {
+            document.getElementById('bankName').value = bankConfig.bankName;
+            document.getElementById('bankHolder').value = bankConfig.bankHolder;
+            document.getElementById('bankAccountNum').value = bankConfig.bankAccountNum;
+            document.getElementById('bankType').value = bankConfig.bankType;
+            document.getElementById('bankBranch').value = bankConfig.bankBranch;
+            document.getElementById('bankNote').value = bankConfig.bankNote;
+        }
+
+        function saveBankConfig(e) {
+            e.preventDefault();
+            bankConfig = {
+                bankName: document.getElementById('bankName').value.trim(),
+                bankHolder: document.getElementById('bankHolder').value.trim(),
+                bankAccountNum: document.getElementById('bankAccountNum').value.trim(),
+                bankType: document.getElementById('bankType').value.trim(),
+                bankBranch: document.getElementById('bankBranch').value.trim(),
+                bankNote: document.getElementById('bankNote').value.trim()
+            };
+            saveAllState();
+            showToast("Saved bank details!");
+        }
+
+        function renderPaymentToggles() {
+            const methods = [
+                "NCB Online Transfer",
+                "Scotia Online Transfer",
+                "JN Online Transfer",
+                "JMMB Online Transfer",
+                "Other Local Bank Transfer",
+                "Cash on Delivery / Pick-up Cash"
+            ];
+            const container = document.getElementById('paymentTogglesList');
+            container.innerHTML = methods.map((m, idx) => `
+                <div class="flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-xl">
+                    <span class="font-bold text-slate-800">${m}</span>
+                    <input type="checkbox" checked class="w-4 h-4 accent-rose-600 rounded">
+                </div>
+            `).join('');
+        }
+
+        // PARTNERS MANAGER
+        function renderPartners() {
+            const container = document.getElementById('partnersGrid');
+            container.innerHTML = partners.map(p => `
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between space-y-3">
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-2">
+                            <div class="w-9 h-9 rounded-xl bg-gradient-to-br ${p.color} text-white flex items-center justify-center text-sm shadow shrink-0">
+                                <i class="fa-solid ${p.icon}"></i>
+                            </div>
+                            <h4 class="font-extrabold text-sm text-slate-900">${p.title}</h4>
+                        </div>
+                        <p class="text-xs text-slate-500 leading-relaxed">${p.desc}</p>
+                    </div>
+                    <div class="pt-2 border-t flex justify-between items-center text-xs">
+                        <a href="${p.url}" target="_blank" class="text-rose-600 font-bold hover:underline">Test Link <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                        <button onclick="deletePartner(${p.id})" class="text-slate-400 hover:text-rose-600 p-1"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addPartnerPrompt() {
+            const title = prompt("Partner/Brand Title:");
+            if (!title) return;
+            const url = prompt("Website URL:", "https://");
+            const desc = prompt("Short Description:");
+            const newId = partners.length + 1;
+            partners.push({
+                id: newId,
+                title,
+                url: url || '#',
+                desc: desc || '',
+                icon: 'fa-globe',
+                color: 'from-slate-700 to-slate-900'
+            });
+            saveAllState();
+            renderPartners();
+            showToast("Partner card added");
+        }
+
+        function deletePartner(id) {
+            partners = partners.filter(x => x.id !== id);
+            saveAllState();
+            renderPartners();
+            showToast("Partner removed");
+        }
+
+        // EXPORT ENGINE
+        function generateScriptSnippet() {
+            const jsonStr = JSON.stringify(products, null, 4);
+            const scriptSnippet = `// UNIQUE CLAIMS JA - LIVE PRODUCTS OVERRIDE\n// Paste this exact array block into your index.html file inside the <script> tag\n\nconst products = ${jsonStr};`;
+            
+            document.getElementById('exportSnippetTextarea').value = scriptSnippet;
+        }
+
+        function copySnippetText() {
+            const txt = document.getElementById('exportSnippetTextarea').value;
+            navigator.clipboard.writeText(txt).then(() => {
+                showToast("Script snippet copied to clipboard!");
+            });
+        }
+
+        function exportFullJSON() {
+            const fullBackup = {
+                products,
+                announcements,
+                orders,
+                bankConfig,
+                partners,
+                exportedAt: new Date().toISOString()
+            };
+
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(fullBackup, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `unique_claims_backup_${Date.now()}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast("Downloaded full store backup JSON");
+        }
+
+        function importFullJSON(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                try {
+                    const parsed = JSON.parse(evt.target.result);
+                    if (parsed.products) products = parsed.products;
+                    if (parsed.announcements) announcements = parsed.announcements;
+                    if (parsed.orders) orders = parsed.orders;
+                    if (parsed.bankConfig) bankConfig = parsed.bankConfig;
+                    if (parsed.partners) partners = parsed.partners;
+
+                    saveAllState();
+                    renderCatalog();
+                    renderAnnouncements();
+                    renderOrders();
+                    populateBankForm();
+                    renderPartners();
+                    generateScriptSnippet();
+                    showToast("Store backup restored successfully!");
+                } catch (err) {
+                    alert("Invalid JSON backup file!");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function factoryResetStore() {
+            if (confirm("Are you sure you want to reset all store data back to default?")) {
+                products = initialProducts;
+                announcements = initialAnnouncements;
+                orders = [];
+                bankConfig = initialBankConfig;
+                partners = initialPartners;
+
+                saveAllState();
+                renderCatalog();
+                renderAnnouncements();
+                renderOrders();
+                populateBankForm();
+                renderPartners();
+                generateScriptSnippet();
+                showToast("Store reset to factory defaults!");
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
