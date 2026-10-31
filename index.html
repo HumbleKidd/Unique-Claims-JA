@@ -580,7 +580,7 @@ window.firebaseGet = get;
     </section>
 
     <!-- CLEAN SOCIAL SPOTLIGHT CARDS -->
-    <section class="relative text-white py-12 border-t border-slate-800 mt-12 overflow-hidden" style="background: linear-gradient(to bottom right, #0f172a, #4c1d95, #0f172a); background-image: url('https://www.peacedogether.co.uk/wp-content/uploads/2018/07/business-people-succesful-celebrating-group-successful-39416686.jpg'), linear-gradient(to bottom right, #0f172a, #4c1d95, #0f172a); background-size: cover; background-position: center;">
+    <section class="relative text-white py-12 border-t border-slate-800 mt-12 overflow-hidden" style="background: linear-gradient(to bottom right, #0f172a, #4c1d95, #0f172a); background-image: url('https://www.peacedtogether.co.uk/wp-content/uploads/2018/07/business-people-succesful-celebrating-group-successful-39416686.jpg'), linear-gradient(to bottom right, #0f172a, #4c1d95, #0f172a); background-size: cover; background-position: center;">
         <div class="absolute inset-0 bg-slate-950/75"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10">
             <div class="text-center max-w-xl mx-auto space-y-2">
@@ -723,288 +723,2276 @@ window.firebaseGet = get;
                     <p class="text-xs text-slate-500 leading-relaxed flex-1">TikTok-style vertical reels of movies and shows. Scroll, discover, and watch in full-screen.</p>
                     <span class="inline-flex items-center gap-1 text-purple-600 text-xs font-bold mt-3">Visit <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-0.5 transition-transform"></i></span>
                 </a>
-                <!-- Ad slot -->
-                <div class="bg-white rounded-2xl border border-dashed border-slate-300 p-5 flex flex-col items-center justify-center text-center min-h-[180px]">
-                    <div class="w-11 h-11 rounded-xl bg-slate-100 text-slate-400 flex items-center justify-center text-lg mb-2"><i class="fa-solid fa-bullhorn"></i></div>
-                    <p class="text-xs text-slate-500 font-medium">Promote your business here</p>
-                    <button onclick="openAdForm()" class="mt-2 text-rose-600 text-xs font-bold hover:underline">Get in touch</button>
-                </div>
+                <!-- Ad Spot -->
+                <button onclick="openAdForm()" class="group bg-gradient-to-br from-slate-100 to-slate-50 rounded-2xl border-2 border-dashed border-slate-300 p-5 shadow-sm hover:border-amber-400 hover:bg-amber-50/50 transition-all flex flex-col items-center justify-center text-center">
+                    <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg mb-3">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <h4 class="font-black text-slate-800 text-sm">Your Ad Here</h4>
+                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">Promote your business on Unique Claims JA. Click to get started.</p>
+                    <span class="inline-flex items-center gap-1 text-amber-600 text-xs font-bold mt-3">Reserve Spot <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- TIP / SUPPORT -->
-    <section class="bg-white py-6 border-t border-slate-200">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <button onclick="openTipModal()" class="inline-flex items-center gap-2 bg-amber-100 hover:bg-amber-200 text-amber-800 font-bold text-sm px-5 py-2.5 rounded-full transition-all">
-                ☕ Support Unique Claims JA
+    <!-- SUPPORT / TIP BUTTON (under Sponsored) -->
+    <section class="bg-white py-6 border-t border-slate-100">
+        <div class="max-w-md mx-auto px-4 text-center">
+            <button onclick="openTipModal()" class="inline-flex items-center gap-2.5 bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md transition-all hover:shadow-lg active:scale-95">
+                <span class="text-base">☕</span>
+                <span>Support Unique Claims JA</span>
             </button>
-            <p class="text-[11px] text-slate-400 mt-1">Tip via WhatsApp or the interactive cafe</p>
+            <p class="text-[11px] text-slate-500 mt-2">Tip via WhatsApp or the interactive cafe</p>
         </div>
     </section>
 
-    <!-- WEBSITE OFFER -->
-    <section class="bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 text-white py-12">
-        <div class="max-w-4xl mx-auto px-4 text-center space-y-3">
-            <span class="text-xs font-bold uppercase tracking-widest text-amber-400">For Business Owners</span>
-            <h3 class="text-2xl md:text-3xl font-black">Want to help customers understand your business?</h3>
-            <p class="text-slate-300 text-sm max-w-lg mx-auto">Get a website for your brand. Most Jamaican small businesses still don’t have a simple site. Yours can.</p>
-            <button onclick="openWebsiteOffer()" class="inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-500 text-white font-bold px-6 py-3 rounded-full text-sm mt-2 transition-all">
+
+
+    <!-- PRE-ORDER MODAL -->
+    <div id="preorderModal" class="fixed inset-0 z-[60] bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] overflow-y-auto shadow-2xl relative border border-slate-100 flex flex-col">
+            <button onclick="closePreorderModal()" class="absolute top-4 right-4 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-9 w-9 rounded-full flex items-center justify-center font-bold transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="p-6 md:p-8">
+                <div class="text-center mb-5">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mx-auto mb-3">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900">Pre-Order a Product</h3>
+                    <p class="text-sm text-slate-500 mt-1">Select an item below to pre-order. I'll confirm availability and next steps on WhatsApp.</p>
+                </div>
+
+                <div class="relative mb-4">
+                    <input type="text" id="preorderSearch" oninput="filterPreorderList()" placeholder="Search products..." class="w-full text-sm pl-10 pr-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                </div>
+
+                <div id="preorderList" class="max-h-72 overflow-y-auto border border-slate-200 rounded-xl divide-y divide-slate-100 custom-scrollbar">
+                    <!-- Filled by JS -->
+                </div>
+
+                <div id="preorderSelected" class="hidden mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl text-sm">
+                    <p class="font-semibold text-slate-800">Selected: <span id="preorderSelectedTitle"></span></p>
+                    <p class="text-rose-600 font-bold" id="preorderSelectedPrice"></p>
+                </div>
+
+                <form id="preorderForm" onsubmit="submitPreorder(event)" class="mt-4 space-y-3 hidden">
+                    <input type="text" id="preorderName" required placeholder="Your Name" class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none">
+                    <input type="tel" id="preorderPhone" required placeholder="Your WhatsApp Number" class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none">
+                    <textarea id="preorderNote" rows="2" placeholder="Any notes? (qty, preferred pickup, etc.)" class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none resize-none"></textarea>
+                    <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 rounded-xl text-sm flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-brands fa-whatsapp"></i> Send Pre-Order Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        <!-- CONTACT MODAL -->
+    <div id="contactModal" class="fixed inset-0 z-[60] bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-slate-100">
+            <button onclick="closeContactModal()" class="absolute top-4 right-4 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-9 w-9 rounded-full flex items-center justify-center font-bold transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="p-6 md:p-8">
+                <div class="text-center mb-5">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mx-auto mb-3">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900">Contact Me</h3>
+                    <p class="text-sm text-slate-500 mt-1">Fill the form to message me on WhatsApp, or call directly.</p>
+                </div>
+
+                <form id="contactForm" onsubmit="sendContactWhatsApp(event)" class="space-y-3">
+                    <input type="text" id="contactName" required placeholder="Your Name" class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
+                    <input type="tel" id="contactPhone" placeholder="Your Phone (optional)" class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
+                    <textarea id="contactMessage" required rows="4" placeholder="Your message..." class="w-full text-sm px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none resize-none"></textarea>
+                    <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl text-sm flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp
+                    </button>
+                </form>
+
+                <div class="mt-4 pt-4 border-t border-slate-100 text-center">
+                    <p class="text-xs text-slate-500 mb-2">Or call me directly</p>
+                    <a href="tel:+18765813521" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-3 rounded-full text-sm transition-all">
+                        <i class="fa-solid fa-phone"></i> Click to Call
+                    </a>
+                    <p class="text-[11px] text-slate-400 mt-2">+1 876-581-3521</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- AD FORM MODAL -->
+    <div id="adFormModal" class="fixed inset-0 z-[55] bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl relative border border-slate-100">
+            <button onclick="closeAdForm()" class="absolute top-3 right-3 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-9 w-9 rounded-full flex items-center justify-center font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="p-6 md:p-7 space-y-4">
+                <div class="text-center">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mb-2"><i class="fa-solid fa-bullhorn"></i></div>
+                    <h3 class="text-lg font-black text-slate-900">Promote Your Business</h3>
+                    <p class="text-xs text-slate-500 mt-1">Fill this in and we'll contact you on WhatsApp to get your ad live.</p>
+                </div>
+                <input type="text" id="adName" placeholder="Your Name *" class="w-full text-sm px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none">
+                <input type="text" id="adBusiness" placeholder="Business / Brand Name *" class="w-full text-sm px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none">
+                <input type="tel" id="adPhone" placeholder="WhatsApp Number *" class="w-full text-sm px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none">
+                <textarea id="adDetails" rows="3" placeholder="What do you want to promote? (product, service, link, etc.)" class="w-full text-sm px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none resize-none"></textarea>
+                <button onclick="submitAdForm()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl text-sm flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> Send to WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEBSITE PROMO AD -->
+    <section class="bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 text-white py-10 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-4">
+            <p class="text-xs font-bold uppercase tracking-widest text-amber-400">For Business Owners</p>
+            <h3 class="text-xl md:text-2xl font-black leading-tight">Want to help customers understand your business?<br class="hidden sm:inline"> Get a website for your brand.</h3>
+            <p class="text-sm text-slate-300 max-w-xl mx-auto">Most Jamaican small businesses still don’t have a simple site. Yours can.</p>
+            <button onclick="openWebsiteOffer()" class="bg-rose-600 hover:bg-rose-500 text-white font-bold px-6 py-3 rounded-full text-sm shadow-lg transition-all inline-flex items-center gap-2">
                 View More <i class="fa-solid fa-arrow-right text-xs"></i>
             </button>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-slate-900 text-slate-300 py-10 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="md:col-span-1 space-y-3">
-                    <div class="flex items-center gap-2">
-                        <span class="text-2xl">😜</span>
-                        <span class="font-black text-white text-lg">UNIQUE CLAIMS JA</span>
+    <!-- PROFESSIONAL SITE FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 pb-8 border-b border-slate-800/80 text-center md:text-left">
+                <div class="space-y-3 md:col-span-1 text-center md:text-left">
+                    <div class="flex flex-col items-center md:flex-row md:items-center md:items-start gap-3 text-center md:text-left">
+                        <img src="logo.png" 
+                             onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/logo.png';" 
+                             alt="Logo" class="h-24 w-auto md:h-10 object-contain mx-auto md:mx-0">
+                        <span class="font-black text-white text-lg md:text-base tracking-wider">UNIQUE CLAIMS JA</span>
                     </div>
-                    <p class="text-xs leading-relaxed">Your favorite destination for smart gadgets, tech problem solvers, hardware accessories, and unique lifestyle items.</p>
-                    <p class="text-xs text-rose-400 font-semibold">"Uniquely You! Every time."</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Your favorite destination for smart gadgets, tech problem solvers, hardware accessories, and unique lifestyle items.
+                    </p>
+                    <p class="text-amber-400 font-bold italic text-xs">"Uniquely You! Every time."</p>
                 </div>
-                <div>
-                    <h5 class="font-bold text-white text-sm mb-3">Connect With Us</h5>
-                    <div class="flex gap-3">
-                        <a href="https://wa.me/18765813521" target="_blank" class="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-500 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
-                        <a href="https://www.tiktok.com/@uniqueclaimsjam" target="_blank" class="w-9 h-9 rounded-full bg-slate-700 text-white flex items-center justify-center hover:bg-slate-600 transition-colors"><i class="fa-brands fa-tiktok"></i></a>
-                        <a href="https://www.facebook.com/marketplace/profile/100094305921867/" target="_blank" class="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-500 transition-colors"><i class="fa-brands fa-facebook"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h5 class="font-bold text-white text-sm mb-3">Quick Navigation</h5>
-                    <ul class="space-y-1.5 text-xs">
-                        <li><a href="#" class="hover:text-white">Browse Catalog</a></li>
-                        <li><button onclick="toggleCartDrawer(true)" class="hover:text-white">Shopping Cart</button></li>
-                        <li><button onclick="openBundleModal()" class="hover:text-white">Bundle & Save</button></li>
-                        <li><button onclick="openPreorderModal()" class="hover:text-white">Pre-Order</button></li>
-                        <li><button onclick="openContactModal()" class="hover:text-white">Contact Me</button></li>
-                        <li><a href="https://wa.me/18765813521" target="_blank" class="hover:text-white">WhatsApp Support</a></li>
+
+                <div class="space-y-2 text-left">
+                    <h5 class="font-bold text-white text-sm uppercase tracking-wider">Connect With Us</h5>
+                    <ul class="space-y-1.5 text-slate-400">
+                        <li><a href="https://www.tiktok.com/@uniqueclaimsjam" target="_blank" class="hover:text-rose-500 transition-colors flex items-center gap-2"><i class="fa-brands fa-tiktok text-rose-500"></i> TikTok @uniqueclaimsjam</a></li>
+                        <li><a href="https://www.facebook.com/marketplace/profile/100094305921867/" target="_blank" class="hover:text-rose-500 transition-colors flex items-center gap-2"><i class="fa-brands fa-facebook text-blue-500"></i> Facebook Marketplace</a></li>
+                        <li><a href="https://wa.me/18765813521" target="_blank" class="hover:text-emerald-500 transition-colors flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-500"></i> WhatsApp Line</a></li>
                     </ul>
+                    <div class="pt-4">
+                        <h5 class="font-bold text-white text-sm uppercase tracking-wider">Quick Navigation</h5>
+                        <ul class="space-y-1.5 text-slate-400 mt-2">
+                            <li><a href="#" class="hover:text-rose-500 transition-colors">Browse Catalog</a></li>
+                            <li><button onclick="toggleCartDrawer(true)" class="hover:text-rose-500 transition-colors text-left">Shopping Cart</button></li>
+                            <li><button onclick="openBundleModal()" class="hover:text-rose-500 transition-colors text-left">Bundle & Save</button></li>
+                            <li><button onclick="openPreorderModal()" class="hover:text-rose-500 transition-colors text-left">Pre-Order</button></li>
+                            <li><button onclick="openContactModal()" class="hover:text-rose-500 transition-colors text-left">Contact Me</button></li>
+                            <li><a href="https://wa.me/18765813521" target="_blank" class="hover:text-rose-500 transition-colors">WhatsApp Support</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div>
-                    <h5 class="font-bold text-white text-sm mb-3">Share</h5>
-                    <button onclick="shareStore()" class="text-xs bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition-colors">Share this store</button>
+
+                <div class="space-y-2 text-center">
+                    <h5 class="font-bold text-white text-sm uppercase tracking-wider">Share</h5>
+                    <button onclick="shareStore()" class="bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-500 hover:to-purple-500 text-white font-bold px-6 py-2.5 rounded-full text-sm inline-flex items-center justify-center gap-2 shadow-md mx-auto">
+                        <i class="fa-solid fa-share-nodes"></i> Share this store
+                    </button>
+                </div>
+
+                <div class="space-y-3 text-left">
+                    <h5 class="font-bold text-white text-sm uppercase tracking-wider">LOCATION</h5>
+                    <p class="text-slate-400 leading-relaxed">
+                        Mandeville, Manchester Parish, Jamaica 🇯🇲<br>
+                        Local Pickups & Islandwide Knutsford Dispatch Available.
+                    </p>
+                    <button id="installAppBtn" onclick="installPwaApp()" class="hidden w-full bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-500 hover:to-purple-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg transition-all">
+                        <i class="fa-solid fa-mobile-screen-button text-sm"></i>
+                        <span>Add as App</span>
+                    </button>
                 </div>
             </div>
-            <div class="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-                <div class="text-center sm:text-left">
-                    <p class="font-bold text-white">LOCATION</p>
-                    <p>Mandeville, Manchester Parish, Jamaica 🇯🇲</p>
-                    <p class="text-slate-500 mt-1">Local Pickups & Islandwide Knutsford Dispatch Available.</p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-slate-500 text-xs pt-2">
+                <div class="text-slate-300 font-medium text-sm">
+                    Built by Mr. Humble with 💖
                 </div>
-                <div class="flex items-center gap-3">
-                    <button onclick="addAsApp()" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition-colors">Add as App</button>
-                </div>
-            </div>
-            <div class="mt-6 text-center text-[11px] text-slate-500">
-                Built by Mr. Humble with 💖
             </div>
         </div>
     </footer>
 
-    <!-- TOAST -->
-    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none border border-slate-700 text-xs font-semibold max-w-xs sm:max-w-sm">
-        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
-        <span id="toastMessage">Action completed successfully!</span>
-    </div>
+    <!-- PRODUCT LIGHTBOX MODAL -->
+    <div id="productModal" onclick="if(event.target===this) closeProductLightbox()" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-2 sm:p-4 transition-opacity">
+        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto custom-scrollbar shadow-2xl relative border border-slate-100 flex flex-col" onclick="event.stopPropagation()">
+            <button onclick="closeProductLightbox()" class="absolute top-4 right-4 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-10 w-10 rounded-full flex items-center justify-center font-bold text-lg transition-all shadow-md">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
 
-    <!-- IMAGE ZOOM MODAL -->
-    <div id="imageZoomModal" class="fixed inset-0 z-50 bg-black/90 hidden flex items-center justify-center p-4" onclick="closeImageZoom()">
-        <img id="zoomImage" class="max-w-full max-h-full object-contain cursor-zoom-in" onclick="event.stopPropagation(); this.classList.toggle('scale-150'); this.classList.toggle('cursor-zoom-out');">
-        <p id="zoomCaption" class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-xs bg-black/50 px-3 py-1 rounded-full"></p>
-    </div>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 p-4 md:p-6 bg-slate-900/5 flex flex-col justify-between items-center relative min-h-[320px]">
+                    <div class="w-full flex-1 flex items-center justify-center overflow-hidden rounded-2xl bg-white/80 p-2 border border-slate-200/80 shadow-inner">
+                        <img id="modalMainImg" src="" alt="Product view" class="max-h-[60vh] md:max-h-[420px] w-auto max-w-full object-contain rounded-xl shadow-md transition-all duration-300 transform cursor-zoom-in" onclick="openImageZoom(this.src, '')">
+                    </div>
+                    <div class="flex items-center gap-3 mt-4 w-full justify-center overflow-x-auto py-1" id="modalThumbnailsContainer"></div>
+                </div>
 
-    <!-- CART DRAWER -->
-    <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
-        <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm" onclick="toggleCartDrawer(false)"></div>
-        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col">
-            <div class="flex items-center justify-between p-4 border-b">
-                <h3 id="cartStepTitle" class="font-black text-lg">Your Shopping Cart</h3>
-                <button onclick="toggleCartDrawer(false)" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div id="cartStep1" class="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
-                <div id="cartItemsContainer"></div>
-            </div>
-            <div id="cartStep2" class="hidden flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
-                <div class="space-y-3 text-xs">
-                    <div>
-                        <label class="font-bold text-slate-700">Your Name *</label>
-                        <input id="custName" type="text" required class="w-full mt-1 px-3 py-2 border rounded-xl">
+                <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-between space-y-6">
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span id="modalBadge" class="bg-rose-100 text-rose-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Top Claim</span>
+                            <span class="text-xs text-slate-600 font-semibold">In Stock</span>
+                        </div>
+
+                        <h3 id="modalTitle" class="text-xl md:text-2xl font-black text-slate-900 leading-tight">Product Title</h3>
+                        
+                        <div class="flex items-baseline gap-3">
+                            <span id="modalPrice" class="text-3xl font-extrabold text-rose-600">$0</span>
+                        </div>
+
+                        <p id="modalDescription" class="text-slate-600 text-xs md:text-sm leading-relaxed border-t border-slate-100 pt-3">
+                            Detailed description of product features and specs.
+                        </p>
+
+                        <div class="pt-2">
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Optional Note for this Item (e.g. color, size, request):</label>
+                            <input type="text" id="modalProductNote" placeholder="e.g. Prefer black color if available" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-xl focus:ring-1 focus:ring-rose-500 outline-none bg-slate-50">
+                        </div>
                     </div>
-                    <div>
-                        <label class="font-bold text-slate-700">WhatsApp Phone *</label>
-                        <input id="custPhone" type="tel" required class="w-full mt-1 px-3 py-2 border rounded-xl">
-                    </div>
-                    <div>
-                        <label class="font-bold text-slate-700">Delivery</label>
-                        <select id="custDelivery" onchange="handleDeliveryChange()" class="w-full mt-1 px-3 py-2 border rounded-xl bg-white">
-                            <option value="Direct Pick-up in Mandeville">Mandeville Pickup</option>
-                            <option value="Knutsford Express Delivery">Knutsford Express</option>
-                        </select>
-                    </div>
-                    <div id="knutsfordSection" class="hidden">
-                        <label class="font-bold text-slate-700">Knutsford Branch / Address</label>
-                        <textarea id="custKnutsfordAddress" rows="2" class="w-full mt-1 px-3 py-2 border rounded-xl"></textarea>
-                    </div>
-                    <div>
-                        <label class="font-bold text-slate-700">Payment</label>
-                        <select id="custPayment" onchange="handlePaymentChange()" class="w-full mt-1 px-3 py-2 border rounded-xl bg-white">
-                            <option value="">Select payment method</option>
-                            <option value="NCB Online Transfer">NCB Online Transfer</option>
-                            <option value="Other Local Bank Transfer">Other Local Bank Transfer</option>
-                            <option value="Cash on Delivery / Pick-up Cash">Cash on Delivery / Pickup Cash</option>
-                        </select>
-                    </div>
-                    <div id="bankDetailsSection" class="hidden bg-slate-50 p-3 rounded-xl text-xs space-y-1">
-                        <p><strong>Bank:</strong> National Commercial Bank (NCB)</p>
-                        <p><strong>Name:</strong> Kyle Richards</p>
-                        <p><strong>Type:</strong> Savings</p>
-                        <p><strong>Account #:</strong> <span id="accountNumber">504913848</span> <button onclick="copyAccountNumber()" class="text-rose-600 font-bold">Copy</button></p>
-                        <p><strong>Branch:</strong> Mandeville Perth Road</p>
-                        <p class="text-[11px] text-slate-500">Note: After payment, please take a screenshot to show so I know a payment have been made, so I can confirm.</p>
+
+                    <div class="space-y-3 border-t border-slate-100 pt-4">
+                        <div class="flex items-center gap-2">
+                            <div class="flex items-center justify-between border border-slate-200 rounded-xl bg-slate-50 p-0.5 shrink-0">
+                                <button onclick="adjustModalQty(-1)" class="w-7 h-7 rounded-lg bg-white shadow-sm flex items-center justify-center text-slate-700 font-bold hover:bg-slate-200 text-sm">-</button>
+                                <span id="modalQtyDisplay" class="w-7 text-center font-extrabold text-sm text-slate-800">1</span>
+                                <button onclick="adjustModalQty(1)" class="w-7 h-7 rounded-lg bg-white shadow-sm flex items-center justify-center text-slate-700 font-bold hover:bg-slate-200 text-sm">+</button>
+                            </div>
+
+                            <button id="modalAddToCartBtn" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all">
+                                <i class="fa-solid fa-cart-plus"></i> Add To Cart
+                            </button>
+
+                            <button onclick="openBundleModalFromProduct()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1 transition-all">
+                                <i class="fa-solid fa-layer-group"></i> Bundle
+                            </button>
+                        </div>
+
+                        <button id="modalShareBtn" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-colors">
+                            <i class="fa-solid fa-share-nodes text-rose-600 text-sm"></i> Share With Friends
+                        </button>
                     </div>
                 </div>
             </div>
-            <div class="p-4 border-t space-y-2">
-                <div class="flex justify-between font-bold">
-                    <span>Total Due</span>
-                    <span id="cartTotal" class="text-rose-600">$0</span>
-                </div>
-                <div id="cartTotalStep2" class="hidden"></div>
-                <div class="flex gap-2">
-                    <button id="cartBackBtn" onclick="goToCartStep(1)" class="hidden flex-1 bg-slate-100 text-slate-700 font-bold py-2.5 rounded-xl">Back</button>
-                    <button onclick="goToCartStep(2)" class="flex-1 bg-rose-600 text-white font-bold py-2.5 rounded-xl">Continue to Checkout</button>
-                </div>
-                <button onclick="processWhatsAppCheckout()" class="w-full bg-emerald-500 text-white font-bold py-2.5 rounded-xl">Place Order via WhatsApp</button>
+
+            <!-- Recommended Products -->
+            <div id="recommendedSection" class="p-4 md:p-6 border-t border-slate-200 bg-slate-50">
+                <h4 class="font-bold text-sm text-slate-800 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-star text-amber-500"></i> You May Also Like
+                </h4>
+                <div id="recommendedProducts" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"></div>
             </div>
         </div>
     </div>
 
-    <!-- SAVED DRAWER -->
-    <div id="savedDrawer" class="fixed inset-0 z-50 hidden">
-        <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm" onclick="toggleSavedDrawer(false)"></div>
-        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col">
-            <div class="flex items-center justify-between p-4 border-b">
-                <h3 class="font-black text-lg">Your Saved Wishlist</h3>
-                <button onclick="toggleSavedDrawer(false)" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+    <!-- SAVED WISHLIST DRAWER (Popup Modal similar to Cart) -->
+    <div id="savedDrawer" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden transition-all">
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col justify-between border-l border-slate-200">
+            <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 shrink-0 relative z-10">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-heart text-rose-600 text-xl"></i>
+                    <h3 class="font-extrabold text-base text-slate-900">Your Saved Wishlist</h3>
+                </div>
+                <button onclick="toggleSavedDrawer(false)" class="text-slate-400 hover:text-slate-700 h-8 w-8 rounded-full flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <div id="savedItemsContainer" class="flex-1 overflow-y-auto p-4"></div>
-            <div class="p-4 border-t">
-                <button onclick="toggleSavedDrawer(false)" class="w-full bg-slate-900 text-white font-bold py-2.5 rounded-xl">Continue Shopping</button>
+
+            <div class="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar bg-white" id="savedItemsContainer"></div>
+
+            <div class="p-4 border-t border-slate-200 bg-slate-50 space-y-2 shrink-0">
+                <button onclick="toggleSavedDrawer(false)" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm transition-all shadow-md">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHOPPING CART & CHECKOUT DRAWER -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden transition-all">
+        <div class="absolute right-0 top-0 bottom-0 w-full md:max-w-md bg-white shadow-2xl flex flex-col border-l border-slate-200 overflow-hidden">
+
+            <!-- Unique Claims Logo Watermark -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04] z-0">
+                <img src="logo.png" 
+                     onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/logo.png';" 
+                     alt="" class="w-64 h-auto">
+            </div>
+
+            <!-- Header with back + title + close -->
+            <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 shrink-0 relative z-10">
+                <div class="flex items-center gap-2">
+                    <button id="cartBackBtn" onclick="goToCartStep(1)" class="hidden text-slate-500 hover:text-slate-800 h-8 w-8 rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <i class="fa-solid fa-bag-shopping text-rose-600 text-xl"></i>
+                    <h3 id="cartStepTitle" class="font-extrabold text-base text-slate-900">Your Shopping Cart</h3>
+                </div>
+                <button onclick="toggleCartDrawer(false)" class="text-slate-400 hover:text-slate-700 h-8 w-8 rounded-full flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- STEP 1: Review Items -->
+            <div id="cartStep1" class="flex-1 flex flex-col overflow-hidden">
+                <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50 custom-scrollbar relative z-10"></div>
+
+                <div class="p-4 border-t border-slate-200 bg-white shrink-0 space-y-3">
+                    <div class="flex justify-between text-slate-900 font-extrabold text-lg">
+                        <span>Total Due</span>
+                        <span id="cartTotal" class="text-rose-600">$0</span>
+                    </div>
+
+                    <button onclick="shareCart()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-solid fa-share-nodes text-rose-600"></i> Share Cart
+                    </button>
+                    <button onclick="goToCartStep(2)" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 shadow-md transition-all">
+                        Continue to Checkout <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                    <button onclick="openBundleModal()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-layer-group"></i> Add More / Bundle Items
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 2: Delivery & Payment Details -->
+            <div id="cartStep2" class="hidden flex-1 flex flex-col overflow-hidden">
+                <div class="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-white">
+                    <div class="space-y-3">
+                        <input type="text" id="custName" placeholder="Your Full Name *" class="w-full text-sm px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none">
+                        <input type="tel" id="custPhone" placeholder="WhatsApp Phone Number *" class="w-full text-sm px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none">
+                        
+                        <select id="custDelivery" onchange="handleDeliveryChange()" class="w-full text-sm px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none bg-white font-medium">
+                            <option value="Direct Pick-up in Mandeville">📍 Direct Pick-up in Mandeville</option>
+                            <option value="Knutsford Express Delivery">🚌 Knutsford Express Delivery</option>
+                        </select>
+
+                        <div id="knutsfordSection" class="hidden space-y-2.5 p-3 bg-purple-50/80 rounded-2xl border border-purple-200">
+                            <div>
+                                <label class="block text-xs font-bold text-purple-900 mb-1">Knutsford Express Shipping Address / Branch *</label>
+                                <input type="text" id="custKnutsfordAddress" placeholder="e.g. Knutsford Express Kingston / Mandeville Branch" class="w-full text-sm px-3 py-2 border border-purple-300 rounded-xl focus:ring-1 focus:ring-purple-500 outline-none bg-white">
+                            </div>
+
+                            <div class="bg-white p-2.5 rounded-xl border border-purple-100 shadow-sm space-y-1">
+                                <button onclick="toggleKnutsfordInfo()" class="w-full text-left flex items-center justify-between text-xs font-bold text-purple-800 hover:text-purple-900">
+                                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-purple-600"></i> How Knutsford pickup & tracking works</span>
+                                    <i id="knutsfordInfoIcon" class="fa-solid fa-chevron-down text-xs"></i>
+                                </button>
+                                <div id="knutsfordInfoContent" class="hidden pt-2 text-xs text-slate-600 space-y-1.5 border-t border-slate-100 leading-relaxed">
+                                    <p>1. Once your payment is confirmed, your package is safely dropped off at our local Knutsford Express courier.</p>
+                                    <p>2. You will be sent a <span class="font-bold text-purple-700">"tracking code"</span> via WhatsApp. This code is the secure reference number Knutsford uses to locate and hand over your package.</p>
+                                    <p>3. Please bring a <span class="font-bold text-slate-900">valid government-issued ID</span> along with your tracking code to collect your package smoothly.</p>
+                                    <p class="font-semibold text-rose-600">Note: A flat pickup delivery fee of $700 is charged directly by Knutsford Express when collecting your package.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <select id="custPayment" onchange="handlePaymentChange()" class="w-full text-sm px-3 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none bg-white font-medium">
+                            <option value="">Select Payment Method</option>
+                            <option value="NCB Online Transfer">🏦 NCB Online Transfer</option>
+                            <option value="Scotia Online Transfer">🏦 Scotia Online Transfer</option>
+                            <option value="JN Online Transfer">🏦 JN Online Transfer</option>
+                            <option value="JMMB Online Transfer">🏦 JMMB Online Transfer</option>
+                            <option value="Other Local Bank Transfer">🏛️ Other Local Bank Transfer</option>
+                            <option value="Cash on Delivery / Pick-up">💵 Cash on Delivery / Pick-up Cash</option>
+                        </select>
+
+                        <!-- Secure Bank Details Display -->
+                        <div id="bankDetailsSection" class="hidden mt-3 p-4 bg-emerald-50 border border-emerald-200 rounded-2xl space-y-2">
+                            <div class="flex items-center gap-2 text-emerald-800 font-bold text-sm">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span>Secure Payment Details</span>
+                            </div>
+                            <div class="text-xs text-slate-700 space-y-1.5">
+                                <p><strong>Bank:</strong> National Commercial Bank (NCB)</p>
+                                <p><strong>Name:</strong> Kyle Richards</p>
+                                <p><strong>Type:</strong> Savings</p>
+                                <div class="flex items-center justify-between gap-2">
+                                    <p><strong>Account #:</strong> <span id="accountNumber" class="font-mono font-bold text-sm">504913848</span></p>
+                                    <button type="button" onclick="copyAccountNumber()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] px-2.5 py-1 rounded-lg font-semibold flex items-center gap-1 shrink-0">
+                                        <i class="fa-regular fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                                <p><strong>Branch:</strong> Mandeville Perth Road</p>
+                                <p><strong>Parish:</strong> Manchester</p>
+                            </div>
+                            <p class="text-[11px] text-rose-700 font-medium bg-rose-50 p-2 rounded-lg border border-rose-100 mt-2">
+                                Note: After payment, please take a screenshot to show so I know a payment have been made, so I can confirm.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="text-xs bg-amber-50 border border-amber-200 p-3 rounded-xl text-amber-900 leading-snug font-medium">
+                        For bank transfers, use the details above and send a screenshot after payment. Cash on Delivery available for local pickup.
+                    </div>
+                </div>
+
+                <div class="p-4 border-t border-slate-200 bg-slate-50 shrink-0 space-y-2">
+                    <div class="flex justify-between text-slate-900 font-extrabold text-base">
+                        <span>Total Due</span>
+                        <span id="cartTotalStep2" class="text-rose-600">$0</span>
+                    </div>
+                    <button onclick="processWhatsAppCheckout()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg transition-all">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Place Order via WhatsApp</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- BUNDLE MODAL -->
-    <div id="bundleModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="font-black text-lg">Bundle Products & Save</h3>
-                <button onclick="closeBundleModal()" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+    <div id="bundleModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-slate-100">
+            <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-purple-900 to-slate-900 text-white rounded-t-3xl">
+                <div>
+                    <span class="text-[10px] font-black uppercase text-amber-400 tracking-wider">Quick Bundle Builder</span>
+                    <h3 class="font-black text-lg md:text-xl flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-purple-400"></i> Bundle Products & Save
+                    </h3>
+                </div>
+                <button onclick="closeBundleModal()" class="bg-white/10 hover:bg-white/20 text-white h-8 w-8 rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <input id="bundleSearchInput" onkeyup="filterBundleProducts()" placeholder="Search to add..." class="w-full px-3 py-2 border rounded-xl mb-3 text-sm">
-            <div id="bundleListContainer" class="space-y-2"></div>
-            <div class="mt-4 pt-4 border-t flex justify-between font-bold">
-                <span>Live Total Bundle:</span>
-                <span id="bundleModalTotal" class="text-rose-600">$0</span>
-            </div>
-            <button onclick="closeBundleModal(); toggleCartDrawer(true);" class="w-full mt-3 bg-purple-600 text-white font-bold py-2.5 rounded-xl">Done & View Cart</button>
-        </div>
-    </div>
 
-    <!-- PREORDER MODAL -->
-    <div id="preorderModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="font-black text-lg">Pre-Order a Product</h3>
-                <button onclick="closePreorderModal()" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            <div class="p-4 bg-slate-50 border-b border-slate-200">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="bundleSearchInput" onkeyup="filterBundleProducts()" placeholder="Search products to add to your bundle..." 
+                           class="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-xl text-xs bg-white focus:ring-2 focus:ring-purple-500 outline-none">
+                </div>
             </div>
-            <input id="preorderSearch" onkeyup="filterPreorderList()" placeholder="Search products..." class="w-full px-3 py-2 border rounded-xl mb-3 text-sm">
-            <div id="preorderList" class="space-y-1 max-h-60 overflow-y-auto"></div>
-            <div id="preorderSelected" class="hidden mt-3 p-3 bg-slate-50 rounded-xl">
-                <p id="preorderSelectedTitle" class="font-bold"></p>
-                <p id="preorderSelectedPrice" class="text-rose-600 font-bold"></p>
-            </div>
-            <form id="preorderForm" onsubmit="submitPreorder(event)" class="hidden mt-3 space-y-2 text-sm">
-                <input id="preorderName" required placeholder="Your name" class="w-full px-3 py-2 border rounded-xl">
-                <input id="preorderPhone" required placeholder="WhatsApp number" class="w-full px-3 py-2 border rounded-xl">
-                <textarea id="preorderNote" rows="2" placeholder="Notes" class="w-full px-3 py-2 border rounded-xl"></textarea>
-                <button type="submit" class="w-full bg-rose-600 text-white font-bold py-2.5 rounded-xl">Send Pre-Order Request</button>
-            </form>
-        </div>
-    </div>
 
-    <!-- CONTACT MODAL -->
-    <div id="contactModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="font-black text-lg">Contact Me</h3>
-                <button onclick="closeContactModal()" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <form onsubmit="sendContactWhatsApp(event)" class="space-y-3 text-sm">
-                <input id="contactName" required placeholder="Your name" class="w-full px-3 py-2 border rounded-xl">
-                <input id="contactPhone" placeholder="Phone (optional)" class="w-full px-3 py-2 border rounded-xl">
-                <textarea id="contactMessage" required rows="3" placeholder="Message" class="w-full px-3 py-2 border rounded-xl"></textarea>
-                <button type="submit" class="w-full bg-emerald-500 text-white font-bold py-2.5 rounded-xl">Send via WhatsApp</button>
-            </form>
-            <div class="mt-3 text-center text-xs">
-                Or call me directly<br>
-                <a href="tel:+18765813521" class="text-rose-600 font-bold">+1 876-581-3521</a>
+            <div id="bundleListContainer" class="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar"></div>
+
+            <div class="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between">
+                <div>
+                    <span class="text-xs text-slate-500 block">Live Total Bundle:</span>
+                    <span id="bundleModalTotal" class="font-extrabold text-base text-rose-600">$0</span>
+                </div>
+                <button onclick="closeBundleModal(); toggleCartDrawer(true);" class="bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-6 rounded-xl text-xs">
+                    Done & View Cart
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- TIP MODAL -->
-    <div id="tipModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center">
-            <div class="text-4xl mb-2">☕</div>
-            <h3 class="font-black text-lg">Buy Me a Coffee? 😉</h3>
-            <p class="text-xs text-slate-500 mt-1 mb-4">WhatsApp if you wish to tip me via bank. Use Tip via Coffee for PayPal.</p>
-            <a href="https://wa.me/18765813521?text=Hi%20Unique%20Claims%20JA!%20I'd%20like%20to%20tip%20you%20via%20bank." target="_blank" class="block bg-emerald-500 text-white font-bold py-2.5 rounded-xl mb-2">Tip via WhatsApp</a>
-            <button onclick="openGamifiedTip()" class="w-full bg-amber-500 text-white font-bold py-2.5 rounded-xl mb-2">Tip via Coffee</button>
-            <button onclick="closeTipModal()" class="w-full bg-slate-100 text-slate-700 font-bold py-2 rounded-xl">Maybe later</button>
+    <!-- TIP ME / BUY ME A COFFEE MODAL -->
+    <div id="tipModal" class="fixed inset-0 z-[55] bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl relative border border-slate-100">
+            <button onclick="closeTipModal()" class="absolute top-3 right-3 z-20 bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-700 h-9 w-9 rounded-full flex items-center justify-center font-bold transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="p-6 md:p-8 text-center space-y-4">
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-amber-400 to-rose-500 flex items-center justify-center text-3xl shadow-lg">☕</div>
+                <h3 class="text-xl md:text-2xl font-black text-slate-900">Buy Me a Coffee?😉</h3>
+                <p class="text-sm text-slate-600">WhatsApp if you wish to tip me via bank. Use Tip via Coffee for PayPal.</p>
+                
+                <div class="space-y-3">
+                    <a href="https://wa.me/18765813521?text=Hi%20Unique%20Claims%20JA!%20I%27d%20like%20to%20tip%20you%20via%20bank." 
+                       target="_blank" 
+                       class="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl text-sm shadow-lg transition-all">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        Tip via WhatsApp
+                    </a>
+                    
+                    <button onclick="openGamifiedTip()" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-bold py-3.5 px-4 rounded-xl text-sm shadow-lg transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-mug-hot"></i>
+                        Tip via Coffee
+                    </button>
+                </div>
+                
+                <button onclick="closeTipModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 rounded-xl text-sm">Maybe later</button>
+            </div>
         </div>
     </div>
 
-    <!-- AD FORM MODAL -->
-    <div id="adFormModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="font-black text-lg">Promote Your Business</h3>
-                <button onclick="closeAdForm()" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="space-y-3 text-sm">
-                <input id="adName" placeholder="Your name" class="w-full px-3 py-2 border rounded-xl">
-                <input id="adBusiness" placeholder="Business name" class="w-full px-3 py-2 border rounded-xl">
-                <input id="adPhone" placeholder="WhatsApp number" class="w-full px-3 py-2 border rounded-xl">
-                <textarea id="adDetails" rows="2" placeholder="Details" class="w-full px-3 py-2 border rounded-xl"></textarea>
-                <button onclick="submitAdForm()" class="w-full bg-rose-600 text-white font-bold py-2.5 rounded-xl">Send to WhatsApp</button>
-            </div>
+    <!-- IMAGE ZOOM LIGHTBOX -->
+    <div id="imageZoomModal" class="fixed inset-0 z-[60] bg-black/95 hidden flex items-center justify-center p-4" onclick="closeImageZoom()">
+        <button onclick="closeImageZoom()" class="absolute top-4 right-4 text-white text-3xl z-10 hover:text-rose-400">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="max-w-full max-h-full overflow-auto" onclick="event.stopPropagation()">
+            <img id="zoomImage" src="" alt="Zoomed product" class="max-w-full max-h-[90vh] object-contain mx-auto cursor-zoom-in" 
+                 onclick="this.classList.toggle('scale-150'); this.classList.toggle('cursor-zoom-out');">
         </div>
+        <p id="zoomCaption" class="absolute bottom-4 left-0 right-0 text-center text-white text-sm"></p>
     </div>
 
+    <!-- TOAST MESSAGE -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none border border-slate-700 text-sm font-semibold max-w-xs sm:max-w-sm">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toastMessage">Item added to cart!</span>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC & FULL PRODUCTS -->
     <script>
-        // === MAIN SCRIPT START ===
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const installBtn = document.getElementById('installAppBtn');
+            if (installBtn) installBtn.classList.remove('hidden');
+        });
+
+        // Rotating announcement bar for all screen sizes
+        const announcements = [
+            '<i class="fa-solid fa-fire text-amber-300"></i> BEST SELLER: Android Smart Projector Bundle Ready!',
+            '⚡ Local Pickups in Mandeville | Knutsford Express Delivery Islandwide 🇯🇲',
+            '🛒 Order now — Knutsford & Mandeville pickup available!'
+        ];
+        let annIndex = 0;
+        setInterval(() => {
+            const el = document.getElementById('announcementText');
+            if (!el) return;
+            el.style.opacity = '0';
+            setTimeout(() => {
+                const live = window.liveAnnouncements && window.liveAnnouncements.length ? window.liveAnnouncements : announcements;
+                annIndex = (annIndex + 1) % live.length;
+                el.innerHTML = live[annIndex];
+                el.innerHTML = announcements[annIndex];
+                el.style.opacity = '1';
+            }, 300);
+        }, 4000);
+
+        function installPwaApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted install');
+                    }
+                    deferredPrompt = null;
+                    document.getElementById('installAppBtn').classList.add('hidden');
+                });
+            } else {
+                alert("To add this store as an app on your device:\n\n• On iPhone/iPad: Tap the Share button in Safari and select 'Add to Home Screen'.\n• On Android/PC: Tap your browser menu (...) and select 'Install app' or 'Add to Home screen'.");
+            }
+        }
+
         let products = [
             {
                 id: 0,
                 title: "5ft Flexible Drain Snake Cleaner",
                 price: 800,
                 badge: "TOOLS",
-                description: `🔥 Clear Stubborn Clogs in Minutes!\n\nThe ultimate 5ft flexible drain snake for kitchen sinks, bathroom basins, showers and tubs.\n\n✅ Strong yet super flexible cable reaches deep into pipes\n✅ Removes hair, grease, food waste and blockages fast\n✅ Eliminates bad odors and slow drains\n✅ Perfect for plumbers, landlords and DIY homeowners\n\nNo more expensive plumber calls for simple clogs. Keep one at home!`,
+                description: `🔥 Clear Stubborn Clogs in Minutes!
+
+The ultimate 5ft flexible drain snake for kitchen sinks, bathroom basins, showers and tubs.
+
+✅ Strong yet super flexible cable reaches deep into pipes
+✅ Removes hair, grease, food waste and blockages fast
+✅ Eliminates bad odors and slow drains
+✅ Perfect for plumbers, landlords and DIY homeowners
+
+No more expensive plumber calls for simple clogs. Keep one at home!`,
                 searchKeywords: "drain cleaner snake 5ft plumber sink clog blocker flexible tool jamaica bathroom kitchen",
                 images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/789708363_2150562459676950_3961017403451417570_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/789708385_1086754953752171_2275017065013072365_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/790024986_951735187958091_2253425911453194379_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/790059776_4883047658583005_9048847866184438394_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/5ft%20Snake%20Drain%20Cleaner/790114418_1055455680535275_7310149377224095073_n.jpg"]
-            }
-            // Full product list continues in the complete file
+            },
+            {
+                id: 1,
+                title: "9ft Extra Long Drain Snake Cleaner",
+                price: 3500,
+                badge: "TOOLS",
+                description: `💪 Reach Deeper Blockages!
+
+Longer 9ft drain snake for tougher, deeper clogs in sinks, drains and pipes.
+
+✅ Extra length for hard-to-reach areas
+✅ Strong flexible design
+✅ Professional grade for serious plumbers
+
+When 5ft isn't enough, this gets the job done.`,
+                searchKeywords: "9ft drain snake long cleaner plumber deep clog tool",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790003717_2520610905032057_7151119086195477674_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790059533_2904958866504194_4137135544160988951_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790059775_1775679503431528_7350739767641216247_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/790969922_1044656278325629_154676372423824412_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/9ft%20Snake%20Drain%20Cleaner/791045353_1065550815860581_6985399102464662923_n.jpg"]
+            },
+            {
+                id: 2,
+                title: "Android Smart Projector Bundle",
+                price: 19500,
+                badge: "#1 BEST SELLER",
+                description: `🍿 FULLY LOADED SMART PROJECTOR BUNDLE!
+
+Turn any wall into a 130-inch cinema experience.
+
+✨ Pre-loaded with latest movies, TV shows, anime, sports & live channels — all FREE
+✨ Plug & Play: Connect to Wi-Fi and start watching instantly
+✨ Dual-band Wi-Fi + Bluetooth
+✨ Includes upgraded backlit mini keyboard remote
+✨ Lifetime support from Unique Claims JA
+
+Why struggle with TV damage, cable bills or limited Netflix when you get unlimited entertainment here? Just bring it home and enjoy!`,
+                searchKeywords: "android smart projector bundle hy300 fully loaded free movies tv shows jamaica best seller cinema",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825268953_950844711407562_5164107063003195279_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269035_1842693450054383_2803710887866853991_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269045_2527327671071171_9170582407973424468_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825269135_1098951375843016_2487635300355767178_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825270350_1579039539864030_5939598115892029473_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Android%20Smart%20Projector%20Bundle/825270520_1102103145844390_3944394994432166697_n.jpg"]
+            },
+            {
+                id: 3,
+                title: "Bluetooth Gamepad Controller",
+                price: 4500,
+                badge: "GAMING",
+                description: `🎮 Level Up Your Gaming!
+
+Comfortable Bluetooth gamepad with responsive buttons, dual analog sticks and vibration.
+
+✅ Works with Android phones, tablets, TVs and PC
+✅ Ergonomic design for long sessions
+✅ Perfect companion for your projector setup
+
+Game like a pro on the big screen!`,
+                searchKeywords: "bluetooth gamepad controller android gaming remote joypad",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817137921_1834989191190004_929457359546861269_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817179283_1492931986190790_1701374640396694443_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817275216_1089293540622951_5359836854254260227_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/817745675_4634871976771831_7220970106583815880_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/819126747_1066175702683960_7553879230658189506_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Bluetooth%20Gamepad%20Controller/820001207_28702103396088520_594468052604712590_n.jpg"]
+            },
+            {
+                id: 4,
+                title: "Car Seat Face Cover",
+                price: 1800,
+                badge: "AUTO",
+                description: `🚗 Protect Your Car Seats!
+
+Durable face cover / seat protector for cars, SUVs and trucks.
+
+✅ Easy to install
+✅ Keeps seats clean from dirt, spills and wear
+✅ Universal fit
+
+Perfect for daily drivers and families.`,
+                searchKeywords: "car seat cover face protector auto interior",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291112_973674079103996_5881654850923170503_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291134_2350602045763294_4071298666574768337_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291166_1415225213896573_8970585390054832793_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291322_1092405760318372_5506443296540245511_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291443_1840933823726953_7709703499242117086_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Car%20seat%20face/825291468_4527437867520363_3191963792401912722_n.jpg"]
+            },
+            {
+                id: 5,
+                title: "Digital Tire Pressure Tester",
+                price: 1200,
+                badge: "AUTO",
+                description: `🛞 Check Your PSI Accurately!
+
+Digital tire pressure gauge for cars, bikes, trucks and any vehicle with valves.
+
+✅ Precise digital reading
+✅ Prevents under/over inflation
+✅ Saves fuel and extends tire life
+✅ Check cold pressure for best accuracy
+
+Drive smoother and safer every day!`,
+                searchKeywords: "digital tire pressure tester psi gauge auto car bike",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/806310644_4381990502054687_4974509678397873830_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/806310757_2984055608605185_5603980367719056012_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/807851297_1021362497587790_264491580629483221_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/809177776_2661288877625262_4476805697712255333_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/809206206_1050396904535128_7009559183262430374_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Digital%20Tire%20Pressure%20Tester/814834196_1558844682152469_7196133628263876967_n.jpg"]
+            },
+            {
+                id: 6,
+                title: "Magnetic Pickup Pen Tool",
+                price: 5,
+                badge: "TOOLS",
+                description: `🧲 Never Lose Small Parts Again!
+
+Telescopic magnetic pickup pen for screws, nuts, bolts, nails and metal bits.
+
+✅ Extends to reach tight spots
+✅ Strong magnet
+✅ Pocket-sized and handy
+
+Essential for mechanics, electricians and DIY.`,
+                searchKeywords: "magnetic pickup pen tool telescopic magnet screws nuts",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/761662708_915936818226507_5409632850732524466_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/761729763_915936798226509_791492801025035830_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/761819106_915936784893177_1817598971533017809_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/762624330_915936801559842_5053745623046113829_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/762950124_915936814893174_3659173451065673327_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Magnetic%20Pickup%20Pen%20Tool/763694695_915936808226508_2213612772581765475_n.jpg"]
+            },
+            {
+                id: 7,
+                title: "Basin Sink Wrench",
+                price: 900,
+                badge: "TOOLS",
+                description: `🔧 Plumbers NEED THIS!
+
+Specialized basin/sink wrench for installing kitchen sinks and bathroom basins in tight spaces.
+
+✅ Reaches under fittings easily
+✅ No more sweating in cramped spots
+✅ Makes sink installs fast and frustration-free
+
+A must-have for every plumber and handyman.`,
+                searchKeywords: "basin sink wrench plumber tool kitchen bathroom install",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/814920983_1066757059664737_464225709305217584_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/814920994_1116099871222951_7564044150627585050_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/814921127_2165526574370406_659359511255209194_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/815155593_1404039168519437_7314705440782533117_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/816206407_1803374284149470_2549249987489145858_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Plumber%20Basin%20Wrench/819134466_2131025291140224_1632456403708233291_n.jpg"]
+            },
+            {
+                id: 8,
+                title: "Quick Install HD Portable Camera",
+                price: 7500,
+                badge: "SECURITY",
+                description: `📹 Crystal Clear 2K HD Camera!
+
+Brand new in box, easy setup portable camera with dedicated app.
+
+✅ 2K high definition video
+✅ Quick install — mount or move anywhere
+✅ Perfect for home, office, hotel or shop
+✅ Fast connection and clear night vision
+
+Monitor what matters with peace of mind.`,
+                searchKeywords: "hd portable camera 2k security wifi home surveillance jamaica",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/804441532_1646268670190269_3997970850246026112_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/806310242_1061326853193516_7923750791390541375_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/806310387_1087356310934679_5870917788045222993_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/809081140_1088508680225734_8920320738362941054_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/810782072_1806482890373384_7222796637870283017_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Quick%20Install%20HD%20Home%20Camera/814959779_1619270123262433_676428541788038875_n.jpg"]
+            },
+            {
+                id: 9,
+                title: "Tap Die Set",
+                price: 3200,
+                badge: "TOOLS",
+                description: `⚙️ Complete Tap & Die Threading Set
+
+Professional set for creating or repairing threads on bolts, pipes and metal parts.
+
+✅ Multiple sizes included
+✅ Durable high-quality steel
+✅ Essential for mechanics and fabricators
+
+Fix stripped threads like a pro.`,
+                searchKeywords: "tap die set threading tool mechanic workshop",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/814844830_1077103151964377_4971695888230270271_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/818509618_1441176071443865_6339554377313642197_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/818914282_1084736274280367_6975430436252581023_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/818914290_29109576921968794_6439075062837496558_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/819039138_4413674878777811_10910908641104919_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tap%20Die%20Set/819273465_1563124655567844_4392416067484382216_n.jpg"]
+            },
+            {
+                id: 10,
+                title: "Tight Spot 90° Drill Adapter",
+                price: 500,
+                badge: "TOOLS",
+                description: `🔄 Reach Where Your Drill Can't!
+
+90-degree angle bit driver adapter for tight spots.
+
+✅ Perfect for corners, under sinks, inside cabinets
+✅ Works with any drill or impact driver
+✅ Saves time and frustration
+
+The tool that makes impossible jobs possible.`,
+                searchKeywords: "tight spot drill adapter 90 degree angle bit driver",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/806310568_1585419782629925_480852854792977751_n%20%281%29.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/806310568_1585419782629925_480852854792977751_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/808025040_1949674245952905_7042474106631233656_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/808165950_1074407385189029_6712764320289274261_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Drill%20Adapter/821155063_1671687707640440_6437233385352958799_n.jpg"]
+            },
+            {
+                id: 11,
+                title: "Tight-Spot Flat Ratchet Screwdriver",
+                price: 1100,
+                badge: "TOOLS",
+                description: `🪛 Flat Ratchet for Impossible Spots!
+
+Compact flat ratchet screwdriver that fits where regular tools can't.
+
+✅ Low profile design for tight clearances
+✅ Ratcheting action for one-handed use
+✅ Great for cars, appliances, electronics and DIY
+
+This little tool has saved countless jobs!`,
+                searchKeywords: "tight spot flat ratchet screwdriver compact tool",
+                images: ["https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/756518109_1107224121627944_2467687651842736993_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/756547078_1968435260535562_7884208517218102609_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/756963274_922378090879923_5047751336193148978_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/758056770_805550119250448_3252799618856806698_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/758068695_1045762618386796_5179854996411865887_n.jpg", "https://raw.githubusercontent.com/HumbleKidd/Unique-Claims-JA/main/products/Tight%20Spot%20Flat%20Ratchet%20Driver/758182442_2454313528416082_2428189012383195161_n.jpg"]
+            },
         ];
 
-        // Full script with loadLiveCatalog that now works
-        // (Complete implementation restored from original store-with-firebase-fixed.html)
-    </script>
+        // Load cart from localStorage so it survives page reloads
+        function loadCartFromLocal() {
+            try {
+                const saved = localStorage.getItem('uniqueClaimsCart');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed)) {
+                        return parsed.filter(item => item && typeof item.id === 'number' && item.qty > 0);
+                    }
+                }
+            } catch (e) {
+                console.warn('Failed to load cart from localStorage', e);
+            }
+            return [];
+        }
+
+        let cart = loadCartFromLocal();
+        let savedProductIds = JSON.parse(localStorage.getItem('uniqueClaimsSaved') || '[]');
+        let activeModalProduct = null;
+        let activeModalQty = 1;
+
+        function formatMoney(amount) {
+            return '$' + amount.toLocaleString();
+        }
+
+        // Sort and render products based on dropdown selection
+        function sortAndRenderProducts() {
+            const sortBy = document.getElementById('sortSelect')?.value || 'random';
+            let sorted = [...products];
+
+            if (sortBy === 'random') {
+                sorted.sort(() => Math.random() - 0.5);
+            } else if (sortBy === 'newest') {
+                // Higher ID = newer (added later)
+                sorted.sort((a, b) => b.id - a.id);
+            } else if (sortBy === 'oldest') {
+                sorted.sort((a, b) => a.id - b.id);
+            } else if (sortBy === 'price-asc') {
+                sorted.sort((a, b) => a.price - b.price);
+            } else if (sortBy === 'price-desc') {
+                sorted.sort((a, b) => b.price - a.price);
+            } else if (sortBy === 'popularity') {
+                // Popularity score: Best Seller highest, then Security, Gaming, Auto, Tools
+                const getPopularity = (p) => {
+                    if (p.badge && p.badge.includes('BEST SELLER')) return 1000;
+                    if (p.badge === 'SECURITY') return 800;
+                    if (p.badge === 'GAMING') return 700;
+                    if (p.badge === 'AUTO') return 600;
+                    if (p.badge === 'TOOLS') return 500;
+                    return p.id; // fallback
+                };
+                sorted.sort((a, b) => getPopularity(b) - getPopularity(a));
+            }
+
+            renderProducts(sorted);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure catalog is visible on load
+            const main = document.getElementById('productGrid')?.closest('main');
+            if (main) main.classList.remove('hidden');
+            const detail = document.getElementById('productDetailPage');
+            if (detail) { detail.classList.add('hidden'); detail.classList.remove('active'); }
+            restoreCartFromUrl();
+            // Always refresh cart UI so localStorage cart shows on reload
+            updateCartUI();
+            // Start with randomized order
+            sortAndRenderProducts();
+            updateSavedBadgeCount();
+            // Open view from hash on load (so reload stays on product/cart/etc)
+            setTimeout(() => handleHashRoute(), 50);
+        });
+
+        function handleHashRoute() {
+            const hash = location.hash.replace('#', '');
+            if (!hash) return;
+
+            if (hash.startsWith('product-')) {
+                const id = parseInt(hash.split('-')[1], 10);
+                if (!isNaN(id)) {
+                    openProductLightbox(id, true);
+                }
+            } else if (hash === 'cart') {
+                document.getElementById('cartDrawer').classList.remove('hidden');
+                goToCartStep(1);
+            } else if (hash === 'checkout') {
+                document.getElementById('cartDrawer').classList.remove('hidden');
+                goToCartStep(2);
+            } else if (hash === 'saved') {
+                document.getElementById('savedDrawer').classList.remove('hidden');
+                updateSavedDrawerUI();
+            } else if (hash === 'tip') {
+                document.getElementById('tipModal').classList.remove('hidden');
+            } else if (hash === 'contact') {
+                document.getElementById('contactModal').classList.remove('hidden');
+            } else if (hash === 'preorder') {
+                document.getElementById('preorderModal').classList.remove('hidden'); renderPreorderList(products);
+            }
+        }
+
+        window.addEventListener('hashchange', () => {
+            // Close all overlays first
+            document.getElementById('productModal').classList.add('hidden');
+            document.getElementById('cartDrawer').classList.add('hidden');
+            document.getElementById('savedDrawer').classList.add('hidden');
+            document.getElementById('tipModal').classList.add('hidden');
+            const contact = document.getElementById('contactModal');
+            if (contact) contact.classList.add('hidden');
+            const preorder = document.getElementById('preorderModal');
+            if (preorder) preorder.classList.add('hidden');
+            const bundle = document.getElementById('bundleModal');
+            if (bundle) bundle.classList.add('hidden');
+            // Then open based on new hash
+            handleHashRoute();
+        });
+
+        // Track current main image per card for click-to-zoom behavior
+        const cardCurrentImages = {};
+
+        function swapCardMainImage(productId, newImgSrc) {
+            const imgEl = document.getElementById(`cardMainImg-${productId}`);
+            if (imgEl) {
+                imgEl.src = newImgSrc;
+                cardCurrentImages[productId] = newImgSrc;
+            }
+        }
+
+        function handleCardMainClick(productId, originalMain) {
+            // Clicking the main image opens the full product page
+            openProductLightbox(productId);
+        }
+
+        function renderProducts(items) {
+            const grid = document.getElementById('productGrid');
+            const noRes = document.getElementById('noResults');
+            
+            if (items.length === 0) {
+                grid.innerHTML = '';
+                noRes.classList.remove('hidden');
+                return;
+            } else {
+                noRes.classList.add('hidden');
+            }
+
+            grid.innerHTML = items.map((p, idx) => {
+                const isSaved = savedProductIds.includes(p.id);
+                const mainImg = p.images[0] || '';
+                const sideImgs = p.images.slice(1, 4); // up to 3 side images
+                const badgeText = p.badge || (p.tags && p.tags[0]) || '';
+
+                return `
+                    <div class="group bg-white rounded-2xl p-3 border border-slate-200/80 shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md">
+                        <!-- Mobile-first image layout: main + side thumbs -->
+                        <div class="flex gap-2 mb-3">
+                            <!-- Main big image - strict 3:4 on all screens -->
+                            <a href="#product-${p.id}" class="relative flex-1 overflow-hidden rounded-xl bg-slate-100 cursor-pointer shadow-inner product-card-main-img block" 
+                                 id="cardMain-${p.id}"
+                                 onclick="event.preventDefault(); handleCardMainClick(${p.id}, '${mainImg}')">
+                                <img id="cardMainImg-${p.id}" src="${mainImg}" alt="${p.title}" class="absolute inset-0 w-full h-full object-cover">
+                                ${badgeText ? `<span class="absolute top-2 left-2 bg-rose-600 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider shadow-md">${badgeText}</span>` : ''}
+                                <button onclick="event.stopPropagation(); toggleSaveProduct(${p.id});" 
+                                        class="absolute top-2 right-2 h-7 w-7 rounded-full ${isSaved ? 'bg-rose-600 text-white' : 'bg-white/80 text-slate-700 hover:bg-white'} shadow-md flex items-center justify-center transition-all">
+                                    <i class="${isSaved ? 'fa-solid' : 'fa-regular'} fa-heart text-xs"></i>
+                                </button>
+                            </a>
+
+                            <!-- Side images -->
+                            <div class="flex flex-col gap-1.5 w-14 sm:w-16 md:w-20 shrink-0">
+                                ${sideImgs.map((img, idx) => `
+                                    <div class="relative flex-1 min-h-0 overflow-hidden rounded-lg bg-slate-100 cursor-pointer border border-slate-200" 
+                                         onclick="event.stopPropagation(); swapCardMainImage(${p.id}, this.querySelector('img').src)">
+                                        <img src="${img}" alt="${p.title} view ${idx+2}" class="w-full h-full object-cover">
+                                    </div>
+                                `).join('')}
+                                ${sideImgs.length < 3 ? Array(3 - sideImgs.length).fill(0).map(() => `<div class="flex-1 min-h-[36px] rounded-lg bg-slate-100 border border-dashed border-slate-300"></div>`).join('') : ''}
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <a href="#product-${p.id}" onclick="event.preventDefault(); openProductLightbox(${p.id})" class="font-bold text-sm text-slate-900 line-clamp-2 cursor-pointer hover:text-rose-600 transition-colors leading-snug block">
+                                ${p.title}
+                            </a>
+                            <div class="flex items-center justify-between">
+                                <span class="font-black text-base text-rose-600">${formatMoney(p.price)}</span>
+                                <button onclick="openProductLightbox(${p.id})" class="text-[11px] font-semibold text-rose-600 hover:text-rose-700 underline underline-offset-2">
+                                    View more
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-100 space-y-2 mt-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[11px] font-semibold text-slate-500">Qty:</span>
+                                <div class="flex items-center border border-slate-200 rounded-xl bg-slate-50 p-0.5">
+                                    <button onclick="adjustCardQty(${p.id}, -1)" class="w-6 h-6 rounded-lg bg-white shadow-sm flex items-center justify-center text-slate-700 font-bold text-xs">-</button>
+                                    <span id="cardQty-${p.id}" class="w-6 text-center font-extrabold text-xs text-slate-800">1</span>
+                                    <button onclick="adjustCardQty(${p.id}, 1)" class="w-6 h-6 rounded-lg bg-white shadow-sm flex items-center justify-center text-slate-700 font-bold text-xs">+</button>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="addCardToCartWithQty(${p.id})" class="flex-1 bg-slate-900 hover:bg-rose-600 text-white font-bold py-2 px-2 rounded-xl text-xs flex items-center justify-center gap-1 transition-all shadow-sm active:scale-95">
+                                    <i class="fa-solid fa-cart-plus text-xs"></i> Add
+                                </button>
+                                <button onclick="chatAboutProduct(${p.id})" title="Chat about this" class="bg-emerald-500 hover:bg-emerald-600 text-white h-8 w-8 rounded-xl flex items-center justify-center transition-colors">
+                                    <i class="fa-brands fa-whatsapp text-xs"></i>
+                                </button>
+                                <button onclick="shareProduct(${p.id})" title="Share" class="bg-slate-100 hover:bg-slate-200 text-slate-700 h-8 w-8 rounded-xl flex items-center justify-center transition-colors">
+                                    <i class="fa-solid fa-share-nodes text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('productCountBadge').textContent = `${items.length} Items`;
+        }
+
+        const cardQtys = {};
+        function adjustCardQty(id, delta) {
+            if (!cardQtys[id]) cardQtys[id] = 1;
+            cardQtys[id] = Math.max(1, cardQtys[id] + delta);
+            const display = document.getElementById(`cardQty-${id}`);
+            if (display) display.textContent = cardQtys[id];
+        }
+
+        function addCardToCartWithQty(id) {
+            const qty = cardQtys[id] || 1;
+            addToCart(id, qty);
+        }
+
+        function handleLiveSearch(query) {
+            const popup = document.getElementById('liveSearchPopup');
+            if (!query.trim()) {
+                popup.classList.add('hidden');
+                return;
+            }
+
+            const q = query.toLowerCase();
+            const filtered = products.filter(p => 
+                p.title.toLowerCase().includes(q) || 
+                (p.description && p.description.toLowerCase().includes(q)) ||
+                (p.searchKeywords && p.searchKeywords.toLowerCase().includes(q))
+            );
+            if (filtered.length === 0) {
+                popup.innerHTML = `<div class="p-3 text-xs text-slate-500 text-center">No products found</div>`;
+            } else {
+                popup.innerHTML = filtered.map(p => `
+                    <div class="flex items-center justify-between p-2 hover:bg-slate-50 rounded-xl gap-2 cursor-pointer transition-colors" onclick="openProductLightbox(${p.id}); document.getElementById('liveSearchPopup').classList.add('hidden');">
+                        <img src="${p.images[0]}" class="w-10 h-10 object-cover rounded-lg">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-xs text-slate-900 truncate">${p.title}</h4>
+                            <p class="font-bold text-xs text-rose-600">${formatMoney(p.price)}</p>
+                        </div>
+                        <button onclick="event.stopPropagation(); addToCart(${p.id}, 1);" class="bg-rose-600 hover:bg-rose-700 text-white text-xs px-2.5 py-1.5 rounded-lg font-bold">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+            popup.classList.remove('hidden');
+        }
+
+        function handleLiveSearchMobile(query) {
+            const popup = document.getElementById('mobileLiveSearchPopup');
+            if (!query.trim()) {
+                popup.classList.add('hidden');
+                return;
+            }
+
+            const q = query.toLowerCase();
+            const filtered = products.filter(p => 
+                p.title.toLowerCase().includes(q) || 
+                (p.description && p.description.toLowerCase().includes(q)) ||
+                (p.searchKeywords && p.searchKeywords.toLowerCase().includes(q))
+            );
+            if (filtered.length === 0) {
+                popup.innerHTML = `<div class="p-3 text-xs text-slate-500 text-center">No products found</div>`;
+            } else {
+                popup.innerHTML = filtered.map(p => `
+                    <div class="flex items-center justify-between p-2 hover:bg-slate-50 rounded-xl gap-2 cursor-pointer transition-colors" onclick="openProductLightbox(${p.id}); document.getElementById('mobileLiveSearchPopup').classList.add('hidden');">
+                        <img src="${p.images[0]}" class="w-10 h-10 object-cover rounded-lg">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-xs text-slate-900 truncate">${p.title}</h4>
+                            <p class="font-bold text-xs text-rose-600">${formatMoney(p.price)}</p>
+                        </div>
+                        <button onclick="event.stopPropagation(); addToCart(${p.id}, 1);" class="bg-rose-600 text-white text-xs px-2.5 py-1.5 rounded-lg font-bold">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+            popup.classList.remove('hidden');
+        }
+
+        function toggleSaveProduct(id) {
+            if (savedProductIds.includes(id)) {
+                savedProductIds = savedProductIds.filter(itemId => itemId !== id);
+                showToast("Item removed from saved wishlist");
+            } else {
+                savedProductIds.push(id);
+                showToast("Saved! Tap the heart (Saved) button above to view your favorites.", 'saved');
+                
+                // Non-persistent distinct animation for Saved button
+                const savedBtn = document.getElementById('savedButton');
+                savedBtn.classList.add('animate-saved-action');
+                setTimeout(() => savedBtn.classList.remove('animate-saved-action'), 400);
+            }
+            localStorage.setItem('uniqueClaimsSaved', JSON.stringify(savedProductIds));
+            updateSavedBadgeCount();
+            renderProducts(products);
+            updateSavedDrawerUI();
+        }
+
+        function updateSavedBadgeCount() {
+            document.getElementById('savedBadgeCount').textContent = savedProductIds.length;
+        }
+
+        function toggleSavedDrawer(show) {
+            const drawer = document.getElementById('savedDrawer');
+            if (show) {
+                updateSavedDrawerUI();
+                drawer.classList.remove('hidden');
+                if (!history.state || history.state.view !== 'saved') {
+                    history.pushState({ view: 'saved' }, '', '#saved');
+                }
+            } else {
+                drawer.classList.add('hidden');
+                if (history.state && history.state.view === 'saved') {
+                    history.back();
+                }
+            }
+        }
+
+        function updateSavedDrawerUI() {
+            const container = document.getElementById('savedItemsContainer');
+            const savedItems = products.filter(p => savedProductIds.includes(p.id));
+
+            if (savedItems.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-10 text-slate-400 space-y-3">
+                        <i class="fa-regular fa-heart text-3xl text-slate-300"></i>
+                        <p class="font-bold text-slate-600 text-xs">Your saved wishlist is empty</p>
+                        <p class="text-[11px] text-slate-400">Click the heart icon on any product to save it for later!</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = savedItems.map(item => `
+                    <div class="flex items-center justify-between gap-3 bg-white p-3 rounded-2xl border border-slate-200/80 shadow-sm">
+                        <img src="${item.images[0]}" alt="${item.title}" class="w-14 h-14 object-cover rounded-xl bg-slate-100 shrink-0 cursor-pointer" onclick="toggleSavedDrawer(false); openProductLightbox(${item.id});">
+                        <div class="flex-1 min-w-0 cursor-pointer" onclick="toggleSavedDrawer(false); openProductLightbox(${item.id});">
+                            <h4 class="font-bold text-xs text-slate-800 truncate">${item.title}</h4>
+                            <p class="font-extrabold text-xs text-rose-600 mt-1">${formatMoney(item.price)}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="addToCart(${item.id}, 1);" class="bg-rose-600 hover:bg-rose-700 text-white p-2.5 rounded-xl text-xs font-bold shadow-sm" title="Add to Cart">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                            <button onclick="toggleSaveProduct(${item.id})" class="text-slate-400 hover:text-rose-600 p-2 text-xs" title="Remove">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function triggerContactAnimation(e) {
+            const btn = document.getElementById('desktopContactBtn');
+            if (btn) {
+                btn.classList.add('animate-contact-action');
+                setTimeout(() => btn.classList.remove('animate-contact-action'), 300);
+            }
+        }
+
+        function resetSearchFilter() {
+            document.getElementById('mainSearchInput').value = '';
+            document.getElementById('mobileSearchInput').value = '';
+            sortAndRenderProducts();
+        }
+
+        let currentPageProduct = null;
+        let pageQty = 1;
+
+        function openProductLightbox(id, skipPush) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+
+            activeModalProduct = p;
+            activeModalQty = 1;
+
+            document.getElementById('modalTitle').textContent = p.title;
+            document.getElementById('modalPrice').textContent = formatMoney(p.price);
+            document.getElementById('modalDescription').textContent = p.description;
+            document.getElementById('modalBadge').textContent = p.badge || '';
+            document.getElementById('modalQtyDisplay').textContent = '1';
+            const noteEl = document.getElementById('modalProductNote');
+            if (noteEl) noteEl.value = '';
+
+            const mainImg = document.getElementById('modalMainImg');
+            mainImg.src = p.images[0];
+
+            const thumbBox = document.getElementById('modalThumbnailsContainer');
+            thumbBox.innerHTML = p.images.map((imgUrl, idx) => `
+                <img src="${imgUrl}" onclick="setModalMainImage('${imgUrl}', this)" 
+                     class="h-16 w-16 object-cover rounded-xl cursor-pointer border-2 ${idx === 0 ? 'border-rose-600 scale-105' : 'border-transparent opacity-70'} hover:opacity-100 transition-all shadow-sm">
+            `).join('');
+
+            document.getElementById('modalAddToCartBtn').onclick = () => {
+                const note = (document.getElementById('modalProductNote') || {}).value || '';
+                addToCart(p.id, activeModalQty, note.trim());
+                closeProductLightbox();
+            };
+
+            const shareBtn = document.getElementById('modalShareBtn');
+            if (shareBtn) shareBtn.onclick = () => shareProduct(p.id);
+
+            document.getElementById('productModal').classList.remove('hidden');
+            loadRecommendedProducts(p);
+
+            if (!skipPush) {
+                const newHash = '#product-' + id;
+                if (location.hash !== newHash) {
+                    history.pushState({ view: 'product', id: id }, '', newHash);
+                }
+            }
+        }
+
+        function closeProductLightbox() {
+            document.getElementById('productModal').classList.add('hidden');
+            if (location.hash.startsWith('#product-')) history.back();
+        }
+
+        // Alias for any old calls
+        function openProductPage(id, skipPush) { openProductLightbox(id, skipPush); }
+        function closeProductPage() { closeProductLightbox(); }
+
+        function adjustPageQty(delta) {
+            pageQty = Math.max(1, pageQty + delta);
+            document.getElementById('pageQty').textContent = pageQty;
+        }
+        function addPageToCart() {
+            if (currentPageProduct) {
+                const note = document.getElementById("pageProductNote").value.trim();
+                addToCart(currentPageProduct.id, pageQty, note);
+            }
+        }
+        function chatAboutCurrentProduct() {
+            if (currentPageProduct) chatAboutProduct(currentPageProduct.id);
+        }
+        function shareCurrentProduct() {
+            if (currentPageProduct) shareProduct(currentPageProduct.id);
+        }
+
+        function loadRecommendedProducts(currentProduct) {
+            const container = document.getElementById('recommendedProducts');
+            if (!container) return;
+
+            let recs = [];
+            if (currentProduct.recommendedIds && currentProduct.recommendedIds.length) {
+                recs = currentProduct.recommendedIds
+                    .map(id => products.find(p => p.id === id))
+                    .filter(Boolean)
+                    .slice(0, 4);
+            } else {
+                // Random other products
+                const others = products.filter(p => p.id !== currentProduct.id);
+                recs = others.sort(() => 0.5 - Math.random()).slice(0, 4);
+            }
+
+            if (recs.length === 0) {
+                container.innerHTML = '<p class="text-xs text-slate-500 col-span-full">No recommendations available</p>';
+                return;
+            }
+
+            container.innerHTML = recs.map(r => `
+                <div class="bg-white rounded-xl border border-slate-200 p-2 cursor-pointer hover:shadow-md transition-shadow" onclick="openProductLightbox(${r.id})">
+                    <img src="${r.images[0]}" alt="${r.title}" class="w-full aspect-square object-cover rounded-lg mb-1.5">
+                    <h5 class="font-semibold text-[11px] text-slate-800 line-clamp-2 leading-tight">${r.title}</h5>
+                    <p class="font-bold text-xs text-rose-600 mt-1">${formatMoney(r.price)}</p>
+                </div>
+            `).join('');
+        }
+
+        function setModalMainImage(imgUrl, thumbEl) {
+            document.getElementById('modalMainImg').src = imgUrl;
+            const thumbs = document.querySelectorAll('#modalThumbnailsContainer img');
+            thumbs.forEach(t => {
+                t.classList.remove('border-rose-600', 'scale-105');
+                t.classList.add('border-transparent', 'opacity-70');
+            });
+            thumbEl.classList.add('border-rose-600', 'scale-105');
+            thumbEl.classList.remove('border-transparent', 'opacity-70');
+        }
+
+        function adjustModalQty(delta) {
+            activeModalQty = Math.max(1, activeModalQty + delta);
+            document.getElementById('modalQtyDisplay').textContent = activeModalQty;
+        }
+
+        function closeProductLightbox() {
+            document.getElementById('productModal').classList.add('hidden');
+            // If we are currently on a product history state, go back so URL and back/forward stay correct
+            if (history.state && history.state.view === 'product') {
+                history.back();
+            }
+        }
+
+        function openBundleModalFromProduct() {
+            if (activeModalProduct) {
+                const note = document.getElementById('modalProductNote').value.trim();
+                addToCart(activeModalProduct.id, activeModalQty, note);
+            }
+            closeProductLightbox();
+            openBundleModal();
+        }
+
+        function shareProduct(id) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+
+            const shareTitle = `${p.title} - Unique Claims JA`;
+            const shareText = `Check out ${p.title} on Unique Claims JA! Uniquely You! Every time.\n`;
+            const shareUrl = `https://uniqueclaimsja.store?product=${p.id}`;
+
+            if (navigator.share) {
+                navigator.share({ title: shareTitle, text: shareText, url: shareUrl }).catch(() => {
+                    copyShareFallback(shareText + shareUrl);
+                });
+            } else {
+                copyShareFallback(shareText + shareUrl);
+            }
+        }
+
+        function copyShareFallback(text) {
+            const tempInput = document.createElement("textarea");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            showToast("Product link & info copied to clipboard!");
+        }
+
+        function quickAddToCart(id) {
+            addToCart(id, 1, "");
+        }
+
+        function addToCart(id, qty = 1, note = "") {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+
+            const existingIndex = cart.findIndex(item => item.id === id && item.note === note);
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += qty;
+            } else {
+                cart.push({ ...p, qty: qty, note: note });
+            }
+
+            updateCartUI();
+            
+            // Non-persistent distinct animation for Cart button
+            const cartBtn = document.getElementById('cartButton');
+            cartBtn.classList.add('animate-cart-action');
+            setTimeout(() => cartBtn.classList.remove('animate-cart-action'), 350);
+
+            showToast(`Added to Cart! Tap the Cart button above to checkout.`, 'cart');
+        }
+
+        function updateCartQuantity(index, delta) {
+            if (cart[index]) {
+                cart[index].qty += delta;
+                if (cart[index].qty <= 0) {
+                    cart.splice(index, 1);
+                }
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cartBadgeCount');
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            badge.textContent = totalCount;
+
+            // Shake cart button every 8 seconds if items are in cart
+            if (window.cartShakeInterval) clearInterval(window.cartShakeInterval);
+            if (totalCount > 0) {
+                window.cartShakeInterval = setInterval(() => {
+                    const cartBtn = document.getElementById('cartButton');
+                    if (cartBtn && totalCount > 0) {
+                        cartBtn.classList.add('animate-cart-shake');
+                        setTimeout(() => cartBtn.classList.remove('animate-cart-shake'), 600);
+                    }
+                }, 8000);
+            }
+
+            const cartBox = document.getElementById('cartItemsContainer');
+            if (cart.length === 0) {
+                cartBox.innerHTML = `
+                    <div class="text-center py-16 text-slate-400 space-y-3">
+                        <i class="fa-solid fa-basket-shopping text-4xl text-slate-300"></i>
+                        <p class="font-bold text-slate-600">Your cart is currently empty</p>
+                        <p class="text-sm text-slate-400">Add some products to get started!</p>
+                    </div>
+                `;
+            } else {
+                cartBox.innerHTML = cart.map((item, index) => `
+                    <div class="flex items-start justify-between gap-3 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+                        <img src="${item.images[0]}" alt="${item.title}" class="w-16 h-16 object-cover rounded-xl bg-white border border-slate-100 shrink-0">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-sm text-slate-800 leading-snug">${item.title}</h4>
+                            <p class="font-extrabold text-sm text-rose-600 mt-1">${formatMoney(item.price)}</p>
+                            ${item.note ? `<p class="text-xs text-purple-700 bg-purple-50 px-2 py-0.5 rounded mt-1.5 font-medium border border-purple-100">Note: ${item.note}</p>` : ''}
+                            <div class="flex items-center gap-2 mt-2">
+                                <button onclick="updateCartQuantity(${index}, -1)" class="w-6 h-6 rounded-md bg-slate-100 border border-slate-300 flex items-center justify-center font-bold text-xs">-</button>
+                                <span class="font-extrabold text-sm w-5 text-center">${item.qty}</span>
+                                <button onclick="updateCartQuantity(${index}, 1)" class="w-6 h-6 rounded-md bg-slate-100 border border-slate-300 flex items-center justify-center font-bold text-xs">+</button>
+                            </div>
+                        </div>
+                        <div class="text-right flex flex-col justify-between items-end gap-2 shrink-0">
+                            <button onclick="removeFromCart(${index})" class="text-slate-400 hover:text-rose-600 text-sm p-1">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <span class="font-black text-sm text-slate-900">${formatMoney(item.price * item.qty)}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cartTotal').textContent = formatMoney(subtotal);
+            const step2Total = document.getElementById('cartTotalStep2');
+            if (step2Total) step2Total.textContent = formatMoney(subtotal);
+            document.getElementById('bundleModalTotal').textContent = formatMoney(subtotal);
+
+            // Persist cart to localStorage so it survives reloads
+            saveCartToLocal();
+        }
+
+        function saveCartToLocal() {
+            try {
+                localStorage.setItem('uniqueClaimsCart', JSON.stringify(cart));
+            } catch (e) {
+                console.warn('Failed to save cart to localStorage', e);
+            }
+        }
+
+        function goToCartStep(step) {
+            const step1 = document.getElementById('cartStep1');
+            const step2 = document.getElementById('cartStep2');
+            const backBtn = document.getElementById('cartBackBtn');
+            const title = document.getElementById('cartStepTitle');
+
+            if (step === 1) {
+                step1.classList.remove('hidden');
+                step2.classList.add('hidden');
+                backBtn.classList.add('hidden');
+                title.textContent = 'Your Shopping Cart';
+            } else if (step === 2) {
+                if (cart.length === 0) {
+                    showToast("Add items to your cart first!");
+                    return;
+                }
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+                backBtn.classList.remove('hidden');
+                title.textContent = 'Checkout Details';
+                // Sync total
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+                const step2Total = document.getElementById('cartTotalStep2');
+                if (step2Total) step2Total.textContent = formatMoney(subtotal);
+
+                // History for checkout step
+                if (!history.state || history.state.view !== 'cart' || history.state.step !== 2) {
+                    history.pushState({ view: 'cart', step: 2 }, '', '#checkout');
+                }
+            }
+        }
+
+        function handleDeliveryChange() {
+            const deliveryType = document.getElementById('custDelivery').value;
+            const knutsfordSection = document.getElementById('knutsfordSection');
+
+            if (deliveryType === "Knutsford Express Delivery") {
+                knutsfordSection.classList.remove('hidden');
+            } else {
+                knutsfordSection.classList.add('hidden');
+            }
+            // Reset payment visibility if needed
+            handlePaymentChange();
+        }
+
+        function handlePaymentChange() {
+            const payment = document.getElementById('custPayment').value;
+            const bankSection = document.getElementById('bankDetailsSection');
+            const isBankTransfer = payment && !payment.includes('Cash') && payment !== '';
+
+            if (isBankTransfer) {
+                bankSection.classList.remove('hidden');
+            } else {
+                bankSection.classList.add('hidden');
+            }
+        }
+
+        function copyAccountNumber() {
+            const accountNum = '504913848';
+            navigator.clipboard.writeText(accountNum).then(() => {
+                showToast('Account number copied!');
+            }).catch(() => {
+                // Fallback
+                const temp = document.createElement('textarea');
+                temp.value = accountNum;
+                document.body.appendChild(temp);
+                temp.select();
+                document.execCommand('copy');
+                document.body.removeChild(temp);
+                showToast('Account number copied!');
+            });
+        }
+
+        function toggleKnutsfordInfo() {
+            const content = document.getElementById('knutsfordInfoContent');
+            const icon = document.getElementById('knutsfordInfoIcon');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        function toggleCartDrawer(show) {
+            const drawer = document.getElementById('cartDrawer');
+            if (show) {
+                goToCartStep(1); // Always start on review step
+                drawer.classList.remove('hidden');
+                // History
+                if (!history.state || history.state.view !== 'cart') {
+                    history.pushState({ view: 'cart', step: 1 }, '', '#cart');
+                }
+            } else {
+                drawer.classList.add('hidden');
+                if (history.state && history.state.view === 'cart') {
+                    history.back();
+                }
+            }
+        }
+
+        function openBundleModal() {
+            renderBundleList(products);
+            document.getElementById('bundleModal').classList.remove('hidden');
+        }
+
+        function closeBundleModal() {
+            document.getElementById('bundleModal').classList.add('hidden');
+        }
+
+        function filterBundleProducts() {
+            const query = document.getElementById('bundleSearchInput').value.toLowerCase();
+            const filtered = products.filter(p => p.title.toLowerCase().includes(query));
+            renderBundleList(filtered);
+        }
+
+        function renderBundleList(items) {
+            const container = document.getElementById('bundleListContainer');
+            container.innerHTML = items.map(p => {
+                return `
+                    <div class="flex items-center justify-between gap-3 p-3 rounded-2xl border border-slate-200 bg-white shadow-sm">
+                        <img src="${p.images[0]}" alt="${p.title}" class="w-12 h-12 object-cover rounded-xl bg-slate-100">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-xs text-slate-800 truncate">${p.title}</h4>
+                            <p class="font-black text-xs text-rose-600">${formatMoney(p.price)}</p>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="addToCart(${p.id}, 1, ''); renderBundleList(products);" class="bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs px-3 py-1.5 rounded-xl flex items-center gap-1">
+                                <i class="fa-solid fa-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function processWhatsAppCheckout() {
+            if (cart.length === 0) {
+                alert("Your shopping cart is empty! Add items first to place an order.");
+                return;
+            }
+
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const delivery = document.getElementById('custDelivery').value;
+            const payment = document.getElementById('custPayment').value;
+            const knutsfordAddr = document.getElementById('custKnutsfordAddress').value.trim();
+
+            if (!name || !phone) {
+                alert("Please enter your Name and WhatsApp phone number so we can process your order!");
+                return;
+            }
+
+            if (!payment) {
+                alert("Please select a payment method!");
+                return;
+            }
+
+            if (delivery === "Knutsford Express Delivery" && !knutsfordAddr) {
+                alert("Please enter your Knutsford Express shipping address / branch for delivery!");
+                return;
+            }
+
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            let msg = `🛒 NEW ORDER - UNIQUE CLAIMS JA\n`;
+            msg += `Website: uniqueclaimsja.store\n`;
+            msg += `----------------------------------------\n`;
+            msg += `Customer Details:\n`;
+            msg += `• Name: ${name}\n`;
+            msg += `• Phone: ${phone}\n`;
+            msg += `• Delivery Option: ${delivery}\n`;
+            if (delivery === "Knutsford Express Delivery") {
+                msg += `• Knutsford Branch / Address: ${knutsfordAddr}\n`;
+                msg += `• Note: $700 pickup delivery fee paid directly to Knutsford upon pickup.\n`;
+            }
+            msg += `• Payment Choice: ${payment}\n\n`;
+            msg += `Order Summary:\n`;
+
+            cart.forEach((item, index) => {
+                msg += `${index + 1}. ${item.title}\n   Qty: ${item.qty} x ${formatMoney(item.price)} = ${formatMoney(item.price * item.qty)}\n`;
+                if (item.note) {
+                    msg += `   📝 Note: ${item.note}\n`;
+                }
+            });
+
+            msg += `----------------------------------------\n`;
+            msg += `TOTAL DUE: ${formatMoney(totalAmount)}\n\n`;
+            msg += `"Uniquely You! Every time."\n`;
+            msg += `Please confirm my order details!`;
+
+            const encodedMsg = encodeURIComponent(msg);
+            const whatsappNum = "18765813521";
+            const whatsappUrl = `https://wa.me/${whatsappNum}?text=${encodedMsg}`;
+
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function toggleFaq(index) {
+            const content = document.getElementById(`faqContent-${index}`);
+            const icon = document.getElementById(`faqIcon-${index}`);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        function shareStore() {
+            const url = location.origin + '/';
+            const text = 'Check out Unique Claims JA — local gadgets and unique finds in Jamaica.';
+            if (navigator.share) {
+                navigator.share({ title: 'Unique Claims JA', text, url }).catch(() => {});
+            } else {
+                window.open(`https://wa.me/?text=${encodeURIComponent(text + '\n' + url)}`, '_blank');
+            }
+        }
+
+        function openWebsiteOffer() {
+            history.pushState({ view: 'offer' }, '', 'website-offer.html');
+            window.location.href = 'website-offer.html';
+        }
+
+        function openAdForm() {
+            document.getElementById('adFormModal').classList.remove('hidden');
+        }
+
+        function closeAdForm() {
+            document.getElementById('adFormModal').classList.add('hidden');
+        }
+
+        function submitAdForm() {
+            const name = document.getElementById('adName').value.trim();
+            const business = document.getElementById('adBusiness').value.trim();
+            const phone = document.getElementById('adPhone').value.trim();
+            const details = document.getElementById('adDetails').value.trim();
+
+            if (!name || !business || !phone) {
+                alert('Please fill in Name, Business Name, and WhatsApp Number.');
+                return;
+            }
+
+            let msg = `📢 AD INQUIRY - UNIQUE CLAIMS JA\n`;
+            msg += `----------------------------------------\n`;
+            msg += `Name: ${name}\n`;
+            msg += `Business: ${business}\n`;
+            msg += `WhatsApp: ${phone}\n`;
+            if (details) msg += `Details: ${details}\n`;
+            msg += `\nI'd like to promote on Unique Claims JA.`;
+
+            window.open(`https://wa.me/18765813521?text=${encodeURIComponent(msg)}`, '_blank');
+            closeAdForm();
+        }
+
+        function openGamifiedTip() {
+            // Opens the gamified cafe tip screen (same as on bwhs.online)
+            window.open('https://bwhs.online/', '_blank');
+            closeTipModal();
+        }
+
+
+
+        let selectedPreorderProduct = null;
+
+        
+        function scrollWhy(dir) {
+            const el = document.getElementById('whyCarousel');
+            if (el) el.scrollBy({ left: dir * 300, behavior: 'smooth' });
+        }
+
+        function openPreorderModal() {
+            document.getElementById('preorderModal').classList.remove('hidden');
+            renderPreorderList(products);
+            if (location.hash !== '#preorder') history.pushState({ view: 'preorder' }, '', '#preorder'); else history.replaceState({ view: 'preorder' }, '', '#preorder');
+        }
+        function closePreorderModal() {
+            document.getElementById('preorderModal').classList.add('hidden');
+            if (location.hash === '#preorder') history.back();
+        }
+        function renderPreorderList(list) {
+            const container = document.getElementById('preorderList');
+            if (!list.length) {
+                container.innerHTML = '<div class="p-4 text-center text-xs text-slate-500">No products found</div>';
+                return;
+            }
+            container.innerHTML = list.map(p => `
+                <button type="button" onclick="selectPreorderProduct(${p.id})" class="w-full flex items-center gap-3 p-3 hover:bg-slate-50 text-left transition-colors">
+                    <img src="${p.images[0]}" alt="" class="w-12 h-12 object-cover rounded-lg shrink-0 border border-slate-200">
+                    <div class="flex-1 min-w-0">
+                        <div class="font-semibold text-sm text-slate-900 truncate">${p.title}</div>
+                        <div class="text-xs text-rose-600 font-bold">${formatMoney(p.price)}</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
+                </button>
+            `).join('');
+        }
+        function filterPreorderList() {
+            const q = document.getElementById('preorderSearch').value.toLowerCase().trim();
+            const filtered = products.filter(p => p.title.toLowerCase().includes(q));
+            renderPreorderList(filtered);
+        }
+        function selectPreorderProduct(id) {
+            selectedPreorderProduct = products.find(p => p.id === id);
+            if (!selectedPreorderProduct) return;
+            document.getElementById('preorderSelectedTitle').textContent = selectedPreorderProduct.title;
+            document.getElementById('preorderSelectedPrice').textContent = formatMoney(selectedPreorderProduct.price);
+            document.getElementById('preorderSelected').classList.remove('hidden');
+            document.getElementById('preorderForm').classList.remove('hidden');
+            document.getElementById('preorderList').classList.add('hidden');
+            document.getElementById('preorderSearch').classList.add('hidden');
+        }
+        function submitPreorder(e) {
+            e.preventDefault();
+            if (!selectedPreorderProduct) return;
+            const name = document.getElementById('preorderName').value.trim();
+            const phone = document.getElementById('preorderPhone').value.trim();
+            const note = document.getElementById('preorderNote').value.trim();
+            let text = `PRE-ORDER REQUEST\n\nProduct: ${selectedPreorderProduct.title}\nPrice: ${formatMoney(selectedPreorderProduct.price)}\n\nName: ${name}\nWhatsApp: ${phone}`;
+            if (note) text += `\nNotes: ${note}`;
+            text += `\n\nPlease confirm availability and next steps.`;
+            const url = 'https://wa.me/18765813521?text=' + encodeURIComponent(text);
+            window.open(url, '_blank');
+            closePreorderModal();
+            showToast('Pre-order request sent via WhatsApp!', 'success');
+        }
+
+        function chatAboutProduct(id) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+            const text = `Hi Unique Claims JA! I have a question about: ${p.title} (${formatMoney(p.price)})`;
+            const url = 'https://wa.me/18765813521?text=' + encodeURIComponent(text);
+            window.open(url, '_blank');
+        }
+
+                function openContactModal() {
+            document.getElementById('contactModal').classList.remove('hidden');
+            if (location.hash !== '#contact') history.pushState({ view: 'contact' }, '', '#contact');
+        }
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.add('hidden');
+            if (location.hash === '#contact') history.back();
+        }
+        function sendContactWhatsApp(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value.trim();
+            const phone = document.getElementById('contactPhone').value.trim();
+            const msg = document.getElementById('contactMessage').value.trim();
+            let text = `Hi Unique Claims JA! My name is ${name}.`;
+            if (phone) text += ` Phone: ${phone}.`;
+            text += `\n\n${msg}`;
+            const url = 'https://wa.me/18765813521?text=' + encodeURIComponent(text);
+            window.open(url, '_blank');
+            closeContactModal();
+        }
+
+                function openTipModal() {
+            document.getElementById('tipModal').classList.remove('hidden');
+            if (location.hash !== '#tip') history.pushState({ view: 'tip' }, '', '#tip');
+        }
+
+        function closeTipModal() {
+            document.getElementById('tipModal').classList.add('hidden');
+            const contact = document.getElementById('contactModal');
+            if (contact) contact.classList.add('hidden');
+            const preorder = document.getElementById('preorderModal');
+            if (preorder) preorder.classList.add('hidden');
+        }
+
+        function openImageZoom(imgSrc, caption) {
+            const modal = document.getElementById('imageZoomModal');
+            const img = document.getElementById('zoomImage');
+            const cap = document.getElementById('zoomCaption');
+            img.src = imgSrc;
+            img.classList.remove('scale-150', 'cursor-zoom-out');
+            img.classList.add('cursor-zoom-in');
+            cap.textContent = caption || '';
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageZoom() {
+            document.getElementById('imageZoomModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Browser back/forward support so device buttons stay inside the site
+        window.addEventListener('popstate', (e) => {
+            const state = e.state || { view: 'home' };
+
+            // Close everything first
+            document.getElementById('productModal').classList.add('hidden');
+            document.getElementById('cartDrawer').classList.add('hidden');
+            document.getElementById('savedDrawer').classList.add('hidden');
+            const bundle = document.getElementById('bundleModal');
+            if (bundle) bundle.classList.add('hidden');
+
+            if (state.view === 'product' && state.id != null) {
+                // Re-open product without pushing again
+                const p = products.find(item => item.id === state.id);
+                if (p) {
+                    activeModalProduct = p;
+                    document.getElementById('modalTitle').textContent = p.title;
+                    document.getElementById('modalPrice').textContent = formatMoney(p.price);
+                    document.getElementById('modalDescription').textContent = p.description;
+                    document.getElementById('modalBadge').textContent = p.badge;
+                    document.getElementById('modalMainImg').src = p.images[0];
+                    document.getElementById('productModal').classList.remove('hidden');
+                    loadRecommendedProducts(p);
+                }
+            } else if (state.view === 'cart') {
+                document.getElementById('cartDrawer').classList.remove('hidden');
+                goToCartStep(state.step || 1);
+            } else if (state.view === 'saved') {
+                document.getElementById('savedDrawer').classList.remove('hidden');
+                updateSavedDrawerUI();
+            }
+            // view === 'home' or null → stay on main catalog (everything already closed)
+        });
+
+        // Set initial history state so the first back stays on the site
+        if (!history.state) {
+            const cleanPath = location.pathname.endsWith('index.html') ? '/' : location.pathname;
+            history.replaceState({ view: 'home' }, '', cleanPath);
+        }
+
+        // Close zoom on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeImageZoom();
+        });
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toastMessage');
+            const iconEl = document.getElementById('toastIcon');
+            msgEl.textContent = message;
+
+            // Change icon based on type
+            if (type === 'cart') {
+                iconEl.className = 'fa-solid fa-cart-shopping text-rose-400 text-base';
+                // Stronger highlight on cart button
+                const cartBtn = document.getElementById('cartButton');
+                if (cartBtn) {
+                    cartBtn.classList.add('ring-4', 'ring-rose-400', 'ring-offset-2');
+                    setTimeout(() => cartBtn.classList.remove('ring-4', 'ring-rose-400', 'ring-offset-2'), 2000);
+                }
+            } else if (type === 'saved') {
+                iconEl.className = 'fa-solid fa-heart text-rose-400 text-base';
+                const savedBtn = document.getElementById('savedButton');
+                if (savedBtn) {
+                    savedBtn.classList.add('ring-4', 'ring-rose-400', 'ring-offset-2');
+                    setTimeout(() => savedBtn.classList.remove('ring-4', 'ring-rose-400', 'ring-offset-2'), 2000);
+                }
+            } else {
+                iconEl.className = 'fa-solid fa-circle-check text-emerald-400 text-base';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 3500);
+        }
+
+
+        // Sections to hide on product page (keep footer)
+        const sectionsToHideOnProduct = [
+            'section.relative.text-white', // social spotlight
+            'section.bg-white.py-12.border-t', // FAQs (approx)
+            'section.bg-white.py-8', // why unique
+            'section.bg-slate-50.py-12', // sponsored
+            'section.bg-white.py-6', // tip button
+            'section.bg-gradient-to-r.from-slate-900' // website promo
+        ];
+
+        function toggleLowerSections(hide) {
+            // Hide social, faqs, why, sponsored, tip, promo when product open
+            const allSections = document.querySelectorAll('section');
+            allSections.forEach(sec => {
+                const id = sec.id || '';
+                const cls = sec.className || '';
+                // Keep productDetailPage and main catalog sections
+                if (id === 'productDetailPage' || id === 'productPage') return;
+                // Hide these specific ones
+                if (cls.includes('relative text-white') || 
+                    (cls.includes('bg-white') && cls.includes('py-12') && !cls.includes('py-8')) ||
+                    cls.includes('bg-white py-8') ||
+                    cls.includes('bg-slate-50 py-12') ||
+                    cls.includes('bg-white py-6') ||
+                    (cls.includes('bg-gradient-to-r') && cls.includes('from-slate-900'))) {
+                    sec.style.display = hide ? 'none' : '';
+                }
+            });
+        }
+
+
+        // === SHARE CART (cross-device via URL) ===
+        function encodeCart() {
+            if (cart.length === 0) return '';
+            // Format: id:qty:note|id:qty:note  (note URL-encoded, notes with | or : replaced)
+            return cart.map(item => {
+                const note = (item.note || '').replace(/[|:]/g, ' ').trim();
+                return `${item.id}:${item.qty}:${encodeURIComponent(note)}`;
+            }).join('|');
+        }
+
+        function decodeCart(str) {
+            if (!str) return [];
+            const items = [];
+            str.split('|').forEach(part => {
+                const bits = part.split(':');
+                if (bits.length < 2) return;
+                const id = parseInt(bits[0], 10);
+                const qty = parseInt(bits[1], 10) || 1;
+                const note = bits[2] ? decodeURIComponent(bits[2]) : '';
+                const p = products.find(x => x.id === id);
+                if (p && qty > 0) {
+                    items.push({ ...p, qty, note });
+                }
+            });
+            return items;
+        }
+
+        function shareCart() {
+            if (cart.length === 0) {
+                showToast('Add items to your cart first!');
+                return;
+            }
+            const encoded = encodeCart();
+            const url = location.origin + location.pathname + '?cart=' + encodeURIComponent(encoded);
+            
+            // Prefer Web Share if available, else copy
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Unique Claims JA Cart',
+                    text: "Check out what I'm shopping for on Unique Claims JA!",
+                    url: url
+                }).catch(() => copyCartLink(url));
+            } else {
+                copyCartLink(url);
+            }
+        }
+
+        function copyCartLink(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                showToast('Cart link copied! Anyone who opens it will see these items.');
+            }).catch(() => {
+                // Fallback
+                const ta = document.createElement('textarea');
+                ta.value = url;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showToast('Cart link copied!');
+            });
+        }
+
+        function restoreCartFromUrl() {
+            const params = new URLSearchParams(location.search);
+            const cartParam = params.get('cart');
+            if (!cartParam) return;
+            const restored = decodeCart(cartParam);
+            if (restored.length > 0) {
+                const load = confirm(`This link has ${restored.length} shared product(s) attached to the cart.\n\nLoad them into your cart?`);
+                if (load) {
+                    cart = restored;
+                    updateCartUI();
+                    showToast(`Loaded ${restored.length} item(s) from shared cart!`);
+                    setTimeout(() => toggleCartDrawer(true), 400);
+                }
+                const clean = location.origin + location.pathname + location.hash;
+                history.replaceState(history.state || {}, '', clean);
+            }
+        }
+
+        // === FULL PRODUCT PAGE SUPPORT ===
+        let detailCurrentSlide = 0;
+        let detailTotalSlides = 0;
+        let detailQty = 1;
+        let currentDetailProduct = null;
+
+        function openProductPage(id, skipPush) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+            currentDetailProduct = p;
+            currentPageProduct = p;
+            detailQty = 1;
+            detailCurrentSlide = 0;
+            detailTotalSlides = p.images.length;
+
+            // Populate
+            document.getElementById('detailTitle').textContent = p.title;
+            document.getElementById('detailPrice').textContent = formatMoney(p.price);
+            document.getElementById('detailDescription').textContent = p.description;
+            document.getElementById('detailBadge').textContent = p.badge || 'Unique Item';
+            document.getElementById('detailBreadcrumb').textContent = p.title;
+            document.getElementById('detailQtyDisplay').textContent = '1';
+            document.getElementById('detailProductNote').value = '';
+            document.getElementById('detailSpecsText').textContent = p.description;
+
+            // Features (simple based on badge or generic)
+            const features = document.getElementById('detailFeatures');
+            features.innerHTML = `
+                <div class="p-2.5 bg-purple-50 rounded-xl border border-purple-100 flex items-center gap-2"><i class="fa-solid fa-check text-purple-600 text-sm"></i><span>In Stock</span></div>
+                <div class="p-2.5 bg-rose-50 rounded-xl border border-rose-100 flex items-center gap-2"><i class="fa-solid fa-camera text-rose-600 text-sm"></i><span>Real Photos</span></div>
+                <div class="p-2.5 bg-amber-50 rounded-xl border border-amber-100 flex items-center gap-2"><i class="fa-solid fa-truck text-amber-600 text-sm"></i><span>Local Pickup</span></div>
+                <div class="p-2.5 bg-emerald-50 rounded-xl border border-emerald-100 flex items-center gap-2"><i class="fa-solid fa-shield-halved text-emerald-600 text-sm"></i><span>Tested</span></div>
+            `;
+
+            // Gallery
+            const slider = document.getElementById('detailGallerySlider');
+            slider.innerHTML = p.images.map((img, i) => `
+                <div class="w-full shrink-0 snap-center flex items-center justify-center p-2">
+                    <img src="${img}" alt="${p.title} view ${i+1}" class="max-h-[340px] sm:max-h-[420px] w-auto max-w-full object-contain rounded-2xl drop-shadow-2xl transition-transform duration-300 hover:scale-105 cursor-zoom-in" onclick="openImageZoom(this.src, '${p.title}')">
+                </div>
+            `).join('');
+
+            // Dots
+            const dots = document.getElementById('detailPaginationDots');
+            dots.innerHTML = p.images.map((_, i) => `
+                <button onclick="goToDetailSlide(${i})" class="w-2.5 h-2.5 rounded-full ${i===0?'bg-rose-600':'bg-slate-300'} transition-all duration-300 dot-indicator" aria-label="Slide ${i+1}"></button>
+            `).join('');
+
+            // Thumbs
+            const thumbs = document.getElementById('detailThumbnails');
+            thumbs.innerHTML = p.images.map((img, i) => `
+                <img src="${img}" onclick="goToDetailSlide(${i})" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-2xl border-2 ${i===0?'border-rose-600':'border-slate-200'} p-0.5 cursor-pointer shadow-sm hover:opacity-90 transition-all shrink-0 thumbnail-item ${i===0?'bg-rose-50/50':'bg-slate-50'}">
+            `).join('');
+
+            // Recommended
+            loadDetailRecommended(p);
+
+            // Show page, hide catalog
+            document.getElementById('productGrid').closest('main').classList.add('hidden');
+            document.querySelector('section.relative.pt-6')?.classList.add('hidden'); // hero
+            document.getElementById('productDetailPage').classList.remove('hidden');
+            toggleLowerSections(true);
+            document.getElementById('productDetailPage').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (!skipPush) {
+                const newHash = '#product-' + id;
+                if (location.hash !== newHash) {
+                    history.pushState({ view: 'product', id: id }, '', newHash);
+                }
+            }
+            document.title = p.title + ' | Unique Claims JA';
+        }
+
+        function closeProductPage() {
+            document.getElementById('productDetailPage').classList.add('hidden');
+            toggleLowerSections(false);
+            document.getElementById('productDetailPage').classList.remove('active');
+            document.getElementById('productGrid').closest('main').classList.remove('hidden');
+            document.querySelector('section.relative.pt-6')?.classList.remove('hidden');
+            document.title = 'Unique Claims JA | Uniquely You! Every time.';
+            if (location.hash.startsWith('#product-')) history.back();
+        }
+
+        function goToDetailSlide(index) {
+            detailCurrentSlide = index;
+            const slider = document.getElementById('detailGallerySlider');
+            const slideWidth = slider.clientWidth;
+            slider.scrollTo({ left: slideWidth * index, behavior: 'smooth' });
+            updateDetailGalleryUI();
+        }
+        function scrollDetailGallery(dir) {
+            let newIndex = detailCurrentSlide + dir;
+            if (newIndex < 0) newIndex = detailTotalSlides - 1;
+            if (newIndex >= detailTotalSlides) newIndex = 0;
+            goToDetailSlide(newIndex);
+        }
+        function handleDetailGalleryScroll() {
+            const slider = document.getElementById('detailGallerySlider');
+            const slideWidth = slider.clientWidth;
+            if (slideWidth === 0) return;
+            const calculated = Math.round(slider.scrollLeft / slideWidth);
+            if (calculated !== detailCurrentSlide && calculated >= 0 && calculated < detailTotalSlides) {
+                detailCurrentSlide = calculated;
+                updateDetailGalleryUI();
+            }
+        }
+        function updateDetailGalleryUI() {
+            document.querySelectorAll('#detailThumbnails .thumbnail-item').forEach((thumb, idx) => {
+                if (idx === detailCurrentSlide) {
+                    thumb.classList.remove('border-slate-200', 'bg-slate-50');
+                    thumb.classList.add('border-rose-600', 'bg-rose-50/50');
+                } else {
+                    thumb.classList.remove('border-rose-600', 'bg-rose-50/50');
+                    thumb.classList.add('border-slate-200', 'bg-slate-50');
+                }
+            });
+            document.querySelectorAll('#detailPaginationDots .dot-indicator').forEach((dot, idx) => {
+                if (idx === detailCurrentSlide) {
+                    dot.className = "w-6 h-2.5 rounded-full bg-rose-600 transition-all duration-300 dot-indicator";
+                } else {
+                    dot.className = "w-2.5 h-2.5 rounded-full bg-slate-300 transition-all duration-300 dot-indicator";
+                }
+            });
+        }
+        function triggerDetailZoom() {
+            const slider = document.getElementById('detailGallerySlider');
+            const imgs = slider.querySelectorAll('img');
+            if (imgs[detailCurrentSlide]) openImageZoom(imgs[detailCurrentSlide].src, currentDetailProduct?.title || '');
+        }
+        function adjustDetailQty(delta) {
+            detailQty = Math.max(1, detailQty + delta);
+            document.getElementById('detailQtyDisplay').textContent = detailQty;
+        }
+        function addDetailToCart() {
+            if (!currentDetailProduct) return;
+            const note = document.getElementById('detailProductNote').value.trim();
+            addToCart(currentDetailProduct.id, detailQty, note);
+        }
+        function chatAboutCurrentProduct() {
+            if (currentDetailProduct) chatAboutProduct(currentDetailProduct.id);
+        }
+        function shareCurrentProduct() {
+            if (currentDetailProduct) shareProduct(currentDetailProduct.id);
+        }
+        function openBundleModalFromProduct() {
+            if (currentDetailProduct) {
+                const note = document.getElementById('detailProductNote').value.trim();
+                addToCart(currentDetailProduct.id, detailQty, note);
+            }
+            openBundleModal();
+        }
+        function switchDetailTab(tab) {
+            const specs = document.getElementById('detailTabSpecs');
+            const del = document.getElementById('detailTabDelivery');
+            const btnS = document.getElementById('detailTabBtnSpecs');
+            const btnD = document.getElementById('detailTabBtnDelivery');
+            if (tab === 'specs') {
+                specs.classList.remove('hidden'); del.classList.add('hidden');
+                btnS.className = "text-rose-600 border-b-2 border-rose-600 pb-3 -mb-3 transition-all";
+                btnD.className = "text-slate-500 hover:text-slate-900 pb-3 -mb-3 transition-all";
+            } else {
+                specs.classList.add('hidden'); del.classList.remove('hidden');
+                btnD.className = "text-rose-600 border-b-2 border-rose-600 pb-3 -mb-3 transition-all";
+                btnS.className = "text-slate-500 hover:text-slate-900 pb-3 -mb-3 transition-all";
+            }
+        }
+        function loadDetailRecommended(current) {
+            const container = document.getElementById('detailRecommended');
+            if (!container) return;
+            const others = products.filter(p => p.id !== current.id).sort(() => 0.5 - Math.random()).slice(0, 4);
+            container.innerHTML = others.map(r => `
+                <div class="bg-white rounded-2xl border border-slate-200 p-4 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer" onclick="openProductPage(${r.id})">
+                    <div class="space-y-3">
+                        <div class="aspect-4/3 bg-slate-100 rounded-xl overflow-hidden relative">
+                            <img src="${r.images[0]}" alt="${r.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-2 left-2 bg-slate-900 text-white font-bold text-[10px] px-2 py-0.5 rounded-full">${r.badge || ''}</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm group-hover:text-rose-600 transition-colors line-clamp-2">${r.title}</h4>
+                        <p class="text-xs text-slate-500 line-clamp-2">${r.description}</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-100 mt-3">
+                        <span class="font-black text-rose-600 text-base">${formatMoney(r.price)}</span>
+                        <span class="bg-slate-100 group-hover:bg-rose-600 group-hover:text-white text-slate-700 font-bold p-2 rounded-xl text-xs transition-all"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Override original openProductLightbox to use full page
+        const originalOpen = openProductLightbox;
+        openProductLightbox = function(id, skipPush) {
+            openProductPage(id, skipPush);
+        };
+        function openProductPageFromHash(id) {
+            openProductPage(id, true);
+        }
+
+        // Update hash handler
+        const originalHandleHash = handleHashRoute;
+        handleHashRoute = function() {
+            const hash = location.hash.replace('#', '');
+            if (hash.startsWith('product-')) {
+                const id = parseInt(hash.split('-')[1], 10);
+                if (!isNaN(id)) openProductPage(id, true);
+                return;
+            }
+            // close product page if open
+            if (!document.getElementById('productDetailPage').classList.contains('hidden')) {
+                closeProductPage();
+            }
+            originalHandleHash();
+        };
+
+        // popstate support
+        window.addEventListener('popstate', (e) => {
+            const state = e.state || {};
+            if (state.view === 'product' && state.id != null) {
+                openProductPage(state.id, true);
+            } else {
+                if (!document.getElementById('productDetailPage').classList.contains('hidden')) {
+                    document.getElementById('productDetailPage').classList.add('hidden');
+            toggleLowerSections(false);
+                    document.getElementById('productDetailPage').classList.remove('active');
+                    document.getElementById('productGrid').closest('main').classList.remove('hidden');
+                    document.querySelector('section.relative.pt-6')?.classList.remove('hidden');
+                    document.title = 'Unique Claims JA | Uniquely You! Every time.';
+                }
+            }
+        });
+
+    
+        // Firebase override — load live data if available
+        async function loadLiveCatalog() {
+            try {
+                if (!window.firebaseDB || !window.firebaseGet || !window.firebaseRef) {
+                    console.warn("Firebase not ready yet");
+                    return;
+                }
+                const db = window.firebaseDB;
+                const get = window.firebaseGet;
+                const ref = window.firebaseRef;
+                const snap = await get(ref(db, 'uniqueClaims'));
+                if (snap.exists()) {
+                    const data = snap.val();
+                    if (data.products && Array.isArray(data.products) && data.products.length) {
+                        products = data.products;
+                        console.log("Loaded", products.length, "live products from Firebase");
+                        if (typeof sortAndRenderProducts === "function") {
+                            sortAndRenderProducts();
+                        }
+                    }
+                    if (data.announcements && Array.isArray(data.announcements)) {
+                        window.liveAnnouncements = data.announcements.filter(a => a.active !== false).map(a => a.text);
+                    }
+                    if (data.partners) window.livePartners = data.partners;
+                    if (data.bankConfig) window.liveBank = data.bankConfig;
+                } else {
+                    console.log("No uniqueClaims data in Firebase yet — using defaults");
+                }
+            } catch (e) {
+                console.warn("Firebase catalog load failed — using defaults", e);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(loadLiveCatalog, 800);
+        });
+
+</script>
 </body>
 </html>
