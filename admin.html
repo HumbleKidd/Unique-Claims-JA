@@ -518,6 +518,35 @@ window.firebaseOnValue = onValue;
                         <textarea id="prodImages" required rows="3" placeholder="Paste image URLs here (one per line or paste multiple at once)" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none font-mono text-[11px] resize-none custom-scrollbar" onpaste="handleImagePaste(event)" oninput="updateImagePreviews()"></textarea>
                     </div>
 
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Short Tagline / Blurb</label>
+                            <input type="text" id="prodTagline" placeholder="e.g. Wireless headphones engineered for clearer sound." class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Sale Price (optional)</label>
+                            <input type="number" id="prodSalePrice" placeholder="Leave empty if no sale" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Key Features (one per line: Icon | Title | Short text)</label>
+                        <textarea id="prodFeatures" rows="4" placeholder="🔊 | Premium Sound | Clear, rich audio&#10;🔋 | 30-hour battery | All-day listening" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none font-mono text-[11px]"></textarea>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Why Buy / Benefits</label>
+                        <textarea id="prodBenefits" rows="3" placeholder="Premium materials. Built to last. Free shipping on orders over $X." class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none"></textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Rating (0-5)</label>
+                            <input type="number" id="prodRating" min="0" max="5" step="0.1" placeholder="4.8" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Review Count</label>
+                            <input type="number" id="prodReviewCount" placeholder="1200" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none">
+                        </div>
+                    </div>
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">Product Description *</label>
                         <textarea id="prodDescription" required rows="5" placeholder="Detailed product specifications and highlights..." class="w-full px-3 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none font-medium resize-none custom-scrollbar leading-relaxed"></textarea>
@@ -589,6 +618,28 @@ window.firebaseOnValue = onValue;
         </div>
     </div>
 
+
+    <!-- FULL IMAGE VIEWER + EDITOR -->
+    <div id="imageViewer" class="fixed inset-0 z-[60] bg-black/90 hidden flex items-center justify-center p-4" onclick="if(event.target===this) closeImageViewer()">
+        <div class="relative max-w-5xl w-full max-h-[95vh] flex flex-col items-center">
+            <button onclick="closeImageViewer()" class="absolute -top-2 -right-2 z-10 bg-white text-slate-900 w-10 h-10 rounded-full font-bold shadow-lg">×</button>
+            <div class="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
+                <canvas id="editorCanvas" class="max-w-full max-h-[70vh]"></canvas>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2 justify-center bg-white/10 backdrop-blur rounded-2xl p-3">
+                <button type="button" onclick="setTool('crop')" class="px-3 py-1.5 bg-white text-slate-800 text-xs font-bold rounded-lg">Crop</button>
+                <button type="button" onclick="setTool('draw')" class="px-3 py-1.5 bg-white text-slate-800 text-xs font-bold rounded-lg">Draw</button>
+                <input type="color" id="drawColor" value="#ff0000" class="w-8 h-8 rounded border-0">
+                <input type="range" id="drawSize" min="1" max="20" value="4" class="w-20">
+                <label class="px-3 py-1.5 bg-white text-slate-800 text-xs font-bold rounded-lg cursor-pointer">
+                    + Clipart <input type="file" accept="image/*" onchange="addClipart(event)" class="hidden">
+                </label>
+                <button type="button" onclick="applyCrop()" class="px-3 py-1.5 bg-amber-500 text-white text-xs font-bold rounded-lg">Apply Crop</button>
+                <button type="button" onclick="saveEditedImage()" class="px-4 py-1.5 bg-rose-600 text-white text-xs font-bold rounded-lg">Save Edited Image</button>
+            </div>
+            <p class="text-white/70 text-[10px] mt-2">Click outside to close. Edits are saved back into the product images.</p>
+        </div>
+    </div>
     <!-- TOAST NOTIFICATION -->
     <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none border border-slate-700 text-xs font-semibold max-w-xs sm:max-w-sm">
         <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
@@ -917,6 +968,12 @@ window.firebaseOnValue = onValue;
                 document.getElementById('prodImages').value = (editProductObj.images || []).join('\n');
                 setTimeout(updateImagePreviews, 50);
                 document.getElementById('prodDescription').value = editProductObj.description || '';
+                document.getElementById('prodTagline').value = editProductObj.tagline || '';
+                document.getElementById('prodSalePrice').value = editProductObj.salePrice || '';
+                document.getElementById('prodFeatures').value = editProductObj.features || '';
+                document.getElementById('prodBenefits').value = editProductObj.benefits || '';
+                document.getElementById('prodRating').value = editProductObj.rating || '';
+                document.getElementById('prodReviewCount').value = editProductObj.reviewCount || '';
             } else {
                 title.textContent = "Add New Product";
                 document.getElementById('prodEditId').value = "";
@@ -996,6 +1053,12 @@ window.firebaseOnValue = onValue;
             const keywords = document.getElementById('prodKeywords').value.trim();
             const imagesRaw = document.getElementById('prodImages').value.trim();
             const description = document.getElementById('prodDescription').value.trim();
+            const tagline = document.getElementById('prodTagline')?.value.trim() || '';
+            const salePrice = document.getElementById('prodSalePrice')?.value ? Number(document.getElementById('prodSalePrice').value) : null;
+            const features = document.getElementById('prodFeatures')?.value.trim() || '';
+            const benefits = document.getElementById('prodBenefits')?.value.trim() || '';
+            const rating = document.getElementById('prodRating')?.value ? Number(document.getElementById('prodRating').value) : null;
+            const reviewCount = document.getElementById('prodReviewCount')?.value ? Number(document.getElementById('prodReviewCount').value) : null;
 
             const images = imagesRaw.split('\n').map(url => normalizeImageUrl(url.trim())).filter(url => url.length > 0);
 
@@ -1003,13 +1066,13 @@ window.firebaseOnValue = onValue;
                 // Update
                 const idx = products.findIndex(p => p.id === Number(editId));
                 if (idx > -1) {
-                    products[idx] = { id: Number(editId), title, price, badge, searchKeywords: keywords, images, description };
+                    products[idx] = { id: Number(editId), title, price, badge, searchKeywords: keywords, images, description, tagline, salePrice, features, benefits, rating, reviewCount };
                     showToast(`Updated product "${title}"`);
                 }
             } else {
                 // Add New
                 const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 0;
-                products.push({ id: newId, title, price, badge, searchKeywords: keywords, images, description });
+                products.push({ id: newId, title, price, badge, searchKeywords: keywords, images, description, tagline, salePrice, features, benefits, rating, reviewCount });
                 showToast(`Created new product "${title}"`);
             }
 
@@ -1456,6 +1519,112 @@ window.firebaseOnValue = onValue;
                 toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
             }, 3000);
         }
+
+        let currentViewerIndex = -1;
+        let editorCtx = null;
+        let currentTool = 'draw';
+        let isDrawing = false;
+        let cliparts = [];
+
+        function openImageViewer(index) {
+            currentViewerIndex = index;
+            const ta = document.getElementById('prodImages');
+            const urls = ta.value.split('\n').map(u => u.trim()).filter(u => u);
+            if (!urls[index]) return;
+            const canvas = document.getElementById('editorCanvas');
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = () => {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                editorCtx = canvas.getContext('2d');
+                editorCtx.drawImage(img, 0, 0);
+                document.getElementById('imageViewer').classList.remove('hidden');
+                setupCanvasEvents();
+            };
+            img.src = urls[index];
+        }
+
+        function closeImageViewer() {
+            document.getElementById('imageViewer').classList.add('hidden');
+            currentViewerIndex = -1;
+            cliparts = [];
+        }
+
+        function setTool(t) { currentTool = t; }
+
+        function setupCanvasEvents() {
+            const canvas = document.getElementById('editorCanvas');
+            canvas.onmousedown = e => {
+                if (currentTool !== 'draw') return;
+                isDrawing = true;
+                const r = canvas.getBoundingClientRect();
+                editorCtx.beginPath();
+                editorCtx.moveTo((e.clientX - r.left) * (canvas.width / r.width), (e.clientY - r.top) * (canvas.height / r.height));
+            };
+            canvas.onmousemove = e => {
+                if (!isDrawing || currentTool !== 'draw') return;
+                const r = canvas.getBoundingClientRect();
+                editorCtx.strokeStyle = document.getElementById('drawColor').value;
+                editorCtx.lineWidth = Number(document.getElementById('drawSize').value);
+                editorCtx.lineCap = 'round';
+                editorCtx.lineTo((e.clientX - r.left) * (canvas.width / r.width), (e.clientY - r.top) * (canvas.height / r.height));
+                editorCtx.stroke();
+            };
+            canvas.onmouseup = () => { isDrawing = false; };
+        }
+
+        function addClipart(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = ev => {
+                const img = new Image();
+                img.onload = () => {
+                    editorCtx.drawImage(img, 50, 50, Math.min(200, img.width), Math.min(200, img.height * (200/img.width)));
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function applyCrop() {
+            // Simple center crop for now (user can refine later)
+            const canvas = document.getElementById('editorCanvas');
+            const w = canvas.width * 0.8, h = canvas.height * 0.8;
+            const x = (canvas.width - w)/2, y = (canvas.height - h)/2;
+            const temp = document.createElement('canvas');
+            temp.width = w; temp.height = h;
+            temp.getContext('2d').drawImage(canvas, x, y, w, h, 0, 0, w, h);
+            canvas.width = w; canvas.height = h;
+            editorCtx = canvas.getContext('2d');
+            editorCtx.drawImage(temp, 0, 0);
+        }
+
+        function saveEditedImage() {
+            if (currentViewerIndex < 0) return;
+            const canvas = document.getElementById('editorCanvas');
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+            const ta = document.getElementById('prodImages');
+            const urls = ta.value.split('\n').map(u => u.trim()).filter(u => u);
+            urls[currentViewerIndex] = dataUrl;
+            ta.value = urls.join('\n');
+            updateImagePreviews();
+            closeImageViewer();
+            showToast('Edited image saved into product');
+        }
+
+        // Make previews clickable to open viewer
+        const origUpdate = updateImagePreviews;
+        updateImagePreviews = function() {
+            origUpdate();
+            const container = document.getElementById('imagePreviewContainer');
+            if (!container) return;
+            container.querySelectorAll('div').forEach((div, idx) => {
+                div.onclick = (e) => { if (e.target.tagName !== 'BUTTON') openImageViewer(idx); };
+            });
+        };
+
     </script>
 </body>
 </html>
