@@ -1524,54 +1524,115 @@ window.firebaseOnValue = onValue;
         let editorCtx = null;
         let currentTool = 'draw';
         let isDrawing = false;
-        let cliparts = [];
+        let overlays = []; // {img, x, y, w, h, dragging, resizing}
+        let dragTarget = null;
+        let dragOffset = {x:0, y:0};
+        let baseImage = null;
 
         function openImageViewer(index) {
             currentViewerIndex = index;
             const ta = document.getElementById('prodImages');
-            const urls = ta.value.split('\n').map(u => u.trim()).filter(u => u);
-            if (!urls[index]) return;
+            const urls = ta.value.split('\n').map(u => u.trim()).filter(Boolean);
+            if (index < 0 || index >= urls.length) return;
             const canvas = document.getElementById('editorCanvas');
             const img = new Image();
             img.crossOrigin = 'anonymous';
             img.onload = () => {
-                canvas.width = img.width;
-                canvas.height = img.height;
+                baseImage = img;
+                overlays = [];
+                canvas.width = Math.min(img.width, 1200);
+                canvas.height = Math.min(img.height, 1200);
                 editorCtx = canvas.getContext('2d');
-                editorCtx.drawImage(img, 0, 0);
+                redrawCanvas();
                 document.getElementById('imageViewer').classList.remove('hidden');
                 setupCanvasEvents();
             };
+            img.onerror = () => alert('Could not load image. Try a different one.');
             img.src = urls[index];
         }
 
         function closeImageViewer() {
             document.getElementById('imageViewer').classList.add('hidden');
             currentViewerIndex = -1;
-            cliparts = [];
+            overlays = [];
+            baseImage = null;
+        }
+
+        function redrawCanvas() {
+            if (!editorCtx || !baseImage) return;
+            const canvas = document.getElementById('editorCanvas');
+            editorCtx.clearRect(0, 0, canvas.width, canvas.height);
+            editorCtx.drawImage(baseImage, 0, 0, canvas.width, canvas.height);
+            overlays.forEach(o => {
+                editorCtx.drawImage(o.img, o.x, o.y, o.w, o.h);
+                if (o === dragTarget) {
+                    editorCtx.strokeStyle = '#e11d48';
+                    editorCtx.lineWidth = 2;
+                    editorCtx.strokeRect(o.x, o.y, o.w, o.h);
+                }
+            });
         }
 
         function setTool(t) { currentTool = t; }
 
+        function getCanvasPos(e) {
+            const canvas = document.getElementById('editorCanvas');
+            const r = canvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            return {
+                x: (clientX - r.left) * (canvas.width / r.width),
+                y: (clientY - r.top) * (canvas.height / r.height)
+            };
+        }
+
         function setupCanvasEvents() {
             const canvas = document.getElementById('editorCanvas');
-            canvas.onmousedown = e => {
-                if (currentTool !== 'draw') return;
-                isDrawing = true;
-                const r = canvas.getBoundingClientRect();
-                editorCtx.beginPath();
-                editorCtx.moveTo((e.clientX - r.left) * (canvas.width / r.width), (e.clientY - r.top) * (canvas.height / r.height));
+            const start = (e) => {
+                e.preventDefault();
+                const pos = getCanvasPos(e);
+                if (currentTool === 'draw') {
+                    isDrawing = true;
+                    editorCtx.beginPath();
+                    editorCtx.moveTo(pos.x, pos.y);
+                } else {
+                    // Check if clicking an overlay
+                    dragTarget = null;
+                    for (let i = overlays.length - 1; i >= 0; i--) {
+                        const o = overlays[i];
+                        if (pos.x >= o.x && pos.x <= o.x + o.w && pos.y >= o.y && pos.y <= o.y + o.h) {
+                            dragTarget = o;
+                            dragOffset.x = pos.x - o.x;
+                            dragOffset.y = pos.y - o.y;
+                            break;
+                        }
+                    }
+                }
             };
-            canvas.onmousemove = e => {
-                if (!isDrawing || currentTool !== 'draw') return;
-                const r = canvas.getBoundingClientRect();
-                editorCtx.strokeStyle = document.getElementById('drawColor').value;
-                editorCtx.lineWidth = Number(document.getElementById('drawSize').value);
-                editorCtx.lineCap = 'round';
-                editorCtx.lineTo((e.clientX - r.left) * (canvas.width / r.width), (e.clientY - r.top) * (canvas.height / r.height));
-                editorCtx.stroke();
+            const move = (e) => {
+                e.preventDefault();
+                const pos = getCanvasPos(e);
+                if (isDrawing && currentTool === 'draw') {
+                    editorCtx.strokeStyle = document.getElementById('drawColor').value;
+                    editorCtx.lineWidth = Number(document.getElementById('drawSize').value);
+                    editorCtx.lineCap = 'round';
+                    editorCtx.lineTo(pos.x, pos.y);
+                    editorCtx.stroke();
+                } else if (dragTarget) {
+                    dragTarget.x = pos.x - dragOffset.x;
+                    dragTarget.y = pos.y - dragOffset.y;
+                    redrawCanvas();
+                }
             };
-            canvas.onmouseup = () => { isDrawing = false; };
+            const end = () => { isDrawing = false; dragTarget = null; };
+
+            canvas.onmousedown = start;
+            canvas.onmousemove = move;
+            canvas.onmouseup = end;
+            canvas.onmouseleave = end;
+            canvas.ontouchstart = start;
+            canvas.ontouchmove = move;
+            canvas.ontouchend = end;
         }
 
         function addClipart(e) {
@@ -1581,50 +1642,74 @@ window.firebaseOnValue = onValue;
             reader.onload = ev => {
                 const img = new Image();
                 img.onload = () => {
-                    editorCtx.drawImage(img, 50, 50, Math.min(200, img.width), Math.min(200, img.height * (200/img.width)));
+                    const canvas = document.getElementById('editorCanvas');
+                    const w = Math.min(180, canvas.width * 0.4);
+                    const h = w * (img.height / img.width);
+                    overlays.push({ img, x: 40, y: 40, w, h });
+                    redrawCanvas();
                 };
                 img.src = ev.target.result;
             };
             reader.readAsDataURL(file);
+            e.target.value = '';
         }
 
         function applyCrop() {
-            // Simple center crop for now (user can refine later)
             const canvas = document.getElementById('editorCanvas');
-            const w = canvas.width * 0.8, h = canvas.height * 0.8;
-            const x = (canvas.width - w)/2, y = (canvas.height - h)/2;
+            const margin = 0.1;
+            const w = canvas.width * (1 - margin * 2);
+            const h = canvas.height * (1 - margin * 2);
+            const x = canvas.width * margin;
+            const y = canvas.height * margin;
             const temp = document.createElement('canvas');
-            temp.width = w; temp.height = h;
+            temp.width = w;
+            temp.height = h;
             temp.getContext('2d').drawImage(canvas, x, y, w, h, 0, 0, w, h);
-            canvas.width = w; canvas.height = h;
+            canvas.width = w;
+            canvas.height = h;
             editorCtx = canvas.getContext('2d');
-            editorCtx.drawImage(temp, 0, 0);
+            // Update baseImage conceptually by drawing the cropped result
+            const cropped = new Image();
+            cropped.onload = () => {
+                baseImage = cropped;
+                overlays = [];
+                redrawCanvas();
+            };
+            cropped.src = temp.toDataURL();
         }
 
         function saveEditedImage() {
             if (currentViewerIndex < 0) return;
+            redrawCanvas(); // ensure overlays are drawn
             const canvas = document.getElementById('editorCanvas');
-            const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
             const ta = document.getElementById('prodImages');
-            const urls = ta.value.split('\n').map(u => u.trim()).filter(u => u);
-            urls[currentViewerIndex] = dataUrl;
-            ta.value = urls.join('\n');
-            updateImagePreviews();
+            const urls = ta.value.split('\n').map(u => u.trim()).filter(Boolean);
+            if (currentViewerIndex < urls.length) {
+                urls[currentViewerIndex] = dataUrl;
+                ta.value = urls.join('\n');
+                updateImagePreviews();
+            }
             closeImageViewer();
-            showToast('Edited image saved into product');
+            showToast('Edited image saved');
         }
 
-        // Make previews clickable to open viewer
-        const origUpdate = updateImagePreviews;
+        // Override preview updates to attach correct click handlers
+        const _origUpdatePreviews = updateImagePreviews;
         updateImagePreviews = function() {
-            origUpdate();
+            _origUpdatePreviews();
             const container = document.getElementById('imagePreviewContainer');
             if (!container) return;
-            container.querySelectorAll('div').forEach((div, idx) => {
-                div.onclick = (e) => { if (e.target.tagName !== 'BUTTON') openImageViewer(idx); };
+            const thumbs = container.querySelectorAll(':scope > div');
+            thumbs.forEach((div, idx) => {
+                div.style.cursor = 'pointer';
+                div.onclick = (e) => {
+                    if (e.target.closest('button')) return;
+                    e.stopPropagation();
+                    openImageViewer(idx);
+                };
             });
         };
-
     </script>
 </body>
 </html>
