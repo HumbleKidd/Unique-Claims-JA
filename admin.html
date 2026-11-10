@@ -1524,10 +1524,13 @@ window.firebaseOnValue = onValue;
         let editorCtx = null;
         let currentTool = 'draw';
         let isDrawing = false;
-        let overlays = []; // {img, x, y, w, h, dragging, resizing}
+        let overlays = [];
         let dragTarget = null;
+        let resizeTarget = null;
         let dragOffset = {x:0, y:0};
         let baseImage = null;
+        let cropRect = null;
+        let isCropping = false;
 
         function openImageViewer(index) {
             currentViewerIndex = index;
@@ -1540,14 +1543,18 @@ window.firebaseOnValue = onValue;
             img.onload = () => {
                 baseImage = img;
                 overlays = [];
-                canvas.width = Math.min(img.width, 1200);
-                canvas.height = Math.min(img.height, 1200);
+                cropRect = null;
+                const maxW = Math.min(window.innerWidth * 0.9, 900);
+                const maxH = Math.min(window.innerHeight * 0.65, 700);
+                const scale = Math.min(maxW / img.width, maxH / img.height, 1);
+                canvas.width = img.width * scale;
+                canvas.height = img.height * scale;
                 editorCtx = canvas.getContext('2d');
                 redrawCanvas();
                 document.getElementById('imageViewer').classList.remove('hidden');
                 setupCanvasEvents();
             };
-            img.onerror = () => alert('Could not load image. Try a different one.');
+            img.onerror = () => alert('Could not load this image');
             img.src = urls[index];
         }
 
@@ -1555,6 +1562,7 @@ window.firebaseOnValue = onValue;
             document.getElementById('imageViewer').classList.add('hidden');
             currentViewerIndex = -1;
             overlays = [];
+            cropRect = null;
             baseImage = null;
         }
 
@@ -1565,15 +1573,26 @@ window.firebaseOnValue = onValue;
             editorCtx.drawImage(baseImage, 0, 0, canvas.width, canvas.height);
             overlays.forEach(o => {
                 editorCtx.drawImage(o.img, o.x, o.y, o.w, o.h);
-                if (o === dragTarget) {
-                    editorCtx.strokeStyle = '#e11d48';
-                    editorCtx.lineWidth = 2;
-                    editorCtx.strokeRect(o.x, o.y, o.w, o.h);
-                }
+                // Draw resize handle
+                editorCtx.fillStyle = '#e11d48';
+                editorCtx.fillRect(o.x + o.w - 8, o.y + o.h - 8, 10, 10);
+                editorCtx.strokeStyle = '#fff';
+                editorCtx.strokeRect(o.x + o.w - 8, o.y + o.h - 8, 10, 10);
             });
+            if (cropRect) {
+                editorCtx.strokeStyle = '#22c55e';
+                editorCtx.lineWidth = 2;
+                editorCtx.setLineDash([6, 4]);
+                editorCtx.strokeRect(cropRect.x, cropRect.y, cropRect.w, cropRect.h);
+                editorCtx.setLineDash([]);
+            }
         }
 
-        function setTool(t) { currentTool = t; }
+        function setTool(t) { 
+            currentTool = t; 
+            if (t === 'crop') cropRect = null;
+            redrawCanvas();
+        }
 
         function getCanvasPos(e) {
             const canvas = document.getElementById('editorCanvas');
@@ -1586,6 +1605,10 @@ window.firebaseOnValue = onValue;
             };
         }
 
+        function hitResizeHandle(o, pos) {
+            return pos.x >= o.x + o.w - 12 && pos.x <= o.x + o.w + 4 && pos.y >= o.y + o.h - 12 && pos.y <= o.y + o.h + 4;
+        }
+
         function setupCanvasEvents() {
             const canvas = document.getElementById('editorCanvas');
             const start = (e) => {
@@ -1595,12 +1618,19 @@ window.firebaseOnValue = onValue;
                     isDrawing = true;
                     editorCtx.beginPath();
                     editorCtx.moveTo(pos.x, pos.y);
+                } else if (currentTool === 'crop') {
+                    isCropping = true;
+                    cropRect = { x: pos.x, y: pos.y, w: 0, h: 0 };
                 } else {
-                    // Check if clicking an overlay
+                    // Check overlays (top to bottom)
+                    resizeTarget = null;
                     dragTarget = null;
                     for (let i = overlays.length - 1; i >= 0; i--) {
                         const o = overlays[i];
-                        if (pos.x >= o.x && pos.x <= o.x + o.w && pos.y >= o.y && pos.y <= o.y + o.h) {
+                        if (hitResizeHandle(o, pos)) {
+                            resizeTarget = o;
+                            break;
+                        } else if (pos.x >= o.x && pos.x <= o.x + o.w && pos.y >= o.y && pos.y <= o.y + o.h) {
                             dragTarget = o;
                             dragOffset.x = pos.x - o.x;
                             dragOffset.y = pos.y - o.y;
@@ -1618,14 +1648,21 @@ window.firebaseOnValue = onValue;
                     editorCtx.lineCap = 'round';
                     editorCtx.lineTo(pos.x, pos.y);
                     editorCtx.stroke();
+                } else if (isCropping && cropRect) {
+                    cropRect.w = pos.x - cropRect.x;
+                    cropRect.h = pos.y - cropRect.y;
+                    redrawCanvas();
+                } else if (resizeTarget) {
+                    resizeTarget.w = Math.max(20, pos.x - resizeTarget.x);
+                    resizeTarget.h = Math.max(20, pos.y - resizeTarget.y);
+                    redrawCanvas();
                 } else if (dragTarget) {
                     dragTarget.x = pos.x - dragOffset.x;
                     dragTarget.y = pos.y - dragOffset.y;
                     redrawCanvas();
                 }
             };
-            const end = () => { isDrawing = false; dragTarget = null; };
-
+            const end = () => { isDrawing = false; isCropping = false; dragTarget = null; resizeTarget = null; };
             canvas.onmousedown = start;
             canvas.onmousemove = move;
             canvas.onmouseup = end;
@@ -1643,9 +1680,9 @@ window.firebaseOnValue = onValue;
                 const img = new Image();
                 img.onload = () => {
                     const canvas = document.getElementById('editorCanvas');
-                    const w = Math.min(180, canvas.width * 0.4);
+                    const w = Math.min(160, canvas.width * 0.35);
                     const h = w * (img.height / img.width);
-                    overlays.push({ img, x: 40, y: 40, w, h });
+                    overlays.push({ img, x: 30, y: 30, w, h });
                     redrawCanvas();
                 };
                 img.src = ev.target.result;
@@ -1655,24 +1692,29 @@ window.firebaseOnValue = onValue;
         }
 
         function applyCrop() {
+            if (!cropRect || Math.abs(cropRect.w) < 10 || Math.abs(cropRect.h) < 10) {
+                // Fallback center crop
+                const canvas = document.getElementById('editorCanvas');
+                const m = 0.08;
+                cropRect = { x: canvas.width * m, y: canvas.height * m, w: canvas.width * (1 - m*2), h: canvas.height * (1 - m*2) };
+            }
             const canvas = document.getElementById('editorCanvas');
-            const margin = 0.1;
-            const w = canvas.width * (1 - margin * 2);
-            const h = canvas.height * (1 - margin * 2);
-            const x = canvas.width * margin;
-            const y = canvas.height * margin;
+            const x = Math.min(cropRect.x, cropRect.x + cropRect.w);
+            const y = Math.min(cropRect.y, cropRect.y + cropRect.h);
+            const w = Math.abs(cropRect.w);
+            const h = Math.abs(cropRect.h);
             const temp = document.createElement('canvas');
             temp.width = w;
             temp.height = h;
             temp.getContext('2d').drawImage(canvas, x, y, w, h, 0, 0, w, h);
-            canvas.width = w;
-            canvas.height = h;
-            editorCtx = canvas.getContext('2d');
-            // Update baseImage conceptually by drawing the cropped result
             const cropped = new Image();
             cropped.onload = () => {
                 baseImage = cropped;
+                canvas.width = w;
+                canvas.height = h;
+                editorCtx = canvas.getContext('2d');
                 overlays = [];
+                cropRect = null;
                 redrawCanvas();
             };
             cropped.src = temp.toDataURL();
@@ -1680,7 +1722,7 @@ window.firebaseOnValue = onValue;
 
         function saveEditedImage() {
             if (currentViewerIndex < 0) return;
-            redrawCanvas(); // ensure overlays are drawn
+            redrawCanvas();
             const canvas = document.getElementById('editorCanvas');
             const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
             const ta = document.getElementById('prodImages');
@@ -1694,14 +1736,12 @@ window.firebaseOnValue = onValue;
             showToast('Edited image saved');
         }
 
-        // Override preview updates to attach correct click handlers
         const _origUpdatePreviews = updateImagePreviews;
         updateImagePreviews = function() {
             _origUpdatePreviews();
             const container = document.getElementById('imagePreviewContainer');
             if (!container) return;
-            const thumbs = container.querySelectorAll(':scope > div');
-            thumbs.forEach((div, idx) => {
+            container.querySelectorAll(':scope > div').forEach((div, idx) => {
                 div.style.cursor = 'pointer';
                 div.onclick = (e) => {
                     if (e.target.closest('button')) return;
